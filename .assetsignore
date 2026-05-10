@@ -1,8 +1,0 @@
-_wp-content/
-.git/
-.gitignore
-.gitattributes
-README.md
-netlify.toml
-wrangler.jsonc
-.assetsignore
