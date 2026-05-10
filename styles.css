@@ -442,6 +442,14 @@ h2 span,
   font-size: 1.55rem;
 }
 
+.event-panel-time {
+  display: block;
+  margin-top: 4px;
+  color: rgba(255, 255, 255, 0.92);
+  font-weight: 600;
+  font-size: 0.96rem;
+}
+
 .event-panel-meta {
   display: block;
   margin-top: 8px;
