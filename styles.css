@@ -321,7 +321,7 @@ img {
 }
 
 .hero-scroll-hint {
-  position: absolute;
+  position: fixed;
   left: 50%;
   bottom: 16px;
   transform: translateX(-50%);
@@ -336,6 +336,14 @@ img {
   text-transform: uppercase;
   text-decoration: none;
   animation: scroll-hint 2s ease-in-out infinite;
+  z-index: 16;
+  transition: opacity 0.4s ease;
+  pointer-events: auto;
+}
+
+.hero-scroll-hint.is-hidden {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .hero-scroll-hint:hover {

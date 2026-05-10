@@ -46,16 +46,17 @@
     });
   }
 
-  // --- Header scroll shadow + scroll-to-top button ---
+  // --- Header scroll shadow + scroll-to-top button + scroll-hint fadeout ---
   const header = document.querySelector(".site-header");
   const scrollTopBtn = document.querySelector(".scroll-top");
+  const scrollHint = document.querySelector(".hero-scroll-hint");
   if (scrollTopBtn) {
     scrollTopBtn.removeAttribute("hidden");
     scrollTopBtn.addEventListener("click", function () {
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
   }
-  if (header || scrollTopBtn) {
+  if (header || scrollTopBtn || scrollHint) {
     const onScroll = function () {
       const y = window.scrollY;
       if (header) {
@@ -63,6 +64,9 @@
       }
       if (scrollTopBtn) {
         scrollTopBtn.classList.toggle("is-visible", y > 480);
+      }
+      if (scrollHint) {
+        scrollHint.classList.toggle("is-hidden", y > 60);
       }
     };
     window.addEventListener("scroll", onScroll, { passive: true });
