@@ -245,6 +245,8 @@ function Clean-Content([string]$html) {
   # Replace stale 'Coming Soon' placeholders with neutral wording (event has ended)
   $h = [regex]::Replace($h, '<p>Coming Soon</p>', '<p class="placeholder-tba">— 詳細掲載なし —</p>')
   $h = [regex]::Replace($h, '<strong>Coming Soon</strong>', '<strong>（詳細未掲載）</strong>')
+  # Prefer 「観覧」over「鑑賞」for fireworks context (user style guide)
+  $h = $h.Replace('鑑賞', '観覧')
   foreach ($k in $urlMap.Keys) {
     $local = $urlMap[$k]
     $escaped = [regex]::Escape($k)
