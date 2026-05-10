@@ -1229,9 +1229,6 @@ h2 span,
 
 .page-hero-inner {
   position: relative;
-}
-
-.page-hero-inner {
   width: min(1120px, calc(100% - 40px));
   margin-inline: auto;
 }
