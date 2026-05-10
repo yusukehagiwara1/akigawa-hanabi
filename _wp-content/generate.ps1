@@ -82,6 +82,7 @@ $template = @'
     <meta name="twitter:title" content="{{TITLE}}｜秋川流域花火大会">
     <meta name="twitter:description" content="{{DESC}}">
     <meta name="twitter:image" content="https://akigawa-hanabi.pages.dev/assets/keyvisual.jpg">
+    <meta name="twitter:image:alt" content="夜空に咲く秋川流域花火大会のキービジュアル">
     <link rel="icon" href="assets/favicon.ico" sizes="any">
     <link rel="apple-touch-icon" href="assets/favicon.ico">
     <link rel="dns-prefetch" href="https://0k3w9bd30b.microcms.io">
