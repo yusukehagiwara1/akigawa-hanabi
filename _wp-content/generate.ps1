@@ -235,6 +235,8 @@ function Clean-Content([string]$html) {
   $h = [regex]::Replace($h, ' loading="[^"]*"', '')
   # Re-apply async decoding + lazy loading uniformly to all images
   $h = [regex]::Replace($h, '<img ', '<img loading="lazy" decoding="async" ')
+  # Inject loading="lazy" and a descriptive title for Google Maps iframes
+  $h = [regex]::Replace($h, '<iframe(?![^>]*\bloading=)(?=[^>]*google\.com/maps)', '<iframe loading="lazy" title="東京サマーランド 第2駐車場 周辺地図"')
   $h = [regex]::Replace($h, ' srcset="[^"]*"', '')
   $h = [regex]::Replace($h, ' sizes="[^"]*"', '')
   $h = [regex]::Replace($h, ' width="\d+"', '')
