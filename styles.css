@@ -1153,7 +1153,7 @@ h2 span,
 .timeline::before {
   content: "";
   position: absolute;
-  left: 70px;
+  left: 109px;
   top: 12px;
   bottom: 12px;
   width: 2px;
@@ -1163,8 +1163,8 @@ h2 span,
 .timeline > li {
   position: relative;
   display: grid;
-  grid-template-columns: 100px 1fr;
-  gap: 20px;
+  grid-template-columns: 90px 1fr;
+  gap: 30px;
   padding: 14px 0;
   align-items: flex-start;
 }
@@ -1172,7 +1172,7 @@ h2 span,
 .timeline > li::before {
   content: "";
   position: absolute;
-  left: 64px;
+  left: 103px;
   top: 22px;
   width: 14px;
   height: 14px;
@@ -1215,14 +1215,14 @@ h2 span,
 
 @media (max-width: 620px) {
   .timeline::before {
-    left: 50px;
+    left: 85px;
   }
   .timeline > li {
-    grid-template-columns: 80px 1fr;
-    gap: 14px;
+    grid-template-columns: 70px 1fr;
+    gap: 26px;
   }
   .timeline > li::before {
-    left: 44px;
+    left: 80px;
     width: 12px;
     height: 12px;
   }
