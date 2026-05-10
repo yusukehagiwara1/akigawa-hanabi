@@ -102,6 +102,7 @@ $template = @'
     <script src="ui.js" defer></script>
   </head>
   <body>
+    <a class="skip-link" href="#main-content">本文へスキップ</a>
     <header class="site-header">
       <a class="brand" href="index.html" aria-label="秋川流域花火大会 トップへ">
         <span class="brand-mark"></span>
@@ -123,7 +124,7 @@ $template = @'
       <a class="header-cta" href="ticket.html">チケットを見る</a>
     </header>
 
-    <main class="page-main">
+    <main class="page-main" id="main-content">
       <section class="page-hero">
         <div class="page-hero-inner">
           <a class="page-back" href="index.html">← トップへ戻る</a>
