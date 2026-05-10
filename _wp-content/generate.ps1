@@ -62,6 +62,9 @@ $template = @'
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0f1828">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <link rel="manifest" href="/manifest.json">
     <title>{{TITLE}}｜秋川流域花火大会</title>
     <meta name="description" content="{{DESC}}">
     <link rel="canonical" href="https://akigawa-hanabi.pages.dev/{{FILE}}">
