@@ -977,7 +977,7 @@ h2 span,
 .prose .contact-embed iframe {
   display: block;
   width: 100%;
-  height: 900px;
+  height: 1500px;
   border: 0;
   background: transparent;
 }
@@ -987,7 +987,7 @@ h2 span,
     margin-inline: 0;
   }
   .prose .contact-embed iframe {
-    height: 1100px;
+    height: 1700px;
   }
 }
 
