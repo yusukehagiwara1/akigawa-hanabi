@@ -6,12 +6,19 @@
     return;
   }
 
+  // Capture the fallback cards already rendered in HTML so we can pad with them
+  // when microCMS has fewer items than the desired limit.
+  const fallbackCards = Array.from(newsList.querySelectorAll(".info-card")).map(
+    function (c) { return c.outerHTML; }
+  );
+
   const endpoint = `https://${config.serviceDomain}.microcms.io/api/v1/${config.endpoint}`;
   const url = new URL(endpoint);
-  url.searchParams.set("limit", String(config.limit || 3));
+  const limit = Number(config.limit) || 3;
+  url.searchParams.set("limit", String(limit));
   url.searchParams.set("orders", config.orders || "-publishedAt");
 
-  loadNews(url, config.apiKey, newsList);
+  loadNews(url, config.apiKey, newsList, limit, fallbackCards);
 })();
 
 function isConfigured(config) {
@@ -24,51 +31,30 @@ function isConfigured(config) {
   );
 }
 
-async function loadNews(url, apiKey, target) {
-  target.dataset.fallback = "false";
-  target.innerHTML = '<p class="cms-status">最新情報を読み込んでいます。</p>';
-
+async function loadNews(url, apiKey, target, limit, fallbackCards) {
   try {
     const response = await fetch(url, {
-      headers: {
-        "X-MICROCMS-API-KEY": apiKey,
-      },
+      headers: { "X-MICROCMS-API-KEY": apiKey },
     });
-
     if (!response.ok) {
-      throw new Error(createErrorMessage(response.status, url));
+      throw new Error("microCMS fetch failed: " + response.status);
     }
-
     const data = await response.json();
     const contents = Array.isArray(data.contents) ? data.contents : [];
 
-    if (contents.length === 0) {
-      target.innerHTML = '<p class="cms-status">現在、公開中のお知らせはありません。</p>';
-      return;
+    const microCmsCards = contents.map(createNewsCard);
+    const needed = Math.max(0, limit - microCmsCards.length);
+    const padding = needed > 0 ? fallbackCards.slice(0, needed) : [];
+    const combined = microCmsCards.concat(padding);
+
+    if (combined.length > 0) {
+      target.innerHTML = combined.join("");
+      target.dataset.fallback = microCmsCards.length === 0 ? "true" : "false";
     }
-
-    target.innerHTML = contents.map(createNewsCard).join("");
   } catch (error) {
-    console.error(error);
-    target.dataset.fallback = "true";
-    target.innerHTML = `
-      <p class="cms-status cms-status-error">
-        ${escapeHtml(error.message || "最新情報を取得できませんでした。")}
-      </p>
-    `;
+    // Network/API error: silently keep the original hardcoded fallback that's already in DOM.
+    console.warn("[news] microCMS fetch failed, keeping fallback:", error.message);
   }
-}
-
-function createErrorMessage(status, url) {
-  if (status === 404) {
-    return `microCMSのAPIが見つかりません。serviceDomain「${url.hostname.replace(".microcms.io", "")}」とendpoint「${url.pathname.replace("/api/v1/", "")}」を確認してください。`;
-  }
-
-  if (status === 401 || status === 403) {
-    return "microCMSの認証に失敗しました。APIキーとGET権限を確認してください。";
-  }
-
-  return `microCMSから最新情報を取得できませんでした。HTTPステータス: ${status}`;
 }
 
 function createNewsCard(item) {
