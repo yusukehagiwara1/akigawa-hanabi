@@ -1,0 +1,17 @@
+# Build artifacts
+_deploy/
+_deploy.zip
+
+# OS noise
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
