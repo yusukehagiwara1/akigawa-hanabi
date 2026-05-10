@@ -1,6 +1,5 @@
 User-agent: *
 Allow: /
 Disallow: /_wp-content/
-Disallow: /_deploy/
 
-Sitemap: https://akigawa-hanabi.netlify.app/sitemap.xml
+Sitemap: https://akigawa-hanabi.pages.dev/sitemap.xml

@@ -1,4 +1,4 @@
-﻿param()
+param()
 
 $ErrorActionPreference = "Stop"
 $projectDir = Split-Path -Parent $PSScriptRoot
@@ -92,19 +92,19 @@ $template = @'
       "@graph": [
         {
           "@type": "WebPage",
-          "@id": "https://akigawa-hanabi.netlify.app/{{FILE}}",
-          "url": "https://akigawa-hanabi.netlify.app/{{FILE}}",
+          "@id": "https://akigawa-hanabi.pages.dev/{{FILE}}",
+          "url": "https://akigawa-hanabi.pages.dev/{{FILE}}",
           "name": "{{TITLE}}｜秋川流域花火大会",
           "description": "{{DESC}}",
           "inLanguage": "ja",
-          "isPartOf": { "@id": "https://akigawa-hanabi.netlify.app/#website" },
-          "primaryImageOfPage": "https://akigawa-hanabi.netlify.app/assets/keyvisual.jpg"
+          "isPartOf": { "@id": "https://akigawa-hanabi.pages.dev/#website" },
+          "primaryImageOfPage": "https://akigawa-hanabi.pages.dev/assets/keyvisual.jpg"
         },
         {
           "@type": "BreadcrumbList",
           "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "トップ", "item": "https://akigawa-hanabi.netlify.app/" },
-            { "@type": "ListItem", "position": 2, "name": "{{TITLE}}", "item": "https://akigawa-hanabi.netlify.app/{{FILE}}" }
+            { "@type": "ListItem", "position": 1, "name": "トップ", "item": "https://akigawa-hanabi.pages.dev/" },
+            { "@type": "ListItem", "position": 2, "name": "{{TITLE}}", "item": "https://akigawa-hanabi.pages.dev/{{FILE}}" }
           ]
         }
       ]

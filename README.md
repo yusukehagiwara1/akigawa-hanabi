@@ -2,7 +2,7 @@
 
 静的HTML/CSSで構築した秋川流域花火大会の公式サイトです。WordPress（machizukuri-con.or.jp）からコンテンツを移管し、Netlify上で運用しています。
 
-- **公開URL**: https://akigawa-hanabi.netlify.app/
+- **公開URL**: https://akigawa-hanabi.pages.dev/
 - **リポジトリ**: https://github.com/yusukehagiwara1/akigawa-hanabi
 - **ホスティング**: Netlify（GitHub連携・自動デプロイ）
 
