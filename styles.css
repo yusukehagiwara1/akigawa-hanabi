@@ -87,6 +87,12 @@ html {
   .mobile-sticky-cta {
     display: inline-flex;
   }
+  body {
+    padding-bottom: 76px;
+  }
+  .scroll-top {
+    bottom: 88px;
+  }
 }
 
 /* Scroll fade-in (only applied via JS when prefers-reduced-motion is not set) */
