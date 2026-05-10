@@ -39,6 +39,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Zen+Old+Mincho:wght@700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script src="analytics.js" defer></script>
+    <script src="ui.js" defer></script>
   </head>
   <body>
     <header class="site-header">
@@ -46,7 +47,12 @@
         <span class="brand-mark"></span>
         <span>秋川流域花火大会</span>
       </a>
-      <nav class="nav" aria-label="主要ナビゲーション">
+      <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false" aria-controls="primary-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="nav" id="primary-nav" aria-label="主要ナビゲーション">
         <a href="index.html#about">コンセプト</a>
         <a href="ticket.html">チケット</a>
         <a href="donation.html">寄付協賛</a>

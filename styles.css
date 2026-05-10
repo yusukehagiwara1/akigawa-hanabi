@@ -17,6 +17,27 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+/* Scroll fade-in (only applied via JS when prefers-reduced-motion is not set) */
+.fade-target {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-target.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-target {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 body {
@@ -51,6 +72,48 @@ img {
   color: #fff;
   background: linear-gradient(180deg, rgba(9, 15, 26, 0.78), rgba(9, 15, 26, 0.18));
   backdrop-filter: blur(12px);
+  transition: background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.site-header.is-scrolled {
+  background: rgba(10, 16, 28, 0.92);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+}
+
+.nav-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 30;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
 }
 
 .brand,
@@ -1508,8 +1571,34 @@ h2 span,
     min-height: 66px;
   }
 
+  .nav-toggle {
+    display: inline-flex;
+  }
+
   .nav {
-    display: none;
+    position: fixed;
+    inset: 66px 0 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 24px clamp(20px, 5vw, 32px) 32px;
+    background: rgba(10, 16, 28, 0.97);
+    backdrop-filter: blur(16px);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+    z-index: 25;
+  }
+
+  .nav a {
+    padding: 16px 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 1rem;
+    opacity: 1;
+  }
+
+  .site-header:has(.nav-toggle[aria-expanded="true"]) .nav {
+    transform: translateX(0);
   }
 
   .hero {
