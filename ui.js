@@ -94,6 +94,37 @@
     onScroll();
   }
 
+  // --- Past-gallery lightbox ---
+  const galleryGrid = document.querySelector(".past-grid");
+  if (galleryGrid && "HTMLDialogElement" in window) {
+    const dialog = document.createElement("dialog");
+    dialog.className = "lightbox";
+    dialog.innerHTML =
+      '<button class="lightbox-close" type="button" aria-label="閉じる">&times;</button>' +
+      '<figure><img alt="" /><figcaption></figcaption></figure>';
+    document.body.appendChild(dialog);
+    const lbImg = dialog.querySelector("img");
+    const lbCap = dialog.querySelector("figcaption");
+    const lbClose = dialog.querySelector(".lightbox-close");
+
+    galleryGrid.addEventListener("click", function (e) {
+      const fig = e.target.closest(".past-tile");
+      if (!fig) return;
+      const img = fig.querySelector("img");
+      const cap = fig.querySelector("figcaption");
+      if (!img) return;
+      lbImg.src = img.currentSrc || img.src;
+      lbImg.alt = img.alt || "";
+      lbCap.textContent = cap ? cap.textContent : "";
+      dialog.showModal();
+    });
+
+    lbClose.addEventListener("click", function () { dialog.close(); });
+    dialog.addEventListener("click", function (e) {
+      if (e.target === dialog) dialog.close();
+    });
+  }
+
   // --- Scroll fade-in animations ---
   if (
     "IntersectionObserver" in window &&
