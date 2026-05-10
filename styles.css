@@ -321,8 +321,30 @@ h2 span,
 }
 
 .stats article {
-  min-height: 226px;
-  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+}
+
+.stats-thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--cream);
+}
+
+.stats-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.stats-body {
+  padding: 22px 24px 26px;
+  flex: 1;
 }
 
 .stats span {
