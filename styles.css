@@ -20,6 +20,36 @@ html {
   scroll-padding-top: 80px;
 }
 
+/* Mobile sticky CTA */
+.mobile-sticky-cta {
+  display: none;
+  position: fixed;
+  z-index: 18;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%);
+  align-items: center;
+  gap: 8px;
+  padding: 14px 26px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ffe8a6, var(--gold));
+  color: var(--night);
+  font-weight: 800;
+  font-size: 0.95rem;
+  text-decoration: none;
+  box-shadow: 0 8px 28px rgba(11, 19, 31, 0.32);
+}
+
+.mobile-sticky-cta svg {
+  display: block;
+}
+
+@media (max-width: 920px) {
+  .mobile-sticky-cta {
+    display: inline-flex;
+  }
+}
+
 /* Scroll fade-in (only applied via JS when prefers-reduced-motion is not set) */
 .fade-target {
   opacity: 0;
