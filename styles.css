@@ -601,7 +601,7 @@ h2 span,
 }
 
 .prose h2 {
-  margin-top: 2.4em;
+  margin-top: 1.6em;
   padding-bottom: 0.4em;
   border-bottom: 2px solid var(--gold);
   font-size: clamp(1.5rem, 3vw, 2rem);
@@ -887,7 +887,7 @@ h2 span,
 .prose .swell-block-faq {
   display: grid;
   gap: 14px;
-  margin: 2em 0;
+  margin: 1em 0;
   padding: 0;
 }
 
