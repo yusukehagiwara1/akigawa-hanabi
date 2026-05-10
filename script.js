@@ -71,7 +71,7 @@ function createNewsCard(item) {
   const dateLabel = formatDate(date);
   const excerpt = escapeHtml(stripHtml(item.excerpt || item.description || item.body || ""));
   const href = item.url || item.link || "";
-  const body = excerpt || "詳しい内容はmicroCMSで更新できます。";
+  const body = excerpt || "詳細はこちらをご確認ください。";
   const thumb = extractThumbnail(item);
   const thumbHtml = thumb
     ? `<div class="info-card-thumb"><img src="${escapeHtml(thumb)}" alt="" loading="lazy" decoding="async"></div>`
