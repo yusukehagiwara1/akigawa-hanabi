@@ -37,14 +37,15 @@ async function loadNews(url, apiKey, target) {
     const contents = Array.isArray(data.contents) ? data.contents : [];
 
     if (contents.length === 0) {
-      target.innerHTML = '<p class="cms-status">現在、公開中のお知らせはありません。</p>';
+      target.innerHTML =
+        '<p class="cms-status">現在、公開中のお知らせはありません。最新情報は<a href="https://www.instagram.com/akigawa_hanabitaikai/" target="_blank" rel="noopener">公式Instagram</a>でも発信しています。</p>';
       return;
     }
     target.innerHTML = contents.map(createNewsCard).join("");
   } catch (error) {
     console.warn("[news] microCMS fetch failed:", error.message);
     target.innerHTML =
-      '<p class="cms-status cms-status-error">最新情報を読み込めませんでした。</p>';
+      '<p class="cms-status cms-status-error">最新情報を読み込めませんでした。時間をおいて再度お試しください。</p>';
   }
 }
 
