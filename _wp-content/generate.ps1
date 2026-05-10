@@ -204,6 +204,25 @@ function Clean-Content([string]$html) {
     $fileName = [System.Web.HttpUtility]::UrlDecode($fileName)
     return "assets/wp/" + $fileName
   })
+  # Swap .jpg/.jpeg/.png references under assets/wp/ to .webp when available
+  $script:webpCache = $script:webpCache
+  if (-not $script:webpCache) {
+    $script:webpCache = @{}
+    $wpAssets = Join-Path (Split-Path -Parent $PSScriptRoot) "assets\wp"
+    if (Test-Path $wpAssets) {
+      Get-ChildItem -Path $wpAssets -File -Filter "*.webp" | ForEach-Object {
+        $script:webpCache[$_.BaseName] = $true
+      }
+    }
+  }
+  $h = [regex]::Replace($h, 'assets/wp/([^"<>\s'']+?)\.(jpg|jpeg|png)', {
+    param($m)
+    $base = $m.Groups[1].Value
+    if ($script:webpCache.ContainsKey($base)) {
+      return "assets/wp/" + $base + ".webp"
+    }
+    return $m.Value
+  })
   return $h
 }
 
