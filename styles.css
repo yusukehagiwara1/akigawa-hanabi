@@ -947,14 +947,6 @@ h2 span,
   flex-direction: column;
 }
 
-.info-card-thumb img {
-  transition: transform 0.5s ease;
-}
-
-.info-card:hover .info-card-thumb img {
-  transform: scale(1.04);
-}
-
 .info-card-thumb {
   width: 100%;
   aspect-ratio: 16 / 10;
@@ -963,10 +955,15 @@ h2 span,
 }
 
 .info-card-thumb img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
+  transition: transform 0.5s ease;
+}
+
+.info-card:hover .info-card-thumb img {
+  transform: scale(1.04);
 }
 
 .info-card-body {
