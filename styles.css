@@ -1095,12 +1095,30 @@ h2 span,
 }
 
 .page-hero {
+  position: relative;
   padding: clamp(80px, 11vw, 140px) clamp(22px, 5vw, 70px) clamp(40px, 6vw, 80px);
   background:
     radial-gradient(circle at 12% 18%, rgba(215, 169, 71, 0.18), transparent 55%),
+    radial-gradient(circle at 88% 22%, rgba(184, 63, 55, 0.12), transparent 50%),
     linear-gradient(180deg, #0f1828, #0f3939 70%, var(--cream));
   color: #fff;
   animation: hero-fade 0.7s ease-out both;
+  overflow: hidden;
+}
+
+.page-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+  background-position: 12px 12px;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.page-hero-inner {
+  position: relative;
 }
 
 .page-hero-inner {
