@@ -3,22 +3,34 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0f1828">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <link rel="manifest" href="/manifest.json">
     <title>ページが見つかりません｜秋川流域花火大会</title>
     <meta name="robots" content="noindex">
+    <meta name="description" content="お探しのページは見つかりませんでした。秋川流域花火大会のトップページから目的の情報をお探しください。">
     <link rel="icon" href="/assets/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Zen+Old+Mincho:wght@700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles.css">
     <script src="/analytics.js" defer></script>
+    <script src="/ui.js" defer></script>
   </head>
   <body>
+    <a class="skip-link" href="#main-content">本文へスキップ</a>
     <header class="site-header">
       <a class="brand" href="/" aria-label="秋川流域花火大会 トップへ">
         <span class="brand-mark"></span>
         <span>秋川流域花火大会</span>
       </a>
-      <nav class="nav" aria-label="主要ナビゲーション">
+      <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false" aria-controls="primary-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="nav" id="primary-nav" aria-label="主要ナビゲーション">
         <a href="/#about">コンセプト</a>
         <a href="/ticket.html">チケット</a>
         <a href="/donation.html">寄付協賛</a>
@@ -29,7 +41,7 @@
       <a class="header-cta" href="/">トップへ戻る</a>
     </header>
 
-    <main class="page-main">
+    <main class="page-main" id="main-content">
       <section class="page-hero">
         <div class="page-hero-inner">
           <span class="tag">404</span>
@@ -53,7 +65,57 @@
       </section>
     </main>
 
+    <button class="scroll-top" type="button" aria-label="トップに戻る" hidden>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M18 15l-6-6-6 6"></path>
+      </svg>
+    </button>
+
     <footer class="footer">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <p class="footer-title">秋川流域花火大会</p>
+          <p class="footer-lead">紅葉の山々と秋川を背景に、地域の力で受け継ぐ秋の花火大会。</p>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/akigawa_hanabitaikai/" target="_blank" rel="noopener">Instagram</a>
+            <a href="/contact.html">お問い合わせ</a>
+          </div>
+        </div>
+        <div class="footer-org">
+          <p class="footer-label">主催</p>
+          <p>特定非営利活動法人まちづくりコンソーシアム</p>
+          <p class="footer-sub">〒197-0804 東京都あきる野市秋川2-6-10 田村ビル2F</p>
+          <p class="footer-sub">理事長：立花 晋也</p>
+          <p class="footer-label spacer">共催</p>
+          <p>あきる野青年会議所</p>
+        </div>
+        <nav class="footer-nav" aria-label="フッターナビゲーション">
+          <div class="footer-nav-group">
+            <p class="footer-label">大会情報</p>
+            <a href="/">トップ</a>
+            <a href="/company.html">団体概要</a>
+            <a href="/event.html">プログラム</a>
+            <a href="/2024-hanabi.html">2024年の様子</a>
+          </div>
+          <div class="footer-nav-group">
+            <p class="footer-label">来場・参加</p>
+            <a href="/ticket.html">チケット</a>
+            <a href="/donation.html">寄付協賛</a>
+            <a href="/access.html">アクセス</a>
+            <a href="/qa.html">よくある質問</a>
+            <a href="/food-application.html">飲食出店募集</a>
+          </div>
+          <div class="footer-nav-group">
+            <p class="footer-label">関連情報</p>
+            <a href="/sponsor.html">協賛企業様</a>
+            <a href="/pr.html">メディア掲載</a>
+            <a href="/yahoo-news.html">Yahoo!ニュース</a>
+            <a href="/akiruno-kanko.html">周辺観光</a>
+            <a href="/lost-item.html">忘れ物一覧</a>
+            <a href="/contact.html">お問い合わせ</a>
+          </div>
+        </nav>
+      </div>
       <div class="footer-base">
         <small>&copy; 秋川流域花火大会 / NPO まちづくりコンソーシアム</small>
         <a class="footer-policy" href="/privacy-policy.html">プライバシーポリシー</a>
