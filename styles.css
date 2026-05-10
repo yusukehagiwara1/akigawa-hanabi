@@ -695,12 +695,25 @@ h2 span,
 .support-band h2 {
   margin: 10px 0 14px;
   font-size: clamp(2rem, 4.8vw, 4.3rem);
+  word-break: keep-all;
+  line-break: strict;
+  overflow-wrap: break-word;
 }
 
 .section-heading p,
 .support-band p {
   color: var(--muted);
   font-size: 1.03rem;
+  word-break: keep-all;
+  line-break: strict;
+  overflow-wrap: break-word;
+}
+
+/* Split layout has a narrow first column; allow normal wrapping there */
+.split .section-heading h2,
+.split .section-heading p {
+  word-break: normal;
+  line-break: auto;
 }
 
 .intro-grid {
@@ -1286,6 +1299,9 @@ h2 span,
   margin: 0;
   font-size: clamp(2rem, 5vw, 3.6rem);
   color: #fff;
+  word-break: keep-all;
+  line-break: strict;
+  overflow-wrap: break-word;
 }
 
 .page-hero .tag {
