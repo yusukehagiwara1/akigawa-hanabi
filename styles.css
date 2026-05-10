@@ -868,6 +868,7 @@ h2 span,
 }
 
 .support-band {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 32px;
@@ -877,6 +878,22 @@ h2 span,
   padding: clamp(58px, 8vw, 88px) max(22px, calc((100vw - 1120px) / 2));
   color: #fff;
   background: linear-gradient(135deg, rgba(16, 24, 42, 0.96), rgba(18, 104, 104, 0.9));
+  overflow: hidden;
+}
+
+.support-band::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-position: 16px 16px;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.support-band > * {
+  position: relative;
 }
 
 .support-band p {
