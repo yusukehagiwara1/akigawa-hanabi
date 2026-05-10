@@ -848,6 +848,15 @@ h2 span,
   text-align: right;
 }
 
+.faq-more,
+.ticket-more,
+.program-more,
+.sponsor-more,
+.past-more {
+  margin: 22px 0 0;
+  text-align: right;
+}
+
 /* ===== Schedule timeline ===== */
 .timeline {
   list-style: none;
