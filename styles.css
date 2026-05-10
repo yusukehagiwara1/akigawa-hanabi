@@ -653,6 +653,42 @@ h2 span,
   color: rgba(255, 255, 255, 0.82);
 }
 
+.ticket-price {
+  margin: 6px 0 12px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  background: var(--cream);
+  color: var(--ink);
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.ticket-price strong {
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: var(--red);
+  margin: 0 2px;
+}
+
+.ticket-price span {
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+.ticket-card.accent .ticket-price {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.ticket-card.accent .ticket-price strong {
+  color: #ffe8a6;
+}
+
+.ticket-card.accent .ticket-price span {
+  color: rgba(255, 255, 255, 0.7);
+}
+
 .support-band {
   display: grid;
   grid-template-columns: 1fr auto;
