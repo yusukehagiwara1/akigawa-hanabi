@@ -404,6 +404,47 @@ h2 span,
   color: var(--muted);
 }
 
+.notice-body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.notice-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+}
+
+.notice-actions .button.secondary {
+  color: var(--ink);
+  border: 1px solid var(--line);
+  background: #fff;
+  min-height: 40px;
+}
+
+.notice-actions .button.secondary:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.button-text {
+  display: inline-flex;
+  align-items: center;
+  color: var(--teal);
+  font-weight: 700;
+  font-size: 0.92rem;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: rgba(15, 104, 104, 0.35);
+}
+
+.button-text:hover {
+  color: var(--red);
+  text-decoration-color: currentColor;
+}
+
 .section {
   padding: clamp(58px, 9vw, 104px) 0;
 }
