@@ -1583,7 +1583,43 @@ h2 span,
 }
 
 .prose .wp-block-emanon-premium-blocks-advanced-headling {
-  margin: 1.6em 0 0.6em;
+  margin: 1.6em 0;
+  text-align: center;
+}
+
+.prose .epb-advanced-headling__inner {
+  display: inline-block;
+  position: relative;
+  padding: 0 12px;
+}
+
+.prose .epb-advanced-headling__inner.is-style-epb-headling-lines-on::before,
+.prose .epb-advanced-headling__inner.is-style-epb-headling-lines-on::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: clamp(40px, 8vw, 100px);
+  height: 2px;
+  background: var(--gold);
+}
+
+.prose .epb-advanced-headling__inner.is-style-epb-headling-lines-on::before {
+  right: 100%;
+  margin-right: 14px;
+}
+
+.prose .epb-advanced-headling__inner.is-style-epb-headling-lines-on::after {
+  left: 100%;
+  margin-left: 14px;
+}
+
+.prose .epb-advanced-headling__text {
+  margin: 0;
+  font-size: clamp(1.4rem, 3.2vw, 2rem);
+  font-weight: 900;
+  border-bottom: none;
+  padding: 0;
+  font-family: "Zen Old Mincho", serif;
 }
 
 .prose .wp-block-emanon-premium-blocks-buttons,
