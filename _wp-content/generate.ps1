@@ -328,6 +328,16 @@ function Build-Page([hashtable]$page) {
 '@
     $content = $banner + $content
   }
+  if ($page.slug -eq "food-application") {
+    $banner = @'
+<aside class="page-status-banner" role="status">
+  <strong>第7回（2025年）の出展者募集は締め切りました。</strong>
+  <p>たくさんのお申込みをいただきまして、誠にありがとうございました。次回開催の出展募集は、決まり次第本サイトおよび<a href="https://www.instagram.com/akigawa_hanabitaikai/" target="_blank" rel="noopener">公式Instagram</a>でご案内します。</p>
+</aside>
+
+'@
+    $content = $banner + $content
+  }
   $tag = $page.tag
 
   # Extract a snippet of plain text from raw WP content for meta description
