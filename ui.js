@@ -55,6 +55,12 @@
     });
   }
 
+  // --- Scroll progress bar ---
+  const progressBar = document.createElement("div");
+  progressBar.className = "scroll-progress";
+  progressBar.setAttribute("aria-hidden", "true");
+  document.body.appendChild(progressBar);
+
   // --- Header scroll shadow + scroll-to-top button + scroll-hint fadeout ---
   const header = document.querySelector(".site-header");
   const scrollTopBtn = document.querySelector(".scroll-top");
@@ -65,7 +71,7 @@
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
   }
-  if (header || scrollTopBtn || scrollHint) {
+  if (header || scrollTopBtn || scrollHint || progressBar) {
     const onScroll = function () {
       const y = window.scrollY;
       if (header) {
@@ -77,8 +83,14 @@
       if (scrollHint) {
         scrollHint.classList.toggle("is-hidden", y > 60);
       }
+      if (progressBar) {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        const ratio = max > 0 ? Math.min(1, y / max) : 0;
+        progressBar.style.transform = "scaleX(" + ratio + ")";
+      }
     };
     window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
     onScroll();
   }
 
