@@ -69,6 +69,30 @@ $template = @'
     <meta property="og:image" content="assets/keyvisual.jpg">
     <link rel="icon" href="assets/favicon.ico" sizes="any">
     <link rel="apple-touch-icon" href="assets/favicon.ico">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://akigawa-hanabi.netlify.app/{{FILE}}",
+          "url": "https://akigawa-hanabi.netlify.app/{{FILE}}",
+          "name": "{{TITLE}}｜秋川流域花火大会",
+          "description": "{{DESC}}",
+          "inLanguage": "ja",
+          "isPartOf": { "@id": "https://akigawa-hanabi.netlify.app/#website" },
+          "primaryImageOfPage": "https://akigawa-hanabi.netlify.app/assets/keyvisual.jpg"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "トップ", "item": "https://akigawa-hanabi.netlify.app/" },
+            { "@type": "ListItem", "position": 2, "name": "{{TITLE}}", "item": "https://akigawa-hanabi.netlify.app/{{FILE}}" }
+          ]
+        }
+      ]
+    }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900{{AMP}}family=Zen+Old+Mincho:wght@700;900{{AMP}}display=swap" rel="stylesheet">
@@ -196,6 +220,7 @@ function Build-Page([hashtable]$page) {
   $html = $html.Replace('{{DESC}}', "$title｜秋川流域花火大会")
   $html = $html.Replace('{{TAG}}', $tag)
   $html = $html.Replace('{{CONTENT}}', $content)
+  $html = $html.Replace('{{FILE}}', $page.file)
   $html = $html.Replace('{{AMP}}', '&')
 
   $outPath = Join-Path $projectDir $page.file
