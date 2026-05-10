@@ -2359,6 +2359,7 @@ dialog.lightbox .lightbox-close:hover {
 
 /* ===== Contact ===== */
 .contact-card {
+  position: relative;
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
   gap: clamp(28px, 5vw, 60px);
@@ -2370,6 +2371,22 @@ dialog.lightbox .lightbox-close:hover {
     radial-gradient(circle at 90% 10%, rgba(215, 169, 71, 0.45), transparent 55%),
     linear-gradient(135deg, #10182a, #173a51 70%, #0f6868);
   box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.contact-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-position: 16px 16px;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.contact-card > * {
+  position: relative;
 }
 
 .contact-card h2 {
