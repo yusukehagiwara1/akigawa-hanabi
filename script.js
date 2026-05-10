@@ -6,19 +6,13 @@
     return;
   }
 
-  // Capture the fallback cards already rendered in HTML so we can pad with them
-  // when microCMS has fewer items than the desired limit.
-  const fallbackCards = Array.from(newsList.querySelectorAll(".info-card")).map(
-    function (c) { return c.outerHTML; }
-  );
-
   const endpoint = `https://${config.serviceDomain}.microcms.io/api/v1/${config.endpoint}`;
   const url = new URL(endpoint);
   const limit = Number(config.limit) || 3;
   url.searchParams.set("limit", String(limit));
   url.searchParams.set("orders", config.orders || "-publishedAt");
 
-  loadNews(url, config.apiKey, newsList, limit, fallbackCards);
+  loadNews(url, config.apiKey, newsList);
 })();
 
 function isConfigured(config) {
@@ -31,7 +25,7 @@ function isConfigured(config) {
   );
 }
 
-async function loadNews(url, apiKey, target, limit, fallbackCards) {
+async function loadNews(url, apiKey, target) {
   try {
     const response = await fetch(url, {
       headers: { "X-MICROCMS-API-KEY": apiKey },
@@ -42,18 +36,15 @@ async function loadNews(url, apiKey, target, limit, fallbackCards) {
     const data = await response.json();
     const contents = Array.isArray(data.contents) ? data.contents : [];
 
-    const microCmsCards = contents.map(createNewsCard);
-    const needed = Math.max(0, limit - microCmsCards.length);
-    const padding = needed > 0 ? fallbackCards.slice(0, needed) : [];
-    const combined = microCmsCards.concat(padding);
-
-    if (combined.length > 0) {
-      target.innerHTML = combined.join("");
-      target.dataset.fallback = microCmsCards.length === 0 ? "true" : "false";
+    if (contents.length === 0) {
+      target.innerHTML = '<p class="cms-status">現在、公開中のお知らせはありません。</p>';
+      return;
     }
+    target.innerHTML = contents.map(createNewsCard).join("");
   } catch (error) {
-    // Network/API error: silently keep the original hardcoded fallback that's already in DOM.
-    console.warn("[news] microCMS fetch failed, keeping fallback:", error.message);
+    console.warn("[news] microCMS fetch failed:", error.message);
+    target.innerHTML =
+      '<p class="cms-status cms-status-error">最新情報を読み込めませんでした。</p>';
   }
 }
 

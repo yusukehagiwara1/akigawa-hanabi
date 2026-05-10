@@ -406,7 +406,22 @@ h2 span,
   justify-content: flex-end;
 }
 
-.info-grid,
+.info-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+}
+
+.info-grid > .info-card {
+  flex: 1 1 280px;
+  max-width: 360px;
+}
+
+.info-grid > .cms-status {
+  flex: 1 1 100%;
+}
+
 .access-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
