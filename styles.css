@@ -842,6 +842,12 @@ h2 span,
   color: var(--muted);
 }
 
+.access-more {
+  grid-column: 1 / -1;
+  margin: 22px 0 0;
+  text-align: right;
+}
+
 /* ===== Sub-pages ===== */
 .page-main {
   padding-top: 72px;
