@@ -34,14 +34,23 @@
     });
   }
 
-  // --- Header scroll shadow ---
+  // --- Header scroll shadow + scroll-to-top button ---
   const header = document.querySelector(".site-header");
-  if (header) {
+  const scrollTopBtn = document.querySelector(".scroll-top");
+  if (scrollTopBtn) {
+    scrollTopBtn.removeAttribute("hidden");
+    scrollTopBtn.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+  if (header || scrollTopBtn) {
     const onScroll = function () {
-      if (window.scrollY > 12) {
-        header.classList.add("is-scrolled");
-      } else {
-        header.classList.remove("is-scrolled");
+      const y = window.scrollY;
+      if (header) {
+        header.classList.toggle("is-scrolled", y > 12);
+      }
+      if (scrollTopBtn) {
+        scrollTopBtn.classList.toggle("is-visible", y > 480);
       }
     };
     window.addEventListener("scroll", onScroll, { passive: true });
