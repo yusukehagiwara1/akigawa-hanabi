@@ -294,9 +294,17 @@ function Build-Page([hashtable]$page) {
   }
   $tag = $page.tag
 
+  # Extract a snippet of plain text from raw WP content for meta description
+  $plain = $obj.content.rendered -replace '<[^>]+>', '' -replace '\s+', ' '
+  $plain = (Decode-Html $plain).Trim()
+  if ($plain.Length -gt 110) { $plain = $plain.Substring(0, 110) + "…" }
+  if ([string]::IsNullOrWhiteSpace($plain)) { $plain = "$title｜秋川流域花火大会" }
+  # Escape double quotes and ampersands for HTML attribute safety
+  $desc = $plain.Replace('&', '&amp;').Replace('"', '&quot;')
+
   $html = $template
   $html = $html.Replace('{{TITLE}}', $title)
-  $html = $html.Replace('{{DESC}}', "$title｜秋川流域花火大会")
+  $html = $html.Replace('{{DESC}}', $desc)
   $html = $html.Replace('{{TAG}}', $tag)
   $html = $html.Replace('{{CONTENT}}', $content)
   $html = $html.Replace('{{FILE}}', $page.file)
