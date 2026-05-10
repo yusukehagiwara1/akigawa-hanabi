@@ -228,27 +228,25 @@ function Clean-Content([string]$html) {
 
 function Get-ContactBody {
   return @'
-<div class="contact-wrap">
-  <p>協賛・取材・運営に関するご質問、その他お問い合わせは以下のフォームよりお寄せください。内容を確認のうえ、運営委員会よりご連絡いたします。</p>
+<p>協賛・取材・運営に関するご質問、その他お問い合わせは以下のフォームよりお寄せください。内容を確認のうえ、運営委員会よりご連絡いたします。</p>
 
-  <div class="contact-embed">
-    <iframe
-      src="https://docs.google.com/forms/d/e/1FAIpQLSfavCvVmfAFlPusgrOQNudAsnSfT2GeBAMKMw4GUflGGydFuQ/viewform?embedded=true"
-      title="秋川流域花火大会 お問い合わせフォーム"
-      loading="lazy"
-      frameborder="0"
-      marginheight="0"
-      marginwidth="0">読み込んでいます…</iframe>
-  </div>
-
-  <aside class="contact-alt">
-    <h2>その他の連絡手段</h2>
-    <ul>
-      <li><strong>Instagram:</strong> <a href="https://www.instagram.com/akigawa_hanabitaikai/" target="_blank" rel="noopener">@akigawa_hanabitaikai</a></li>
-      <li><strong>所在地:</strong> 〒197-0804 東京都あきる野市秋川2-6-10 田村ビル2F</li>
-    </ul>
-  </aside>
+<div class="contact-embed">
+  <iframe
+    src="https://docs.google.com/forms/d/e/1FAIpQLSfavCvVmfAFlPusgrOQNudAsnSfT2GeBAMKMw4GUflGGydFuQ/viewform?embedded=true"
+    title="秋川流域花火大会 お問い合わせフォーム"
+    loading="lazy"
+    frameborder="0"
+    marginheight="0"
+    marginwidth="0">読み込んでいます…</iframe>
 </div>
+
+<aside class="contact-alt">
+  <h2>その他の連絡手段</h2>
+  <ul>
+    <li><strong>Instagram:</strong> <a href="https://www.instagram.com/akigawa_hanabitaikai/" target="_blank" rel="noopener">@akigawa_hanabitaikai</a></li>
+    <li><strong>所在地:</strong> 〒197-0804 東京都あきる野市秋川2-6-10 田村ビル2F</li>
+  </ul>
+</aside>
 '@
 }
 
