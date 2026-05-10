@@ -122,6 +122,19 @@ a {
   text-decoration: none;
 }
 
+/* Keyboard focus styles (visible only for keyboard users) */
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+button:focus-visible,
+a.button:focus-visible,
+.header-cta:focus-visible {
+  outline-offset: 4px;
+}
+
 img {
   max-width: 100%;
 }

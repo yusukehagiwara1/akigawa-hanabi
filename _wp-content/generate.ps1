@@ -69,6 +69,7 @@ $template = @'
     <meta property="og:image" content="assets/keyvisual.jpg">
     <link rel="icon" href="assets/favicon.ico" sizes="any">
     <link rel="apple-touch-icon" href="assets/favicon.ico">
+    <link rel="preload" as="image" href="assets/hero-fireworks-real.webp">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
