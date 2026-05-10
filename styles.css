@@ -1510,6 +1510,13 @@ h2 span,
   border-color: var(--line);
 }
 
+/* TBA placeholder (was 'Coming Soon' from stale WP authoring) */
+.prose .placeholder-tba {
+  color: var(--muted);
+  font-style: italic;
+  font-size: 0.92rem;
+}
+
 /* Borders */
 .prose .has-border {
   border: 1px solid var(--line);

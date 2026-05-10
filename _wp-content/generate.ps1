@@ -70,6 +70,10 @@ $template = @'
     <link rel="icon" href="assets/favicon.ico" sizes="any">
     <link rel="apple-touch-icon" href="assets/favicon.ico">
     <link rel="preload" as="image" href="assets/hero-fireworks-real.webp">
+    <link rel="dns-prefetch" href="https://0k3w9bd30b.microcms.io">
+    <link rel="dns-prefetch" href="https://images.microcms-assets.io">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://docs.google.com">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -221,6 +225,9 @@ function Clean-Content([string]$html) {
   $h = [regex]::Replace($h, ' sizes="[^"]*"', '')
   $h = [regex]::Replace($h, ' width="\d+"', '')
   $h = [regex]::Replace($h, ' height="\d+"', '')
+  # Replace stale 'Coming Soon' placeholders with neutral wording (event has ended)
+  $h = [regex]::Replace($h, '<p>Coming Soon</p>', '<p class="placeholder-tba">— 詳細掲載なし —</p>')
+  $h = [regex]::Replace($h, '<strong>Coming Soon</strong>', '<strong>（詳細未掲載）</strong>')
   foreach ($k in $urlMap.Keys) {
     $local = $urlMap[$k]
     $escaped = [regex]::Escape($k)
