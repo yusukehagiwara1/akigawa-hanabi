@@ -25,3 +25,8 @@ window.MICROCMS_CONFIG = {
 - `url` または `link`: 任意のリンク先
 
 ブラウザにAPIキーが見える構成なので、公開してよいGET専用キーを使ってください。キーを秘匿したい場合は、サーバー側でmicroCMSを呼び出す構成に変更してください。
+
+## デプロイ
+
+このサイトはGitHubへのpushでNetlifyに自動デプロイされます: https://akigawa-hanabi.netlify.app/
+
