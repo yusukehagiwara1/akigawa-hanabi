@@ -74,7 +74,7 @@ function createNewsCard(item) {
   const body = excerpt || "詳しい内容はmicroCMSで更新できます。";
   const thumb = extractThumbnail(item);
   const thumbHtml = thumb
-    ? `<div class="info-card-thumb"><img src="${escapeHtml(thumb)}" alt="" loading="lazy"></div>`
+    ? `<div class="info-card-thumb"><img src="${escapeHtml(thumb)}" alt="" loading="lazy" decoding="async"></div>`
     : "";
 
   const titleEl = href

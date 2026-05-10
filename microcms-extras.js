@@ -47,7 +47,7 @@
       .map(function (s) {
         const logo = mediaUrl(s.logo);
         const name = escapeHtml(s.name || "");
-        const inner = `<img src="${escapeHtml(logo)}" alt="${name}" loading="lazy">`;
+        const inner = `<img src="${escapeHtml(logo)}" alt="${name}" loading="lazy" decoding="async">`;
         if (s.url) {
           return `<div class="sponsor-tile"><a href="${escapeHtml(
             s.url
@@ -66,7 +66,7 @@
         const cap = escapeHtml(g.caption || "");
         return `<figure class="past-tile"><img src="${escapeHtml(
           img
-        )}" alt="${cap}" loading="lazy"><figcaption>${cap}</figcaption></figure>`;
+        )}" alt="${cap}" loading="lazy" decoding="async"><figcaption>${cap}</figcaption></figure>`;
       })
       .join("");
   }
