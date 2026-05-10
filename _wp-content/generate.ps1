@@ -75,6 +75,9 @@ $template = @'
     <meta property="og:title" content="{{TITLE}}｜秋川流域花火大会">
     <meta property="og:description" content="{{DESC}}">
     <meta property="og:image" content="https://akigawa-hanabi.pages.dev/assets/keyvisual.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="900">
+    <meta property="og:image:alt" content="夜空に咲く秋川流域花火大会のキービジュアル">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{TITLE}}｜秋川流域花火大会">
     <meta name="twitter:description" content="{{DESC}}">
