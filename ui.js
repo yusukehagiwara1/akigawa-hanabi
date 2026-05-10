@@ -44,6 +44,12 @@
         closeNav();
       }
     });
+    // Close when clicking the nav backdrop area (outside the link list)
+    nav.addEventListener("click", function (e) {
+      if (e.target === nav) {
+        closeNav();
+      }
+    });
   }
 
   // --- Header scroll shadow + scroll-to-top button + scroll-hint fadeout ---

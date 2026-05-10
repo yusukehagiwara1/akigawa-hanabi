@@ -1137,22 +1137,40 @@ h2 span,
   margin: 3em 0;
 }
 
+/* Tables - wrap in scroll container on narrow screens */
+.prose .wp-block-table {
+  overflow-x: auto;
+  margin: 1.6em 0;
+  -webkit-overflow-scrolling: touch;
+}
+
 .prose table {
   width: 100%;
   border-collapse: collapse;
   margin: 1.6em 0;
+  font-size: 0.95rem;
+}
+
+.prose .wp-block-table table {
+  margin: 0;
+  min-width: 100%;
 }
 
 .prose table th,
 .prose table td {
-  padding: 12px 14px;
+  padding: 10px 14px;
   border: 1px solid var(--line);
   text-align: left;
+  white-space: nowrap;
 }
 
 .prose table th {
   background: var(--cream);
   font-weight: 700;
+}
+
+.prose table tbody tr:nth-child(odd) {
+  background: rgba(247, 239, 226, 0.4);
 }
 
 .prose .has-text-align-center {

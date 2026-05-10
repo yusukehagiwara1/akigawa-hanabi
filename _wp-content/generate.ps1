@@ -64,9 +64,18 @@ $template = @'
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{TITLE}}｜秋川流域花火大会</title>
     <meta name="description" content="{{DESC}}">
+    <link rel="canonical" href="https://akigawa-hanabi.pages.dev/{{FILE}}">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="秋川流域花火大会">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:url" content="https://akigawa-hanabi.pages.dev/{{FILE}}">
     <meta property="og:title" content="{{TITLE}}｜秋川流域花火大会">
     <meta property="og:description" content="{{DESC}}">
-    <meta property="og:image" content="assets/keyvisual.jpg">
+    <meta property="og:image" content="https://akigawa-hanabi.pages.dev/assets/keyvisual.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{TITLE}}｜秋川流域花火大会">
+    <meta name="twitter:description" content="{{DESC}}">
+    <meta name="twitter:image" content="https://akigawa-hanabi.pages.dev/assets/keyvisual.jpg">
     <link rel="icon" href="assets/favicon.ico" sizes="any">
     <link rel="apple-touch-icon" href="assets/favicon.ico">
     <link rel="preload" as="image" href="assets/hero-fireworks-real.webp">
