@@ -1001,6 +1001,56 @@ h2 span,
   background: #fff8f4;
 }
 
+/* Skeleton loaders for microCMS news list */
+.info-card.is-skeleton {
+  pointer-events: none;
+}
+
+.info-card.is-skeleton .info-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+}
+
+.skeleton {
+  display: block;
+  background: linear-gradient(
+    90deg,
+    rgba(28, 35, 42, 0.06) 0%,
+    rgba(28, 35, 42, 0.12) 50%,
+    rgba(28, 35, 42, 0.06) 100%
+  );
+  background-size: 200% 100%;
+  border-radius: 4px;
+  animation: skeleton-shimmer 1.4s ease-in-out infinite;
+}
+
+.skeleton-line {
+  height: 12px;
+  width: 100%;
+}
+
+.skeleton-line-short {
+  width: 32%;
+  height: 10px;
+}
+
+.skeleton-line-title {
+  height: 18px;
+  width: 78%;
+  margin-bottom: 4px;
+}
+
+@keyframes skeleton-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton { animation: none; }
+}
+
 .access-grid {
   grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
   align-items: stretch;
