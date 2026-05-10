@@ -1210,6 +1210,19 @@ h2 span,
   margin-bottom: 0.4em;
 }
 
+/* When a list item starts with <strong>title</strong><br>desc, surface the title */
+.prose ol > li > strong:first-child,
+.prose ul > li > strong:first-child {
+  display: inline-block;
+  color: var(--ink);
+  font-size: 1.02em;
+}
+
+.prose ol > li,
+.prose ul > li {
+  line-height: 1.75;
+}
+
 .prose img {
   max-width: 100%;
   height: auto;
