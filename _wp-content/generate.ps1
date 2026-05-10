@@ -226,12 +226,54 @@ function Clean-Content([string]$html) {
   return $h
 }
 
+function Get-ContactBody {
+  return @'
+<p>協賛・取材・運営に関するご質問、その他お問い合わせは以下のフォームよりお寄せください。内容を確認のうえ、運営委員会よりご連絡いたします。</p>
+
+<form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="contact-form" action="/contact-thanks.html">
+  <input type="hidden" name="form-name" value="contact" />
+  <p class="contact-form-hp"><label>こちらは入力しないでください: <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+  <div class="contact-field">
+    <label for="contact-name">お名前 <span class="required">*</span></label>
+    <input id="contact-name" type="text" name="name" required autocomplete="name" />
+  </div>
+  <div class="contact-field">
+    <label for="contact-tel">電話番号</label>
+    <input id="contact-tel" type="tel" name="tel" autocomplete="tel" inputmode="tel" />
+  </div>
+  <div class="contact-field">
+    <label for="contact-email">メールアドレス <span class="required">*</span></label>
+    <input id="contact-email" type="email" name="email" required autocomplete="email" />
+  </div>
+  <div class="contact-field">
+    <label for="contact-message">お問い合わせ内容 <span class="required">*</span></label>
+    <textarea id="contact-message" name="message" rows="6" required></textarea>
+  </div>
+  <div class="contact-actions">
+    <button type="submit" class="button primary">送信する</button>
+  </div>
+</form>
+
+<aside class="contact-alt">
+  <h2>その他の連絡手段</h2>
+  <ul>
+    <li><strong>Instagram:</strong> <a href="https://www.instagram.com/akigawa_hanabitaikai/" target="_blank" rel="noopener">@akigawa_hanabitaikai</a></li>
+    <li><strong>所在地:</strong> 〒197-0804 東京都あきる野市秋川2-6-10 田村ビル2F</li>
+  </ul>
+</aside>
+'@
+}
+
 function Build-Page([hashtable]$page) {
   $jsonPath = Join-Path $wpDir ($page.slug + ".json")
   $raw = Get-Content -Raw -Encoding UTF8 -Path $jsonPath
   $obj = $raw | ConvertFrom-Json
   $title = Decode-Html $obj.title.rendered
-  $content = Clean-Content $obj.content.rendered
+  if ($page.slug -eq "contact") {
+    $content = Get-ContactBody
+  } else {
+    $content = Clean-Content $obj.content.rendered
+  }
   $tag = $page.tag
 
   $html = $template
