@@ -313,6 +313,17 @@ function Build-Page([hashtable]$page) {
   } else {
     $content = Clean-Content $obj.content.rendered
   }
+  # Prepend a status banner for pages whose underlying event has ended.
+  if ($page.slug -eq "ticket") {
+    $banner = @'
+<aside class="page-status-banner" role="status">
+  <strong>第7回（2025年11月15日）の販売は終了しました。</strong>
+  <p>たくさんのご来場、誠にありがとうございました。次回開催のチケット情報は、本サイトおよび<a href="https://www.instagram.com/akigawa_hanabitaikai/" target="_blank" rel="noopener">公式Instagram</a>でご案内します。</p>
+</aside>
+
+'@
+    $content = $banner + $content
+  }
   $tag = $page.tag
 
   # Extract a snippet of plain text from raw WP content for meta description
