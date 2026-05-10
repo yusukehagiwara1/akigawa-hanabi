@@ -16,10 +16,13 @@
   const toggle = document.querySelector(".nav-toggle");
   const nav = document.querySelector("#primary-nav");
   if (toggle && nav) {
-    const closeNav = function () {
+    const closeNav = function (returnFocus) {
       toggle.setAttribute("aria-expanded", "false");
       toggle.setAttribute("aria-label", "メニューを開く");
       document.body.style.overflow = "";
+      if (returnFocus) {
+        toggle.focus();
+      }
     };
     const openNav = function () {
       toggle.setAttribute("aria-expanded", "true");
@@ -38,10 +41,10 @@
     nav.querySelectorAll("a").forEach(function (link) {
       link.addEventListener("click", closeNav);
     });
-    // Close on Escape
+    // Close on Escape (returns focus to toggle for keyboard users)
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && toggle.getAttribute("aria-expanded") === "true") {
-        closeNav();
+        closeNav(true);
       }
     });
     // Close when clicking the nav backdrop area (outside the link list)
