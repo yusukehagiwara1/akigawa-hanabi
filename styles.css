@@ -375,7 +375,7 @@ h2 {
 h1 {
   max-width: 720px;
   margin-bottom: 20px;
-  font-size: clamp(3rem, 7vw, 5.4rem);
+  font-size: clamp(2.4rem, 7vw, 5.4rem);
   font-weight: 900;
 }
 
@@ -1998,7 +1998,7 @@ h2 span,
   }
 
   h1 {
-    font-size: clamp(2.58rem, 14vw, 4rem);
+    font-size: clamp(2.2rem, 10vw, 3.6rem);
   }
 
   .ticket-list {
