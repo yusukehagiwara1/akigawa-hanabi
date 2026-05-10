@@ -969,60 +969,27 @@ h2 span,
   border-radius: 8px;
 }
 
-/* Contact form */
-.prose .contact-form {
+/* Contact (Google Forms embed) */
+.prose .contact-embed {
   margin: 2em 0;
-  display: grid;
-  gap: 18px;
-}
-
-.prose .contact-form-hp {
-  position: absolute;
-  left: -9999px;
-  width: 1px;
-  height: 1px;
+  border-radius: 8px;
   overflow: hidden;
-}
-
-.prose .contact-field {
-  display: grid;
-  gap: 6px;
-}
-
-.prose .contact-field label {
-  font-weight: 700;
-  color: var(--ink);
-}
-
-.prose .contact-field .required {
-  color: var(--red);
-}
-
-.prose .contact-field input,
-.prose .contact-field textarea {
-  font-family: inherit;
-  font-size: 1rem;
-  padding: 12px 14px;
-  border: 1px solid var(--line);
-  border-radius: 6px;
   background: #fff;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 6px 22px rgba(28, 35, 42, 0.06);
+  border: 1px solid var(--line);
+}
+
+.prose .contact-embed iframe {
+  display: block;
   width: 100%;
+  height: 1200px;
+  border: 0;
 }
 
-.prose .contact-field input:focus,
-.prose .contact-field textarea:focus {
-  outline: none;
-  border-color: var(--gold);
-  box-shadow: 0 0 0 3px rgba(215, 169, 71, 0.22);
-}
-
-.prose .contact-actions {
-  margin-top: 8px;
-}
-
-.prose .contact-actions .button {
-  min-width: 200px;
+@media (max-width: 620px) {
+  .prose .contact-embed iframe {
+    height: 1500px;
+  }
 }
 
 .prose .contact-alt {

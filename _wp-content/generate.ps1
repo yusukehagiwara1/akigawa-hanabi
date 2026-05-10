@@ -230,29 +230,15 @@ function Get-ContactBody {
   return @'
 <p>協賛・取材・運営に関するご質問、その他お問い合わせは以下のフォームよりお寄せください。内容を確認のうえ、運営委員会よりご連絡いたします。</p>
 
-<form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="contact-form" action="/contact-thanks.html">
-  <input type="hidden" name="form-name" value="contact" />
-  <p class="contact-form-hp"><label>こちらは入力しないでください: <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
-  <div class="contact-field">
-    <label for="contact-name">お名前 <span class="required">*</span></label>
-    <input id="contact-name" type="text" name="name" required autocomplete="name" />
-  </div>
-  <div class="contact-field">
-    <label for="contact-tel">電話番号</label>
-    <input id="contact-tel" type="tel" name="tel" autocomplete="tel" inputmode="tel" />
-  </div>
-  <div class="contact-field">
-    <label for="contact-email">メールアドレス <span class="required">*</span></label>
-    <input id="contact-email" type="email" name="email" required autocomplete="email" />
-  </div>
-  <div class="contact-field">
-    <label for="contact-message">お問い合わせ内容 <span class="required">*</span></label>
-    <textarea id="contact-message" name="message" rows="6" required></textarea>
-  </div>
-  <div class="contact-actions">
-    <button type="submit" class="button primary">送信する</button>
-  </div>
-</form>
+<div class="contact-embed">
+  <iframe
+    src="https://docs.google.com/forms/d/e/1FAIpQLSfavCvVmfAFlPusgrOQNudAsnSfT2GeBAMKMw4GUflGGydFuQ/viewform?embedded=true"
+    title="秋川流域花火大会 お問い合わせフォーム"
+    loading="lazy"
+    frameborder="0"
+    marginheight="0"
+    marginwidth="0">読み込んでいます…</iframe>
+</div>
 
 <aside class="contact-alt">
   <h2>その他の連絡手段</h2>
