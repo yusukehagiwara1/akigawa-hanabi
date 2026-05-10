@@ -1643,11 +1643,40 @@ h2 span,
   background: transparent;
   border: 2px solid var(--gold);
   color: var(--ink) !important;
+  box-shadow: none;
 }
 
 .prose .swell-block-button.is-style-btn_shiny .swell-block-button__link {
   background: linear-gradient(135deg, var(--red), #e07059);
   color: #fff !important;
+}
+
+.prose .swell-block-button.-size-l .swell-block-button__link {
+  min-height: 56px;
+  padding: 14px 36px;
+  font-size: 1.04rem;
+}
+
+.prose .swell-block-button.blue_ .swell-block-button__link {
+  background: linear-gradient(135deg, #2196f3, #1565c0);
+  color: #fff !important;
+}
+
+.prose .swell-block-button.red_ .swell-block-button__link {
+  background: linear-gradient(135deg, var(--red), #d96452);
+  color: #fff !important;
+}
+
+.prose .swell-block-button.blue_.is-style-btn_line .swell-block-button__link {
+  background: transparent;
+  border: 2px solid #1565c0;
+  color: #1565c0 !important;
+}
+
+.prose .swell-block-button.red_.is-style-btn_line .swell-block-button__link {
+  background: transparent;
+  border: 2px solid var(--red);
+  color: var(--red) !important;
 }
 
 /* Tables: side-style — first column is a label, second is the value */
