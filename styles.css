@@ -970,8 +970,13 @@ h2 span,
 }
 
 /* Contact (Google Forms embed) */
+.prose .contact-wrap {
+  max-width: 640px;
+  margin-inline: auto;
+}
+
 .prose .contact-embed {
-  margin: 2em -10px;
+  margin: 2em 0;
 }
 
 .prose .contact-embed iframe {
