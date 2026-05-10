@@ -257,6 +257,27 @@ img {
 
 .nav a {
   opacity: 0.88;
+  position: relative;
+}
+
+.nav a.is-active {
+  opacity: 1;
+  color: var(--gold);
+}
+
+.nav a.is-active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 2px;
+  background: var(--gold);
+  border-radius: 2px;
+}
+
+.footer-nav a.is-active {
+  color: var(--gold);
 }
 
 .header-cta,

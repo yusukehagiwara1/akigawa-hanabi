@@ -1,5 +1,17 @@
 // UI interactions: mobile nav toggle, header scroll shadow, fade-in animations.
 (function () {
+  // --- Highlight current page in nav ---
+  const currentPath = window.location.pathname.split("/").pop() || "index.html";
+  const navLinks = document.querySelectorAll(".nav a, .footer-nav a");
+  navLinks.forEach(function (link) {
+    const href = link.getAttribute("href") || "";
+    const linkPath = href.split("?")[0].split("#")[0].split("/").pop();
+    if (linkPath && linkPath === currentPath) {
+      link.classList.add("is-active");
+      link.setAttribute("aria-current", "page");
+    }
+  });
+
   // --- Mobile nav toggle ---
   const toggle = document.querySelector(".nav-toggle");
   const nav = document.querySelector("#primary-nav");
