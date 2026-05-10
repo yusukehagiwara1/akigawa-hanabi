@@ -48,6 +48,22 @@ async function loadNews(url, apiKey, target) {
   }
 }
 
+function extractThumbnail(item) {
+  // 1) Dedicated image field if present (image type returns object with .url)
+  if (item.thumbnail) {
+    if (typeof item.thumbnail === "string") return item.thumbnail;
+    if (item.thumbnail.url) return item.thumbnail.url;
+  }
+  if (item.image) {
+    if (typeof item.image === "string") return item.image;
+    if (item.image.url) return item.image.url;
+  }
+  // 2) Fall back to the first <img> inside body / description
+  const body = String(item.body || item.description || "");
+  const match = body.match(/<img[^>]+src=["']([^"']+)["']/i);
+  return match ? match[1] : null;
+}
+
 function createNewsCard(item) {
   const title = escapeHtml(item.title || item.name || "お知らせ");
   const date = item.date || item.publishedAt || item.createdAt;
@@ -55,22 +71,23 @@ function createNewsCard(item) {
   const excerpt = escapeHtml(stripHtml(item.excerpt || item.description || item.body || ""));
   const href = item.url || item.link || "";
   const body = excerpt || "詳しい内容はmicroCMSで更新できます。";
+  const thumb = extractThumbnail(item);
+  const thumbHtml = thumb
+    ? `<div class="info-card-thumb"><img src="${escapeHtml(thumb)}" alt="" loading="lazy"></div>`
+    : "";
 
-  if (href) {
-    return `
-      <article class="info-card">
-        <time datetime="${escapeHtml(date || "")}">${dateLabel}</time>
-        <h3><a href="${escapeHtml(href)}">${title}</a></h3>
-        <p>${body}</p>
-      </article>
-    `;
-  }
+  const titleEl = href
+    ? `<h3><a href="${escapeHtml(href)}">${title}</a></h3>`
+    : `<h3>${title}</h3>`;
 
   return `
-    <article class="info-card">
-      <time datetime="${escapeHtml(date || "")}">${dateLabel}</time>
-      <h3>${title}</h3>
-      <p>${body}</p>
+    <article class="info-card${thumb ? " has-thumb" : ""}">
+      ${thumbHtml}
+      <div class="info-card-body">
+        <time datetime="${escapeHtml(date || "")}">${dateLabel}</time>
+        ${titleEl}
+        <p>${body}</p>
+      </div>
     </article>
   `;
 }
