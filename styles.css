@@ -1592,6 +1592,52 @@ h2 span,
   text-align: center;
 }
 
+.prose .epb-microcopy-top {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.prose .epb-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 10px 28px;
+  border-radius: 999px;
+  font-weight: 700;
+  text-decoration: none;
+  background: linear-gradient(135deg, #ffe8a6, var(--gold));
+  color: var(--night) !important;
+  box-shadow: 0 8px 24px rgba(215, 169, 71, 0.28);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.prose .epb-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(215, 169, 71, 0.4);
+}
+
+.prose .epb-btn__outline {
+  background: transparent;
+  border: 2px solid var(--gold);
+  color: var(--ink) !important;
+  box-shadow: none;
+}
+
+.prose .epb-btn__outline:hover {
+  background: rgba(215, 169, 71, 0.1);
+  box-shadow: none;
+}
+
+.prose .epb-btn-size__lg {
+  display: inline-block;
+}
+
+.prose .epb-btn-text {
+  display: inline-block;
+}
+
 /* Button variants */
 .prose .swell-block-button.is-style-btn_line .swell-block-button__link {
   background: transparent;
@@ -1604,14 +1650,34 @@ h2 span,
   color: #fff !important;
 }
 
-/* Tables: side-style alternative */
-.prose .is-style-table__side {
-  border-collapse: separate;
+/* Tables: side-style — first column is a label, second is the value */
+.prose .wp-block-table.is-style-table__side table {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
 }
 
-.prose .is-style-table__side th,
-.prose .is-style-table__side td {
-  border-color: var(--line);
+.prose .wp-block-table.is-style-table__side td {
+  white-space: normal;
+  vertical-align: top;
+}
+
+.prose .wp-block-table.is-style-table__side td:first-child {
+  width: 28%;
+  background: var(--cream);
+  font-weight: 700;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.prose .wp-block-table.is-style-table__side tbody tr:nth-child(odd) {
+  background: transparent;
+}
+
+@media (max-width: 620px) {
+  .prose .wp-block-table.is-style-table__side td:first-child {
+    width: 35%;
+  }
 }
 
 /* SWELL-theme inline marker (yellow highlight) */
