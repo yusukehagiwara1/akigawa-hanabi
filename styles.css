@@ -275,6 +275,29 @@ img {
 
 .hero-content {
   max-width: 760px;
+  animation: hero-fade 0.9s ease-out 0.05s both;
+}
+
+.event-panel {
+  animation: hero-fade 0.9s ease-out 0.25s both;
+}
+
+@keyframes hero-fade {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-content,
+  .event-panel {
+    animation: none;
+  }
 }
 
 .eyebrow,
@@ -742,11 +765,12 @@ h2 span,
 }
 
 .page-hero {
-  padding: clamp(60px, 9vw, 120px) clamp(22px, 5vw, 70px) clamp(40px, 6vw, 80px);
+  padding: clamp(80px, 11vw, 140px) clamp(22px, 5vw, 70px) clamp(40px, 6vw, 80px);
   background:
     radial-gradient(circle at 12% 18%, rgba(215, 169, 71, 0.18), transparent 55%),
     linear-gradient(180deg, #0f1828, #0f3939 70%, var(--cream));
   color: #fff;
+  animation: hero-fade 0.7s ease-out both;
 }
 
 .page-hero-inner {
@@ -1507,6 +1531,7 @@ h2 span,
 }
 
 .sponsor-tile {
+  position: relative;
   display: grid;
   place-items: center;
   min-height: 120px;
@@ -1516,11 +1541,20 @@ h2 span,
   background: #fff;
   box-shadow: 0 4px 18px rgba(28, 35, 42, 0.05);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
 }
 
 .sponsor-tile:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 28px rgba(28, 35, 42, 0.1);
+}
+
+.sponsor-tile img {
+  transition: transform 0.3s ease;
+}
+
+.sponsor-tile:hover img {
+  transform: scale(1.04);
 }
 
 .sponsor-tile img {
