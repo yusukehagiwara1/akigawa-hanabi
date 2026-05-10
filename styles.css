@@ -1739,6 +1739,114 @@ h2 span,
   object-fit: contain;
 }
 
+/* SWELL post list (used on media coverage page) */
+.prose .p-postList {
+  list-style: none;
+  margin: 1.6em 0;
+  padding: 0;
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 920px) {
+  .prose .p-postList {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .prose .p-postList {
+    grid-template-columns: 1fr;
+  }
+}
+
+.prose .p-postList__item {
+  margin: 0;
+  padding: 0;
+}
+
+.prose .p-postList__link {
+  display: block;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 4px 16px rgba(28, 35, 42, 0.05);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.prose .p-postList__link:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 32px rgba(28, 35, 42, 0.12);
+}
+
+.prose .p-postList__thumb,
+.prose .c-postThumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--cream);
+}
+
+.prose .c-postThumb__figure {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.prose .c-postThumb__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.prose .p-postList__link:hover .c-postThumb__img {
+  transform: scale(1.04);
+}
+
+.prose .c-postThumb__cat {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(10, 16, 28, 0.85);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.prose .p-postList__body {
+  padding: 16px 18px 18px;
+}
+
+.prose .p-postList__title {
+  margin: 0 0 10px;
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 700;
+  color: var(--ink);
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.prose .p-postList__meta,
+.prose .c-postTimes {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.prose .c-postTimes__posted {
+  font-weight: 700;
+}
+
 /* TBA placeholder (was 'Coming Soon' from stale WP authoring) */
 .prose .placeholder-tba {
   color: var(--muted);
