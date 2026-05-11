@@ -1936,7 +1936,7 @@ a.ticket-card {
 
 .prose .wp-block-gallery img {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 10;
   object-fit: cover;
   border-radius: 6px;
 }
@@ -2879,24 +2879,32 @@ a.ticket-card {
   }
 }
 
-/* Food vendor photo images: crop with aspect-ratio + cover so the gray bars
-   baked into some source images don't show against the page background. */
-.prose .wp-block-columns img[src*="飲食店画像"] {
+/* Unified photo aspect ratio across food vendor / event / 2024-hanabi pages
+   - Photos use 16:10 cover for consistency with homepage cards
+   - Letterboxed images (with baked-in gray bars) get cropped via object-fit:cover */
+.prose .wp-block-columns img[src*="飲食店画像"],
+.prose .wp-block-columns img[src*="DSC_"],
+.prose .swell-block-columns img[src*="飲食店画像"],
+.prose .swell-block-columns img[src*="DSC_"] {
   display: block;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 10;
   height: auto;
   max-height: none;
   object-fit: cover;
   border-radius: 8px;
 }
 
-.prose .wp-block-columns figure.wp-block-image:has(img[src*="飲食店画像"]) {
+.prose .wp-block-columns figure.wp-block-image:has(img[src*="飲食店画像"]),
+.prose .wp-block-columns figure.wp-block-image:has(img[src*="DSC_"]),
+.prose .swell-block-columns figure.wp-block-image:has(img[src*="飲食店画像"]),
+.prose .swell-block-columns figure.wp-block-image:has(img[src*="DSC_"]) {
   width: 100%;
   margin: 0;
   background: transparent;
   border: 0;
 }
+
 
 /* Vendors without photos are extracted into a text-only list at the bottom of
    the food booth section (handled by ui.js). Each vendor renders as a tile card. */
