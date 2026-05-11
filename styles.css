@@ -353,13 +353,13 @@ img {
   display: block;
   height: 40px;
   width: auto;
-  mix-blend-mode: screen;
-  opacity: 0.75;
+  filter: invert(1) grayscale(1) brightness(1.4) contrast(0.9);
+  opacity: 0.82;
   transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
 .brand:hover .brand-mark {
-  opacity: 0.95;
+  opacity: 1;
   transform: scale(1.04);
 }
 
@@ -2871,11 +2871,11 @@ dialog.lightbox .lightbox-close:hover {
 
 .footer-org-logo {
   display: block;
-  height: 42px;
+  height: 44px;
   width: auto;
   margin: 6px 0 14px;
-  mix-blend-mode: screen;
-  opacity: 0.8;
+  filter: invert(1) grayscale(1) brightness(1.4) contrast(0.9);
+  opacity: 0.85;
 }
 
 .footer-sub {
