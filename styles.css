@@ -857,6 +857,14 @@ h2 span,
   background: var(--cream);
 }
 
+.stats-thumb::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(8, 13, 25, 0.18));
+  pointer-events: none;
+}
+
 .stats-thumb img {
   width: 100%;
   height: 100%;
@@ -2928,12 +2936,23 @@ dialog.lightbox .lightbox-close:hover {
 @media (max-width: 620px) {
   .site-header {
     padding-inline: 16px;
+    gap: 12px;
+  }
+
+  .brand {
+    gap: 8px;
+  }
+
+  .brand-mark {
+    height: 32px;
+    padding: 3px 5px;
   }
 
   .brand span:last-child {
     max-width: 9em;
     white-space: normal;
     line-height: 1.15;
+    font-size: 0.92rem;
   }
 
   .header-cta {
