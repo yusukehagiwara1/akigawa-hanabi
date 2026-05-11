@@ -9,6 +9,8 @@
 
   const sponsorList = document.querySelector("#cms-sponsor-list");
   const galleryList = document.querySelector("#cms-gallery-list");
+  const testimonialList = document.querySelector("#cms-testimonial-list");
+  const testimonialSection = document.querySelector("#testimonials");
 
   if (sponsorList && extra.sponsors) {
     loadList(extra.sponsors, sponsorList, renderSponsors);
@@ -16,8 +18,16 @@
   if (galleryList && extra.gallery) {
     loadList(extra.gallery, galleryList, renderGallery);
   }
+  if (testimonialList && extra.testimonial) {
+    loadList(extra.testimonial, testimonialList, renderTestimonials, function (count) {
+      // Hide the entire section if no testimonials are configured in microCMS
+      if (count === 0 && testimonialSection) {
+        testimonialSection.style.display = "none";
+      }
+    });
+  }
 
-  async function loadList(endpointCfg, target, renderer) {
+  async function loadList(endpointCfg, target, renderer, onComplete) {
     const url = new URL(
       `https://${cfg.serviceDomain}.microcms.io/api/v1/${endpointCfg.endpoint}`
     );
@@ -35,9 +45,11 @@
       if (html) {
         target.innerHTML = html;
       }
+      if (typeof onComplete === "function") onComplete(items.length);
     } catch (err) {
       console.warn("[microcms-extras]", endpointCfg.endpoint, err.message);
       // Leave any pre-rendered fallback in place.
+      if (typeof onComplete === "function") onComplete(-1);
     }
   }
 
@@ -97,6 +109,37 @@
         return `<figure class="past-tile"><span class="zoom-hint" aria-hidden="true"></span><img src="${escapeHtml(
           img
         )}" alt="${capEsc}" loading="lazy" decoding="async"><figcaption>${capEsc}</figcaption></figure>`;
+      })
+      .join("");
+  }
+
+  function renderTestimonials(items) {
+    if (!items.length) return "";
+    return items
+      .map(function (t) {
+        const name = escapeHtml(t.name || "ご来場者");
+        const role = escapeHtml(t.role || "");
+        const comment = escapeHtml(t.comment || "");
+        const year = escapeHtml(t.year ? String(t.year) : "");
+        const avatar = mediaUrl(t.image);
+        const avatarHtml = avatar
+          ? `<img class="testimonial-avatar" src="${escapeHtml(
+              avatar
+            )}" alt="" loading="lazy" decoding="async">`
+          : `<span class="testimonial-avatar testimonial-avatar-placeholder" aria-hidden="true"></span>`;
+        const meta = [role, year ? year + "年" : ""].filter(Boolean).join("／");
+        return `
+          <article class="testimonial-card">
+            <p class="testimonial-quote">${comment}</p>
+            <div class="testimonial-footer">
+              ${avatarHtml}
+              <div>
+                <p class="testimonial-name">${name}</p>
+                ${meta ? `<p class="testimonial-meta">${escapeHtml(meta)}</p>` : ""}
+              </div>
+            </div>
+          </article>
+        `;
       })
       .join("");
   }

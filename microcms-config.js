@@ -5,6 +5,7 @@ window.MICROCMS_CONFIG = {
   limit: 3,
 };
 window.MICROCMS_EXTRA = {
-  sponsors: { endpoint: "sponsors", limit: 50, orders: "order" },
-  gallery:  { endpoint: "gallery",  limit: 12, orders: "order" },
+  sponsors:    { endpoint: "sponsors",    limit: 50, orders: "order" },
+  gallery:     { endpoint: "gallery",     limit: 12, orders: "order" },
+  testimonial: { endpoint: "testimonial", limit: 6,  orders: "-publishedAt" },
 };

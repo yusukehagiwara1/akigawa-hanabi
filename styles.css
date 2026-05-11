@@ -795,6 +795,81 @@ h2 span,
   color: var(--gold);
 }
 
+/* ===== Testimonials section (来場者の声) ===== */
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+.testimonial-card {
+  position: relative;
+  padding: 28px 24px 22px;
+  border-radius: 12px;
+  background: #fff;
+  border: 1px solid var(--line);
+  box-shadow: 0 10px 30px rgba(28, 35, 42, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.testimonial-card::before {
+  content: "\201C";
+  position: absolute;
+  top: 8px;
+  right: 18px;
+  font-family: "Zen Old Mincho", serif;
+  font-size: 4.2rem;
+  line-height: 1;
+  color: rgba(215, 169, 71, 0.32);
+  font-weight: 900;
+  pointer-events: none;
+}
+
+.testimonial-quote {
+  margin: 0;
+  position: relative;
+  font-size: 0.98rem;
+  line-height: 1.85;
+  color: var(--ink);
+  flex: 1;
+}
+
+.testimonial-footer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.testimonial-avatar {
+  flex: 0 0 auto;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--cream);
+}
+
+.testimonial-avatar-placeholder {
+  background: linear-gradient(135deg, var(--gold), var(--red));
+}
+
+.testimonial-name {
+  margin: 0;
+  font-weight: 800;
+  color: var(--ink);
+  font-size: 0.95rem;
+}
+
+.testimonial-meta {
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
 /* ===== Next-edition signup section ===== */
 .section.signup {
   padding-top: 0;
