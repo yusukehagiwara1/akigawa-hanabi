@@ -268,13 +268,13 @@ img {
   min-height: 72px;
   padding: 14px clamp(18px, 4vw, 54px);
   color: #fff;
-  background: linear-gradient(180deg, rgba(9, 15, 26, 0.78), rgba(9, 15, 26, 0.18));
+  background: rgba(10, 16, 28, 0.94);
   backdrop-filter: blur(12px);
   transition: background 0.25s ease, box-shadow 0.25s ease;
 }
 
 .site-header.is-scrolled {
-  background: rgba(10, 16, 28, 0.92);
+  background: rgba(10, 16, 28, 0.98);
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
 }
 
