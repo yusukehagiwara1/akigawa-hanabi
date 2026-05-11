@@ -805,8 +805,10 @@ h2 span,
 }
 
 .section-heading {
+  position: relative;
   max-width: 760px;
-  margin-bottom: 32px;
+  margin-bottom: 38px;
+  padding-bottom: 4px;
 }
 
 .section-heading h2,
