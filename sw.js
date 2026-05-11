@@ -8,7 +8,7 @@
 //   * Cross-origin requests, non-GET, sitemap/robots, /_routes/* → pass through.
 //
 // Bump CACHE_VERSION on each deploy that ships static asset changes.
-const CACHE_VERSION = "akigawa-hanabi-v3";
+const CACHE_VERSION = "akigawa-hanabi-v4";
 const PRECACHE_URLS = [
   "/styles.css",
   "/ui.js",
@@ -22,6 +22,9 @@ const PRECACHE_URLS = [
   "/assets/logo-npo.webp",
   "/assets/hero-fireworks-real.webp",
   "/assets/keyvisual.jpg",
+  "/assets/ogp-2026.jpg",
+  "/assets/icon-192.png",
+  "/assets/icon-512.png",
 ];
 
 self.addEventListener("install", function (event) {

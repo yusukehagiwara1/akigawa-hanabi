@@ -2789,6 +2789,48 @@ a.ticket-card {
   gap: 10px;
 }
 
+.page-hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 16px;
+  padding: 6px 14px 6px 10px;
+  background: linear-gradient(135deg, rgba(215, 169, 71, 0.22), rgba(184, 63, 55, 0.18));
+  border: 1px solid rgba(215, 169, 71, 0.5);
+  border-radius: 999px;
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.page-hero-pill:hover,
+.page-hero-pill:focus-visible {
+  background: linear-gradient(135deg, rgba(215, 169, 71, 0.40), rgba(184, 63, 55, 0.28));
+  border-color: var(--gold);
+  transform: translateY(-1px);
+  color: #fff;
+}
+
+.page-hero-pill-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+.page-hero-pill strong {
+  color: var(--gold);
+  font-weight: 900;
+}
+
+.page-hero-pill > span {
+  color: rgba(255, 255, 255, 0.92);
+}
+
 .page-hero h1 {
   max-width: 920px;
   margin: 0;
