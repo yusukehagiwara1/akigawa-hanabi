@@ -2788,6 +2788,24 @@ dialog.lightbox .lightbox-close:hover {
   transform: scale(1.04);
 }
 
+.sponsor-tile a {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* Clickable sponsor logos in WP-migrated columns (sponsor.html) */
+.prose .wp-block-columns figure.wp-block-image > a {
+  display: block;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.prose .wp-block-columns figure.wp-block-image > a:hover {
+  transform: translateY(-2px);
+  opacity: 0.85;
+}
+
 .sponsor-note {
   margin-top: 18px;
   color: var(--muted);

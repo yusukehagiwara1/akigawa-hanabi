@@ -119,6 +119,7 @@ $template = @'
     <link rel="stylesheet" href="styles.css">
     <script src="analytics.js" defer></script>
     <script src="ui.js" defer></script>
+    <script src="sponsor-urls.js" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">本文へスキップ</a>
