@@ -2910,6 +2910,26 @@ a.ticket-card {
   box-shadow: 0 12px 28px rgba(28, 35, 42, 0.1);
 }
 
+/* Ticket seat photos (kyosan_ss / a / フリー席): consistent large display next to text */
+.prose .wp-block-columns img[src*="kyosan_ss"],
+.prose .wp-block-columns img[src*="/a.webp"],
+.prose .wp-block-columns img[src*="フリー席"] {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  height: auto;
+  max-height: none;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.prose .wp-block-columns figure.wp-block-image:has(img[src*="kyosan_ss"]),
+.prose .wp-block-columns figure.wp-block-image:has(img[src*="/a.webp"]),
+.prose .wp-block-columns figure.wp-block-image:has(img[src*="フリー席"]) {
+  width: 100%;
+  margin: 0;
+}
+
 /* Ticket purchase brand logos (KKday + asoview): pair them as uniform cards */
 .prose .wp-block-columns figure.wp-block-image > a:has(img[src*="kkday"]),
 .prose .wp-block-columns figure.wp-block-image > a:has(img[src*="image-1"]) {
