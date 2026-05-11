@@ -23,8 +23,11 @@
     loadList(extra.gallery, galleryList, renderGallery);
   }
   if (testimonialList && extra.testimonial) {
+    const hasFallback = testimonialList.dataset.hasFallback === "true";
     loadList(extra.testimonial, testimonialList, renderTestimonials, function (count) {
-      if (count === 0 && testimonialSection) {
+      // If CMS is empty BUT we have fallback content, keep the section visible.
+      // Only hide the section when CMS is empty AND there's no fallback to show.
+      if (count === 0 && testimonialSection && !hasFallback) {
         testimonialSection.style.display = "none";
       }
     });
