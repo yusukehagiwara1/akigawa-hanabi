@@ -1910,6 +1910,167 @@ a.press-card-title:hover {
   }
 }
 
+/* ===== Press Kit (pr.html: 報道関係者向け素材集) ===== */
+.prose .press-kit {
+  margin: 24px 0 48px;
+  padding: clamp(28px, 4vw, 42px);
+  background: linear-gradient(180deg, rgba(215, 169, 71, 0.06), rgba(255, 255, 255, 0) 60%);
+  border: 1px solid rgba(215, 169, 71, 0.28);
+  border-radius: 14px;
+}
+
+.prose .press-kit > h2 {
+  margin-top: 0;
+}
+
+.prose .press-kit > p {
+  margin-bottom: 20px;
+  color: var(--muted);
+}
+
+.press-kit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.press-kit-card {
+  padding: 22px 22px 20px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 4px 18px rgba(28, 35, 42, 0.04);
+}
+
+.prose .press-kit-card h3 {
+  margin: 0 0 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--gold);
+  font-size: 1.02rem;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.prose .press-kit-facts {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 6px 12px;
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+
+.prose .press-kit-facts dt {
+  color: var(--muted);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.prose .press-kit-facts dd {
+  margin: 0;
+  color: var(--ink);
+}
+
+.prose .press-kit-facts dd a {
+  color: var(--teal);
+  word-break: break-all;
+  text-decoration: underline;
+}
+
+.prose .press-kit-downloads {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 14px;
+  display: grid;
+  gap: 8px;
+}
+
+.prose .press-kit-downloads li {
+  margin: 0;
+  padding: 0;
+}
+
+.prose .press-kit-downloads li::before {
+  content: none;
+}
+
+.prose .press-kit-downloads a {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 14px;
+  background: rgba(28, 35, 42, 0.03);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-size: 0.86rem;
+  color: var(--ink);
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.prose .press-kit-downloads a:hover {
+  background: rgba(215, 169, 71, 0.10);
+  border-color: var(--gold);
+  transform: translateX(2px);
+}
+
+.prose .press-kit-downloads a strong {
+  display: block;
+  font-weight: 700;
+}
+
+.prose .press-kit-downloads a span {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.prose .press-kit-note {
+  margin: 12px 0 0;
+  font-size: 0.78rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.prose .press-kit-card-contact p {
+  margin: 0 0 14px;
+  font-size: 0.92rem;
+  line-height: 1.8;
+}
+
+.prose .press-kit-cta {
+  margin: 14px 0;
+}
+
+.prose .press-kit-cta .button {
+  background: var(--ink);
+  color: #fff;
+  padding: 10px 18px;
+}
+
+.prose .press-kit-cta .button:hover {
+  background: var(--red);
+}
+
+.prose .press-kit-extras {
+  list-style: none;
+  margin: 14px 0 0;
+  padding: 14px 0 0;
+  border-top: 1px dashed var(--line);
+  font-size: 0.86rem;
+  color: var(--muted);
+}
+
+.prose .press-kit-extras li {
+  margin: 4px 0;
+  padding: 0;
+  line-height: 1.7;
+}
+
+.prose .press-kit-extras li::before {
+  content: none;
+}
+
 /* ===== Contact page: FAQ-first hint ===== */
 .prose .contact-faq-hint {
   margin: 18px 0 26px;
