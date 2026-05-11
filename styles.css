@@ -118,7 +118,11 @@ html {
 body {
   margin: 0;
   color: var(--ink);
-  background: var(--paper);
+  background:
+    radial-gradient(circle at 88% 16%, rgba(215, 169, 71, 0.06), transparent 38%),
+    radial-gradient(circle at 8% 78%, rgba(184, 63, 55, 0.04), transparent 40%),
+    var(--paper);
+  background-attachment: fixed;
   font-family: "Noto Sans JP", system-ui, sans-serif;
   line-height: 1.7;
 }
