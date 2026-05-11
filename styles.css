@@ -1910,6 +1910,40 @@ a.press-card-title:hover {
   }
 }
 
+/* ===== Contact page: FAQ-first hint ===== */
+.prose .contact-faq-hint {
+  margin: 18px 0 26px;
+  padding: 16px 22px;
+  background: linear-gradient(135deg, rgba(215, 169, 71, 0.10), rgba(184, 63, 55, 0.04));
+  border-left: 4px solid var(--gold);
+  border-radius: 8px;
+}
+
+.prose .contact-faq-hint p {
+  margin: 0;
+  line-height: 1.75;
+  font-size: 0.95rem;
+}
+
+.prose .contact-faq-hint p:first-child {
+  margin-bottom: 4px;
+  font-size: 0.86rem;
+  font-weight: 800;
+  color: var(--red);
+  letter-spacing: 0.06em;
+}
+
+.prose .contact-faq-hint a {
+  font-weight: 700;
+  color: var(--teal);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.prose .contact-faq-hint a:hover {
+  color: var(--red);
+}
+
 /* ===== 404 page (visual cards) ===== */
 .not-found-grid {
   display: grid;
