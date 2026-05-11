@@ -165,4 +165,43 @@
       });
     }
   });
+
+  // ---- Error monitoring (JS errors → GA4) ----
+  // Dedup the same error message within a single session to avoid flooding.
+  var reportedErrors = new Set ? new Set() : { has: function () { return false; }, add: function () {} };
+
+  function reportError(payload) {
+    var key = (payload.error_message || "") + "|" + (payload.error_source || "");
+    if (reportedErrors.has && reportedErrors.has(key)) return;
+    if (reportedErrors.add) reportedErrors.add(key);
+    try {
+      gtag("event", "js_error", payload);
+    } catch (e) {}
+  }
+
+  window.addEventListener("error", function (e) {
+    // Filter out resource load errors triggered for tracking pixels etc.
+    var msg = (e && e.message) ? e.message : "unknown";
+    var src = (e && e.filename) ? e.filename : "";
+    // Skip cross-origin script errors with no info
+    if (msg === "Script error." || msg === "Script error") return;
+    reportError({
+      error_message: String(msg).slice(0, 200),
+      error_source: String(src).slice(0, 200),
+      error_line: e && e.lineno ? e.lineno : 0,
+      error_col: e && e.colno ? e.colno : 0,
+      page_path: window.location.pathname,
+      user_agent: navigator.userAgent.slice(0, 120)
+    });
+  });
+
+  window.addEventListener("unhandledrejection", function (e) {
+    var reason = (e && e.reason) ? (e.reason.message || String(e.reason)) : "unknown";
+    reportError({
+      error_message: ("[Promise] " + String(reason)).slice(0, 200),
+      error_source: "unhandledrejection",
+      page_path: window.location.pathname,
+      user_agent: navigator.userAgent.slice(0, 120)
+    });
+  });
 })();
