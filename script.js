@@ -74,7 +74,7 @@ function createNewsCard(item) {
   const body = excerpt || "詳細はこちらをご確認ください。";
   const thumb = extractThumbnail(item);
   const thumbHtml = thumb
-    ? `<div class="info-card-thumb"><img src="${escapeHtml(thumb)}" alt="" loading="lazy" decoding="async"></div>`
+    ? `<div class="info-card-thumb"><img src="${escapeHtml(thumb)}" alt="${title}" loading="lazy" decoding="async"></div>`
     : "";
 
   const titleEl = href
