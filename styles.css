@@ -1882,6 +1882,18 @@ a.ticket-card {
   align-items: center;
 }
 
+/* When one column has just an image and the sibling has text, center vertically */
+.prose .wp-block-columns:has(> .wp-block-column > figure.wp-block-image:only-child),
+.prose .wp-block-columns:has(> .wp-block-column > .wp-block-columns > .wp-block-column > figure.wp-block-image) {
+  align-items: center;
+}
+
+/* Hide empty placeholder columns (no children) */
+.prose .wp-block-column:empty,
+.prose .swell-block-column:empty {
+  display: none;
+}
+
 .prose .wp-block-column,
 .prose .swell-block-column {
   flex: 1 1 240px;
@@ -2302,9 +2314,9 @@ a.ticket-card {
 }
 
 .prose .swell-block-button.red_.is-style-btn_line .swell-block-button__link {
-  background: transparent;
-  border: 2px solid var(--red);
-  color: var(--red) !important;
+  background: linear-gradient(135deg, var(--red), #d96452);
+  border: 0;
+  color: #fff !important;
 }
 
 /* Tables: side-style — first column is a label, second is the value */
@@ -2863,6 +2875,35 @@ a.ticket-card {
   max-height: 120px;
 }
 
+/* Ticket purchase brand logos (KKday + asoview): pair them as uniform cards */
+.prose .wp-block-columns figure.wp-block-image > a:has(img[src*="kkday"]),
+.prose .wp-block-columns figure.wp-block-image > a:has(img[src*="image-1"]) {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 140px;
+  padding: 18px 24px;
+  border-radius: 12px;
+  background: #fff;
+  border: 1px solid var(--line);
+  box-shadow: 0 4px 16px rgba(28, 35, 42, 0.05);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.prose .wp-block-columns figure.wp-block-image > a:has(img[src*="kkday"]):hover,
+.prose .wp-block-columns figure.wp-block-image > a:has(img[src*="image-1"]):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(28, 35, 42, 0.12);
+}
+
+.prose .wp-block-columns figure.wp-block-image > a:has(img[src*="kkday"]) img,
+.prose .wp-block-columns figure.wp-block-image > a:has(img[src*="image-1"]) img {
+  max-height: 80px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
 /* SWELL columns (typically photos): uniform aspect-ratio with cover */
 .prose .swell-block-columns .wp-block-image,
 .prose .swell-block-columns .swell-block-column figure {
@@ -3005,10 +3046,6 @@ a.ticket-card {
 /* Contact (Google Forms embed) */
 .prose .contact-cta {
   margin: 2em 0;
-  padding: 32px 28px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, rgba(215, 169, 71, 0.08), rgba(184, 63, 55, 0.05));
-  border: 1px solid rgba(215, 169, 71, 0.22);
   text-align: center;
 }
 
