@@ -2228,6 +2228,146 @@ a.ticket-card {
   object-fit: contain;
 }
 
+/* ===== Music program (text-only, replaces the old image-based list) ===== */
+.prose .music-program {
+  margin: 2em 0;
+  padding: clamp(28px, 4vw, 44px) clamp(22px, 4vw, 36px);
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 92% 8%, rgba(215, 169, 71, 0.18), transparent 50%),
+    linear-gradient(140deg, #10182a 0%, #12283f 60%, #0f3939 100%);
+  color: #fff;
+  box-shadow: 0 20px 60px rgba(11, 19, 31, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.prose .music-program::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.prose .music-program > * {
+  position: relative;
+}
+
+.prose .music-program-title {
+  margin: 0 0 22px;
+  padding: 0;
+  font-family: "Zen Old Mincho", serif;
+  font-size: clamp(1.6rem, 3.4vw, 2.2rem);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+  border: none;
+}
+
+.prose .music-program-title::after {
+  display: none;
+}
+
+.prose .music-program-section {
+  margin: 0 0 18px;
+  padding: 14px 18px;
+  border-left: 3px solid var(--gold);
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 0 8px 8px 0;
+}
+
+.prose .music-program-section + .music-program-section {
+  margin-top: 12px;
+}
+
+.prose .music-program-label {
+  margin: 0 0 4px;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  font-weight: 900;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+.prose .music-program-headline {
+  margin: 0 0 4px;
+  font-family: "Zen Old Mincho", serif;
+  font-size: clamp(1.2rem, 2.6vw, 1.6rem);
+  font-weight: 900;
+  color: #fff;
+}
+
+.prose .music-program-sub {
+  margin: 0;
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.6;
+}
+
+.prose .music-program-list {
+  list-style: none;
+  margin: 24px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 22px;
+  counter-reset: track;
+}
+
+.prose .music-program-list li {
+  display: grid;
+  grid-template-columns: 36px 1fr auto;
+  align-items: baseline;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.95rem;
+}
+
+.prose .music-program-list .track-no {
+  font-family: "Zen Old Mincho", serif;
+  color: var(--gold);
+  font-weight: 900;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+}
+
+.prose .music-program-list .track-title {
+  color: #fff;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.prose .music-program-list .track-artist {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+  text-align: right;
+  white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+  .prose .music-program-list {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .prose .music-program-list .track-artist {
+    grid-column: 2 / -1;
+    text-align: left;
+    margin-top: 2px;
+  }
+}
+
+/* Hide Coming Soon placeholder images (1-1, 1-2, 1-9, 1-10 are all "Coming Soon" stock images) */
+.prose .wp-block-columns figure.wp-block-image:has(img[src$="/1-1.webp"]),
+.prose .wp-block-columns figure.wp-block-image:has(img[src$="/1-2.webp"]),
+.prose .wp-block-columns figure.wp-block-image:has(img[src$="/1-9.webp"]),
+.prose .wp-block-columns figure.wp-block-image:has(img[src$="/1-10.webp"]) {
+  display: none;
+}
+
 /* PR/sponsor media logos (identified by filename): consistent compact display */
 .prose .wp-block-columns img[src*="PR_logo"],
 .prose .wp-block-columns img[src*="logo-"],
@@ -2390,25 +2530,41 @@ a.ticket-card {
 }
 
 /* Contact (Google Forms embed) */
-.prose .contact-embed {
-  margin: 2em -10px;
+.prose .contact-cta {
+  margin: 2em 0;
+  padding: 32px 28px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(215, 169, 71, 0.08), rgba(184, 63, 55, 0.05));
+  border: 1px solid rgba(215, 169, 71, 0.22);
+  text-align: center;
 }
 
-.prose .contact-embed iframe {
-  display: block;
-  width: 100%;
-  height: 1500px;
-  border: 0;
-  background: transparent;
+.prose .contact-cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 32px;
+  min-height: 60px;
+  font-size: 1.05rem;
+  font-weight: 800;
 }
 
-@media (max-width: 620px) {
-  .prose .contact-embed {
-    margin-inline: 0;
-  }
-  .prose .contact-embed iframe {
-    height: 1700px;
-  }
+.prose .contact-cta-button:hover {
+  gap: 14px;
+}
+
+.prose .contact-cta-button svg {
+  transition: transform 0.2s ease;
+}
+
+.prose .contact-cta-button:hover svg {
+  transform: translateX(2px);
+}
+
+.prose .contact-cta-note {
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 0.86rem;
 }
 
 .prose .contact-alt {

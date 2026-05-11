@@ -251,6 +251,39 @@ function Clean-Content([string]$html) {
   # Replace stale 'Coming Soon' placeholders with neutral wording (event has ended)
   $h = [regex]::Replace($h, '<p>Coming Soon</p>', '<p class="placeholder-tba">— 詳細掲載なし —</p>')
   $h = [regex]::Replace($h, '<strong>Coming Soon</strong>', '<strong>（詳細未掲載）</strong>')
+  # Drop fully-placeholder vendor columns (image=Coming Soon stock, heading=（詳細未掲載）, body=— 詳細掲載なし —)
+  $h = [regex]::Replace($h, '<div class="wp-block-column">\s*<figure class="wp-block-image[^"]*"[^>]*><img[^>]*src="assets/wp/1-10\.webp"[^>]*/></figure>\s*<h4[^>]*><strong>（詳細未掲載）</strong></h4>\s*<p class="placeholder-tba">— 詳細掲載なし —</p>\s*</div>\s*', '', 'Singleline')
+  # Replace the music-program image scroll (1-1..5-1 819x1024 set) with a text-based music program block
+  $musicBlock = @'
+<div class="music-program">
+  <h3 class="music-program-title">楽曲紹介</h3>
+  <div class="music-program-section">
+    <p class="music-program-label"><span>OPENING</span></p>
+    <p class="music-program-headline">米津玄師「IRIS OUT」</p>
+    <p class="music-program-sub">大ヒット映画「チェンソーマン 劇場版」主題歌</p>
+  </div>
+  <div class="music-program-section">
+    <p class="music-program-label"><span>MAIN — 映画音楽パート</span></p>
+    <p class="music-program-sub">2025年は映画生誕130周年。老若男女誰もが聞いたことのある名曲を中心に。</p>
+  </div>
+  <ol class="music-program-list">
+    <li><span class="track-no">01</span><span class="track-title">IRIS OUT</span><span class="track-artist">米津玄師</span></li>
+    <li><span class="track-no">02</span><span class="track-title">APT.</span><span class="track-artist">ブルーノ・マーズ</span></li>
+    <li><span class="track-no">03</span><span class="track-title">ライラック</span><span class="track-artist">Mrs. GREEN APPLE</span></li>
+    <li><span class="track-no">04</span><span class="track-title">SAY YES</span><span class="track-artist">CHAGE and ASKA</span></li>
+    <li><span class="track-no">05</span><span class="track-title">銀の龍の背に乗って</span><span class="track-artist">中島みゆき</span></li>
+    <li><span class="track-no">06</span><span class="track-title">時の流れに身をまかせ</span><span class="track-artist">テレサ・テン / 夏川りみ</span></li>
+    <li><span class="track-no">07</span><span class="track-title">20th Century Fox Fanfare</span><span class="track-artist">—</span></li>
+    <li><span class="track-no">08</span><span class="track-title">「スター・ウォーズ」メインテーマ</span><span class="track-artist">—</span></li>
+    <li><span class="track-no">09</span><span class="track-title">Take My Breath Away（愛は吐息のように）</span><span class="track-artist">ベルリン</span></li>
+    <li><span class="track-no">10</span><span class="track-title">ムーン・リバー</span><span class="track-artist">オードリー・ヘップバーン</span></li>
+    <li><span class="track-no">11</span><span class="track-title">Wasted Nights</span><span class="track-artist">ONE OK ROCK</span></li>
+    <li><span class="track-no">12</span><span class="track-title">満月の夜なら</span><span class="track-artist">あいみょん</span></li>
+    <li><span class="track-no">13</span><span class="track-title">今宵の月のように</span><span class="track-artist">エレファントカシマシ</span></li>
+  </ol>
+</div>
+'@
+  $h = [regex]::Replace($h, '<div class="swell-block-columns"[^>]*>\s*<div class="c-scrollHint">[^<]*<span>[^<]*</span>[^<]*</div>\s*<div class="swell-block-columns__inner">\s*(?:<div class="swell-block-column[^"]*">\s*(?:<figure[^>]*>\s*)*<figure class="wp-block-image[^"]*"[^>]*><img[^>]*src="assets/wp/[1-5]-1-819x1024\.webp"[^>]*/></figure>\s*(?:</figure>)?\s*</div>\s*){5}</div>\s*</div>', $musicBlock, 'Singleline')
   # Prefer 「観覧」over「鑑賞」for fireworks context (user style guide)
   $h = $h.Replace('鑑賞', '観覧')
   # Inject ids on ticket page headings so the homepage cards can anchor-link
@@ -298,14 +331,15 @@ function Get-ContactBody {
   return @'
 <p>協賛・取材・運営に関するご質問、その他お問い合わせは以下のフォームよりお寄せください。内容を確認のうえ、運営委員会よりご連絡いたします。</p>
 
-<div class="contact-embed">
-  <iframe
-    src="https://docs.google.com/forms/d/e/1FAIpQLSfavCvVmfAFlPusgrOQNudAsnSfT2GeBAMKMw4GUflGGydFuQ/viewform?embedded=true"
-    title="秋川流域花火大会 お問い合わせフォーム"
-    loading="lazy"
-    frameborder="0"
-    marginheight="0"
-    marginwidth="0">読み込んでいます…</iframe>
+<div class="contact-cta">
+  <a class="button primary contact-cta-button" href="https://docs.google.com/forms/d/e/1FAIpQLSfavCvVmfAFlPusgrOQNudAsnSfT2GeBAMKMw4GUflGGydFuQ/viewform" target="_blank" rel="noopener">
+    お問い合わせフォームを開く
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M5 12h14"></path>
+      <path d="M13 5l7 7-7 7"></path>
+    </svg>
+  </a>
+  <p class="contact-cta-note">外部の Google フォームが新しいタブで開きます。</p>
 </div>
 
 <aside class="contact-alt">
