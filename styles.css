@@ -1012,7 +1012,7 @@ a.press-card-title:hover {
 
 /* ===== Next-edition signup section ===== */
 .section.signup {
-  padding-top: 0;
+  padding-top: clamp(36px, 6vw, 72px);
 }
 
 .signup-card {
