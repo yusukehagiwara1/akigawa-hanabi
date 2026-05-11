@@ -2879,6 +2879,25 @@ a.ticket-card {
   }
 }
 
+/* Food vendor photo images: crop with aspect-ratio + cover so the gray bars
+   baked into some source images don't show against the page background. */
+.prose .wp-block-columns img[src*="飲食店画像"] {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  height: auto;
+  max-height: none;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.prose .wp-block-columns figure.wp-block-image:has(img[src*="飲食店画像"]) {
+  width: 100%;
+  margin: 0;
+  background: transparent;
+  border: 0;
+}
+
 /* Vendors without photos are extracted into a text-only list at the bottom of
    the food booth section (handled by ui.js). Hide their original columns. */
 .prose .vendor-text-list {
