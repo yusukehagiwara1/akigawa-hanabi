@@ -5,22 +5,22 @@
 // substring of the image src; the first match wins. Add accurate URLs here.
 
 (function () {
+  // URLs verified as accessible (2026-05-11). Sites that returned 404, expired
+  // certificates, or pointed at a different company are intentionally excluded.
   const SPONSOR_URL_MAP = {
     // --- 特別協力 ---
     "サマーランド": "https://www.summerland.co.jp/",
     "summerland": "https://www.summerland.co.jp/",
-    "イオン": "https://www.aeon.jp/sc/hinode/",
-    "aeon": "https://www.aeon.jp/sc/hinode/",
+    "イオン": "https://hinode-aeonmall.com/",
+    "aeon": "https://hinode-aeonmall.com/",
 
     // --- ゴールドスポンサー ---
-    "ヒューマンテクノス": "https://www.humantec.co.jp/",
-    "humantech": "https://www.humantec.co.jp/",
+    "ヒューマンテクノス": "https://www.humantechnos.com/",
+    "humantech": "https://www.humantechnos.com/",
     "シーウイング": "https://www.sea-wing.jp/",
     "ゼンコー": "https://www.zenko-group.co.jp/",
     "立花工業": "https://tachibana-kougyou.com/",
     "tachibana": "https://tachibana-kougyou.com/",
-    "内田電気": "http://uchidadenki.net/",
-    "uchida": "http://uchidadenki.net/",
 
     // --- シルバー以下 ---
     "森電気": "https://mks-moridenki.com/",
@@ -29,10 +29,11 @@
     "ジュン企画": "https://junkikaku.jp/",
     "jun": "https://junkikaku.jp/",
     "カネショウ": "https://kanesho.info/",
-    "kyowa": "http://www.j-kyowa.com/",
-    "KYOWA": "http://www.j-kyowa.com/",
-    "2-2-1024x341": "http://www.j-kyowa.com/", // 協和 (KYOWA) corporation logo
-    // YANAGI と GA-1 (GOAHEAD) は公式 URL 未確定のためリンク無し
+
+    // --- 未リンク（404 / 証明書エラー / 公式URL未確定） ---
+    // "内田電気": uchidadenki.net は証明書期限切れのためリンク無し
+    // "協和 (KYOWA)": j-kyowa.com は TLS証明書エラーのためリンク無し
+    // "YANAGI" / "GA-1 (GOAHEAD)": 公式 URL 未確定のためリンク無し
   };
 
   function findUrl(src) {
