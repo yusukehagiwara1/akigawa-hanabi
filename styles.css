@@ -1622,6 +1622,17 @@ h2 span,
   border-radius: 6px;
 }
 
+/* Standalone images (not in columns/gallery): cap height for portrait-heavy assets like PDF previews */
+.prose > .wp-block-image img,
+.prose > p > .wp-block-image img,
+.prose > div > .wp-block-image:not(.wp-block-columns .wp-block-image) img,
+.prose .wp-block-image.is-resized img {
+  max-height: 520px;
+  width: auto;
+  margin-inline: auto;
+  display: block;
+}
+
 .prose figure {
   margin: 2em 0;
   text-align: center;
