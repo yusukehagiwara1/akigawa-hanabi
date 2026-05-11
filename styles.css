@@ -1360,9 +1360,9 @@ h2 span,
 .timeline::before {
   content: "";
   position: absolute;
-  left: 104px;
-  top: 12px;
-  bottom: 12px;
+  left: 109px;
+  top: 16px;
+  bottom: 16px;
   width: 2px;
   background: linear-gradient(180deg, var(--gold), rgba(215, 169, 71, 0.2));
 }
@@ -1371,18 +1371,19 @@ h2 span,
   position: relative;
   display: grid;
   grid-template-columns: 90px 1fr;
-  gap: 30px;
+  gap: 40px;
   padding: 14px 0;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .timeline > li::before {
   content: "";
   position: absolute;
-  left: 98px;
-  top: 22px;
-  width: 14px;
-  height: 14px;
+  left: 102px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
   background: #fff;
   border: 3px solid var(--gold);
@@ -1417,7 +1418,7 @@ h2 span,
   font-weight: 900;
   color: var(--ink);
   text-align: right;
-  padding-top: 6px;
+  line-height: 1;
 }
 
 .timeline > li.is-highlight time {
@@ -1438,14 +1439,14 @@ h2 span,
 
 @media (max-width: 620px) {
   .timeline::before {
-    left: 82px;
+    left: 86px;
   }
   .timeline > li {
     grid-template-columns: 70px 1fr;
-    gap: 26px;
+    gap: 34px;
   }
   .timeline > li::before {
-    left: 77px;
+    left: 81px;
     width: 12px;
     height: 12px;
   }
