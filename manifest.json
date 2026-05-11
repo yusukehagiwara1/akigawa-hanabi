@@ -1,13 +1,16 @@
 {
-  "name": "秋川流域花火大会",
+  "name": "秋川流域花火大会【公式】",
   "short_name": "秋川花火",
-  "description": "紅葉に染まる山々と秋川を背景に、音楽と花火が重なる東京最大級の秋花火。",
+  "description": "東京・あきる野市で開催される秋の花火大会。紅葉に染まる秋川渓谷と音楽花火が織りなす、東京最大級の秋花火。",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#fffdf7",
   "theme_color": "#0f1828",
   "orientation": "portrait",
   "lang": "ja",
+  "dir": "ltr",
+  "categories": ["events", "entertainment", "travel"],
   "icons": [
     {
       "src": "/assets/favicon.ico",
@@ -19,6 +22,38 @@
       "sizes": "1200x900",
       "type": "image/jpeg",
       "purpose": "any"
+    },
+    {
+      "src": "/assets/keyvisual.jpg",
+      "sizes": "1200x900",
+      "type": "image/jpeg",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "チケット情報",
+      "short_name": "チケット",
+      "description": "観覧席・チケット販売の詳細",
+      "url": "/ticket.html"
+    },
+    {
+      "name": "交通アクセス",
+      "short_name": "アクセス",
+      "description": "会場までのアクセス",
+      "url": "/access.html"
+    },
+    {
+      "name": "寄付・協賛",
+      "short_name": "寄付協賛",
+      "description": "寄付・協賛のご案内",
+      "url": "/donation.html"
+    },
+    {
+      "name": "お問い合わせ",
+      "short_name": "お問い合わせ",
+      "description": "お問い合わせフォーム",
+      "url": "/contact.html"
     }
   ]
 }
