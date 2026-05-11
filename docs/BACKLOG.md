@@ -55,6 +55,7 @@
 - R13: プレスキット
 - R14: LINE tabindex調整 + SW v6
 - Sprint 1: docs 4 件追加（RELEASE / QA / INCIDENT / BACKLOG） + 当日緊急バナー先行配置
+- Sprint 2: Looker Studio セットアップ手順 + 月次レポートテンプレート整備（docs 2 件追加）
 
 ## 📋 リリースカレンダー（2026年 想定）
 

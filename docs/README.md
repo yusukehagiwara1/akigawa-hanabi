@@ -22,7 +22,9 @@
 
 | ファイル | 用途 |
 |---|---|
-| [GA4_FUNNEL_REPORT.md](./GA4_FUNNEL_REPORT.md) | GA4 ファネル可視化（Apps Script スクリプト） |
+| [LOOKER_STUDIO_SETUP.md](./LOOKER_STUDIO_SETUP.md) | Looker Studio で GA4 ダッシュボードを構築する手順 |
+| [MONTHLY_REPORT_TEMPLATE.md](./MONTHLY_REPORT_TEMPLATE.md) | 月次 Web レポートのフォーマット（運営会議用） |
+| [GA4_FUNNEL_REPORT.md](./GA4_FUNNEL_REPORT.md) | GA4 ファネル可視化（Apps Script で Spreadsheet 出力） |
 | [NEXT_EDITION_SIGNUP.md](./NEXT_EDITION_SIGNUP.md) | 次回開催情報メール登録の Google フォーム連携 |
 
 ---
@@ -35,4 +37,5 @@
 - **GA4**: https://analytics.google.com/
 - **Search Console**: https://search.google.com/search-console
 - **microCMS**: https://0k3w9bd30b.microcms.io/
+- **Looker Studio ダッシュボード**: （初回セットアップ後にここに URL を記載）
 - **公式 Instagram**: https://www.instagram.com/akigawa_hanabitaikai/
