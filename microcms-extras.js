@@ -64,7 +64,7 @@
       .map(function (g) {
         const img = mediaUrl(g.image);
         const cap = escapeHtml(g.caption || "");
-        return `<figure class="past-tile"><img src="${escapeHtml(
+        return `<figure class="past-tile"><span class="zoom-hint" aria-hidden="true"></span><img src="${escapeHtml(
           img
         )}" alt="${cap}" loading="lazy" decoding="async"><figcaption>${cap}</figcaption></figure>`;
       })
