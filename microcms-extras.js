@@ -54,6 +54,9 @@
     url.searchParams.set("limit", String(endpointCfg.limit || 30));
     if (endpointCfg.orders) url.searchParams.set("orders", endpointCfg.orders);
 
+    // Mark as loading for screen readers
+    target.setAttribute("aria-busy", "true");
+
     try {
       const res = await fetch(url, {
         headers: { "X-MICROCMS-API-KEY": cfg.apiKey },
@@ -70,6 +73,8 @@
       console.warn("[microcms-extras]", endpointCfg.endpoint, err.message);
       // Leave any pre-rendered fallback in place.
       if (typeof onComplete === "function") onComplete(-1);
+    } finally {
+      target.setAttribute("aria-busy", "false");
     }
   }
 

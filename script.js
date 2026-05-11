@@ -26,6 +26,7 @@ function isConfigured(config) {
 }
 
 async function loadNews(url, apiKey, target) {
+  target.setAttribute("aria-busy", "true");
   try {
     const response = await fetch(url, {
       headers: { "X-MICROCMS-API-KEY": apiKey },
@@ -46,6 +47,8 @@ async function loadNews(url, apiKey, target) {
     console.warn("[news] microCMS fetch failed:", error.message);
     target.innerHTML =
       '<p class="cms-status cms-status-error">最新情報を読み込めませんでした。時間をおいて再度お試しください。</p>';
+  } finally {
+    target.setAttribute("aria-busy", "false");
   }
 }
 
