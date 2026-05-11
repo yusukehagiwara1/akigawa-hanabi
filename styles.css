@@ -2203,7 +2203,7 @@ h2 span,
 }
 
 /* Make sponsor logos in sub-page columns sized consistently */
-/* WP-style columns: respect natural image proportions but cap dimensions */
+/* WP-style columns: cap image height so columns stay visually balanced */
 .prose .wp-block-columns .wp-block-image {
   width: 100%;
   margin: 0;
@@ -2215,18 +2215,32 @@ h2 span,
 .prose .wp-block-columns .wp-block-image img {
   display: block;
   max-width: 100%;
-  max-height: 240px;
+  max-height: 280px;
   width: auto;
   height: auto;
   object-fit: contain;
 }
 
-/* Logo-only columns (column contains just a figure): consistent compact height */
-.prose .wp-block-column:has(> figure.wp-block-image:only-child) img,
-.prose .wp-block-column:has(> figure.wp-block-image:nth-last-child(1):nth-child(1)) img {
-  height: 130px;
+/* PR/sponsor media logos (identified by filename): consistent compact display */
+.prose .wp-block-columns img[src*="PR_logo"],
+.prose .wp-block-columns img[src*="logo-"],
+.prose .wp-block-columns img[src*="-logo"],
+.prose .wp-block-columns img[src*="kkday"],
+.prose .wp-block-columns img[src*="サマーランド"],
+.prose .wp-block-columns img[src*="イオン"],
+.prose .wp-block-columns img[src*="カネショウ"],
+.prose .wp-block-columns img[src*="シーウイング"],
+.prose .wp-block-columns img[src*="シンヨー"],
+.prose .wp-block-columns img[src*="ゼンコー"],
+.prose .wp-block-columns img[src*="ジュン企画"],
+.prose .wp-block-columns img[src*="ヒューマンテクノス"],
+.prose .wp-block-columns img[src*="内田電気"],
+.prose .wp-block-columns img[src*="YANAGI"],
+.prose .wp-block-columns img[src*="GA-1"] {
   width: 100%;
+  height: 120px;
   object-fit: contain;
+  max-height: 120px;
 }
 
 /* SWELL columns (typically photos): uniform aspect-ratio with cover */
