@@ -769,11 +769,16 @@ h2 span,
   text-decoration: underline;
   text-underline-offset: 4px;
   text-decoration-color: rgba(15, 104, 104, 0.35);
+  text-decoration-thickness: 1px;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease, text-decoration-thickness 0.2s ease, transform 0.2s ease, gap 0.2s ease;
+  gap: 4px;
 }
 
 .button-text:hover {
   color: var(--red);
   text-decoration-color: currentColor;
+  text-decoration-thickness: 2px;
+  gap: 8px;
 }
 
 .section {
@@ -2777,6 +2782,13 @@ dialog.lightbox .lightbox-close:hover {
   border-radius: 999px;
   font-weight: 700;
   font-size: 0.86rem;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.footer-social a:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-1px);
 }
 
 .footer-label {
