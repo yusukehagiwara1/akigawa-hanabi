@@ -61,6 +61,43 @@
   progressBar.setAttribute("aria-hidden", "true");
   document.body.appendChild(progressBar);
 
+  // --- Event countdown (days until 第8回) ---
+  const countdownNodes = document.querySelectorAll("[data-countdown-target]");
+  countdownNodes.forEach(function (node) {
+    const target = node.getAttribute("data-countdown-target");
+    if (!target) return;
+    const targetDate = new Date(target);
+    if (Number.isNaN(targetDate.getTime())) return;
+
+    const update = function () {
+      const now = new Date();
+      const diffMs = targetDate.getTime() - now.getTime();
+      const daysEl = node.querySelector("[data-countdown-days]");
+      const valueEl = node.querySelector(".notice-countdown-value");
+
+      if (diffMs <= 0) {
+        // Event has started/ended — switch to a celebratory message
+        if (valueEl) valueEl.textContent = "本日開催！";
+        node.classList.add("is-today");
+        return;
+      }
+
+      const days = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+      if (daysEl) daysEl.textContent = String(days);
+
+      // Add urgency class as we get closer
+      if (days <= 7) {
+        node.classList.add("is-urgent");
+      } else if (days <= 30) {
+        node.classList.add("is-soon");
+      }
+    };
+
+    update();
+    // Refresh once per hour in case the user keeps the tab open
+    setInterval(update, 60 * 60 * 1000);
+  });
+
   // --- Share: copy URL button (with fallback) ---
   const copyButtons = document.querySelectorAll(".share-btn-copy");
   copyButtons.forEach(function (btn) {
