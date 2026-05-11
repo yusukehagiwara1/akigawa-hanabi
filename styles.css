@@ -617,9 +617,27 @@ h2 span,
 }
 
 .button.primary {
+  position: relative;
   color: #141414;
-  background: linear-gradient(135deg, #ffe8a6, var(--gold));
-  box-shadow: 0 12px 35px rgba(215, 169, 71, 0.32);
+  background: linear-gradient(135deg, #ffe8a6 0%, var(--gold) 60%, #c79636 100%);
+  box-shadow: 0 12px 35px rgba(215, 169, 71, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  overflow: hidden;
+}
+
+.button.primary::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  transition: left 0.7s ease;
+  pointer-events: none;
+}
+
+.button.primary:hover::before {
+  left: 140%;
 }
 
 .button.secondary {
