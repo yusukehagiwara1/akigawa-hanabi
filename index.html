@@ -260,6 +260,9 @@
     .button.secondary{color:#fff;border:1px solid rgba(255,255,255,.52);background:rgba(255,255,255,.11)}
     .event-panel{position:absolute;right:clamp(22px,5vw,70px);bottom:7vh;width:min(330px,calc(100vw - 44px));padding:22px 24px;border:1px solid rgba(255,255,255,.28);border-radius:10px;background:rgba(10,18,31,.58);backdrop-filter:blur(16px);color:#fff}
     .eyebrow,.tag{display:inline-flex;align-items:center;gap:10px;color:var(--gold);font-size:.78rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase}
+    .hero-badge{display:inline-flex;align-items:center;gap:10px;margin-bottom:18px;padding:9px 18px 9px 14px;background:linear-gradient(135deg,rgba(215,169,71,.20),rgba(184,63,55,.18));border:1px solid rgba(215,169,71,.5);border-radius:999px;color:#fff;font-size:.86rem;font-weight:800;text-decoration:none;white-space:nowrap;backdrop-filter:blur(10px)}
+    .hero-badge-pulse{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--gold)}
+    .hero-badge-text strong{color:var(--gold);font-weight:900;letter-spacing:.04em}
     </style>
     <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="styles.css"></noscript>
@@ -304,6 +307,11 @@
     <main id="main-content">
       <section class="hero" aria-label="秋川流域花火大会">
         <div class="hero-content">
+          <a class="hero-badge" href="#signup" data-ga-cta="hero:next-edition" aria-label="第8回 開催決定 2026年11月14日">
+            <span class="hero-badge-pulse" aria-hidden="true"></span>
+            <span class="hero-badge-text"><strong>第8回 開催決定</strong><span>／ 2026.11.14 SAT</span></span>
+            <span class="hero-badge-arrow" aria-hidden="true">→</span>
+          </a>
           <p class="eyebrow">Tokyo Akigawa Autumn Fireworks</p>
           <h1><span>秋の夜空を彩る、</span><span>心に響く光の祭典</span></h1>
           <p class="hero-lead">
