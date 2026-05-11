@@ -19,6 +19,7 @@
     const closeNav = function (returnFocus) {
       toggle.setAttribute("aria-expanded", "false");
       toggle.setAttribute("aria-label", "メニューを開く");
+      nav.classList.remove("is-open");
       document.body.style.overflow = "";
       if (returnFocus) {
         toggle.focus();
@@ -27,9 +28,12 @@
     const openNav = function () {
       toggle.setAttribute("aria-expanded", "true");
       toggle.setAttribute("aria-label", "メニューを閉じる");
+      nav.classList.add("is-open");
       document.body.style.overflow = "hidden";
     };
-    toggle.addEventListener("click", function () {
+    toggle.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
       const expanded = toggle.getAttribute("aria-expanded") === "true";
       if (expanded) {
         closeNav();

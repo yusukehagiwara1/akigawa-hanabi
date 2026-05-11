@@ -5398,6 +5398,8 @@ dialog.lightbox .lightbox-close:hover {
   }
 
   .nav {
+    /* Override the inline critical CSS that sets display:none for mobile */
+    display: flex !important;
     position: fixed;
     inset: 66px 0 0;
     flex-direction: column;
@@ -5419,6 +5421,12 @@ dialog.lightbox .lightbox-close:hover {
     opacity: 1;
   }
 
+  /* Class-based approach (works on all browsers) — primary mechanism */
+  .nav.is-open {
+    transform: translateX(0);
+  }
+
+  /* :has() fallback for browsers that support it (no JS required) */
   .site-header:has(.nav-toggle[aria-expanded="true"]) .nav {
     transform: translateX(0);
   }

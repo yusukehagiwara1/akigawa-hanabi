@@ -246,7 +246,9 @@
     .header-cta{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 18px;border-radius:999px;font-weight:800;color:var(--night);background:#fff;white-space:nowrap}
     .nav-toggle{display:none}
     @media (max-width:920px){
-      .nav{display:none}
+      /* Mobile: nav は styles.css 側で position:fixed + transform で off-screen 化される。
+         Critical CSS でも nav を一時的に画面外に逃がし、styles.css ロード前の FOUC を防ぐ。 */
+      .nav{position:fixed;inset:66px 0 0;transform:translateX(100%);flex-direction:column;background:rgba(10,16,28,.97);z-index:25}
       .nav-toggle{display:flex;width:44px;height:44px;padding:0;border:0;background:transparent;cursor:pointer;align-items:center;justify-content:center;flex-direction:column;gap:6px}
       .nav-toggle span{display:block;width:24px;height:2px;background:#fff;border-radius:2px}
     }
@@ -288,7 +290,7 @@
         <img class="brand-mark" src="assets/logo-npo.webp" alt="NPO法人まちづくりコンソーシアム" width="120" height="36">
         <span>秋川流域花火大会</span>
       </a>
-      <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false" aria-controls="primary-nav">
+      <button type="button" class="nav-toggle" aria-label="メニューを開く" aria-expanded="false" aria-controls="primary-nav">
         <span></span>
         <span></span>
         <span></span>
