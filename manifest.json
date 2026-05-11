@@ -1,7 +1,7 @@
 {
   "name": "秋川流域花火大会【公式】",
   "short_name": "秋川花火",
-  "description": "東京・あきる野市で開催される秋の花火大会。紅葉に染まる秋川渓谷と音楽花火が織りなす、東京最大級の秋花火。",
+  "description": "第8回 秋川流域花火大会（2026年11月14日 土曜）。東京・あきる野市で開催される秋の花火大会。紅葉に染まる秋川渓谷と音楽花火が織りなす、東京最大級（自社調べ）の秋花火。約5,000発を打ち上げ予定。",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
@@ -18,15 +18,21 @@
       "type": "image/x-icon"
     },
     {
-      "src": "/assets/keyvisual.jpg",
-      "sizes": "1200x900",
-      "type": "image/jpeg",
+      "src": "/assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/assets/keyvisual.jpg",
-      "sizes": "1200x900",
-      "type": "image/jpeg",
+      "src": "/assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
       "purpose": "maskable"
     }
   ],
