@@ -1844,6 +1844,12 @@ a.ticket-card {
   flex-wrap: wrap;
   gap: clamp(16px, 3vw, 28px);
   margin: 1.6em 0;
+  align-items: center;
+}
+
+/* When a column contains only a figure (e.g. logos), keep flex-start for visual stability */
+.prose .wp-block-columns:has(> .wp-block-column > h2),
+.prose .wp-block-columns:has(> .wp-block-column > h3) {
   align-items: flex-start;
 }
 
@@ -2258,10 +2264,20 @@ a.ticket-card {
 .prose .wp-block-columns .wp-block-image img {
   display: block;
   max-width: 100%;
-  max-height: 280px;
+  max-height: 320px;
   width: auto;
   height: auto;
   object-fit: contain;
+}
+
+/* Iframes (Google Maps) inside columns: stretch to fill column height */
+.prose .wp-block-columns iframe {
+  display: block;
+  width: 100%;
+  min-height: 280px;
+  height: 100%;
+  border: 0;
+  border-radius: 8px;
 }
 
 /* ===== Donation/sponsor page (text-based, replaces PDF previews) ===== */
@@ -2423,7 +2439,11 @@ a.ticket-card {
 
 .prose .donation-cta {
   margin: 2em 0 0;
-  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+  align-items: center;
 }
 
 .prose .donation-cta-button {
@@ -2446,6 +2466,24 @@ a.ticket-card {
 
 .prose .donation-cta-button:hover svg {
   transform: translateX(2px);
+}
+
+.prose .donation-pdf-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 24px;
+  min-height: 56px;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.prose .donation-pdf-button:hover {
+  border-color: var(--gold);
+  color: var(--gold);
 }
 
 .prose .benefit-grid {
