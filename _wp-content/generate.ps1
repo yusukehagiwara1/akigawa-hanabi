@@ -290,6 +290,9 @@ function Clean-Content([string]$html) {
   $h = $h.Replace('<h3 class="wp-block-heading">SS席</h3>', '<h3 id="ss" class="wp-block-heading">SS席</h3>')
   $h = $h.Replace('<h3 class="wp-block-heading">A席</h3>', '<h3 id="a" class="wp-block-heading">A席</h3>')
   $h = $h.Replace('<h3 class="wp-block-heading">フリーエリア</h3>', '<h3 id="free" class="wp-block-heading">フリーエリア</h3>')
+  # Redirect KKday/asoview product URLs to their official home pages (event has ended)
+  $h = [regex]::Replace($h, 'https://www\.kkday\.com/product/[^"''\s]+', 'https://www.kkday.com/ja')
+  $h = [regex]::Replace($h, 'https://machizukuricon\.my\.urakata\.app/channels/[^"''\s]+', 'https://www.asoview.com/')
   foreach ($k in $urlMap.Keys) {
     $local = $urlMap[$k]
     $escaped = [regex]::Escape($k)
