@@ -2879,12 +2879,41 @@ a.ticket-card {
   }
 }
 
-/* Hide Coming Soon placeholder images (1-1, 1-2, 1-9, 1-10 are all "Coming Soon" stock images) */
+/* Coming Soon placeholders (1-1, 1-2, 1-9, 1-10): keep the figure space so columns
+   stay aligned with sibling cards that have real photos, but hide the actual image
+   and show a subtle "photo coming soon" placeholder instead. */
 .prose .wp-block-columns figure.wp-block-image:has(img[src$="/1-1.webp"]),
 .prose .wp-block-columns figure.wp-block-image:has(img[src$="/1-2.webp"]),
 .prose .wp-block-columns figure.wp-block-image:has(img[src$="/1-9.webp"]),
 .prose .wp-block-columns figure.wp-block-image:has(img[src$="/1-10.webp"]) {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  margin: 0;
+  background: linear-gradient(135deg, var(--cream), rgba(247, 239, 226, 0.5));
+  border: 1px dashed rgba(28, 35, 42, 0.15);
+  border-radius: 8px;
+}
+
+.prose .wp-block-columns figure.wp-block-image:has(img[src$="/1-1.webp"]) img,
+.prose .wp-block-columns figure.wp-block-image:has(img[src$="/1-2.webp"]) img,
+.prose .wp-block-columns figure.wp-block-image:has(img[src$="/1-9.webp"]) img,
+.prose .wp-block-columns figure.wp-block-image:has(img[src$="/1-10.webp"]) img {
   display: none;
+}
+
+.prose .wp-block-columns figure.wp-block-image:has(img[src$="/1-1.webp"])::after,
+.prose .wp-block-columns figure.wp-block-image:has(img[src$="/1-2.webp"])::after,
+.prose .wp-block-columns figure.wp-block-image:has(img[src$="/1-9.webp"])::after,
+.prose .wp-block-columns figure.wp-block-image:has(img[src$="/1-10.webp"])::after {
+  content: "写真はご用意中";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
 }
 
 /* Sponsor logos: catch any image with "1024x341" suffix (standard sponsor logo size)
