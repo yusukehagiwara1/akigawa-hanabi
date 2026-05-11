@@ -61,6 +61,45 @@
   progressBar.setAttribute("aria-hidden", "true");
   document.body.appendChild(progressBar);
 
+  // --- Share: copy URL button (with fallback) ---
+  const copyButtons = document.querySelectorAll(".share-btn-copy");
+  copyButtons.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      const url = btn.getAttribute("data-share-url") || window.location.href;
+      const showCopied = function () {
+        const original = btn.querySelector("span");
+        const originalText = original ? original.textContent : "";
+        if (original) original.textContent = "コピーしました ✓";
+        btn.classList.add("is-copied");
+        setTimeout(function () {
+          if (original) original.textContent = originalText;
+          btn.classList.remove("is-copied");
+        }, 2000);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(showCopied).catch(function () {
+          window.prompt("以下のURLをコピーしてください:", url);
+        });
+      } else {
+        // Fallback for older browsers
+        const textarea = document.createElement("textarea");
+        textarea.value = url;
+        textarea.setAttribute("readonly", "");
+        textarea.style.position = "absolute";
+        textarea.style.left = "-9999px";
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+          document.execCommand("copy");
+          showCopied();
+        } catch (e) {
+          window.prompt("以下のURLをコピーしてください:", url);
+        }
+        document.body.removeChild(textarea);
+      }
+    });
+  });
+
   // --- Header scroll shadow + scroll-to-top button + scroll-hint fadeout ---
   const header = document.querySelector(".site-header");
   const scrollTopBtn = document.querySelector(".scroll-top");
