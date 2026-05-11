@@ -1369,7 +1369,7 @@ a.press-card-title:hover {
 
 /* ===== Subpage signup CTA banner (placed just before </main>) ===== */
 .subpage-signup-cta {
-  margin: clamp(40px, 6vw, 72px) auto 0;
+  margin: clamp(40px, 6vw, 72px) auto clamp(48px, 7vw, 88px);
   padding: 0 clamp(16px, 4vw, 36px);
   max-width: 1180px;
 }
