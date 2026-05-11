@@ -2899,20 +2899,20 @@ a.ticket-card {
 }
 
 /* Vendors without photos are extracted into a text-only list at the bottom of
-   the food booth section (handled by ui.js). Hide their original columns. */
+   the food booth section (handled by ui.js). Each vendor renders as a tile card. */
 .prose .vendor-text-list {
   margin: 2.4em 0 0;
-  padding: 22px 26px;
-  background: var(--cream);
-  border-radius: 10px;
-  border-left: 3px solid var(--gold);
+  padding: 0;
 }
 
 .prose .vendor-text-list-title {
-  margin: 0 0 12px;
-  font-size: 0.92rem;
+  margin: 0 0 14px;
+  padding-left: 12px;
+  border-left: 3px solid var(--gold);
+  font-size: 0.95rem;
   color: var(--muted);
   letter-spacing: 0.04em;
+  font-weight: 700;
 }
 
 .prose .vendor-text-list ul {
@@ -2920,25 +2920,35 @@ a.ticket-card {
   padding: 0;
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 6px 24px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
 }
 
 .prose .vendor-text-list li {
   margin: 0;
-  padding: 4px 0;
-  font-size: 0.95rem;
-  line-height: 1.6;
+  padding: 14px 16px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(28, 35, 42, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  line-height: 1.55;
 }
 
 .prose .vendor-text-list li strong {
+  display: block;
   color: var(--ink);
-  font-weight: 700;
+  font-weight: 800;
+  font-size: 0.98rem;
 }
 
 .prose .vendor-text-list li span {
+  display: block;
   color: var(--muted);
   font-size: 0.88rem;
+  line-height: 1.6;
 }
 
 /* Sponsor logos: catch any image with "1024x341" suffix (standard sponsor logo size)

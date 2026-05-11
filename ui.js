@@ -181,7 +181,7 @@
       li.appendChild(strong);
       if (v.desc) {
         const span = document.createElement("span");
-        span.textContent = "／" + v.desc;
+        span.textContent = v.desc;
         li.appendChild(span);
       }
       ul.appendChild(li);
