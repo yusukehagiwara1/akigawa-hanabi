@@ -337,25 +337,32 @@ img {
 }
 
 .brand {
-  gap: 10px;
+  gap: 12px;
   font-weight: 900;
   white-space: nowrap;
+  font-size: 1.02rem;
+  letter-spacing: 0.04em;
+}
+
+.brand > span:last-child {
+  font-family: "Zen Old Mincho", serif;
+  font-weight: 900;
 }
 
 .brand-mark {
   display: block;
-  height: 36px;
+  height: 38px;
   width: auto;
-  padding: 3px 6px;
-  border-radius: 6px;
+  padding: 4px 7px;
+  border-radius: 8px;
   background: #fff;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.22);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .brand:hover .brand-mark {
   transform: scale(1.05);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.28);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.32);
 }
 
 .nav {
@@ -1417,6 +1424,17 @@ h2 span,
   background-position: 12px 12px;
   pointer-events: none;
   opacity: 0.6;
+}
+
+.page-hero::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1120px, calc(100% - 40px));
+  height: 1px;
+  background: linear-gradient(90deg, transparent 5%, rgba(215, 169, 71, 0.5) 50%, transparent 95%);
 }
 
 .page-hero-inner {
