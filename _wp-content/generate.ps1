@@ -253,6 +253,10 @@ function Clean-Content([string]$html) {
   $h = [regex]::Replace($h, '<strong>Coming Soon</strong>', '<strong>（詳細未掲載）</strong>')
   # Prefer 「観覧」over「鑑賞」for fireworks context (user style guide)
   $h = $h.Replace('鑑賞', '観覧')
+  # Inject ids on ticket page headings so the homepage cards can anchor-link
+  $h = $h.Replace('<h3 class="wp-block-heading">SS席</h3>', '<h3 id="ss" class="wp-block-heading">SS席</h3>')
+  $h = $h.Replace('<h3 class="wp-block-heading">A席</h3>', '<h3 id="a" class="wp-block-heading">A席</h3>')
+  $h = $h.Replace('<h3 class="wp-block-heading">フリーエリア</h3>', '<h3 id="free" class="wp-block-heading">フリーエリア</h3>')
   foreach ($k in $urlMap.Keys) {
     $local = $urlMap[$k]
     $escaped = [regex]::Escape($k)
