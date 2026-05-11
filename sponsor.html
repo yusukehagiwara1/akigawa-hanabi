@@ -61,6 +61,13 @@
     <script src="analytics.js" defer></script>
     <script src="ui.js" defer></script>
     <script src="sponsor-urls.js" defer></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("/sw.js").catch(function () {});
+        });
+      }
+    </script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">本文へスキップ</a>
