@@ -353,14 +353,13 @@ img {
   display: block;
   height: 40px;
   width: auto;
-  filter: invert(1) grayscale(1) brightness(1.5) contrast(0.85);
-  mix-blend-mode: lighten;
-  opacity: 0.65;
+  filter: invert(1) grayscale(1) brightness(1.55) contrast(0.92);
+  opacity: 0.9;
   transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
 .brand:hover .brand-mark {
-  opacity: 0.92;
+  opacity: 1;
   transform: scale(1.04);
 }
 
@@ -2937,9 +2936,8 @@ dialog.lightbox .lightbox-close:hover {
   height: 44px;
   width: auto;
   margin: 6px 0 14px;
-  filter: invert(1) grayscale(1) brightness(1.5) contrast(0.85);
-  mix-blend-mode: lighten;
-  opacity: 0.72;
+  filter: invert(1) grayscale(1) brightness(1.55) contrast(0.92);
+  opacity: 0.9;
 }
 
 .footer-sub {
