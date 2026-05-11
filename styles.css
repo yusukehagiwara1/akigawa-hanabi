@@ -2762,6 +2762,21 @@ a.ticket-card {
   max-width: 100%;
 }
 
+/* Venue address (Japanese + English) — keep <address> non-italic, English subtle */
+.prose .venue-address {
+  font-style: normal;
+  margin: 1em 0;
+  line-height: 1.8;
+}
+
+.prose .venue-address-en {
+  display: inline-block;
+  margin-top: 4px;
+  font-size: 0.88em;
+  color: var(--muted);
+  letter-spacing: 0.01em;
+}
+
 .prose .access-map-wrap {
   height: 380px;
 }
