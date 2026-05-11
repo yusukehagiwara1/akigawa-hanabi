@@ -125,6 +125,71 @@
     });
   }
 
+  // --- Food vendor cards: separate vendors WITHOUT photos into a text-list at the bottom ---
+  (function rearrangeFoodVendors() {
+    const placeholderPattern = /\/(?:1-1|1-2|1-9|1-10)\.webp$/i;
+    // Find vendor columns (must contain an image AND a heading)
+    const allColumns = document.querySelectorAll(".prose .wp-block-column");
+    const noPhotoVendors = [];
+    allColumns.forEach(function (col) {
+      const img = col.querySelector(":scope > figure.wp-block-image > img");
+      const heading = col.querySelector(":scope > h4");
+      if (!img || !heading) return;
+      const src = img.getAttribute("src") || "";
+      if (!placeholderPattern.test(src)) return;
+      // This vendor uses a Coming Soon placeholder image
+      const name = heading.textContent.trim();
+      const descEl = col.querySelector(":scope > p:not(.placeholder-tba)");
+      const desc = descEl ? descEl.textContent.trim() : "";
+      // Skip pure placeholder entries (name like "（詳細未掲載）" should already be removed)
+      if (!name || name.indexOf("（詳細未掲載）") !== -1) {
+        col.style.display = "none";
+        return;
+      }
+      noPhotoVendors.push({ name: name, desc: desc });
+      col.style.display = "none";
+    });
+
+    if (noPhotoVendors.length === 0) return;
+
+    // Find the food booth section's content wrapper and append a clean text list
+    const foodHeading = Array.from(document.querySelectorAll(".prose h3")).find(
+      function (h) { return h.textContent.trim() === "出店店舗"; }
+    );
+    if (!foodHeading) return;
+
+    // Walk forward to find the last vendor columns block, then append a list right after
+    let insertAfter = foodHeading.nextElementSibling;
+    while (insertAfter && insertAfter.nextElementSibling) {
+      // Stop at the next h3 or end of parent content
+      const next = insertAfter.nextElementSibling;
+      if (next.tagName === "H3" || next.tagName === "H2") break;
+      insertAfter = next;
+    }
+
+    const list = document.createElement("div");
+    list.className = "vendor-text-list";
+    const listTitle = document.createElement("p");
+    listTitle.className = "vendor-text-list-title";
+    listTitle.textContent = "そのほかの出店店舗（写真準備中）";
+    list.appendChild(listTitle);
+    const ul = document.createElement("ul");
+    noPhotoVendors.forEach(function (v) {
+      const li = document.createElement("li");
+      const strong = document.createElement("strong");
+      strong.textContent = v.name;
+      li.appendChild(strong);
+      if (v.desc) {
+        const span = document.createElement("span");
+        span.textContent = "／" + v.desc;
+        li.appendChild(span);
+      }
+      ul.appendChild(li);
+    });
+    list.appendChild(ul);
+    insertAfter.parentNode.insertBefore(list, insertAfter.nextSibling);
+  })();
+
   // --- Scroll fade-in animations ---
   if (
     "IntersectionObserver" in window &&

@@ -2879,41 +2879,47 @@ a.ticket-card {
   }
 }
 
-/* Coming Soon placeholders (1-1, 1-2, 1-9, 1-10): keep the figure space so columns
-   stay aligned with sibling cards that have real photos, but hide the actual image
-   and show a subtle "photo coming soon" placeholder instead. */
-.prose .wp-block-columns figure.wp-block-image:has(img[src$="/1-1.webp"]),
-.prose .wp-block-columns figure.wp-block-image:has(img[src$="/1-2.webp"]),
-.prose .wp-block-columns figure.wp-block-image:has(img[src$="/1-9.webp"]),
-.prose .wp-block-columns figure.wp-block-image:has(img[src$="/1-10.webp"]) {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  margin: 0;
-  background: linear-gradient(135deg, var(--cream), rgba(247, 239, 226, 0.5));
-  border: 1px dashed rgba(28, 35, 42, 0.15);
-  border-radius: 8px;
+/* Vendors without photos are extracted into a text-only list at the bottom of
+   the food booth section (handled by ui.js). Hide their original columns. */
+.prose .vendor-text-list {
+  margin: 2.4em 0 0;
+  padding: 22px 26px;
+  background: var(--cream);
+  border-radius: 10px;
+  border-left: 3px solid var(--gold);
 }
 
-.prose .wp-block-columns figure.wp-block-image:has(img[src$="/1-1.webp"]) img,
-.prose .wp-block-columns figure.wp-block-image:has(img[src$="/1-2.webp"]) img,
-.prose .wp-block-columns figure.wp-block-image:has(img[src$="/1-9.webp"]) img,
-.prose .wp-block-columns figure.wp-block-image:has(img[src$="/1-10.webp"]) img {
-  display: none;
-}
-
-.prose .wp-block-columns figure.wp-block-image:has(img[src$="/1-1.webp"])::after,
-.prose .wp-block-columns figure.wp-block-image:has(img[src$="/1-2.webp"])::after,
-.prose .wp-block-columns figure.wp-block-image:has(img[src$="/1-9.webp"])::after,
-.prose .wp-block-columns figure.wp-block-image:has(img[src$="/1-10.webp"])::after {
-  content: "写真はご用意中";
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
+.prose .vendor-text-list-title {
+  margin: 0 0 12px;
+  font-size: 0.92rem;
   color: var(--muted);
-  font-size: 0.82rem;
   letter-spacing: 0.04em;
+}
+
+.prose .vendor-text-list ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 6px 24px;
+}
+
+.prose .vendor-text-list li {
+  margin: 0;
+  padding: 4px 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.prose .vendor-text-list li strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.prose .vendor-text-list li span {
+  color: var(--muted);
+  font-size: 0.88rem;
 }
 
 /* Sponsor logos: catch any image with "1024x341" suffix (standard sponsor logo size)
