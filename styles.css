@@ -463,21 +463,22 @@ img {
 .hero-scroll-hint {
   position: absolute;
   left: 50%;
-  bottom: 24px;
+  bottom: 28px;
   transform: translateX(-50%);
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.7rem;
+  gap: 8px;
+  padding: 6px 10px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   text-decoration: none;
-  animation: scroll-hint 2s ease-in-out infinite;
+  animation: scroll-hint 2.4s ease-in-out infinite;
   z-index: 5;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.4s ease, color 0.25s ease;
   pointer-events: auto;
 }
 
