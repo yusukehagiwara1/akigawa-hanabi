@@ -1910,6 +1910,85 @@ a.press-card-title:hover {
   }
 }
 
+/* ===== Urgent banner (開催当日・直前期の緊急告知) =====
+   hidden 属性を外して有効化する運用想定。
+   背景：赤系グラデーション、固定位置でヘッダー直下に貼り付ける */
+.urgent-banner {
+  position: sticky;
+  top: 72px; /* ヘッダー高さ */
+  z-index: 19;
+  background: linear-gradient(135deg, var(--red), #d4604a);
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(184, 63, 55, 0.32);
+  animation: urgent-banner-in 0.45s ease-out both;
+}
+
+.urgent-banner-inner {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+  max-width: 1120px;
+  margin-inline: auto;
+  padding: 12px clamp(18px, 4vw, 36px);
+}
+
+.urgent-banner-tag {
+  display: inline-block;
+  padding: 2px 10px;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.urgent-banner-msg {
+  flex: 1 1 280px;
+  font-size: 1.02rem;
+  line-height: 1.5;
+}
+
+.urgent-banner-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 16px;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.urgent-banner-action:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+  color: #fff;
+}
+
+@keyframes urgent-banner-in {
+  from { transform: translateY(-100%); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .urgent-banner { animation: none; }
+}
+
+@media (max-width: 620px) {
+  .urgent-banner {
+    top: 64px;
+  }
+  .urgent-banner-msg {
+    font-size: 0.92rem;
+  }
+}
+
 /* ===== Press Kit (pr.html: 報道関係者向け素材集) ===== */
 .prose .press-kit {
   margin: 24px 0 48px;

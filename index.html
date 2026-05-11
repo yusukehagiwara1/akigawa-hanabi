@@ -305,6 +305,25 @@
     </header>
 
     <main id="main-content">
+      <!--
+        ===== 開催直前期・当日 緊急告知バナー =====
+        通常は非表示。開催 1 週間前 / 当日に hidden 属性を外して有効化。
+        例: 雨天決行 / 中止 / 開催地変更 / 公共交通の遅延などを即時告知できる。
+
+        運用手順:
+        1. hidden 属性を外す
+        2. <strong> の文言を当日の状況に合わせて編集
+        3. .urgent-banner-action の href を必要に応じて差し替え
+        4. 必要に応じて aria-live="assertive" でスクリーンリーダー読み上げ
+      -->
+      <aside class="urgent-banner" role="alert" aria-live="polite" hidden>
+        <div class="urgent-banner-inner">
+          <span class="urgent-banner-tag">緊急</span>
+          <strong class="urgent-banner-msg">本日は予定通り開催いたします。お気をつけてご来場ください。</strong>
+          <a class="urgent-banner-action" href="#program">プログラムを確認 →</a>
+        </div>
+      </aside>
+
       <section class="hero" aria-label="秋川流域花火大会">
         <div class="hero-content">
           <a class="hero-badge" href="#signup" data-ga-cta="hero:next-edition" aria-label="第8回 開催決定 2026年11月14日">
