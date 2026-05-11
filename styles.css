@@ -1306,6 +1306,122 @@ a.press-card-title:hover {
   transition: transform 0.3s ease, color 0.3s ease;
 }
 
+/* ===== Why-choose section (practical differentiation for comparing visitors) ===== */
+.section.why-choose {
+  background: linear-gradient(180deg, transparent 0%, rgba(215, 169, 71, 0.04) 100%);
+}
+
+.why-choose-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+  margin-top: 36px;
+}
+
+.why-choose-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 28px 24px 26px;
+  border-radius: 12px;
+  background: #fff;
+  border: 1px solid var(--line);
+  box-shadow: 0 8px 26px rgba(28, 35, 42, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.why-choose-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 44px rgba(28, 35, 42, 0.12);
+}
+
+.why-choose-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(215, 169, 71, 0.16), rgba(184, 63, 55, 0.10));
+  color: var(--red);
+}
+
+.why-choose-card h3 {
+  margin: 4px 0 0;
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1.5;
+  word-break: keep-all;
+  line-break: strict;
+}
+
+.why-choose-card p {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.85;
+  color: var(--muted);
+}
+
+.why-choose-card p strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+/* ===== Subpage signup CTA banner (placed just before </main>) ===== */
+.subpage-signup-cta {
+  margin: clamp(40px, 6vw, 72px) auto 0;
+  padding: 0 clamp(16px, 4vw, 36px);
+  max-width: 1180px;
+}
+
+.subpage-signup-cta-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(24px, 4vw, 48px);
+  align-items: center;
+  padding: clamp(32px, 5vw, 56px) clamp(24px, 4vw, 48px);
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 88% 12%, rgba(215, 169, 71, 0.32), transparent 55%),
+    radial-gradient(circle at 12% 90%, rgba(184, 63, 55, 0.18), transparent 50%),
+    linear-gradient(135deg, #10182a 0%, #173a51 70%, #0f3939 100%);
+  color: #fff;
+  box-shadow: 0 24px 70px rgba(11, 19, 31, 0.22);
+}
+
+.subpage-signup-cta-text .tag {
+  color: var(--gold);
+}
+
+.subpage-signup-cta-text h2 {
+  margin: 12px 0 14px;
+  font-size: clamp(1.4rem, 3vw, 1.95rem);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.45;
+  word-break: keep-all;
+  line-break: strict;
+}
+
+.subpage-signup-cta-text p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.8;
+  font-size: 0.95rem;
+}
+
+.subpage-signup-cta-actions {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 760px) {
+  .subpage-signup-cta-inner {
+    grid-template-columns: 1fr;
+  }
+}
+
 .stats article:hover span {
   transform: translateX(4px);
   color: var(--gold);
