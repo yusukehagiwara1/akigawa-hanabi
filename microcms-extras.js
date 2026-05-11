@@ -11,6 +11,10 @@
   const galleryList = document.querySelector("#cms-gallery-list");
   const testimonialList = document.querySelector("#cms-testimonial-list");
   const testimonialSection = document.querySelector("#testimonials");
+  const pressList = document.querySelector("#cms-press-list");
+  const pressSection = document.querySelector("#cms-press-section");
+  const faqDynamicList = document.querySelector("#cms-faq-list");
+  const faqDynamicSection = document.querySelector("#cms-faq-section");
 
   if (sponsorList && extra.sponsors) {
     loadList(extra.sponsors, sponsorList, renderSponsors);
@@ -20,9 +24,22 @@
   }
   if (testimonialList && extra.testimonial) {
     loadList(extra.testimonial, testimonialList, renderTestimonials, function (count) {
-      // Hide the entire section if no testimonials are configured in microCMS
       if (count === 0 && testimonialSection) {
         testimonialSection.style.display = "none";
+      }
+    });
+  }
+  if (pressList && extra.pressRelease) {
+    loadList(extra.pressRelease, pressList, renderPressReleases, function (count) {
+      if (count === 0 && pressSection) {
+        pressSection.style.display = "none";
+      }
+    });
+  }
+  if (faqDynamicList && extra.faqDynamic) {
+    loadList(extra.faqDynamic, faqDynamicList, renderFaqDynamic, function (count) {
+      if (count === 0 && faqDynamicSection) {
+        faqDynamicSection.style.display = "none";
       }
     });
   }
@@ -142,6 +159,75 @@
         `;
       })
       .join("");
+  }
+
+  function renderPressReleases(items) {
+    if (!items.length) return "";
+    return items
+      .map(function (p) {
+        const title = escapeHtml(p.title || "");
+        const outlet = escapeHtml(p.outlet || "");
+        const date = p.date || p.published_at || p.publishedAt;
+        const href = p.url || "";
+        const dateLabel = formatDateShort(date);
+        const summary = escapeHtml(p.summary || "");
+        const logo = mediaUrl(p.logo);
+        const logoHtml = logo
+          ? `<img class="press-card-logo" src="${escapeHtml(logo)}" alt="${outlet}" loading="lazy" decoding="async">`
+          : "";
+        const titleHtml = href
+          ? `<a class="press-card-title" href="${escapeHtml(
+              href
+            )}" target="_blank" rel="noopener">${title}</a>`
+          : `<span class="press-card-title">${title}</span>`;
+        return `
+          <article class="press-card">
+            <div class="press-card-meta">
+              ${logoHtml}
+              <div>
+                ${outlet ? `<p class="press-card-outlet">${outlet}</p>` : ""}
+                ${dateLabel ? `<time class="press-card-date">${dateLabel}</time>` : ""}
+              </div>
+            </div>
+            ${titleHtml}
+            ${summary ? `<p class="press-card-summary">${summary}</p>` : ""}
+          </article>
+        `;
+      })
+      .join("");
+  }
+
+  function renderFaqDynamic(items) {
+    if (!items.length) return "";
+    return items
+      .map(function (f) {
+        const q = escapeHtml(f.question || "");
+        const a = escapeHtml(f.answer || "");
+        const cat = escapeHtml(f.category || "");
+        return `
+          <details class="faq-item-dynamic"${f.open ? " open" : ""}>
+            <summary>
+              ${cat ? `<span class="faq-item-cat">${cat}</span>` : ""}
+              <span class="faq-item-q">${q}</span>
+            </summary>
+            <p>${a}</p>
+          </details>
+        `;
+      })
+      .join("");
+  }
+
+  function formatDateShort(value) {
+    if (!value) return "";
+    const d = new Date(value);
+    if (isNaN(d.getTime())) return "";
+    return new Intl.DateTimeFormat("ja-JP", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    })
+      .format(d)
+      .replaceAll("/", ".");
   }
 
   function mediaUrl(value) {

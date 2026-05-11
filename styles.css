@@ -795,6 +795,146 @@ h2 span,
   color: var(--gold);
 }
 
+/* ===== Press releases (CMS-driven on pr.html) ===== */
+.prose .press-section {
+  margin: 0 0 2.4em;
+}
+
+.prose .press-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.prose .press-card {
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 6px 22px rgba(28, 35, 42, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.prose .press-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 38px rgba(28, 35, 42, 0.1);
+}
+
+.prose .press-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.prose .press-card-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  object-fit: contain;
+  background: var(--cream);
+}
+
+.prose .press-card-outlet {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.prose .press-card-date {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.prose .press-card-title {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--ink);
+  line-height: 1.5;
+  text-decoration: none;
+}
+
+a.press-card-title {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(15, 104, 104, 0.35);
+}
+
+a.press-card-title:hover {
+  text-decoration-color: var(--red);
+  color: var(--red);
+}
+
+.prose .press-card-summary {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+/* ===== Dynamic FAQ (CMS-driven on qa.html) ===== */
+.prose .faq-dynamic-section {
+  margin: 0 0 3em;
+}
+
+.prose .faq-item-dynamic {
+  padding: 16px 22px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 4px 16px rgba(28, 35, 42, 0.04);
+  margin-bottom: 10px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.prose .faq-item-dynamic:hover {
+  border-color: rgba(215, 169, 71, 0.4);
+}
+
+.prose .faq-item-dynamic[open] {
+  border-color: rgba(215, 169, 71, 0.55);
+  box-shadow: 0 8px 22px rgba(28, 35, 42, 0.08);
+}
+
+.prose .faq-item-dynamic summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  list-style: none;
+  font-weight: 800;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.prose .faq-item-dynamic summary::-webkit-details-marker {
+  display: none;
+}
+
+.prose .faq-item-cat {
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: rgba(215, 169, 71, 0.18);
+  color: var(--gold);
+  font-size: 0.74rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+}
+
+.prose .faq-item-q {
+  flex: 1;
+}
+
+.prose .faq-item-dynamic p {
+  margin: 14px 0 0;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
 /* ===== Testimonials section (来場者の声) ===== */
 .testimonial-grid {
   display: grid;
