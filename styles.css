@@ -353,8 +353,9 @@ img {
   display: block;
   height: 40px;
   width: auto;
-  filter: invert(1) grayscale(1) brightness(1.55) contrast(0.92);
-  opacity: 0.9;
+  filter: invert(1) grayscale(1);
+  mix-blend-mode: difference;
+  opacity: 0.95;
   transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
@@ -3772,8 +3773,9 @@ dialog.lightbox .lightbox-close:hover {
   height: 44px;
   width: auto;
   margin: 6px 0 14px;
-  filter: invert(1) grayscale(1) brightness(1.55) contrast(0.92);
-  opacity: 0.9;
+  filter: invert(1) grayscale(1);
+  mix-blend-mode: difference;
+  opacity: 0.95;
 }
 
 .footer-sub {
