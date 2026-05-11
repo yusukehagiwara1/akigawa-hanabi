@@ -374,6 +374,29 @@ img {
 .nav a {
   opacity: 0.88;
   position: relative;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  bottom: -6px;
+  height: 2px;
+  background: var(--gold);
+  border-radius: 2px;
+  transition: left 0.25s ease, right 0.25s ease;
+}
+
+.nav a:hover {
+  opacity: 1;
+  color: var(--gold);
+}
+
+.nav a:hover::after {
+  left: 0;
+  right: 0;
 }
 
 .nav a.is-active {
@@ -382,14 +405,8 @@ img {
 }
 
 .nav a.is-active::after {
-  content: "";
-  position: absolute;
   left: 0;
   right: 0;
-  bottom: -6px;
-  height: 2px;
-  background: var(--gold);
-  border-radius: 2px;
 }
 
 .footer-nav a.is-active {
