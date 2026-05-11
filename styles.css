@@ -1376,6 +1376,13 @@ a.ticket-card {
   text-align: right;
 }
 
+/* When .ticket-more lives inside the .split grid, span both columns and right-align under the cards */
+.split .ticket-more {
+  grid-column: 1 / -1;
+  margin-top: 28px;
+  text-align: right;
+}
+
 /* ===== Schedule timeline ===== */
 .timeline {
   list-style: none;
@@ -3055,6 +3062,11 @@ a.ticket-card {
 
 /* Lightbox dialog (used by ui.js for past-gallery enlarged view) */
 dialog.lightbox {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
   border: 0;
   padding: 0;
   background: transparent;
