@@ -693,14 +693,29 @@ h2 span,
 }
 
 .notice {
+  position: relative;
   display: grid;
   grid-template-columns: 0.85fr 1.15fr;
   gap: 30px;
   align-items: center;
   margin-top: 38px;
-  padding: 26px 0;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+  padding: 32px clamp(20px, 3vw, 36px);
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(215, 169, 71, 0.06), rgba(184, 63, 55, 0.04));
+  border: 1px solid rgba(215, 169, 71, 0.22);
+  box-shadow: 0 8px 28px rgba(28, 35, 42, 0.04);
+}
+
+.notice::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 24px;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--red));
+  border-radius: 2px;
+  transform: translateY(-50%);
 }
 
 .notice h2 {
@@ -1013,6 +1028,16 @@ h2 span,
   background-position: 16px 16px;
   pointer-events: none;
   opacity: 0.5;
+}
+
+.support-band::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
 }
 
 .support-band > * {
@@ -2595,6 +2620,16 @@ dialog.lightbox .lightbox-close:hover {
     linear-gradient(135deg, #10182a, #173a51 70%, #0f6868);
   box-shadow: var(--shadow);
   overflow: hidden;
+}
+
+.contact-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
 }
 
 .contact-card::before {
