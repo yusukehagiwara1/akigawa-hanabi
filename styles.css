@@ -2270,12 +2270,24 @@ a.ticket-card {
   object-fit: contain;
 }
 
-/* Iframes (Google Maps) inside columns: stretch to fill column height */
+/* When a column contains a Google Maps iframe, stretch its sibling so heights match */
+.prose .wp-block-columns:has(iframe) {
+  align-items: stretch;
+}
+
+.prose .wp-block-columns:has(iframe) > .wp-block-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Iframes (Google Maps) inside columns: fill column height for visual balance */
 .prose .wp-block-columns iframe {
   display: block;
   width: 100%;
-  min-height: 280px;
+  min-height: 320px;
   height: 100%;
+  flex: 1;
   border: 0;
   border-radius: 8px;
 }
