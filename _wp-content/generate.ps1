@@ -17,8 +17,6 @@ $pages = @(
   @{ slug = "pr";                file = "pr.html";               tag = "Media"        }
   @{ slug = "food-application";  file = "food-application.html"; tag = "Food"         }
   @{ slug = "akiruno-kanko";     file = "akiruno-kanko.html";    tag = "Tourism"      }
-  @{ slug = "yahoo-news";        file = "yahoo-news.html";       tag = "News"         }
-  @{ slug = "lost-item";         file = "lost-item.html";        tag = "Lost & Found" }
   @{ slug = "privacy-policy";    file = "privacy-policy.html";   tag = "Policy"       }
 )
 
@@ -47,10 +45,6 @@ $urlMap = @{
   "https://machizukuri-con.or.jp/food-application"   = "food-application.html"
   "https://machizukuri-con.or.jp/akiruno-kanko/"     = "akiruno-kanko.html"
   "https://machizukuri-con.or.jp/akiruno-kanko"      = "akiruno-kanko.html"
-  "https://machizukuri-con.or.jp/yahoo-news/"        = "yahoo-news.html"
-  "https://machizukuri-con.or.jp/yahoo-news"         = "yahoo-news.html"
-  "https://machizukuri-con.or.jp/lost-item/"         = "lost-item.html"
-  "https://machizukuri-con.or.jp/lost-item"          = "lost-item.html"
   "https://machizukuri-con.or.jp/privacy-policy/"    = "privacy-policy.html"
   "https://machizukuri-con.or.jp/privacy-policy"     = "privacy-policy.html"
   "https://machizukuri-con.or.jp/"                   = "index.html"
@@ -222,9 +216,7 @@ $template = @'
             <p class="footer-label">関連情報</p>
             <a href="sponsor.html">協賛企業様</a>
             <a href="pr.html">メディア掲載</a>
-            <a href="yahoo-news.html">Yahoo!ニュース</a>
             <a href="akiruno-kanko.html">周辺観光</a>
-            <a href="lost-item.html">忘れ物一覧</a>
             <a href="contact.html">お問い合わせ</a>
           </div>
         </nav>
@@ -302,6 +294,11 @@ function Clean-Content([string]$html) {
   # Redirect KKday/asoview product URLs to their official home pages (event has ended)
   $h = [regex]::Replace($h, 'https://www\.kkday\.com/product/[^"''\s]+', 'https://www.kkday.com/ja')
   $h = [regex]::Replace($h, 'https://machizukuricon\.my\.urakata\.app/channels/[^"''\s]+', 'https://www.asoview.com/')
+  # Strip anchor wrappers for removed Yahoo!ニュース / 忘れ物一覧 sub-pages (keep the image)
+  $h = [regex]::Replace($h, '<a href="https://machizukuri-con\.or\.jp/yahoo-news/?">(\s*<img[^>]*>)\s*</a>', '$1', 'Singleline')
+  $h = [regex]::Replace($h, '<a href="https://machizukuri-con\.or\.jp/lost-item/?">(\s*<img[^>]*>)\s*</a>', '$1', 'Singleline')
+  $h = [regex]::Replace($h, '<a href="yahoo-news\.html">(\s*<img[^>]*>)\s*</a>', '$1', 'Singleline')
+  $h = [regex]::Replace($h, '<a href="lost-item\.html">(\s*<img[^>]*>)\s*</a>', '$1', 'Singleline')
   foreach ($k in $urlMap.Keys) {
     $local = $urlMap[$k]
     $escaped = [regex]::Escape($k)
