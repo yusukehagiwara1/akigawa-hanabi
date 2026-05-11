@@ -6,30 +6,33 @@
 
 (function () {
   const SPONSOR_URL_MAP = {
-    // --- 特別協力 / ゴールド ---
+    // --- 特別協力 ---
     "サマーランド": "https://www.summerland.co.jp/",
     "summerland": "https://www.summerland.co.jp/",
     "イオン": "https://www.aeon.jp/sc/hinode/",
     "aeon": "https://www.aeon.jp/sc/hinode/",
+
+    // --- ゴールドスポンサー ---
     "ヒューマンテクノス": "https://www.humantec.co.jp/",
     "humantech": "https://www.humantec.co.jp/",
-    // --- 以下は URL が判明したら追記してください ---
-    // "立花工業": "https://...",
-    // "tachibana": "https://...",
-    // "内田電気": "https://...",
-    // "uchida": "https://...",
-    // "森電気": "https://...",
-    // "mori": "https://...",
-    // "協和": "https://...",
-    // "kyowa": "https://...",
-    // "YANAGI": "https://...",
-    // "yanagi": "https://...",
-    // "ジュン企画": "https://...",
-    // "jun": "https://...",
-    // "シーウイング": "https://...",
-    // "シンヨー": "https://...",
-    // "ゼンコー": "https://...",
-    // "カネショウ": "https://...",
+    "シーウイング": "https://www.sea-wing.jp/",
+    "ゼンコー": "https://www.zenko-group.co.jp/",
+    "立花工業": "https://tachibana-kougyou.com/",
+    "tachibana": "https://tachibana-kougyou.com/",
+    "内田電気": "http://uchidadenki.net/",
+    "uchida": "http://uchidadenki.net/",
+
+    // --- シルバー以下 ---
+    "森電気": "https://mks-moridenki.com/",
+    "mori": "https://mks-moridenki.com/",
+    "シンヨー": "https://www.sinyo.com/",
+    "ジュン企画": "https://junkikaku.jp/",
+    "jun": "https://junkikaku.jp/",
+    "カネショウ": "https://kanesho.info/",
+    "kyowa": "http://www.j-kyowa.com/",
+    "KYOWA": "http://www.j-kyowa.com/",
+    "2-2-1024x341": "http://www.j-kyowa.com/", // 協和 (KYOWA) corporation logo
+    // YANAGI と GA-1 (GOAHEAD) は公式 URL 未確定のためリンク無し
   };
 
   function findUrl(src) {
