@@ -1367,6 +1367,257 @@ a.press-card-title:hover {
   font-weight: 700;
 }
 
+/* ===== Achievements section (numeric social proof on homepage) ===== */
+.section.achievements {
+  padding-top: clamp(40px, 5vw, 64px);
+  padding-bottom: clamp(40px, 5vw, 64px);
+}
+
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 18px;
+}
+
+.achievements-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  padding: 30px 22px 28px;
+  border-radius: 12px;
+  background: #fff;
+  border: 1px solid var(--line);
+  box-shadow: 0 8px 26px rgba(28, 35, 42, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.achievements-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 38px rgba(28, 35, 42, 0.10);
+}
+
+.achievements-num {
+  display: inline-block;
+  font-family: "Zen Old Mincho", serif;
+  font-weight: 900;
+  font-size: 1.4rem;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+.achievements-num em {
+  display: inline-block;
+  font-style: normal;
+  font-size: 2.6rem;
+  color: var(--red);
+  margin: 0 0.05em;
+  line-height: 1;
+}
+
+.achievements-card p {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+/* ===== Ticket guide (席選びガイド) on ticket.html ===== */
+.prose .ticket-guide {
+  margin: 28px 0 36px;
+  padding: 28px clamp(20px, 3.5vw, 32px) 30px;
+  background: linear-gradient(180deg, rgba(215, 169, 71, 0.06), rgba(255, 255, 255, 0));
+  border: 1px solid rgba(215, 169, 71, 0.18);
+  border-radius: 14px;
+}
+
+.prose .ticket-guide-heading {
+  margin: 0 0 8px;
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: var(--ink);
+}
+
+.prose .ticket-guide-lead {
+  margin: 0 0 22px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.ticket-guide-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.ticket-guide-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 22px 22px 20px;
+  border-radius: 12px;
+  background: #fff;
+  border: 1px solid var(--line);
+  box-shadow: 0 6px 20px rgba(28, 35, 42, 0.05);
+  text-decoration: none;
+  color: var(--ink);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.ticket-guide-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 44px rgba(28, 35, 42, 0.14);
+  border-color: var(--gold);
+}
+
+.ticket-guide-card-tag {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 4px 10px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  border-radius: 999px;
+  background: rgba(184, 63, 55, 0.08);
+  color: var(--red);
+}
+
+.ticket-guide-card h4 {
+  margin: 2px 0 0;
+  font-family: "Zen Old Mincho", serif;
+  font-size: 1.45rem;
+  font-weight: 900;
+  color: var(--ink);
+  line-height: 1.2;
+}
+
+.ticket-guide-price {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+.ticket-guide-price strong {
+  color: var(--red);
+  font-size: 1.15rem;
+  font-weight: 900;
+  margin: 0 2px;
+}
+
+.ticket-guide-price span {
+  font-size: 0.86rem;
+  margin-left: 4px;
+}
+
+.prose .ticket-guide-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 6px 0 0;
+}
+
+.prose .ticket-guide-card li {
+  position: relative;
+  padding-left: 18px;
+  font-size: 0.88rem;
+  line-height: 1.7;
+  color: #555f6c;
+  margin: 0 0 4px;
+}
+
+.prose .ticket-guide-card li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--gold);
+  font-weight: 900;
+}
+
+.ticket-guide-cta {
+  display: inline-block;
+  margin-top: 8px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--line);
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--red);
+  letter-spacing: 0.02em;
+}
+
+.ticket-guide-card:hover .ticket-guide-cta {
+  color: var(--gold);
+}
+
+/* ===== Access summary table (主要駅からのアクセス) on access.html ===== */
+.prose .access-summary {
+  margin: 0 auto 36px;
+  padding: 28px clamp(20px, 3.5vw, 32px) 30px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(215, 169, 71, 0.06), rgba(184, 63, 55, 0.03));
+  border: 1px solid rgba(215, 169, 71, 0.22);
+}
+
+.prose .access-summary-heading {
+  margin: 0 0 6px;
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: var(--ink);
+}
+
+.prose .access-summary-lead {
+  margin: 0 0 18px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.access-summary-table-wrap {
+  overflow-x: auto;
+  border-radius: 8px;
+}
+
+.prose .access-summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border: 1px solid var(--line);
+}
+
+.prose .access-summary-table th,
+.prose .access-summary-table td {
+  padding: 12px 16px;
+  text-align: center;
+  font-size: 0.94rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.prose .access-summary-table thead th {
+  background: rgba(215, 169, 71, 0.10);
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: 0.04em;
+}
+
+.prose .access-summary-table tbody th {
+  text-align: left;
+  background: rgba(28, 35, 42, 0.02);
+  font-weight: 700;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.prose .access-summary-table tbody tr:last-child th,
+.prose .access-summary-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.prose .access-summary-note {
+  margin: 14px 0 0;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
 /* ===== Subpage signup CTA banner (placed just before </main>) ===== */
 .subpage-signup-cta {
   margin: clamp(40px, 6vw, 72px) auto clamp(48px, 7vw, 88px);
