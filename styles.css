@@ -2390,6 +2390,27 @@ a.ticket-card {
   object-fit: contain;
 }
 
+/* Access route map (image-4.webp moved to full-width above bus directions) */
+.prose .access-route-map {
+  display: block;
+  width: 100%;
+  margin: 1.4em 0 1.6em;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: 0 8px 26px rgba(28, 35, 42, 0.08);
+}
+
+.prose .access-route-map img {
+  display: block;
+  width: 100%;
+  max-height: 480px;
+  height: auto;
+  object-fit: contain;
+  background: #fff;
+  max-width: 100%;
+}
+
 /* When a column contains a Google Maps iframe, stretch its sibling so heights match */
 .prose .wp-block-columns:has(iframe) {
   align-items: stretch;
@@ -2853,26 +2874,40 @@ a.ticket-card {
   display: none;
 }
 
-/* PR/sponsor media logos (identified by filename): consistent compact display */
+/* Sponsor logos: catch any image with "1024x341" suffix (standard sponsor logo size)
+   plus PR_logo media coverage logos. Constrains them all to the same compact size. */
+.prose .wp-block-columns img[src*="1024x341"],
 .prose .wp-block-columns img[src*="PR_logo"],
-.prose .wp-block-columns img[src*="logo-"],
-.prose .wp-block-columns img[src*="-logo"],
 .prose .wp-block-columns img[src*="kkday"],
-.prose .wp-block-columns img[src*="サマーランド"],
-.prose .wp-block-columns img[src*="イオン"],
-.prose .wp-block-columns img[src*="カネショウ"],
-.prose .wp-block-columns img[src*="シーウイング"],
-.prose .wp-block-columns img[src*="シンヨー"],
-.prose .wp-block-columns img[src*="ゼンコー"],
-.prose .wp-block-columns img[src*="ジュン企画"],
-.prose .wp-block-columns img[src*="ヒューマンテクノス"],
-.prose .wp-block-columns img[src*="内田電気"],
-.prose .wp-block-columns img[src*="YANAGI"],
-.prose .wp-block-columns img[src*="GA-1"] {
+.prose .wp-block-columns img[src*="image-1.webp"],
+.prose .wp-block-columns figure.wp-block-image:has(img[src*="1024x341"]) {
+  /* No-op fallback; specific rules below take over */
+}
+
+.prose .wp-block-columns img[src*="1024x341"],
+.prose .wp-block-columns img[src*="PR_logo"] {
+  display: block;
   width: 100%;
-  height: 120px;
+  height: 110px;
+  max-height: 110px;
   object-fit: contain;
-  max-height: 120px;
+}
+
+.prose .wp-block-columns figure.wp-block-image:has(img[src*="1024x341"]),
+.prose .wp-block-columns figure.wp-block-image:has(img[src*="PR_logo"]) {
+  width: 100%;
+  padding: 10px 18px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(28, 35, 42, 0.05);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.prose .wp-block-columns figure.wp-block-image:has(img[src*="1024x341"]):hover,
+.prose .wp-block-columns figure.wp-block-image:has(img[src*="PR_logo"]):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(28, 35, 42, 0.1);
 }
 
 /* Ticket purchase brand logos (KKday + asoview): pair them as uniform cards */
