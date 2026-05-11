@@ -3904,47 +3904,105 @@ dialog.lightbox .lightbox-close:hover {
 
 @media (max-width: 620px) {
   .site-header {
-    padding-inline: 16px;
-    gap: 12px;
+    padding-inline: 14px;
+    gap: 10px;
+    min-height: 64px;
   }
 
   .brand {
     gap: 8px;
+    font-size: 0.92rem;
   }
 
   .brand-mark {
-    height: 32px;
-    padding: 3px 5px;
+    height: 30px;
+    padding: 2px 4px;
   }
 
   .brand span:last-child {
-    max-width: 9em;
+    max-width: 8em;
     white-space: normal;
     line-height: 1.15;
-    font-size: 0.92rem;
+    font-size: 0.88rem;
   }
 
   .header-cta {
     display: none;
   }
 
+  .nav-toggle {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* --- Hero --- */
   .hero {
-    min-height: 96vh;
-    padding-inline: 20px;
+    min-height: 92vh;
+    padding: 100px 20px 7vh;
     background-position: 58% center;
+    align-items: end;
+  }
+
+  .hero-content {
+    max-width: 100%;
   }
 
   h1 {
-    font-size: clamp(2.2rem, 10vw, 3.6rem);
+    font-size: clamp(2rem, 9vw, 3rem);
+    margin-bottom: 16px;
   }
 
+  .eyebrow {
+    font-size: 0.7rem;
+    margin-bottom: 4px;
+  }
+
+  .hero-lead {
+    font-size: 0.98rem;
+    margin-bottom: 24px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-actions .button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .event-panel {
+    position: static;
+    width: 100%;
+    margin-top: 28px;
+    padding: 18px 20px;
+  }
+
+  /* --- Section spacing on mobile --- */
+  .section {
+    padding: 48px 0;
+  }
+
+  .section-heading {
+    margin-bottom: 28px;
+  }
+
+  .section-heading h2,
+  .support-band h2 {
+    font-size: clamp(1.6rem, 6.5vw, 2rem);
+  }
+
+  /* --- Notice (event ended announcement) --- */
+  .notice {
+    grid-template-columns: 1fr;
+    padding: 22px 18px;
+    margin-top: 24px;
+  }
+
+  /* --- Tickets / Cards --- */
   .ticket-list {
     grid-template-columns: 1fr;
-  }
-
-  .notice,
-  .section {
-    width: min(100% - 32px, 1120px);
   }
 
   .stats article,
@@ -3953,25 +4011,111 @@ dialog.lightbox .lightbox-close:hover {
     min-height: auto;
   }
 
+  /* --- Maps / iframes --- */
   .map-panel {
-    min-height: 300px;
+    min-height: 280px;
   }
 
+  /* --- Past gallery: 2 cols looks better than 1 on phones --- */
   .past-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
   }
 
+  /* --- Sponsors --- */
   .sponsor-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .sponsor-tile {
+    min-height: 88px;
+    padding: 14px;
+  }
+
+  .sponsor-tile img {
+    max-height: 56px;
+  }
+
+  /* --- Contact card --- */
+  .contact-card {
+    padding: 28px 22px;
+    border-radius: 10px;
+  }
+
+  .contact-card h2 {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
+
+  /* --- Support band (donation) --- */
+  .support-band {
+    padding: 44px 22px;
+    text-align: left;
+  }
+
+  .support-actions {
+    flex-direction: column;
+    width: 100%;
+    margin-top: 18px;
+  }
+
+  .support-actions .button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* --- Footer --- */
+  .footer {
+    padding: 38px 16px 22px;
+  }
+
+  .footer-grid {
+    gap: 28px;
   }
 
   .footer-base {
     flex-direction: column;
     align-items: flex-start;
+    gap: 10px;
   }
 
   .footer-nav {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 22px;
+  }
+
+  /* --- Mobile sticky CTA: ensure visible and not blocking content --- */
+  .mobile-sticky-cta {
+    bottom: 14px;
+    right: 14px;
+  }
+
+  /* --- Past tile captions smaller --- */
+  .past-tile figcaption {
+    font-size: 0.82rem;
+    inset: auto 10px 10px;
+  }
+
+  /* --- Scroll-top button --- */
+  .scroll-top {
+    right: 14px;
+    bottom: 70px;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Very small phones (< 380px): more aggressive */
+@media (max-width: 380px) {
+  h1 {
+    font-size: clamp(1.7rem, 8vw, 2.4rem);
+  }
+
+  .section {
+    padding: 36px 0;
+  }
+
+  .past-grid {
+    grid-template-columns: 1fr;
   }
 }

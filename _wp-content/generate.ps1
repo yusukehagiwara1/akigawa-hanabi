@@ -65,21 +65,23 @@ $template = @'
     <meta name="theme-color" content="#0f1828">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <link rel="manifest" href="/manifest.json">
-    <title>{{TITLE}}｜秋川流域花火大会</title>
+    <title>{{TITLE}}｜秋川流域花火大会【公式】</title>
     <meta name="description" content="{{DESC}}">
+    <meta name="keywords" content="秋川流域花火大会, あきる野, 花火大会, 秋花火, 東京サマーランド, {{TITLE}}">
+    <meta name="author" content="特定非営利活動法人まちづくりコンソーシアム">
     <link rel="canonical" href="https://akigawa-hanabi.pages.dev/{{FILE}}">
     <meta property="og:type" content="article">
-    <meta property="og:site_name" content="秋川流域花火大会">
+    <meta property="og:site_name" content="秋川流域花火大会【公式】">
     <meta property="og:locale" content="ja_JP">
     <meta property="og:url" content="https://akigawa-hanabi.pages.dev/{{FILE}}">
-    <meta property="og:title" content="{{TITLE}}｜秋川流域花火大会">
+    <meta property="og:title" content="{{TITLE}}｜秋川流域花火大会【公式】">
     <meta property="og:description" content="{{DESC}}">
     <meta property="og:image" content="https://akigawa-hanabi.pages.dev/assets/keyvisual.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="900">
     <meta property="og:image:alt" content="夜空に咲く秋川流域花火大会のキービジュアル">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{TITLE}}｜秋川流域花火大会">
+    <meta name="twitter:title" content="{{TITLE}}｜秋川流域花火大会【公式】">
     <meta name="twitter:description" content="{{DESC}}">
     <meta name="twitter:image" content="https://akigawa-hanabi.pages.dev/assets/keyvisual.jpg">
     <meta name="twitter:image:alt" content="夜空に咲く秋川流域花火大会のキービジュアル">
