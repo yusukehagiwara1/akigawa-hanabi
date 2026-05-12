@@ -246,9 +246,9 @@
     .header-cta{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 18px;border-radius:999px;font-weight:800;color:var(--night);background:#fff;white-space:nowrap}
     .nav-toggle{display:none}
     @media (max-width:920px){
-      /* Mobile: nav は styles.css 側で position:fixed + transform で off-screen 化される。
-         Critical CSS でも nav を一時的に画面外に逃がし、styles.css ロード前の FOUC を防ぐ。 */
-      .nav{position:fixed;inset:66px 0 0;transform:translateX(100%);flex-direction:column;background:rgba(10,16,28,.97);z-index:25}
+      /* Mobile: nav は display 切替で開閉する（styles.css でも同じ実装）*/
+      .nav{display:none}
+      .nav.is-open{display:flex;position:fixed;inset:66px 0 0;flex-direction:column;background:rgba(10,16,28,.97);z-index:30;padding:24px 20px 32px;overflow-y:auto}
       .nav-toggle{display:flex;width:44px;height:44px;padding:0;border:0;background:transparent;cursor:pointer;align-items:center;justify-content:center;flex-direction:column;gap:6px}
       .nav-toggle span{display:block;width:24px;height:2px;background:#fff;border-radius:2px}
     }
@@ -266,14 +266,14 @@
     .hero-badge-pulse{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--gold)}
     .hero-badge-text strong{color:var(--gold);font-weight:900;letter-spacing:.04em}
     </style>
-    <link rel="preload" href="styles.css?v=20260512b" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="styles.css?v=20260512b"></noscript>
-    <script src="analytics.js?v=20260512b" defer></script>
-    <script src="ui.js?v=20260512b" defer></script>
-    <script src="microcms-config.js?v=20260512b" defer></script>
-    <script src="script.js?v=20260512b" defer></script>
-    <script src="microcms-extras.js?v=20260512b" defer></script>
-    <script src="sponsor-urls.js?v=20260512b" defer></script>
+    <link rel="preload" href="styles.css?v=20260512c" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="styles.css?v=20260512c"></noscript>
+    <script src="analytics.js?v=20260512c" defer></script>
+    <script src="ui.js?v=20260512c" defer></script>
+    <script src="microcms-config.js?v=20260512c" defer></script>
+    <script src="script.js?v=20260512c" defer></script>
+    <script src="microcms-extras.js?v=20260512c" defer></script>
+    <script src="sponsor-urls.js?v=20260512c" defer></script>
     <script>
       // Register Service Worker for offline support / PWA
       if ("serviceWorker" in navigator) {
