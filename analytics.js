@@ -166,6 +166,33 @@
     }
   });
 
+  // ---- Section visibility tracking → GA4 ----
+  // Fires `section_view` once per `<section id="...">` that becomes
+  // visible (40%+ in viewport). Complements scroll_depth: tells the
+  // team WHICH section the user saw, not just how far they scrolled.
+  (function () {
+    if (!("IntersectionObserver" in window)) return;
+    var sections = document.querySelectorAll("section[id]");
+    if (!sections.length) return;
+    var seen = {};
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var id = entry.target.id;
+        if (seen[id]) return;
+        seen[id] = true;
+        try {
+          gtag("event", "section_view", {
+            section_id: id,
+            page_path: window.location.pathname
+          });
+        } catch (e) {}
+        io.unobserve(entry.target);
+      });
+    }, { threshold: 0.4 });
+    sections.forEach(function (s) { io.observe(s); });
+  })();
+
   // ---- Scroll depth tracking → GA4 ----
   // Fires `scroll_depth` events at 25/50/75/90% page scroll, once per
   // page session. Helps the analytics team see how far users read each

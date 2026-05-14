@@ -57,6 +57,13 @@
   - **M2** 完了: hero-fireworks-real の 800w / 1280w 派生を生成（モバイル 491KB → 86KB、約 82% 削減）。`<link rel=preload>` を imagesrcset 対応 + CSS を media query ベースのレスポンシブ背景に
   - **M3** 完了: gallery / press / faq の各 CMS セクションに testimonial と同じ `data-has-fallback` フラグ尊重ロジックを実装。空 CMS でも静的フォールバックを優先表示
   - SW v9 + キャッシュバスター 2026-05-15 に更新
+- Round 41 (2026-05-15): GA4 セクション可視化トラッキング (section_view)
+  - **analytics.js に section_view イベント**: IntersectionObserver で `<section id="...">` が 40% 以上 viewport に入った瞬間に発火、1 セッション 1 回
+  - GA4 イベント形式: `section_id` + `page_path`
+  - 既存の scroll_depth と相補的: 「どこまでスクロールしたか」だけでなく「どのセクションを実際に見たか」が分かる
+  - 例: section_id=about, =stats, =why-choose, =program, =info, =past, =testimonials, =tickets, =signup, =sponsors, =faq などが GA4 で観測可能
+  - SW v33 + キャッシュバスター 20260515u
+- Round 40 (2026-05-15): README.md を Cloudflare Pages 移行に合わせて更新 + 主要ファイル一覧 + docs 索引
 - Round 39 (2026-05-15): index.html Event JSON-LD の完全化
   - **`@id`** を追加 (`https://akigawa-hanabi.pages.dev/#event-2026`)。同一イベントを複数 JSON-LD 間で参照可能に
   - **`doorTime`**: 2026-11-14T15:00:00+09:00 (会場開門時刻)
