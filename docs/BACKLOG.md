@@ -62,6 +62,14 @@
   - **M2** 完了: hero-fireworks-real の 800w / 1280w 派生を生成（モバイル 491KB → 86KB、約 82% 削減）。`<link rel=preload>` を imagesrcset 対応 + CSS を media query ベースのレスポンシブ背景に
   - **M3** 完了: gallery / press / faq の各 CMS セクションに testimonial と同じ `data-has-fallback` フラグ尊重ロジックを実装。空 CMS でも静的フォールバックを優先表示
   - SW v9 + キャッシュバスター 2026-05-15 に更新
+- Round 53 (2026-05-15): CSS dead code 削減監査
+  - 全 368 CSS class セレクタ × HTML + JS + JSON + generate.ps1 でクロスチェック
+  - **真の dead code は 2 セレクタのみ**: `.prose .wp-block-button`, `.prose .wp-block-button__link` (WP block の button、現在 HTML/JSON にも存在せず Swell の同等品を使っている)
+  - 削除: 複数セレクタリストから wp- 版だけ抜く (swell- 版は維持)
+  - 「孤児」候補は 30 件あったが、99% は WP 動的レンダー / JS 動的付与 / WP block 名 / モダナイザ式 (`.js`, `.webp`) で false positive
+  - **新規 `_wp-content/compact-css.ps1`**: 空白圧縮ユーティリティ (試した結果、コメント保持の安全圧縮では 2 バイトしか削減せず、コメント全削除すれば 12% 削減できるがメンテ性損失大のため不採用)
+  - styles.css は既に十分タイト。これ以上の機械的削減は手作業またはツール化が必要
+  - SW v43 + キャッシュバスター 20260516d
 - Round 52 (2026-05-15): 大型画像の一括再圧縮 — assets/wp 12MB → 9.8MB
   - **新規 `_wp-content/recompress-large-webp.ps1`**: libwebp 1.6 (winget) を使った一括再圧縮ユーティリティ
   - dwebp で PNG にデコード → cwebp `-q 72 -m 6 -mt` で再エンコード

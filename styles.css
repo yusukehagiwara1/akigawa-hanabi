@@ -3393,13 +3393,11 @@ a.ticket-card {
   text-align: right;
 }
 
-.prose .wp-block-button,
 .prose .swell-block-button {
   margin: 1.4em 0;
   text-align: center;
 }
 
-.prose .wp-block-button__link,
 .prose .swell-block-button__link {
   display: inline-flex;
   align-items: center;
