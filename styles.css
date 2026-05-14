@@ -197,6 +197,37 @@ a {
   .event-panel-meta {
     color: #000;
   }
+  /* Sub-page banner: drop the dark gradient + dot pattern for print */
+  .page-hero {
+    background: #fff !important;
+    color: #000 !important;
+    padding: 12pt 0 !important;
+    animation: none !important;
+  }
+  .page-hero::before,
+  .page-hero::after {
+    display: none !important;
+  }
+  .page-hero h1,
+  .page-hero .tag,
+  .page-hero-pill,
+  .page-hero .page-back {
+    color: #000 !important;
+    background: none !important;
+    border-color: #999 !important;
+    text-shadow: none !important;
+    -webkit-text-fill-color: #000 !important;
+  }
+  /* Hide ticket sale pending CTAs in print (they're interactive only) */
+  .ticket-sale-pending {
+    background: #fff !important;
+    border: 1px solid #999 !important;
+  }
+  .ticket-sale-pending-cta {
+    display: none !important;
+  }
+  /* Hide SW update toast in print */
+  .sw-update-toast { display: none !important; }
   .event-panel {
     position: static;
     border: 1px solid #999;
