@@ -57,6 +57,13 @@
   - **M2** 完了: hero-fireworks-real の 800w / 1280w 派生を生成（モバイル 491KB → 86KB、約 82% 削減）。`<link rel=preload>` を imagesrcset 対応 + CSS を media query ベースのレスポンシブ背景に
   - **M3** 完了: gallery / press / faq の各 CMS セクションに testimonial と同じ `data-has-fallback` フラグ尊重ロジックを実装。空 CMS でも静的フォールバックを優先表示
   - SW v9 + キャッシュバスター 2026-05-15 に更新
+- Round 47 (2026-05-15): 印刷用 CSS にサブページ banner 対応 + Round 22/45 要素対応
+  - `@media print` 内の `.page-hero` を白背景 + 黒文字に + ::before/::after dot pattern と gold line を非表示
+  - `.page-hero-pill` / .tag / .page-back / h1 を `-webkit-text-fill-color: #000 !important` でグラデテキストを打ち消し
+  - `.ticket-sale-pending`: 白枠化 + CTA を非表示 (印刷でクリック不可なので無意味)
+  - `.sw-update-toast`: 完全非表示
+  - SW v37 + キャッシュバスター 20260515y
+- Round 46 (2026-05-15): styles.css 先頭にメンテナンスガイドコメント
 - Round 45 (2026-05-15): SW 更新検知 + 再読み込み通知トースト
   - **ui.js**: `serviceWorker.ready` → `updatefound` → 新 SW が `installed` 状態かつ既に controller があれば「サイトが更新されました」トースト表示
   - **CSS**: `.sw-update-toast` を画面下中央に固定 (`bottom: 24px`)、金グラデ「再読み込み」ボタン + 閉じる × ボタン
