@@ -6843,3 +6843,159 @@ body.page-sponsor .prose .wp-block-table td strong {
   color: var(--gold-text);
 }
 
+/* ======================================================================
+   Round 27 — Dark mode (prefers-color-scheme: dark) — L5
+   ----------------------------------------------------------------------
+   Activates automatically when the OS / browser is set to dark mode.
+   Approach: additive overrides — keep the light-mode CSS untouched and
+   layer dark adjustments here. Variables flip first; specific card
+   surfaces flip via explicit selectors below.
+   ====================================================================== */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #f1eee5;
+    --muted: #a4b1ba;
+    --paper: #0c1320;
+    --cream: #1a2236;
+    --line: rgba(255, 255, 255, 0.10);
+    --shadow: 0 22px 70px rgba(0, 0, 0, 0.45);
+    /* In dark mode the contrast budget flips — brighter gold has plenty
+       of contrast against the dark surface, so use --gold here. */
+    --gold-text: #e0c478;
+  }
+
+  /* Body uses a darker base paper + dimmer ambient drift */
+  body {
+    background:
+      radial-gradient(circle at 88% 16%, rgba(215, 169, 71, 0.10), transparent 38%),
+      radial-gradient(circle at 8% 78%, rgba(184, 63, 55, 0.06), transparent 40%),
+      var(--paper);
+  }
+
+  /* --- Card surfaces — flip white backgrounds to elevated dark surface */
+  .info-card,
+  .ticket-card,
+  .stats article,
+  .why-choose-card,
+  .program-card,
+  .testimonial-card,
+  .faq-item,
+  .sponsor-tile,
+  .press-kit-card,
+  .achievements-card,
+  .ticket-guide-card,
+  .not-found-card,
+  .cms-status,
+  .prose .press-card,
+  .prose .faq-item-dynamic,
+  .prose .access-summary-table,
+  .prose .support-orgs-group,
+  .prose .wp-block-file,
+  .prose .swell-block-faq__item,
+  .prose .swell-block-bannerLink,
+  .prose .has-border.-border01,
+  .notice-actions .button.secondary {
+    background: #1a2236;
+    border-color: rgba(255, 255, 255, 0.10);
+    color: var(--ink);
+  }
+
+  /* Notice banner (homepage) */
+  .notice {
+    background: linear-gradient(135deg, rgba(215, 169, 71, 0.10), rgba(184, 63, 55, 0.06));
+    border-color: rgba(215, 169, 71, 0.30);
+  }
+
+  /* Status banners */
+  .page-status-banner {
+    background: rgba(215, 169, 71, 0.08);
+    border-color: rgba(215, 169, 71, 0.30);
+    color: var(--ink);
+  }
+  .page-status-banner strong { color: var(--ink); }
+
+  .ticket-sale-pending {
+    background: linear-gradient(135deg, rgba(215, 169, 71, 0.10), rgba(184, 63, 55, 0.06));
+  }
+  .ticket-sale-pending-msg strong { color: var(--ink); }
+  .ticket-sale-pending-sub { color: var(--muted); }
+
+  .prose .access-timetable-note {
+    background: rgba(215, 169, 71, 0.10);
+    color: var(--ink);
+  }
+
+  /* Eyebrow/tag — bright gold reads cleanly on the dark surface, so use
+     --gold directly (no need for the darker AA variant). */
+  .eyebrow, .tag {
+    color: var(--gold);
+  }
+
+  /* Prose links — teal becomes too dark; brighten it for contrast */
+  .prose a {
+    color: #6fc0c0;
+  }
+  .prose a:hover {
+    color: var(--gold);
+  }
+
+  /* FAQ summary + button — translucent gold backdrop reads better than
+     the original cream */
+  .faq-item summary::after {
+    background: linear-gradient(135deg, rgba(215, 169, 71, 0.20), rgba(184, 63, 55, 0.14));
+    color: var(--gold);
+  }
+  .faq-item[open] summary::after {
+    background: linear-gradient(135deg, rgba(215, 169, 71, 0.36), rgba(184, 63, 55, 0.28));
+  }
+
+  /* Table striping — keep zebra readable */
+  .prose table tbody tr:nth-child(odd) {
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  /* Timeline dot — match new page bg so the gold ring reads cleanly */
+  .timeline > li::before {
+    background: var(--paper);
+  }
+
+  /* page-sponsor: keep logo tiles dark too */
+  body.page-sponsor .prose .wp-block-column > figure.wp-block-image {
+    background: #1a2236;
+    border-color: rgba(255, 255, 255, 0.10);
+  }
+
+  body.page-sponsor .prose .wp-block-table td {
+    background: linear-gradient(180deg, #1c2438, #131a28);
+    border-color: rgba(215, 169, 71, 0.22);
+    color: var(--ink);
+  }
+
+  /* Site header gets a subtly deeper backdrop */
+  .site-header {
+    background: rgba(8, 13, 22, 0.94);
+  }
+
+  /* Card-hover gold rim becomes more visible against the dark surface */
+  .stats article:hover,
+  .ticket-card:hover,
+  .info-card:hover,
+  .program-card:hover,
+  .not-found-card:hover {
+    border-color: rgba(215, 169, 71, 0.55);
+    box-shadow:
+      0 28px 64px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(215, 169, 71, 0.35);
+  }
+
+  /* Image styles inside prose — the white photo frame would glow on dark;
+     dim it slightly to feel intentional */
+  .prose .is-style-image__border img {
+    background: #1a2236;
+  }
+
+  /* WP block file (PDF download) text contrast */
+  .prose .wp-block-file a { color: var(--ink); }
+}
+

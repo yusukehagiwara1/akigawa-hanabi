@@ -31,7 +31,7 @@
 | ~~L2~~ | ~~カウントダウンの「N時間」「N分」表示（直前期）~~ | ✅ 完了 (Round 21) |
 | L3 | 動画埋め込み（過去開催の高画質映像） | エモーション |
 | L4 | ふるさと納税の各プラン詳細を独立ページ化 | コンバージョン |
-| L5 | カラーパレットのダークモード対応 | a11y |
+| ~~L5~~ | ~~カラーパレットのダークモード対応~~ | ✅ 完了 (Round 27) |
 | L6 | Lighthouse 実測・点数 95+ 目指す微調整 | パフォーマンス |
 
 ## ✅ 完了済み（直近 14 ラウンド）
@@ -57,6 +57,17 @@
   - **M2** 完了: hero-fireworks-real の 800w / 1280w 派生を生成（モバイル 491KB → 86KB、約 82% 削減）。`<link rel=preload>` を imagesrcset 対応 + CSS を media query ベースのレスポンシブ背景に
   - **M3** 完了: gallery / press / faq の各 CMS セクションに testimonial と同じ `data-has-fallback` フラグ尊重ロジックを実装。空 CMS でも静的フォールバックを優先表示
   - SW v9 + キャッシュバスター 2026-05-15 に更新
+- Round 27 (2026-05-15): L5 ダークモード対応
+  - **`@media (prefers-color-scheme: dark)`** ベースで OS の dark mode 設定に自動追従
+  - **CSS 変数のフリップ**: --ink (text)、--muted、--paper (bg)、--cream、--line、--shadow、--gold-text すべてを dark 用に再定義
+  - **21 個のカードクラスに dark surface override** (info-card / ticket-card / stats article / why-choose-card / program-card / testimonial-card / faq-item / sponsor-tile / press-kit-card / achievements-card / ticket-guide-card / not-found-card / cms-status / press-card / faq-item-dynamic / access-summary-table / support-orgs-group / wp-block-file / swell-block-faq__item / swell-block-bannerLink / has-border.-border01 / notice-actions secondary)
+  - **テキスト要素の調整**: eyebrow/tag を bright gold に / prose link を #6fc0c0 に / hover を gold に
+  - **コンポーネント別**: notice / page-status-banner / ticket-sale-pending / access-timetable-note を gold-tinted dark に / FAQ + ボタンを gold グラデに
+  - **page-sponsor**: ロゴタイル + 個人協賛テーブル cells も dark に
+  - **カード hover の金縁** をより明るく (rgba 0.55) して dark 背景でも見える
+  - **timeline dot** を新 --paper に合わせて punch-through
+  - light モードはそのまま維持 (既存 CSS は変更せず additive で実装)
+  - SW v20 + キャッシュバスター 20260515k
 - Round 26 (2026-05-15): SEO 鮮度シグナル — sitemap lastmod 更新
   - **sitemap.xml**: 実コンテンツが変更された 3 ページ (ticket / event / access) の `<lastmod>` を 2026-05-15 に更新。Round 22/24 で page-status-banner や `.ticket-sale-pending` や `.access-timetable-note` を追加した実体変化を反映
   - 他ページは CSS のみの変更なので lastmod は 2026-05-12 のまま (sitemap シグナルの正確性を維持)
