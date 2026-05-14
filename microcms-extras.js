@@ -72,9 +72,16 @@
     // Mark as loading for screen readers
     target.setAttribute("aria-busy", "true");
 
+    // 6-second hard timeout — see script.js for rationale.
+    const controller = typeof AbortController !== "undefined" ? new AbortController() : null;
+    const timeoutId = controller
+      ? setTimeout(function () { controller.abort(); }, 6000)
+      : null;
+
     try {
       const res = await fetch(url, {
         headers: { "X-MICROCMS-API-KEY": cfg.apiKey },
+        signal: controller ? controller.signal : undefined,
       });
       if (!res.ok) throw new Error("fetch failed: " + res.status);
       const data = await res.json();
@@ -85,10 +92,12 @@
       }
       if (typeof onComplete === "function") onComplete(items.length);
     } catch (err) {
-      console.warn("[microcms-extras]", endpointCfg.endpoint, err.message);
+      const wasAborted = err && err.name === "AbortError";
+      console.warn("[microcms-extras]", endpointCfg.endpoint, wasAborted ? "timeout" : err.message);
       // Leave any pre-rendered fallback in place.
       if (typeof onComplete === "function") onComplete(-1);
     } finally {
+      if (timeoutId) clearTimeout(timeoutId);
       target.setAttribute("aria-busy", "false");
     }
   }
