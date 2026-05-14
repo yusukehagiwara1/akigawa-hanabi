@@ -6824,3 +6824,29 @@ body.page-sponsor .prose .wp-block-table td strong {
   }
 }
 
+/* access.html: disclaimer note under the legacy bus-stop timetable */
+.prose .access-timetable-note {
+  margin: 12px 0 0;
+  padding: 12px 16px;
+  border-left: 3px solid var(--gold);
+  background: rgba(215, 169, 71, 0.06);
+  border-radius: 0 8px 8px 0;
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--ink);
+}
+
+.prose .access-timetable-note strong {
+  color: var(--red);
+}
+
+.prose .access-timetable-note a {
+  color: var(--teal);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.prose .access-timetable-note a:hover {
+  color: var(--gold-text);
+}
+

@@ -406,6 +406,23 @@ function Add-ImageDimensions([string]$html) {
   })
 }
 
+function Apply-AccessStaleGuard([string]$h) {
+  # access.html ships with a bus-stop timetable imported verbatim from WP
+  # at 第7回 (2025). Bus schedules change year to year; append a disclaimer
+  # so visitors verify the latest times rather than rely on a stale table.
+  $note = @'
+
+<p class="access-timetable-note"><strong>※ 上記時刻表は前回開催（2025年）時点の路線バス情報です。</strong>当日は<a href="https://www.summerland.co.jp/access/" target="_blank" rel="noopener">東京サマーランド アクセスページ</a>または各バス会社の公式時刻表で最新運行情報をご確認ください。</p>
+'@
+  $h = [regex]::Replace(
+    $h,
+    '(<figure class="wp-block-table"><table class="has-fixed-layout"><tbody><tr><td>発（秋川駅）</td>.*?</table></figure>)',
+    "`$1$note",
+    'Singleline'
+  )
+  return $h
+}
+
 function Apply-TicketStaleGuard([string]$h) {
   # The WP source ships with live KKday / アソビュー reservation links from
   # the previous edition. They must not be clickable after 第7回 ended —
@@ -510,6 +527,9 @@ function Build-Page([hashtable]$page) {
 '@
     $content = $banner + $content
     $content = Apply-TicketStaleGuard $content
+  }
+  if ($page.slug -eq "access") {
+    $content = Apply-AccessStaleGuard $content
   }
   if ($page.slug -eq "event") {
     $banner = @'
