@@ -62,6 +62,20 @@
   - **M2** 完了: hero-fireworks-real の 800w / 1280w 派生を生成（モバイル 491KB → 86KB、約 82% 削減）。`<link rel=preload>` を imagesrcset 対応 + CSS を media query ベースのレスポンシブ背景に
   - **M3** 完了: gallery / press / faq の各 CMS セクションに testimonial と同じ `data-has-fallback` フラグ尊重ロジックを実装。空 CMS でも静的フォールバックを優先表示
   - SW v9 + キャッシュバスター 2026-05-15 に更新
+- Round 55 (2026-05-15): デザイン磨き込み — 数字カウントアップ + Hero タイトル focus-in
+  - **ui.js**: `.achievements-num em` を IntersectionObserver で監視、ビューポートに 40% 入った瞬間に 0 → 目標値へ 1.2s でカウントアップ (ease-out cubic)
+    * 第8回 / 5,000発 / 10社+ / 10媒体+ の 4 つの achievement 数字に適用
+    * カンマ区切りを保持 (toLocaleString("ja-JP"))
+    * アニメーション完了後は元のテキスト (例 "5,000") を復元してフォーマット維持
+    * 5 未満の小さい数字はスキップ (視覚的価値が薄いため)
+    * prefers-reduced-motion 尊重
+  - **styles.css**: `.hero h1 > span` と `.hero-lead > span` に focus-in アニメーション (1.1s, cubic-bezier(0.2,0.8,0.2,1))
+    * blur(8px) → blur(0) + opacity 0.5 → 1
+    * 各 span に 0.18s 刻みの stagger delay で「フレーズが順にピントが合う」演出
+    * 既存の hero-fade と並走 (filter + opacity のみで transform は触らない、衝突しない)
+    * prefers-reduced-motion で無効化
+  - `bump-cache.ps1` で v43→v44 + 20260516d→20260516e を自動同期
+  - `validate-site.ps1` で 5 項目すべて確認 OK
 - Round 54 (2026-05-15): 大規模リファクタ — 運用スクリプト体系化
   - HTML 構造監査の結果、セマンティック / 見出し階層 / ランドマークは全て健全 (h1×1, h2×多, h3 ネストが正、`<main>` `<nav>` `<aside>` `<footer>` 適切)。大規模な構造変更は不要
   - 代わりに保守時間を実質的に削減する **運用ツール 3 本を追加**:

@@ -383,6 +383,52 @@
     insertAfter.parentNode.insertBefore(list, insertAfter.nextSibling);
   })();
 
+  // --- Animated number counters (.achievements-num em) -------------------
+  // When the achievements section enters view, count each <em> number from
+  // 0 up to its written value. Subtle but draws the eye to the headline
+  // figures (5,000発 / 第8回 / 10社+ / 10媒体+).
+  if (
+    "IntersectionObserver" in window &&
+    !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  ) {
+    const numEls = document.querySelectorAll(".achievements-num em, [data-count-up]");
+    if (numEls.length) {
+      const numIo = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          animateCount(entry.target);
+          numIo.unobserve(entry.target);
+        });
+      }, { threshold: 0.4 });
+      numEls.forEach(function (el) { numIo.observe(el); });
+    }
+  }
+
+  function animateCount(el) {
+    const original = el.textContent.trim();
+    // Strip non-digits (handles "5,000" → 5000)
+    const target = parseInt(original.replace(/[^\d]/g, ""), 10);
+    // Don't animate tiny numbers (visual flicker, not enough range to feel)
+    if (isNaN(target) || target < 5) return;
+    const duration = 1200;
+    const start = performance.now();
+    function tick(now) {
+      const elapsed = now - start;
+      const progress = Math.min(1, elapsed / duration);
+      // Ease-out cubic — fast start, gentle finish
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = Math.floor(target * eased);
+      el.textContent = current.toLocaleString("ja-JP");
+      if (progress < 1) {
+        requestAnimationFrame(tick);
+      } else {
+        // Restore original text (preserves the writer's formatting, e.g. "5,000")
+        el.textContent = original;
+      }
+    }
+    requestAnimationFrame(tick);
+  }
+
   // --- Scroll fade-in animations ---
   if (
     "IntersectionObserver" in window &&

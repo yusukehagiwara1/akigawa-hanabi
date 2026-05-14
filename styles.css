@@ -7170,6 +7170,38 @@ body.page-sponsor .prose .wp-block-table td strong {
    LinkText, etc). Make sure our gold buttons/cards survive by mapping
    to system tokens where it matters.
    ====================================================================== */
+/* ======================================================================
+   Round 55 — Hero タイトルの focus-in 演出
+   ----------------------------------------------------------------------
+   .hero h1 と .hero-lead は既に span で 2 フレーズに分割されている
+   (line-break:strict + word-break:keep-all 用)。各 span に blur(8px) →
+   blur(0) のアニメーションを stagger でかけると、各フレーズが順に
+   ピントが合うような演出になる。
+   既存の .hero-content の hero-fade とは並走する (transform は触らず
+   filter + opacity のみ変えるので衝突しない)。
+   ====================================================================== */
+.hero h1 > span,
+.hero-lead > span {
+  animation: hero-word-focus 1.1s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.hero h1 > span:nth-child(2) { animation-delay: 0.18s; }
+.hero h1 > span:nth-child(3) { animation-delay: 0.36s; }
+.hero-lead > span:nth-child(1) { animation-delay: 0.45s; }
+.hero-lead > span:nth-child(2) { animation-delay: 0.62s; }
+
+@keyframes hero-word-focus {
+  from { filter: blur(8px); opacity: 0.5; }
+  to   { filter: blur(0);   opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero h1 > span,
+  .hero-lead > span {
+    animation: none;
+  }
+}
+
 @media (forced-colors: active) {
   .button.primary,
   .button.secondary,
