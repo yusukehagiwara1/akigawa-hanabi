@@ -6999,3 +6999,23 @@ body.page-sponsor .prose .wp-block-table td strong {
   .prose .wp-block-file a { color: var(--ink); }
 }
 
+/* ======================================================================
+   Round 30 — Cross-document view transitions
+   ----------------------------------------------------------------------
+   Opt in to the View Transitions API on supported browsers (Chrome 126+).
+   When users navigate between pages of this site, the browser blends
+   the old and new documents with a quick crossfade instead of the
+   default white flash. Falls back to instant nav on older browsers.
+   ====================================================================== */
+@view-transition {
+  navigation: auto;
+}
+
+/* Respect reduced motion — disable the crossfade for users who opted out */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
+  }
+}
+

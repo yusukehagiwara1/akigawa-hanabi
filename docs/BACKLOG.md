@@ -57,6 +57,16 @@
   - **M2** 完了: hero-fireworks-real の 800w / 1280w 派生を生成（モバイル 491KB → 86KB、約 82% 削減）。`<link rel=preload>` を imagesrcset 対応 + CSS を media query ベースのレスポンシブ背景に
   - **M3** 完了: gallery / press / faq の各 CMS セクションに testimonial と同じ `data-has-fallback` フラグ尊重ロジックを実装。空 CMS でも静的フォールバックを優先表示
   - SW v9 + キャッシュバスター 2026-05-15 に更新
+- Round 30 (2026-05-15): モダンブラウザ機能 — color-scheme / View Transitions / Speculation Rules
+  - **`<meta name="color-scheme" content="light dark">`** を全 15 HTML に追加。ブラウザに「両モード対応サイト」と伝え、フォームコントロール・スクロールバー・iframe placeholder などのネイティブ UI が OS テーマに自動追従
+  - **CSS の `@view-transition { navigation: auto }`** で Chrome 126+ の Cross-Document View Transitions API を opt-in。ページ間移動が crossfade に (旧ブラウザは無視 = ノーリスク)
+  - **Speculation Rules API** を index.html に追加 (Chrome 121+):
+    * /ticket.html, /access.html → prerender (moderate eagerness、リンクホバー時に prerender)
+    * /donation.html, /qa.html → prefetch (moderate)
+    * メイン CTA に体感「瞬時遷移」を提供
+  - prefers-reduced-motion 尊重 (view transitions の crossfade を無効化)
+  - **generate.ps1**: テンプレートに color-scheme meta を追加
+  - SW v23 + キャッシュバスター 20260515m
 - Round 29 (2026-05-15): フォントレンダーブロック解消 + 軽微な a11y 修正
   - **Google Fonts CSS を非同期読み込みに**: 全 15 HTML で `<link rel="stylesheet">` を `<link rel="preload" ... onload="this.rel='stylesheet'">` + `<noscript>` fallback パターンに変更
   - render-blocking から解放され FCP/LCP が改善 (特にサブページで効く)

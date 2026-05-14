@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#0f1828">
+    <meta name="color-scheme" content="light dark">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <link rel="manifest" href="/manifest.json">
     <title>秋川流域花火大会【公式】｜東京・あきる野の秋花火大会 - 紅葉と音楽花火</title>
@@ -269,14 +270,14 @@
     .hero-badge-pulse{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--gold)}
     .hero-badge-text strong{color:var(--gold);font-weight:900;letter-spacing:.04em}
     </style>
-    <link rel="preload" href="styles.css?v=20260515l" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="styles.css?v=20260515l"></noscript>
-    <script src="analytics.js?v=20260515l" defer></script>
-    <script src="ui.js?v=20260515l" defer></script>
-    <script src="microcms-config.js?v=20260515l" defer></script>
-    <script src="script.js?v=20260515l" defer></script>
-    <script src="microcms-extras.js?v=20260515l" defer></script>
-    <script src="sponsor-urls.js?v=20260515l" defer></script>
+    <link rel="preload" href="styles.css?v=20260515m" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="styles.css?v=20260515m"></noscript>
+    <script src="analytics.js?v=20260515m" defer></script>
+    <script src="ui.js?v=20260515m" defer></script>
+    <script src="microcms-config.js?v=20260515m" defer></script>
+    <script src="script.js?v=20260515m" defer></script>
+    <script src="microcms-extras.js?v=20260515m" defer></script>
+    <script src="sponsor-urls.js?v=20260515m" defer></script>
     <script>
       // Register Service Worker for offline support / PWA
       if ("serviceWorker" in navigator) {
@@ -284,6 +285,46 @@
           navigator.serviceWorker.register("/sw.js").catch(function () {});
         });
       }
+    </script>
+    <script type="speculationrules">
+    {
+      "prerender": [
+        {
+          "where": {
+            "and": [
+              { "href_matches": "/ticket.html" }
+            ]
+          },
+          "eagerness": "moderate"
+        },
+        {
+          "where": {
+            "and": [
+              { "href_matches": "/access.html" }
+            ]
+          },
+          "eagerness": "moderate"
+        }
+      ],
+      "prefetch": [
+        {
+          "where": {
+            "and": [
+              { "href_matches": "/donation.html" }
+            ]
+          },
+          "eagerness": "moderate"
+        },
+        {
+          "where": {
+            "and": [
+              { "href_matches": "/qa.html" }
+            ]
+          },
+          "eagerness": "moderate"
+        }
+      ]
+    }
     </script>
   </head>
   <body>
