@@ -1,3 +1,20 @@
+/* ======================================================================
+   秋川流域花火大会 — styles.css
+   ----------------------------------------------------------------------
+   The bulk of this file mirrors the original WordPress → static migration.
+   Sections labeled "Round 16-45" at the bottom are the design / a11y /
+   performance polish added during the 2026-05 improvement sprint. Each
+   round's commit is documented in docs/BACKLOG.md for traceability.
+
+   Maintenance tips:
+   - Site uses CSS variables defined in :root for colors / lines / shadow.
+     Override via @media (prefers-color-scheme: dark) for theme switching.
+   - Critical CSS for index.html is inlined in <head> (see index.html).
+     Critical CSS for sub-pages is inlined via generate.ps1 template.
+   - Cache-bust on every meaningful CSS change: bump ?v= suffix in
+     HTML <link> tags and the CACHE_VERSION in sw.js together.
+   ====================================================================== */
+
 :root {
   --ink: #172026;
   --muted: #62707a;
