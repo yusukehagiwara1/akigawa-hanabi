@@ -57,6 +57,13 @@
   - **M2** 完了: hero-fireworks-real の 800w / 1280w 派生を生成（モバイル 491KB → 86KB、約 82% 削減）。`<link rel=preload>` を imagesrcset 対応 + CSS を media query ベースのレスポンシブ背景に
   - **M3** 完了: gallery / press / faq の各 CMS セクションに testimonial と同じ `data-has-fallback` フラグ尊重ロジックを実装。空 CMS でも静的フォールバックを優先表示
   - SW v9 + キャッシュバスター 2026-05-15 に更新
+- Round 35 (2026-05-15): Twitter Card 拡張属性 — 開催日/会場をシェア時に直接表示
+  - **`twitter:label1` / `twitter:data1`**: 開催日 → 2026年11月14日（土） 18:00〜18:50
+  - **`twitter:label2` / `twitter:data2`**: 会場 → 東京サマーランド 第2駐車場（あきる野市）
+  - index.html + 13 サブページに追加 (404 は OG/Twitter メタを持たないので除外)
+  - generate.ps1 のテンプレートも同期
+  - Twitter (X) に URL を貼った時のカード preview に、画像+説明文に加えて構造化された「開催日 / 会場」ラベルが表示される
+  - SW v28 + キャッシュバスター 20260515q
 - Round 34 (2026-05-15): GA4 にスクロール深度トラッキング追加
   - **analytics.js に scroll_depth イベント**: 25 / 50 / 75 / 90 % 到達時に GA4 へ送信
   - requestAnimationFrame で間引いて scroll listener の負荷を最小化

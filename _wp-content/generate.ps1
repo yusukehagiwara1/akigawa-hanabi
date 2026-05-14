@@ -80,6 +80,10 @@ $template = @'
     <meta name="twitter:description" content="{{DESC}}">
     <meta name="twitter:image" content="https://akigawa-hanabi.pages.dev/assets/keyvisual.jpg">
     <meta name="twitter:image:alt" content="夜空に咲く秋川流域花火大会のキービジュアル">
+    <meta name="twitter:label1" content="開催日">
+    <meta name="twitter:data1" content="2026年11月14日（土） 18:00〜18:50">
+    <meta name="twitter:label2" content="会場">
+    <meta name="twitter:data2" content="東京サマーランド 第2駐車場（あきる野市）">
     <link rel="icon" href="assets/favicon.ico" sizes="any">
     <link rel="apple-touch-icon" href="assets/favicon.ico">
     <link rel="dns-prefetch" href="https://0k3w9bd30b.microcms.io">
