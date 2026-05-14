@@ -7019,3 +7019,96 @@ body.page-sponsor .prose .wp-block-table td strong {
   }
 }
 
+/* ======================================================================
+   Round 45 — Service Worker update toast
+   ----------------------------------------------------------------------
+   Surfaces a reload prompt when ui.js detects that a fresh Service Worker
+   version has installed silently in the background. Sticky bottom-center
+   pill that doesn't block content.
+   ====================================================================== */
+.sw-update-toast {
+  position: fixed;
+  z-index: 30;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: calc(100% - 32px);
+  padding: 12px 14px 12px 20px;
+  border-radius: 999px;
+  background: rgba(10, 16, 28, 0.94);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: 0 14px 36px rgba(11, 19, 31, 0.32);
+  backdrop-filter: blur(10px);
+  animation: sw-toast-in 0.4s ease-out both;
+}
+
+.sw-update-toast span {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.sw-update-toast-btn {
+  flex-shrink: 0;
+  padding: 8px 16px;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ffe8a6 0%, var(--gold) 60%, #c79636 100%);
+  color: var(--night);
+  font-weight: 800;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sw-update-toast-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(215, 169, 71, 0.45);
+}
+
+.sw-update-toast-close {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.10);
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.sw-update-toast-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+@keyframes sw-toast-in {
+  from { transform: translateX(-50%) translateY(20px); opacity: 0; }
+  to   { transform: translateX(-50%) translateY(0); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sw-update-toast { animation: none; }
+}
+
+@media (max-width: 480px) {
+  .sw-update-toast {
+    bottom: 84px; /* avoid mobile sticky CTA */
+    padding: 10px 12px 10px 16px;
+    font-size: 0.84rem;
+    gap: 8px;
+  }
+  .sw-update-toast-btn {
+    padding: 7px 12px;
+    font-size: 0.82rem;
+  }
+}
+

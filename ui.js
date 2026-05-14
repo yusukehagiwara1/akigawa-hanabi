@@ -3,6 +3,44 @@
   // --- Highlight current page in nav ---
   const currentPath = window.location.pathname.split("/").pop() || "index.html";
 
+  // --- Service Worker update notification --------------------------------
+  // Detects when a new SW version finishes installing while the user is
+  // still on the page. Shows a small toast offering to reload. Helps
+  // long-session visitors pick up freshly deployed content without
+  // having to manually refresh.
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.ready.then(function (reg) {
+      reg.addEventListener("updatefound", function () {
+        const newSW = reg.installing;
+        if (!newSW) return;
+        newSW.addEventListener("statechange", function () {
+          if (newSW.state === "installed" && navigator.serviceWorker.controller) {
+            showSWUpdateToast();
+          }
+        });
+      });
+    }).catch(function () {});
+  }
+
+  function showSWUpdateToast() {
+    if (document.querySelector(".sw-update-toast")) return;
+    const toast = document.createElement("div");
+    toast.className = "sw-update-toast";
+    toast.setAttribute("role", "status");
+    toast.setAttribute("aria-live", "polite");
+    toast.innerHTML =
+      '<span>サイトが更新されました。再読み込みすると最新版を表示します。</span>' +
+      '<button type="button" class="sw-update-toast-btn">再読み込み</button>' +
+      '<button type="button" class="sw-update-toast-close" aria-label="閉じる">×</button>';
+    document.body.appendChild(toast);
+    toast.querySelector(".sw-update-toast-btn").addEventListener("click", function () {
+      window.location.reload();
+    });
+    toast.querySelector(".sw-update-toast-close").addEventListener("click", function () {
+      toast.remove();
+    });
+  }
+
   // --- Tag body with current page slug (page-sponsor, page-access, ...) ---
   // Used by per-page CSS to scope styling (e.g., sponsor logo tiles).
   const pageSlug = currentPath.replace(/\.html$/i, "").replace(/[^a-z0-9\-]+/gi, "-") || "index";

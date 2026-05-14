@@ -57,6 +57,15 @@
   - **M2** 完了: hero-fireworks-real の 800w / 1280w 派生を生成（モバイル 491KB → 86KB、約 82% 削減）。`<link rel=preload>` を imagesrcset 対応 + CSS を media query ベースのレスポンシブ背景に
   - **M3** 完了: gallery / press / faq の各 CMS セクションに testimonial と同じ `data-has-fallback` フラグ尊重ロジックを実装。空 CMS でも静的フォールバックを優先表示
   - SW v9 + キャッシュバスター 2026-05-15 に更新
+- Round 45 (2026-05-15): SW 更新検知 + 再読み込み通知トースト
+  - **ui.js**: `serviceWorker.ready` → `updatefound` → 新 SW が `installed` 状態かつ既に controller があれば「サイトが更新されました」トースト表示
+  - **CSS**: `.sw-update-toast` を画面下中央に固定 (`bottom: 24px`)、金グラデ「再読み込み」ボタン + 閉じる × ボタン
+  - 再読み込み: `window.location.reload()` で新 SW が controller になる
+  - 閉じる: トーストを DOM から削除 (放置可、ブラウザ次回再読み込み時に自動更新)
+  - SP では `bottom: 84px` で mobile sticky CTA と被らない位置に
+  - 効果: 長時間滞在ユーザー (例: ticket.html を開いたまま販売開始を待つ) も新バージョンを即時受け取れる
+  - SW v36 + キャッシュバスター 20260515x
+- Round 44 (2026-05-15): inject-dims.ps1 を自己完結化 (TSV 不在時に自動再生成)
 - Round 43 (2026-05-15): GA 関連 DNS 先読みヒント追加
   - `<link rel="dns-prefetch" href="https://www.google-analytics.com">`
   - `<link rel="dns-prefetch" href="https://stats.g.doubleclick.net">`
