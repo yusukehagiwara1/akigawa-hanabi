@@ -12,7 +12,27 @@ $ErrorActionPreference = "Stop"
 
 $tsvPath = Join-Path $Root "_image-dims.tsv"
 if (-not (Test-Path $tsvPath)) {
-  throw "Missing $tsvPath -- run the inventory step first."
+  # Auto-generate the TSV from current assets using Shell.Application
+  # (works for WebP, JPG, PNG without external libraries).
+  Write-Host "Generating $tsvPath from assets/ ..."
+  $assetsDir = Join-Path $Root "assets"
+  if (-not (Test-Path $assetsDir)) {
+    throw "Missing assets/ directory — cannot inventory."
+  }
+  $shell = New-Object -ComObject Shell.Application
+  $tsvLines = Get-ChildItem -Path $assetsDir -Recurse -Include *.webp,*.jpg,*.jpeg,*.png -File | ForEach-Object {
+    try {
+      $dir = $shell.Namespace($_.DirectoryName)
+      $item = $dir.ParseName($_.Name)
+      $raw = $dir.GetDetailsOf($item, 31)
+      $rel = $_.FullName.Substring($Root.Length + 1) -replace '\\','/'
+      if ($raw -match '(\d+)\s*x\s*(\d+)') {
+        "$rel`t$($matches[1]) x $($matches[2])"
+      }
+    } catch {}
+  }
+  $tsvLines | Out-File -FilePath $tsvPath -Encoding utf8
+  Write-Host "  → wrote $($tsvLines.Count) entries"
 }
 
 # Build lookup: relative path -> "WxH"
