@@ -57,6 +57,13 @@
   - **M2** 完了: hero-fireworks-real の 800w / 1280w 派生を生成（モバイル 491KB → 86KB、約 82% 削減）。`<link rel=preload>` を imagesrcset 対応 + CSS を media query ベースのレスポンシブ背景に
   - **M3** 完了: gallery / press / faq の各 CMS セクションに testimonial と同じ `data-has-fallback` フラグ尊重ロジックを実装。空 CMS でも静的フォールバックを優先表示
   - SW v9 + キャッシュバスター 2026-05-15 に更新
+- Round 32 (2026-05-15): manifest.json の PWA メタデータ拡張
+  - **`display_override`** を追加: `["window-controls-overlay", "standalone", "minimal-ui", "browser"]` の優先順序
+    * Chrome/Edge デスクトップで window-controls-overlay 対応端末ならネイティブアプリ風の最小 UI
+    * 非対応プラットフォームは standalone → minimal-ui → browser へフォールバック
+  - **`id: "/"`** を明示: 複数オリジン/サブパスでのインストール識別を安定化 (PWA Identity ガイドライン推奨)
+  - **`lang: "ja"` → `"ja-JP"`**: より具体的なロケール
+  - SW v25
 - Round 31 (2026-05-15): GA4 に Core Web Vitals 実測を送信
   - **analytics.js に Web Vitals tracking を追加**: PerformanceObserver で LCP / FCP / CLS を計測し GA4 の `web_vitals` イベントとして送信
   - **FCP**: paint observer の `first-contentful-paint` を即時送信
