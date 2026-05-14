@@ -57,6 +57,23 @@
   - **M2** 完了: hero-fireworks-real の 800w / 1280w 派生を生成（モバイル 491KB → 86KB、約 82% 削減）。`<link rel=preload>` を imagesrcset 対応 + CSS を media query ベースのレスポンシブ背景に
   - **M3** 完了: gallery / press / faq の各 CMS セクションに testimonial と同じ `data-has-fallback` フラグ尊重ロジックを実装。空 CMS でも静的フォールバックを優先表示
   - SW v9 + キャッシュバスター 2026-05-15 に更新
+- Round 28 (2026-05-15): Cloudflare Pages HTTP ヘッダー最適化
+  - **新規 `_headers` ファイル**: Cloudflare Pages の規約に沿ったヘッダー設定
+  - **セキュリティヘッダー (全レスポンス)**:
+    * X-Content-Type-Options: nosniff (MIME 推測無効化)
+    * Referrer-Policy: strict-origin-when-cross-origin
+    * Permissions-Policy: camera/microphone/geolocation/interest-cohort 全部 ()
+    * X-Frame-Options: SAMEORIGIN
+    * Cross-Origin-Opener-Policy: same-origin
+  - **キャッシュポリシー**:
+    * /assets/* → max-age=31536000, immutable (1 年、画像はバイナリ変更で URL 変わるので安全)
+    * /styles.css, /*.js (versioned with ?v=YYYYMMDD<letter>) → 1 年 immutable
+    * /sw.js → max-age=0, must-revalidate (SW 更新を即時反映)
+    * /manifest.json → 1 時間
+    * /*.html → 5 分 must-revalidate (deploy 後すぐ反映)
+    * /404.html → noindex via X-Robots-Tag
+    * /sitemap.xml, /robots.txt → 1 時間 + 正しい Content-Type
+  - SW v21
 - Round 27 (2026-05-15): L5 ダークモード対応
   - **`@media (prefers-color-scheme: dark)`** ベースで OS の dark mode 設定に自動追従
   - **CSS 変数のフリップ**: --ink (text)、--muted、--paper (bg)、--cream、--line、--shadow、--gold-text すべてを dark 用に再定義
