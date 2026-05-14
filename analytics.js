@@ -166,6 +166,43 @@
     }
   });
 
+  // ---- Scroll depth tracking → GA4 ----
+  // Fires `scroll_depth` events at 25/50/75/90% page scroll, once per
+  // page session. Helps the analytics team see how far users read each
+  // sub-page (engagement signal for long-form content like event.html).
+  (function () {
+    var milestones = [25, 50, 75, 90];
+    var reached = {};
+    var ticking = false;
+
+    function check() {
+      ticking = false;
+      var doc = document.documentElement;
+      var scrollTop = window.scrollY || doc.scrollTop;
+      var docHeight = doc.scrollHeight - doc.clientHeight;
+      if (docHeight <= 0) return;
+      var pct = Math.min(100, Math.round((scrollTop / docHeight) * 100));
+      milestones.forEach(function (m) {
+        if (pct >= m && !reached[m]) {
+          reached[m] = true;
+          try {
+            gtag("event", "scroll_depth", {
+              percent: m,
+              page_path: window.location.pathname
+            });
+          } catch (e) {}
+        }
+      });
+    }
+
+    addEventListener("scroll", function () {
+      if (!ticking) {
+        requestAnimationFrame(check);
+        ticking = true;
+      }
+    }, { passive: true });
+  })();
+
   // ---- Core Web Vitals tracking (LCP / FCP / CLS) → GA4 ----
   // Lightweight inline implementation — no external library. Sends each
   // metric once per page load, batched via the GA4 `web_vitals` event.

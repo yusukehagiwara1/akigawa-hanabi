@@ -57,6 +57,13 @@
   - **M2** 完了: hero-fireworks-real の 800w / 1280w 派生を生成（モバイル 491KB → 86KB、約 82% 削減）。`<link rel=preload>` を imagesrcset 対応 + CSS を media query ベースのレスポンシブ背景に
   - **M3** 完了: gallery / press / faq の各 CMS セクションに testimonial と同じ `data-has-fallback` フラグ尊重ロジックを実装。空 CMS でも静的フォールバックを優先表示
   - SW v9 + キャッシュバスター 2026-05-15 に更新
+- Round 34 (2026-05-15): GA4 にスクロール深度トラッキング追加
+  - **analytics.js に scroll_depth イベント**: 25 / 50 / 75 / 90 % 到達時に GA4 へ送信
+  - requestAnimationFrame で間引いて scroll listener の負荷を最小化
+  - 各 milestone はセッション内 1 回のみ (reached[] フラグで dedupe)
+  - `page_path` も同送信して、ページ別エンゲージメント計測が可能
+  - event.html / qa.html / donation.html などの長文ページで「どこまで読まれているか」が見える
+  - SW v27 + キャッシュバスター 20260515p
 - Round 33 (2026-05-15): サブページに Critical CSS をインライン化 — FCP/LCP 高速化
   - **13 サブページ全部** (404 含めず) で `<link rel="stylesheet">` (render-blocking) を以下のパターンに変更:
     1. インライン `<style>` で約 2.3KB の Critical CSS (header, page-hero, タイポ, モバイル nav)
