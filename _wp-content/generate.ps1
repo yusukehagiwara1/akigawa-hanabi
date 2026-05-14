@@ -114,7 +114,39 @@ $template = @'
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900{{AMP}}family=Zen+Old+Mincho:wght@700;900{{AMP}}display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900{{AMP}}family=Zen+Old+Mincho:wght@700;900{{AMP}}display=swap"></noscript>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+    /* Critical CSS for sub-pages — inlined to render the header and
+       page-hero without waiting for styles.css. */
+    :root{--ink:#172026;--muted:#62707a;--paper:#fffdf7;--cream:#f7efe2;--gold:#d7a947;--gold-text:#8e6a1f;--red:#b83f37;--teal:#0f6868;--night:#10182a;--line:rgba(23,32,38,.13)}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:80px}
+    body{margin:0;color:var(--ink);background:var(--paper);font-family:"Noto Sans JP",system-ui,sans-serif;line-height:1.7}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%}
+    h1,h2,p{margin-top:0}
+    h1,h2{font-family:"Zen Old Mincho",serif;line-height:1.18}
+    .skip-link{position:absolute;left:12px;top:12px;z-index:100;padding:10px 16px;background:var(--ink);color:#fff;font-weight:700;border-radius:6px;transform:translateY(-200%)}
+    .skip-link:focus-visible{transform:translateY(0)}
+    .site-header{position:fixed;z-index:20;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:72px;padding:14px clamp(18px,4vw,54px);color:#fff;background:rgba(10,16,28,.94);backdrop-filter:blur(12px)}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:900;white-space:nowrap;font-size:1.02rem;letter-spacing:.04em}
+    .brand-mark{display:block;height:40px;width:auto;filter:invert(1) grayscale(1);mix-blend-mode:difference;opacity:.95}
+    .nav{display:flex;align-items:center;gap:clamp(14px,2vw,30px);font-size:.91rem;font-weight:700}
+    .nav a{opacity:.88}
+    .header-cta{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 18px;border-radius:999px;font-weight:800;color:var(--night);background:#fff;white-space:nowrap}
+    .nav-toggle{display:none}
+    @media (max-width:920px){.nav{display:none}.nav-toggle{display:flex;width:44px;height:44px;padding:0;border:0;background:transparent;cursor:pointer;align-items:center;justify-content:center;flex-direction:column;gap:6px}.nav-toggle span{display:block;width:24px;height:2px;background:#fff;border-radius:2px}}
+    .page-main{padding-top:72px}
+    .page-hero{position:relative;padding:clamp(80px,11vw,140px) clamp(22px,5vw,70px) clamp(40px,6vw,80px);background:radial-gradient(circle at 12% 18%,rgba(215,169,71,.18),transparent 55%),radial-gradient(circle at 88% 22%,rgba(184,63,55,.12),transparent 50%),linear-gradient(180deg,#0f1828,#0f3939 70%,var(--cream));color:#fff;overflow:hidden}
+    .page-hero-inner{position:relative;width:min(1120px,calc(100% - 40px));margin-inline:auto}
+    .page-hero h1{max-width:920px;margin:0;font-size:clamp(2rem,5vw,3.6rem);color:#fff;word-break:keep-all;line-break:strict}
+    .page-hero .tag{display:inline-flex;align-items:center;gap:10px;color:var(--gold);font-size:.78rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px}
+    .page-hero .page-back{display:inline-flex;align-items:center;gap:6px;margin-bottom:18px;padding:8px 14px;border:1px solid rgba(255,255,255,.32);border-radius:999px;font-size:.86rem;font-weight:700;color:rgba(255,255,255,.88)}
+    .page-hero-pill{display:inline-flex;align-items:center;gap:8px;margin:0 0 16px;padding:6px 14px 6px 10px;background:linear-gradient(135deg,rgba(215,169,71,.22),rgba(184,63,55,.18));border:1px solid rgba(215,169,71,.5);border-radius:999px;color:#fff;font-size:.78rem;font-weight:800}
+    .page-hero-pill strong{color:var(--gold);font-weight:900}
+    .page-hero-pill-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--gold)}
+    </style>
+    <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="styles.css"></noscript>
     <script src="analytics.js" defer></script>
     <script src="ui.js" defer></script>
     <script src="sponsor-urls.js" defer></script>

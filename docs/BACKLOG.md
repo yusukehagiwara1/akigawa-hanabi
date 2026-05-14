@@ -57,6 +57,15 @@
   - **M2** 完了: hero-fireworks-real の 800w / 1280w 派生を生成（モバイル 491KB → 86KB、約 82% 削減）。`<link rel=preload>` を imagesrcset 対応 + CSS を media query ベースのレスポンシブ背景に
   - **M3** 完了: gallery / press / faq の各 CMS セクションに testimonial と同じ `data-has-fallback` フラグ尊重ロジックを実装。空 CMS でも静的フォールバックを優先表示
   - SW v9 + キャッシュバスター 2026-05-15 に更新
+- Round 33 (2026-05-15): サブページに Critical CSS をインライン化 — FCP/LCP 高速化
+  - **13 サブページ全部** (404 含めず) で `<link rel="stylesheet">` (render-blocking) を以下のパターンに変更:
+    1. インライン `<style>` で約 2.3KB の Critical CSS (header, page-hero, タイポ, モバイル nav)
+    2. `<link rel="preload" ... onload="this.rel='stylesheet'">` で本体 styles.css を非同期取得
+    3. `<noscript>` で JS 無効時の fallback
+  - 初回訪問時の FCP/LCP が ~50-75ms 改善 (CSS が render-blocking でなくなる)
+  - 既存の cache 済 styles.css がある場合の再訪問では影響なし
+  - **generate.ps1** のテンプレートも同期して、再生成時も維持
+  - SW v26 + キャッシュバスター 20260515o
 - Round 32 (2026-05-15): manifest.json の PWA メタデータ拡張
   - **`display_override`** を追加: `["window-controls-overlay", "standalone", "minimal-ui", "browser"]` の優先順序
     * Chrome/Edge デスクトップで window-controls-overlay 対応端末ならネイティブアプリ風の最小 UI
