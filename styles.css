@@ -6493,3 +6493,185 @@ body {
   outline-offset: 4px;
 }
 
+/* ======================================================================
+   Round 20 / M5 — Unify sponsor.html with the homepage sponsor-grid
+   ----------------------------------------------------------------------
+   sponsor.html ships with the original WordPress block layout
+   (`.wp-block-columns` + `.wp-block-column` + `.wp-block-image`). This
+   block re-skins those WP blocks on the sponsor page only so each logo
+   reads as a proper tile, matching the home page `.sponsor-tile` look.
+   Body slug class (`page-sponsor`) is added by ui.js on load.
+   ====================================================================== */
+
+/* Tier-header h2 (特別協力 / ゴールドスポンサー / ...) — drop the WP
+   yellow marker, replace with our gold-red gradient stripe. */
+body.page-sponsor .prose h2.wp-block-heading.is-style-section_ttl {
+  display: block;
+  margin-top: 2.4em;
+  padding-bottom: 12px;
+  border-bottom: none;
+  font-family: "Zen Old Mincho", serif;
+  font-size: clamp(1.5rem, 3.2vw, 2rem);
+}
+
+body.page-sponsor .prose h2.wp-block-heading.is-style-section_ttl::after {
+  /* Existing .prose h2::after rule applies — already gives a stripe.
+     Just slightly fatten it for tier headers. */
+  height: 3px;
+}
+
+body.page-sponsor .prose h2 .swl-marker {
+  background: none !important;
+  padding: 0 !important;
+}
+
+/* Treat every sponsor-row column figure as a tile. */
+body.page-sponsor .prose .wp-block-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin: 0.8em 0 1.8em;
+  align-items: stretch;
+}
+
+body.page-sponsor .prose .wp-block-column {
+  flex: 1 1 calc(33.333% - 12px);
+  min-width: 220px;
+  /* Cancel the column-as-flex-container so figure fills naturally */
+  display: block;
+  padding: 0;
+  gap: 0;
+}
+
+/* The figure becomes the visible tile */
+body.page-sponsor .prose .wp-block-column > figure.wp-block-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  margin: 0;
+  padding: 20px 24px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 6px 22px rgba(28, 35, 42, 0.06);
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+              box-shadow 0.3s ease,
+              border-color 0.3s ease;
+}
+
+body.page-sponsor .prose .wp-block-column > figure.wp-block-image:hover {
+  transform: translateY(-3px);
+  border-color: rgba(215, 169, 71, 0.45);
+  box-shadow:
+    0 18px 40px rgba(28, 35, 42, 0.12),
+    0 0 0 1px rgba(215, 169, 71, 0.22);
+}
+
+body.page-sponsor .prose .wp-block-column > figure.wp-block-image img {
+  width: 100%;
+  max-width: 320px;
+  max-height: 84px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* Responsive: 2-up on tablets, 1-up on phones */
+@media (max-width: 760px) {
+  body.page-sponsor .prose .wp-block-column {
+    flex: 1 1 calc(50% - 9px);
+  }
+  body.page-sponsor .prose .wp-block-column > figure.wp-block-image {
+    padding: 16px 18px;
+  }
+  body.page-sponsor .prose .wp-block-column > figure.wp-block-image img {
+    max-height: 66px;
+  }
+}
+
+@media (max-width: 460px) {
+  body.page-sponsor .prose .wp-block-column {
+    flex: 1 1 100%;
+  }
+}
+
+/* "個人協賛" (individual sponsors) — these are p-tags listing names,
+   not figures. Keep them readable but spaced. */
+body.page-sponsor .prose .wp-block-columns:not(:has(figure)) .wp-block-column {
+  background: linear-gradient(180deg, transparent, rgba(215, 169, 71, 0.04));
+  padding: 14px 18px;
+  border-radius: 8px;
+  border: 1px solid rgba(215, 169, 71, 0.18);
+}
+
+body.page-sponsor .prose .wp-block-columns:not(:has(figure)) .wp-block-column p {
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.7;
+}
+
+/* Sponsor-name tables (lower tiers): make every cell a soft tile. */
+body.page-sponsor .prose .wp-block-table {
+  margin: 1em 0 1.8em;
+}
+
+body.page-sponsor .prose .wp-block-table table {
+  border-collapse: separate;
+  border-spacing: 10px;
+  width: 100%;
+  background: transparent;
+  table-layout: fixed;
+}
+
+body.page-sponsor .prose .wp-block-table td {
+  padding: 14px 12px;
+  background: linear-gradient(180deg, #fff, var(--cream));
+  border: 1px solid rgba(215, 169, 71, 0.20);
+  border-radius: 8px;
+  text-align: center;
+  vertical-align: middle;
+  font-weight: 600;
+  line-height: 1.5;
+  /* Override striped tbody background that .prose table applies */
+  box-shadow: 0 4px 14px rgba(28, 35, 42, 0.04);
+  transition: background 0.25s ease,
+              border-color 0.25s ease,
+              transform 0.25s ease;
+}
+
+body.page-sponsor .prose .wp-block-table tbody tr:nth-child(odd) {
+  background: transparent;
+}
+
+body.page-sponsor .prose .wp-block-table td:hover {
+  background: #fff;
+  border-color: rgba(215, 169, 71, 0.55);
+  transform: translateY(-1px);
+}
+
+/* Dim cells that are just an em-dash placeholder */
+body.page-sponsor .prose .wp-block-table td:has(> span.swl-fz:only-child),
+body.page-sponsor .prose .wp-block-table td:has(> strong > .swl-fz:only-child) {
+  /* OK — keep them styled normally; the dash itself is short */
+}
+
+body.page-sponsor .prose .wp-block-table td .swl-marker {
+  background: none !important;
+  padding: 0 !important;
+}
+
+body.page-sponsor .prose .wp-block-table td strong {
+  font-weight: 700;
+}
+
+@media (max-width: 720px) {
+  body.page-sponsor .prose .wp-block-table table {
+    border-spacing: 6px;
+  }
+  body.page-sponsor .prose .wp-block-table td {
+    padding: 10px 8px;
+    font-size: 0.86rem;
+  }
+}
+

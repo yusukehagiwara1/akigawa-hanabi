@@ -22,7 +22,6 @@
 | ID | タスク | 効果 | 想定工数 |
 |---|---|---|---|
 | M4 | スポンサーロゴ毎の hover で企業説明 tooltip | UX | 2 hours |
-| M5 | sponsor.html を carousel から grid に統一 | デザイン整合 | 1 hour |
 
 ## 🟢 低優先（やれたらやる）
 
@@ -58,6 +57,13 @@
   - **M2** 完了: hero-fireworks-real の 800w / 1280w 派生を生成（モバイル 491KB → 86KB、約 82% 削減）。`<link rel=preload>` を imagesrcset 対応 + CSS を media query ベースのレスポンシブ背景に
   - **M3** 完了: gallery / press / faq の各 CMS セクションに testimonial と同じ `data-has-fallback` フラグ尊重ロジックを実装。空 CMS でも静的フォールバックを優先表示
   - SW v9 + キャッシュバスター 2026-05-15 に更新
+- Round 20 / M5 (2026-05-15): sponsor.html を grid 化してトップと統一
+  - **ui.js**: body に `page-<slug>` クラスを付与 (page-sponsor, page-access, ...)。ページ別 CSS スコープを可能に
+  - **sponsor.html の WP column ブロック**: `body.page-sponsor` で `.wp-block-column > figure.wp-block-image` を真の「タイル」(白地 + border + box-shadow + hover lift + 金縁) に上書き
+  - **階層見出し**: `is-style-section_ttl` の WP 黄色マーカーを除去し、既存 .prose h2::after の金赤グラデストライプ (3px) に統一
+  - **下部テーブル形式 (個人協賛)**: border-spacing で各セルを「ミニタイル」(白〜cream グラデ + 金縁 + hover で +1px lift)。WP 縞模様 (nth-child odd) を解除
+  - **SP**: 760px 以下で 2-up、460px 以下で 1-up にレスポンシブ
+  - SW v14 + キャッシュバスター 20260515e
 - Round 19 (2026-05-15): デザイン質感引き上げ Part 4 — 残る dark セクションを統一
   - **why-choose-card**: 上品な lift + 金縁 + 強シャドウに統一 (Round 16 のカード共通言語を適用)
   - **why-choose-icon**: hover で scale(1.08) + 3deg rotate + 金赤グラデで「焦がし」演出

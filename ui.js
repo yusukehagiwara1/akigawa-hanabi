@@ -2,6 +2,11 @@
 (function () {
   // --- Highlight current page in nav ---
   const currentPath = window.location.pathname.split("/").pop() || "index.html";
+
+  // --- Tag body with current page slug (page-sponsor, page-access, ...) ---
+  // Used by per-page CSS to scope styling (e.g., sponsor logo tiles).
+  const pageSlug = currentPath.replace(/\.html$/i, "").replace(/[^a-z0-9\-]+/gi, "-") || "index";
+  document.body.classList.add("page-" + pageSlug);
   const navLinks = document.querySelectorAll(".nav a, .footer-nav a");
   navLinks.forEach(function (link) {
     const href = link.getAttribute("href") || "";
