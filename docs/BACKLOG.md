@@ -57,6 +57,20 @@
   - **M2** 完了: hero-fireworks-real の 800w / 1280w 派生を生成（モバイル 491KB → 86KB、約 82% 削減）。`<link rel=preload>` を imagesrcset 対応 + CSS を media query ベースのレスポンシブ背景に
   - **M3** 完了: gallery / press / faq の各 CMS セクションに testimonial と同じ `data-has-fallback` フラグ尊重ロジックを実装。空 CMS でも静的フォールバックを優先表示
   - SW v9 + キャッシュバスター 2026-05-15 に更新
+- Round 50 (2026-05-15): iPhone ノッチ / Android ジェスチャーバー対応
+  - 全 16 HTML (offline.html 含む) の viewport meta に `viewport-fit=cover` を追加
+  - generate.ps1 のテンプレートも更新
+  - styles.css に safe-area-inset padding を追加:
+    * .site-header → top + left + right に env(safe-area-inset-*)
+    * .footer → bottom + left + right
+    * .mobile-sticky-cta → bottom (16px + env)
+    * .scroll-top → bottom (デスクトップ/モバイル両方に対応)
+    * .sw-update-toast → bottom (480px 以下では mobile sticky CTA を避けて高め)
+  - env() は通常デバイスでは 0 を返すので、ノッチなし端末では完全な no-op
+  - 効果: iPhone X+ で content がノッチに被らない / ホームインジケータと
+    重ならない / Android ジェスチャーバー上に CTA が出ない
+  - SW v40 + キャッシュバスター 20260516b
+- Round 49 (2026-05-15): microcms-extras.js の fetch にも 6 秒タイムアウト
 - Round 48 (2026-05-15): script.js の microCMS fetch に 6 秒タイムアウト
   - AbortController で 6 秒経過後に `fetch` を abort
   - タイムアウト時も `aria-busy="false"` に戻し、エラーメッセージ表示

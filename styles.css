@@ -7068,6 +7068,50 @@ body.page-sponsor .prose .wp-block-table td strong {
 }
 
 /* ======================================================================
+   Round 50 — iPhone notch / Android gesture-bar safe areas
+   ----------------------------------------------------------------------
+   With <meta viewport-fit=cover>, the page extends into the unsafe areas
+   on notched devices. Use env(safe-area-inset-*) to keep interactive UI
+   above/away from system overlays. env() returns 0 on devices without
+   safe-area insets, so these calc()s are no-ops on regular displays.
+   ====================================================================== */
+.site-header {
+  padding-top: calc(14px + env(safe-area-inset-top));
+  padding-left: calc(clamp(18px, 4vw, 54px) + env(safe-area-inset-left));
+  padding-right: calc(clamp(18px, 4vw, 54px) + env(safe-area-inset-right));
+}
+
+.footer {
+  padding-bottom: calc(28px + env(safe-area-inset-bottom));
+  padding-left: calc(clamp(22px, 5vw, 70px) + env(safe-area-inset-left));
+  padding-right: calc(clamp(22px, 5vw, 70px) + env(safe-area-inset-right));
+}
+
+.mobile-sticky-cta {
+  bottom: calc(16px + env(safe-area-inset-bottom));
+}
+
+.scroll-top {
+  bottom: calc(84px + env(safe-area-inset-bottom));
+}
+
+@media (min-width: 921px) {
+  .scroll-top {
+    bottom: calc(24px + env(safe-area-inset-bottom));
+  }
+}
+
+.sw-update-toast {
+  bottom: calc(24px + env(safe-area-inset-bottom));
+}
+
+@media (max-width: 480px) {
+  .sw-update-toast {
+    bottom: calc(84px + env(safe-area-inset-bottom));
+  }
+}
+
+/* ======================================================================
    Round 45 — Service Worker update toast
    ----------------------------------------------------------------------
    Surfaces a reload prompt when ui.js detects that a fresh Service Worker
