@@ -57,6 +57,13 @@
   - **M2** 完了: hero-fireworks-real の 800w / 1280w 派生を生成（モバイル 491KB → 86KB、約 82% 削減）。`<link rel=preload>` を imagesrcset 対応 + CSS を media query ベースのレスポンシブ背景に
   - **M3** 完了: gallery / press / faq の各 CMS セクションに testimonial と同じ `data-has-fallback` フラグ尊重ロジックを実装。空 CMS でも静的フォールバックを優先表示
   - SW v9 + キャッシュバスター 2026-05-15 に更新
+- Round 42 (2026-05-15): Critical CSS にダークモード変数を埋込 — ダーク OS でのライト→ダーク切替フラッシュ解消
+  - Round 33 で導入したサブページ Critical CSS は `:root` の light 値しか持っていなかった
+  - 結果: dark OS ユーザーは初期描画で light header/page-hero を一瞬見てから styles.css ロード後に dark に切り替わる (フラッシュ)
+  - 修正: 各 Critical CSS の末尾に `@media (prefers-color-scheme:dark){:root{ ... }}` を追加 (約 150 バイト)
+  - 14 ページ (index.html + 13 サブページ) に適用
+  - generate.ps1 のテンプレートも同期
+  - SW v34 + キャッシュバスター 20260515v
 - Round 41 (2026-05-15): GA4 セクション可視化トラッキング (section_view)
   - **analytics.js に section_view イベント**: IntersectionObserver で `<section id="...">` が 40% 以上 viewport に入った瞬間に発火、1 セッション 1 回
   - GA4 イベント形式: `section_id` + `page_path`
