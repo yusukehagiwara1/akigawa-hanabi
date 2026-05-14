@@ -57,6 +57,19 @@
   - **M2** 完了: hero-fireworks-real の 800w / 1280w 派生を生成（モバイル 491KB → 86KB、約 82% 削減）。`<link rel=preload>` を imagesrcset 対応 + CSS を media query ベースのレスポンシブ背景に
   - **M3** 完了: gallery / press / faq の各 CMS セクションに testimonial と同じ `data-has-fallback` フラグ尊重ロジックを実装。空 CMS でも静的フォールバックを優先表示
   - SW v9 + キャッシュバスター 2026-05-15 に更新
+- Round 51 (2026-05-15): ハイコントラスト / forced-colors アクセシビリティ
+  - **`@media (prefers-contrast: more)`** ブロック追加 (視覚障害ユーザー向け)
+    * --line を 0.13 → 0.55 alpha に
+    * カード border を 1px → 2px に
+    * .button.primary の金グラデを単色 gold + 黒文字に
+    * .ticket-sale-pending-cta も同様
+    * .section-heading h2 underline を solid ink bar に
+    * :focus-visible を 3px outline + 4px offset
+  - **`@media (forced-colors: active)`** ブロック (Windows ハイコントラスト):
+    * 主要 button/CTA を ButtonText / ButtonFace / Highlight 等の
+      system color tokens に切替 (Windows HC の色設定に追従)
+    * 装飾のみの要素 (.hero::before / .hero-sparks / .page-hero::before) を非表示
+  - SW v41 + キャッシュバスター 20260516c
 - Round 50 (2026-05-15): iPhone ノッチ / Android ジェスチャーバー対応
   - 全 16 HTML (offline.html 含む) の viewport meta に `viewport-fit=cover` を追加
   - generate.ps1 のテンプレートも更新

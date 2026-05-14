@@ -7112,6 +7112,93 @@ body.page-sponsor .prose .wp-block-table td strong {
 }
 
 /* ======================================================================
+   Round 51 — High contrast mode (prefers-contrast: more)
+   ----------------------------------------------------------------------
+   For users with vision impairments who request higher contrast. Boosts
+   borders, drops decorative gradients, and ensures focus indicators are
+   thick and unambiguous. Active in: Safari, Firefox, recent Chrome.
+   ====================================================================== */
+@media (prefers-contrast: more) {
+  :root {
+    --line: rgba(23, 32, 38, 0.55);
+    --muted: #2c333a;
+  }
+
+  /* Thicker borders on interactive cards so edges are unmistakable */
+  .stats article,
+  .ticket-card,
+  .info-card,
+  .program-card,
+  .why-choose-card,
+  .testimonial-card,
+  .faq-item,
+  .sponsor-tile,
+  .press-kit-card,
+  .achievements-card,
+  .ticket-guide-card,
+  .not-found-card,
+  .signup-option {
+    border-width: 2px;
+  }
+
+  /* Drop gradients that lower contrast on text */
+  .button.primary {
+    background: var(--gold);
+    color: #000;
+    text-shadow: none;
+  }
+  .ticket-sale-pending-cta {
+    background: var(--gold);
+    color: #000;
+  }
+
+  /* Section heading underline becomes a solid bar */
+  .section-heading h2::after {
+    background: var(--ink);
+    height: 3px;
+  }
+
+  /* Focus indicator: extra thick gold outline */
+  :focus-visible {
+    outline-width: 3px;
+    outline-offset: 4px;
+  }
+}
+
+/* ======================================================================
+   Round 51 — Windows High Contrast Mode (forced-colors)
+   ----------------------------------------------------------------------
+   Windows HC overrides colors via system tokens (Canvas, ButtonText,
+   LinkText, etc). Make sure our gold buttons/cards survive by mapping
+   to system tokens where it matters.
+   ====================================================================== */
+@media (forced-colors: active) {
+  .button.primary,
+  .button.secondary,
+  .header-cta,
+  .ticket-sale-pending-cta,
+  .mobile-sticky-cta,
+  .signup-option,
+  .sw-update-toast-btn {
+    /* Use system Button tokens — Windows HC will set color/bg for us */
+    border: 1px solid ButtonText;
+    background: ButtonFace;
+    color: ButtonText;
+  }
+  /* Ensure focus ring is visible against Canvas background */
+  :focus-visible {
+    outline: 2px solid Highlight;
+    outline-offset: 3px;
+  }
+  /* Decorative-only elements should be hidden in forced colors */
+  .hero::before,
+  .hero-sparks,
+  .page-hero::before {
+    display: none;
+  }
+}
+
+/* ======================================================================
    Round 45 — Service Worker update toast
    ----------------------------------------------------------------------
    Surfaces a reload prompt when ui.js detects that a fresh Service Worker
