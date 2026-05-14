@@ -32,7 +32,7 @@
 | L3 | 動画埋め込み（過去開催の高画質映像） | エモーション |
 | L4 | ふるさと納税の各プラン詳細を独立ページ化 | コンバージョン |
 | ~~L5~~ | ~~カラーパレットのダークモード対応~~ | ✅ 完了 (Round 27) |
-| L6 | Lighthouse 実測・点数 95+ 目指す微調整 | パフォーマンス |
+| L6 | Lighthouse 実測・点数 95+ 目指す微調整 | パフォーマンス（Round 31 で実測パイプライン稼働） |
 
 ## ✅ 完了済み（直近 14 ラウンド）
 
@@ -57,6 +57,17 @@
   - **M2** 完了: hero-fireworks-real の 800w / 1280w 派生を生成（モバイル 491KB → 86KB、約 82% 削減）。`<link rel=preload>` を imagesrcset 対応 + CSS を media query ベースのレスポンシブ背景に
   - **M3** 完了: gallery / press / faq の各 CMS セクションに testimonial と同じ `data-has-fallback` フラグ尊重ロジックを実装。空 CMS でも静的フォールバックを優先表示
   - SW v9 + キャッシュバスター 2026-05-15 に更新
+- Round 31 (2026-05-15): GA4 に Core Web Vitals 実測を送信
+  - **analytics.js に Web Vitals tracking を追加**: PerformanceObserver で LCP / FCP / CLS を計測し GA4 の `web_vitals` イベントとして送信
+  - **FCP**: paint observer の `first-contentful-paint` を即時送信
+  - **LCP**: largest-contentful-paint の最新 candidate を visibilitychange / pagehide で flush
+  - **CLS**: layout-shift の累積を hadRecentInput 除外で計算、visibilitychange で flush
+  - **GA4 イベント形式**: `metric_name` / `metric_value` (ms or 4 decimal score) / `metric_id` / `page_path`
+  - Looker Studio dashboard で page_path × device × metric でスライス可能
+  - 外部ライブラリ不要 (web-vitals.js を読み込まない)、~70 行の inline 実装
+  - 既存の cta_click / js_error トラッキングと並ぶ第三の計測パイプライン
+  - **これにより L6 (Lighthouse 95+) の実測ベースの改善サイクルが回せる**
+  - SW v24 + キャッシュバスター 20260515n
 - Round 30 (2026-05-15): モダンブラウザ機能 — color-scheme / View Transitions / Speculation Rules
   - **`<meta name="color-scheme" content="light dark">`** を全 15 HTML に追加。ブラウザに「両モード対応サイト」と伝え、フォームコントロール・スクロールバー・iframe placeholder などのネイティブ UI が OS テーマに自動追従
   - **CSS の `@view-transition { navigation: auto }`** で Chrome 126+ の Cross-Document View Transitions API を opt-in。ページ間移動が crossfade に (旧ブラウザは無視 = ノーリスク)

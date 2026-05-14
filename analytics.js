@@ -166,6 +166,78 @@
     }
   });
 
+  // ---- Core Web Vitals tracking (LCP / FCP / CLS) → GA4 ----
+  // Lightweight inline implementation — no external library. Sends each
+  // metric once per page load, batched via the GA4 `web_vitals` event.
+  // Use the Looker Studio dashboard to slice by page_path / device.
+  (function () {
+    if (typeof PerformanceObserver === "undefined") return;
+
+    function sendVital(name, value, id) {
+      try {
+        gtag("event", "web_vitals", {
+          metric_name: name,
+          // GA4 only accepts numbers — keep millisecond precision for time,
+          // 4 decimals for CLS (unitless score).
+          metric_value: name === "CLS" ? Math.round(value * 10000) / 10000 : Math.round(value),
+          metric_id: id || (name + "-" + Date.now()),
+          page_path: window.location.pathname
+        });
+      } catch (e) {}
+    }
+
+    // Largest Contentful Paint — report the latest LCP at page hide.
+    var lcpValue = 0;
+    try {
+      var lcpObserver = new PerformanceObserver(function (list) {
+        var entries = list.getEntries();
+        if (entries.length === 0) return;
+        // The last entry is the most recent LCP candidate.
+        lcpValue = entries[entries.length - 1].startTime;
+      });
+      lcpObserver.observe({ type: "largest-contentful-paint", buffered: true });
+    } catch (e) {}
+
+    // First Contentful Paint — fires once, can send immediately.
+    try {
+      new PerformanceObserver(function (list) {
+        list.getEntries().forEach(function (entry) {
+          if (entry.name === "first-contentful-paint") {
+            sendVital("FCP", entry.startTime);
+          }
+        });
+      }).observe({ type: "paint", buffered: true });
+    } catch (e) {}
+
+    // Cumulative Layout Shift — accumulate excluding user-input shifts.
+    var clsValue = 0;
+    try {
+      new PerformanceObserver(function (list) {
+        list.getEntries().forEach(function (entry) {
+          if (!entry.hadRecentInput) {
+            clsValue += entry.value;
+          }
+        });
+      }).observe({ type: "layout-shift", buffered: true });
+    } catch (e) {}
+
+    // Flush LCP and CLS on visibility change (most reliable signal that the
+    // user is leaving the page).
+    var sent = false;
+    function flush() {
+      if (sent) return;
+      sent = true;
+      if (lcpValue > 0) sendVital("LCP", lcpValue);
+      // CLS can legitimately be 0 — always report so Looker can graph it.
+      sendVital("CLS", clsValue);
+    }
+    addEventListener("visibilitychange", function () {
+      if (document.visibilityState === "hidden") flush();
+    });
+    // Fallback: also flush on pagehide in case visibilitychange didn't fire.
+    addEventListener("pagehide", flush);
+  })();
+
   // ---- Error monitoring (JS errors → GA4) ----
   // Dedup the same error message within a single session to avoid flooding.
   var reportedErrors = new Set ? new Set() : { has: function () { return false; }, add: function () {} };
