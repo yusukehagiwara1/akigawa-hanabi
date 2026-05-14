@@ -62,6 +62,14 @@
   - **M2** 完了: hero-fireworks-real の 800w / 1280w 派生を生成（モバイル 491KB → 86KB、約 82% 削減）。`<link rel=preload>` を imagesrcset 対応 + CSS を media query ベースのレスポンシブ背景に
   - **M3** 完了: gallery / press / faq の各 CMS セクションに testimonial と同じ `data-has-fallback` フラグ尊重ロジックを実装。空 CMS でも静的フォールバックを優先表示
   - SW v9 + キャッシュバスター 2026-05-15 に更新
+- Round 52 (2026-05-15): 大型画像の一括再圧縮 — assets/wp 12MB → 9.8MB
+  - **新規 `_wp-content/recompress-large-webp.ps1`**: libwebp 1.6 (winget) を使った一括再圧縮ユーティリティ
+  - dwebp で PNG にデコード → cwebp `-q 72 -m 6 -mt` で再エンコード
+  - 100KB 以上のファイルのみ対象、20% 以上の削減があった場合のみ置換 (品質維持)
+  - **結果**: 32 ファイル全部 30-48% 削減、**合計 1.98 MB (18%) 削減**
+  - 内訳: 食事店画像 22 枚、過去開催写真、フリー席/花火イメージ 等
+  - 寸法は変更せず quality のみ調整なので `width="..."` `height="..."` 属性はそのまま有効
+  - SW v42 でキャッシュバスター (画像 URL は versioned していないので SW cache を新規開始することで stale を回避)
 - Round 51 (2026-05-15): ハイコントラスト / forced-colors アクセシビリティ
   - **`@media (prefers-contrast: more)`** ブロック追加 (視覚障害ユーザー向け)
     * --line を 0.13 → 0.55 alpha に
