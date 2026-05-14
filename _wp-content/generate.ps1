@@ -60,6 +60,12 @@ $template = @'
     <meta name="color-scheme" content="light dark">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <link rel="manifest" href="/manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="秋川花火">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="秋川花火">
+    <meta name="msapplication-TileColor" content="#0f1828">
     <title>{{TITLE}}｜秋川流域花火大会【公式】</title>
     <meta name="description" content="{{DESC}}">
     <meta name="keywords" content="秋川流域花火大会, あきる野, 花火大会, 秋花火, 東京サマーランド, 紅葉, 音楽花火, 西多摩, 紅葉と花火, 秋 花火 デート, 子連れ 花火 東京, 11月 花火大会, 東京 秋 イベント, 駐車場あり 花火, Tokyo Autumn Fireworks, {{TITLE}}">

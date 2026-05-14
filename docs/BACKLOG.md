@@ -57,6 +57,15 @@
   - **M2** 完了: hero-fireworks-real の 800w / 1280w 派生を生成（モバイル 491KB → 86KB、約 82% 削減）。`<link rel=preload>` を imagesrcset 対応 + CSS を media query ベースのレスポンシブ背景に
   - **M3** 完了: gallery / press / faq の各 CMS セクションに testimonial と同じ `data-has-fallback` フラグ尊重ロジックを実装。空 CMS でも静的フォールバックを優先表示
   - SW v9 + キャッシュバスター 2026-05-15 に更新
+- Round 37 (2026-05-15): iOS / Android / Windows レガシー PWA メタ
+  - `<meta name="apple-mobile-web-app-capable" content="yes">` — iOS PWA standalone
+  - `<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">` — iOS ステータスバー透過
+  - `<meta name="apple-mobile-web-app-title" content="秋川花火">` — ホーム画面のラベル名
+  - `<meta name="mobile-web-app-capable" content="yes">` — Android レガシー対応
+  - `<meta name="application-name" content="秋川花火">` — Windows
+  - `<meta name="msapplication-TileColor" content="#0f1828">` — Windows ピン留めタイル色
+  - 全 15 HTML に適用、generate.ps1 のテンプレートも同期
+  - SW v30 + キャッシュバスター 20260515r
 - Round 36 (2026-05-15): オフライン専用 fallback ページ
   - **新規 `/offline.html`**: ネットワーク断時に SW が返す専用ページ
     * ブランド配色 (gold/navy) + Zen Old Mincho タイトル
