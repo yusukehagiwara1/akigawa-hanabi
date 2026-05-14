@@ -27,9 +27,16 @@ function isConfigured(config) {
 
 async function loadNews(url, apiKey, target) {
   target.setAttribute("aria-busy", "true");
+  // 6-second hard timeout: if microCMS is slow / unreachable, fail fast
+  // and show the static fallback rather than leaving aria-busy on forever.
+  const controller = typeof AbortController !== "undefined" ? new AbortController() : null;
+  const timeoutId = controller
+    ? setTimeout(function () { controller.abort(); }, 6000)
+    : null;
   try {
     const response = await fetch(url, {
       headers: { "X-MICROCMS-API-KEY": apiKey },
+      signal: controller ? controller.signal : undefined,
     });
     if (!response.ok) {
       throw new Error("microCMS fetch failed: " + response.status);
@@ -44,10 +51,12 @@ async function loadNews(url, apiKey, target) {
     }
     target.innerHTML = contents.map(createNewsCard).join("");
   } catch (error) {
-    console.warn("[news] microCMS fetch failed:", error.message);
+    const wasAborted = error && error.name === "AbortError";
+    console.warn("[news] microCMS fetch failed:", wasAborted ? "timeout" : error.message);
     target.innerHTML =
       '<p class="cms-status cms-status-error">最新情報を読み込めませんでした。時間をおいて再度お試しください。</p>';
   } finally {
+    if (timeoutId) clearTimeout(timeoutId);
     target.setAttribute("aria-busy", "false");
   }
 }

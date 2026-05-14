@@ -57,6 +57,12 @@
   - **M2** 完了: hero-fireworks-real の 800w / 1280w 派生を生成（モバイル 491KB → 86KB、約 82% 削減）。`<link rel=preload>` を imagesrcset 対応 + CSS を media query ベースのレスポンシブ背景に
   - **M3** 完了: gallery / press / faq の各 CMS セクションに testimonial と同じ `data-has-fallback` フラグ尊重ロジックを実装。空 CMS でも静的フォールバックを優先表示
   - SW v9 + キャッシュバスター 2026-05-15 に更新
+- Round 48 (2026-05-15): script.js の microCMS fetch に 6 秒タイムアウト
+  - AbortController で 6 秒経過後に `fetch` を abort
+  - タイムアウト時も `aria-busy="false"` に戻し、エラーメッセージ表示
+  - microCMS API 遅延時にニュースカードが永続的に skeleton で表示され続ける問題を防止
+  - AbortController 非対応ブラウザは旧挙動 (タイムアウトなし)
+  - SW v38 + キャッシュバスター 20260515z
 - Round 47 (2026-05-15): 印刷用 CSS にサブページ banner 対応 + Round 22/45 要素対応
   - `@media print` 内の `.page-hero` を白背景 + 黒文字に + ::before/::after dot pattern と gold line を非表示
   - `.page-hero-pill` / .tag / .page-back / h1 を `-webkit-text-fill-color: #000 !important` でグラデテキストを打ち消し
