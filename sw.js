@@ -8,7 +8,8 @@
 //   * Cross-origin requests, non-GET, sitemap/robots, /_routes/* → pass through.
 //
 // Bump CACHE_VERSION on each deploy that ships static asset changes.
-const CACHE_VERSION = "akigawa-hanabi-v28";
+const CACHE_VERSION = "akigawa-hanabi-v29";
+const OFFLINE_URL = "/offline.html";
 const PRECACHE_URLS = [
   "/styles.css",
   "/ui.js",
@@ -18,6 +19,7 @@ const PRECACHE_URLS = [
   "/sponsor-urls.js",
   "/analytics.js",
   "/manifest.json",
+  "/offline.html",
   "/assets/favicon.ico",
   "/assets/logo-npo.webp",
   "/assets/hero-fireworks-real.webp",
@@ -105,11 +107,13 @@ self.addEventListener("fetch", function (event) {
           return response;
         })
         .catch(function () {
-          // Network failed → try cache
+          // Network failed → try the page in cache, then a dedicated
+          // offline fallback page, then the homepage as a last resort.
           return caches.match(req).then(function (cached) {
             if (cached) return cached;
-            // Last-resort fallback: cached homepage if available
-            return caches.match("/index.html");
+            return caches.match(OFFLINE_URL).then(function (off) {
+              return off || caches.match("/index.html");
+            });
           });
         })
     );

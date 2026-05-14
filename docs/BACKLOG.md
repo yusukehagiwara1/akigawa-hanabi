@@ -57,6 +57,16 @@
   - **M2** 完了: hero-fireworks-real の 800w / 1280w 派生を生成（モバイル 491KB → 86KB、約 82% 削減）。`<link rel=preload>` を imagesrcset 対応 + CSS を media query ベースのレスポンシブ背景に
   - **M3** 完了: gallery / press / faq の各 CMS セクションに testimonial と同じ `data-has-fallback` フラグ尊重ロジックを実装。空 CMS でも静的フォールバックを優先表示
   - SW v9 + キャッシュバスター 2026-05-15 に更新
+- Round 36 (2026-05-15): オフライン専用 fallback ページ
+  - **新規 `/offline.html`**: ネットワーク断時に SW が返す専用ページ
+    * ブランド配色 (gold/navy) + Zen Old Mincho タイトル
+    * `prefers-color-scheme: dark` で自動切替 (CSS 変数フリップ)
+    * 「再読み込み」+ 「トップへ戻る」CTA
+    * `<meta name="robots" content="noindex,nofollow">` で検索結果に表示しない
+    * 軽量 (約 3KB)、インライン CSS only、JS 1 行のみ
+  - **sw.js v29**: `OFFLINE_URL = "/offline.html"` を precache + ナビゲーション fetch 失敗時の fallback チェーンを「キャッシュ済 → offline.html → 最後の保険として / index.html」に変更
+  - 旧挙動: ticket.html を見ようとして失敗 → 突然 index.html に飛ばされる (混乱)
+  - 新挙動: ticket.html を見ようとして失敗 → 明確なオフラインメッセージ + 復旧後の自動再表示の説明
 - Round 35 (2026-05-15): Twitter Card 拡張属性 — 開催日/会場をシェア時に直接表示
   - **`twitter:label1` / `twitter:data1`**: 開催日 → 2026年11月14日（土） 18:00〜18:50
   - **`twitter:label2` / `twitter:data2`**: 会場 → 東京サマーランド 第2駐車場（あきる野市）
