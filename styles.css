@@ -971,13 +971,34 @@ h2 span,
   color: #fff;
 }
 
+/* < 24h until showtime — stronger than .is-urgent, hints at fireworks-burst */
+.notice-countdown.is-imminent {
+  background: linear-gradient(135deg, rgba(215, 169, 71, 0.32), rgba(184, 63, 55, 0.28));
+  border-color: var(--red);
+  animation: countdown-imminent 1.4s ease-in-out infinite;
+}
+
+.notice-countdown.is-imminent .notice-countdown-label {
+  color: var(--red);
+}
+
+.notice-countdown.is-imminent .notice-countdown-value strong {
+  color: var(--red);
+}
+
 @keyframes countdown-pulse {
   0%, 100% { box-shadow: 0 0 0 0 rgba(184, 63, 55, 0.30); }
   50% { box-shadow: 0 0 0 6px rgba(184, 63, 55, 0); }
 }
 
+@keyframes countdown-imminent {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(184, 63, 55, 0.45); }
+  50%      { box-shadow: 0 0 0 10px rgba(184, 63, 55, 0); }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .notice-countdown.is-urgent { animation: none; }
+  .notice-countdown.is-urgent,
+  .notice-countdown.is-imminent { animation: none; }
 }
 
 .notice p {
@@ -5863,7 +5884,8 @@ dialog.lightbox .lightbox-close:hover {
 .stats article,
 .ticket-card,
 .info-card,
-.program-card {
+.program-card,
+.not-found-card {
   transition: transform 0.32s cubic-bezier(0.2, 0.8, 0.2, 1),
               box-shadow 0.32s ease,
               border-color 0.32s ease;
@@ -5872,7 +5894,8 @@ dialog.lightbox .lightbox-close:hover {
 .stats article:hover,
 .ticket-card:hover,
 .info-card:hover,
-.program-card:hover {
+.program-card:hover,
+.not-found-card:hover {
   transform: translateY(-6px);
   border-color: rgba(215, 169, 71, 0.45);
   box-shadow:

@@ -28,7 +28,7 @@
 | ID | タスク | 効果 |
 |---|---|---|
 | L1 | 開催実績数値を CMS 化 | 運営側で更新できる |
-| L2 | カウントダウンの「N時間」「N分」表示（直前期） | 緊張感UP |
+| ~~L2~~ | ~~カウントダウンの「N時間」「N分」表示（直前期）~~ | ✅ 完了 (Round 21) |
 | L3 | 動画埋め込み（過去開催の高画質映像） | エモーション |
 | L4 | ふるさと納税の各プラン詳細を独立ページ化 | コンバージョン |
 | L5 | カラーパレットのダークモード対応 | a11y |
@@ -57,6 +57,12 @@
   - **M2** 完了: hero-fireworks-real の 800w / 1280w 派生を生成（モバイル 491KB → 86KB、約 82% 削減）。`<link rel=preload>` を imagesrcset 対応 + CSS を media query ベースのレスポンシブ背景に
   - **M3** 完了: gallery / press / faq の各 CMS セクションに testimonial と同じ `data-has-fallback` フラグ尊重ロジックを実装。空 CMS でも静的フォールバックを優先表示
   - SW v9 + キャッシュバスター 2026-05-15 に更新
+- Round 21 / L2 (2026-05-15): カウントダウンを「日→時間→分」段階表示 + 404 統一
+  - **ui.js カウントダウン**: 24h 以上は「あと N 日」、1h-24h は「あと H 時間 M 分」、< 1h は「あと M 分」と段階的に表示
+  - **更新頻度**: 距離に応じて適応的 (> 24h: 毎時 / 1-24h: 毎分 / < 1h: 10 秒)。setTimeout チェーンで動的に再スケジュール
+  - **新クラス `.is-imminent`**: < 24h で金赤グラデ + 強パルス (1.4s 周期、より熱量のある演出)
+  - **404 ページ**: not-found-card に Round 16 のカード hover 共通言語 (cubic-bezier 6px lift + 金縁 + 強シャドウ) を統一
+  - SW v15 + キャッシュバスター 20260515f
 - Round 20 / M5 (2026-05-15): sponsor.html を grid 化してトップと統一
   - **ui.js**: body に `page-<slug>` クラスを付与 (page-sponsor, page-access, ...)。ページ別 CSS スコープを可能に
   - **sponsor.html の WP column ブロック**: `body.page-sponsor` で `.wp-block-column > figure.wp-block-image` を真の「タイル」(白地 + border + box-shadow + hover lift + 金縁) に上書き

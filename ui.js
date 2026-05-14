@@ -70,7 +70,7 @@
   progressBar.setAttribute("aria-hidden", "true");
   document.body.appendChild(progressBar);
 
-  // --- Event countdown (days until 第8回) ---
+  // --- Event countdown (days/hours/minutes until 第8回) ---
   const countdownNodes = document.querySelectorAll("[data-countdown-target]");
   countdownNodes.forEach(function (node) {
     const target = node.getAttribute("data-countdown-target");
@@ -78,10 +78,12 @@
     const targetDate = new Date(target);
     if (Number.isNaN(targetDate.getTime())) return;
 
+    const MS_DAY  = 1000 * 60 * 60 * 24;
+    const MS_HOUR = 1000 * 60 * 60;
+    const MS_MIN  = 1000 * 60;
+
     const update = function () {
-      const now = new Date();
-      const diffMs = targetDate.getTime() - now.getTime();
-      const daysEl = node.querySelector("[data-countdown-days]");
+      const diffMs = targetDate.getTime() - new Date().getTime();
       const valueEl = node.querySelector(".notice-countdown-value");
 
       if (diffMs <= 0) {
@@ -91,20 +93,52 @@
         return;
       }
 
-      const days = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
-      if (daysEl) daysEl.textContent = String(days);
+      const days  = Math.floor(diffMs / MS_DAY);
+      const hours = Math.floor((diffMs % MS_DAY) / MS_HOUR);
+      const mins  = Math.floor((diffMs % MS_HOUR) / MS_MIN);
 
-      // Add urgency class as we get closer
-      if (days <= 7) {
-        node.classList.add("is-urgent");
-      } else if (days <= 30) {
-        node.classList.add("is-soon");
+      // Format text by remaining time bucket.
+      //   >= 2 days  → "あと N 日"
+      //   < 48h, >=1h → "あと N 時間 M 分"
+      //   < 1h        → "あと M 分"
+      if (valueEl) {
+        let html;
+        if (days >= 2) {
+          // Ceil so it shows "あと N 日" until the day rolls over
+          const dispDays = Math.ceil(diffMs / MS_DAY);
+          html = 'あと <strong data-countdown-days>' + dispDays + '</strong> 日';
+        } else if (diffMs >= MS_HOUR) {
+          const dispHours = Math.floor(diffMs / MS_HOUR);
+          html = 'あと <strong>' + dispHours + '</strong> 時間 <strong>' + mins + '</strong> 分';
+        } else {
+          html = 'あと <strong>' + mins + '</strong> 分';
+        }
+        valueEl.innerHTML = html;
       }
+
+      // Urgency classes (additive — later buckets stack on earlier ones)
+      if (diffMs < MS_DAY)        node.classList.add("is-imminent");
+      if (days <= 7)              node.classList.add("is-urgent");
+      else if (days <= 30)        node.classList.add("is-soon");
+    };
+
+    // Pick refresh cadence based on how close we are. Hourly when far,
+    // every minute under 24h, every 10s in the last hour.
+    const scheduleNext = function () {
+      const diffMs = targetDate.getTime() - new Date().getTime();
+      if (diffMs <= 0) return;
+      let interval;
+      if (diffMs > MS_DAY)        interval = MS_HOUR;
+      else if (diffMs > MS_HOUR)  interval = MS_MIN;
+      else                        interval = 10 * 1000;
+      setTimeout(function () {
+        update();
+        scheduleNext();
+      }, interval);
     };
 
     update();
-    // Refresh once per hour in case the user keeps the tab open
-    setInterval(update, 60 * 60 * 1000);
+    scheduleNext();
   });
 
   // --- Share: copy URL button (with fallback) ---
