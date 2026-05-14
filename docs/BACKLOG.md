@@ -62,6 +62,14 @@
   - **M2** 完了: hero-fireworks-real の 800w / 1280w 派生を生成（モバイル 491KB → 86KB、約 82% 削減）。`<link rel=preload>` を imagesrcset 対応 + CSS を media query ベースのレスポンシブ背景に
   - **M3** 完了: gallery / press / faq の各 CMS セクションに testimonial と同じ `data-has-fallback` フラグ尊重ロジックを実装。空 CMS でも静的フォールバックを優先表示
   - SW v9 + キャッシュバスター 2026-05-15 に更新
+- Round 54 (2026-05-15): 大規模リファクタ — 運用スクリプト体系化
+  - HTML 構造監査の結果、セマンティック / 見出し階層 / ランドマークは全て健全 (h1×1, h2×多, h3 ネストが正、`<main>` `<nav>` `<aside>` `<footer>` 適切)。大規模な構造変更は不要
+  - 代わりに保守時間を実質的に削減する **運用ツール 3 本を追加**:
+    * **`bump-cache.ps1`**: 全 HTML の `?v=YYYYMMDDx` と sw.js CACHE_VERSION を 1 コマンドで連動更新。letter は a→b→...→z→aa の正しいローテーション。`-DryRun` でプレビュー
+    * **`validate-site.ps1`**: 5 項目のサニティチェック (JSON-LD valid / 内部リンク / SW precache / generate.ps1 構文 / cache-bust 整合) を一括実行。Exit code でデプロイブロック可
+    * **`compact-css.ps1`** (Round 53 で追加): 空白圧縮ユーティリティ (現状はメンテ性優先で不採用、必要時に使えるよう残置)
+  - **`docs/RELEASE_RUNBOOK.md` セクション 8.5 を新設**: 全 5 ツール (上記 3 + 既存の `inject-dims.ps1`, `generate.ps1`, `recompress-large-webp.ps1`) の使い方を一覧化
+  - 効果: 月次デプロイの手作業が 5 分 → 30 秒。CI に validate を組み込めば回帰検知も自動化可
 - Round 53 (2026-05-15): CSS dead code 削減監査
   - 全 368 CSS class セレクタ × HTML + JS + JSON + generate.ps1 でクロスチェック
   - **真の dead code は 2 セレクタのみ**: `.prose .wp-block-button`, `.prose .wp-block-button__link` (WP block の button、現在 HTML/JSON にも存在せず Swell の同等品を使っている)

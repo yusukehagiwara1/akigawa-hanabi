@@ -92,6 +92,74 @@ Cloudflare Pages の管理画面でも「Rollback to this deployment」が可能
 - 確認用メタ: `<meta name="google-site-verification" content="_SB5wUXCuqfQHGCTuY0_c6xVeaRyJ9jwoDLAwN-SYh0">`（index.html 内）
 - sitemap.xml は登録済み
 
+## 8.5. 開発ヘルパースクリプト（_wp-content/）
+
+ローカル PowerShell で実行できる作業自動化スクリプト群。
+
+### `_wp-content/bump-cache.ps1`
+
+CSS/JS を更新したらキャッシュ識別子を 1 コマンドで全 HTML + SW に伝播。
+
+```powershell
+.\_wp-content\bump-cache.ps1            # 全 HTML の ?v=YYYYMMDDx を次へ + sw.js v++
+.\_wp-content\bump-cache.ps1 -DryRun    # 変更内容のプレビューのみ
+```
+
+ルール:
+- 今日の日付 > 現在の日付 → 今日 + `a` にリセット
+- 今日の日付 == 現在の日付 → 末尾文字を進める（a→b→…→z→aa）
+- 今日の日付 < 現在の日付 → 末尾文字だけ進める（日付は戻さない）
+
+### `_wp-content/validate-site.ps1`
+
+デプロイ前のサニティチェック。5 項目を一括確認:
+
+```powershell
+.\_wp-content\validate-site.ps1
+```
+
+チェック内容:
+1. 全 HTML の JSON-LD が valid JSON か
+2. 内部 HTML リンクの存在
+3. SW の PRECACHE_URLS が実ファイルとして存在
+4. generate.ps1 が PowerShell として構文 OK
+5. キャッシュバスター ?v= の値が全 HTML で一致
+
+失敗は exit code 1。CI に通すと安心。
+
+### `_wp-content/inject-dims.ps1`
+
+新しい画像を `assets/` に追加した後、HTML img タグに width/height を自動注入:
+
+```powershell
+.\_wp-content\inject-dims.ps1
+```
+
+`_image-dims.tsv` が無ければ自動生成（Round 44 で対応）。
+
+### `_wp-content/recompress-large-webp.ps1`
+
+100KB 超の WebP を quality 72 で再圧縮（30-48% 削減実績、Round 52 で 1.98MB 削減）:
+
+```powershell
+.\_wp-content\recompress-large-webp.ps1
+```
+
+20% 以上の削減がある場合のみ置換（品質劣化と引き換えに足りない節約は採用しない）。
+
+### `_wp-content/generate.ps1`
+
+WordPress REST API JSON からサブページ HTML を再生成（既存）。
+新画像 / WP コンテンツ変更時のみ実行。
+
+```powershell
+cd _wp-content
+.\generate.ps1
+cd ..
+.\_wp-content\bump-cache.ps1
+.\_wp-content\validate-site.ps1
+```
+
 ## 9. 微妙な更新が発生した時のチェックリスト
 
 - [ ] 変更したいファイルをローカルまたは GitHub Web で編集
