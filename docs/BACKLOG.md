@@ -57,6 +57,18 @@
   - **M2** 完了: hero-fireworks-real の 800w / 1280w 派生を生成（モバイル 491KB → 86KB、約 82% 削減）。`<link rel=preload>` を imagesrcset 対応 + CSS を media query ベースのレスポンシブ背景に
   - **M3** 完了: gallery / press / faq の各 CMS セクションに testimonial と同じ `data-has-fallback` フラグ尊重ロジックを実装。空 CMS でも静的フォールバックを優先表示
   - SW v9 + キャッシュバスター 2026-05-15 に更新
+- Round 39 (2026-05-15): index.html Event JSON-LD の完全化
+  - **`@id`** を追加 (`https://akigawa-hanabi.pages.dev/#event-2026`)。同一イベントを複数 JSON-LD 間で参照可能に
+  - **`doorTime`**: 2026-11-14T15:00:00+09:00 (会場開門時刻)
+  - **`duration`**: PT50M (花火本編の長さ ISO 8601)
+  - **`isAccessibleForFree: false`**: 有料イベントを明示
+  - **`inLanguage: ja`**: コンテンツ言語明示
+  - **`typicalAgeRange: all`**: 全年齢対象
+  - **`image`** に ogp-2026.jpg を追加 (3 つの代表画像配列)
+  - **`offers`** を配列化 + `name: "観覧チケット"` + `priceCurrency: JPY` を追加 (将来 SS/A/フリーを個別 Offer として追加可能な拡張形)
+  - **`subEvent`** で「音楽花火（メイン演目）」を 18:00-18:50 のサブイベントとして構造化
+  - 効果: Google Rich Results / イベント検索 / Schema.org Validator で重要属性が網羅
+  - SW v32 + キャッシュバスター 20260515t
 - Round 38 (2026-05-15): 運用テストモード — ?testMode=... クエリパラメータ
   - **ui.js** に URL クエリ `?testMode=` ハンドラを追加 (約 35 行)
   - `?testMode=banner-urgent` → `.urgent-banner[hidden]` を強制表示

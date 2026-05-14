@@ -193,11 +193,17 @@
         },
         {
           "@type": "Event",
+          "@id": "https://akigawa-hanabi.pages.dev/#event-2026",
           "name": "秋川流域花火大会 第8回",
           "startDate": "2026-11-14T15:00:00+09:00",
           "endDate": "2026-11-14T19:30:00+09:00",
+          "doorTime": "2026-11-14T15:00:00+09:00",
+          "duration": "PT50M",
           "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
           "eventStatus": "https://schema.org/EventScheduled",
+          "isAccessibleForFree": false,
+          "inLanguage": "ja",
+          "typicalAgeRange": "all",
           "location": {
             "@type": "Place",
             "name": "東京サマーランド 第2駐車場",
@@ -217,16 +223,30 @@
           },
           "image": [
             "https://akigawa-hanabi.pages.dev/assets/keyvisual.jpg",
-            "https://akigawa-hanabi.pages.dev/assets/hero-fireworks-real.webp"
+            "https://akigawa-hanabi.pages.dev/assets/hero-fireworks-real.webp",
+            "https://akigawa-hanabi.pages.dev/assets/ogp-2026.jpg"
           ],
           "description": "2026年11月14日（土）開催。花火打ち上げは18:00〜18:50、約5,000発（3か所同時打ち上げ）。紅葉に染まる山々と秋川を背景に、音楽と花火が重なる東京最大級（自社調べ）の秋花火大会。",
           "organizer": { "@id": "https://akigawa-hanabi.pages.dev/#organization" },
           "performer": { "@id": "https://akigawa-hanabi.pages.dev/#organization" },
-          "offers": {
-            "@type": "Offer",
-            "url": "https://akigawa-hanabi.pages.dev/ticket.html",
-            "availability": "https://schema.org/PreOrder",
-            "validFrom": "2026-08-01T00:00:00+09:00"
+          "offers": [
+            {
+              "@type": "Offer",
+              "name": "観覧チケット",
+              "url": "https://akigawa-hanabi.pages.dev/ticket.html",
+              "availability": "https://schema.org/PreOrder",
+              "validFrom": "2026-08-01T00:00:00+09:00",
+              "priceCurrency": "JPY"
+            }
+          ],
+          "subEvent": {
+            "@type": "Event",
+            "name": "音楽花火（メイン演目）",
+            "startDate": "2026-11-14T18:00:00+09:00",
+            "endDate": "2026-11-14T18:50:00+09:00",
+            "duration": "PT50M",
+            "description": "約5,000発の音楽花火。3 か所同時打ち上げ。",
+            "location": { "@type": "Place", "name": "東京サマーランド 第2駐車場" }
           }
         }
       ]
@@ -280,14 +300,14 @@
     .hero-badge-pulse{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--gold)}
     .hero-badge-text strong{color:var(--gold);font-weight:900;letter-spacing:.04em}
     </style>
-    <link rel="preload" href="styles.css?v=20260515s" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="styles.css?v=20260515s"></noscript>
-    <script src="analytics.js?v=20260515s" defer></script>
-    <script src="ui.js?v=20260515s" defer></script>
-    <script src="microcms-config.js?v=20260515s" defer></script>
-    <script src="script.js?v=20260515s" defer></script>
-    <script src="microcms-extras.js?v=20260515s" defer></script>
-    <script src="sponsor-urls.js?v=20260515s" defer></script>
+    <link rel="preload" href="styles.css?v=20260515t" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="styles.css?v=20260515t"></noscript>
+    <script src="analytics.js?v=20260515t" defer></script>
+    <script src="ui.js?v=20260515t" defer></script>
+    <script src="microcms-config.js?v=20260515t" defer></script>
+    <script src="script.js?v=20260515t" defer></script>
+    <script src="microcms-extras.js?v=20260515t" defer></script>
+    <script src="sponsor-urls.js?v=20260515t" defer></script>
     <script>
       // Register Service Worker for offline support / PWA
       if ("serviceWorker" in navigator) {
