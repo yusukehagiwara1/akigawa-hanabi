@@ -111,7 +111,8 @@ $template = @'
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900{{AMP}}family=Zen+Old+Mincho:wght@700;900{{AMP}}display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900{{AMP}}family=Zen+Old+Mincho:wght@700;900{{AMP}}display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900{{AMP}}family=Zen+Old+Mincho:wght@700;900{{AMP}}display=swap"></noscript>
     <link rel="stylesheet" href="styles.css">
     <script src="analytics.js" defer></script>
     <script src="ui.js" defer></script>
@@ -406,6 +407,14 @@ function Add-ImageDimensions([string]$html) {
   })
 }
 
+function Apply-SponsorAltFix([string]$h) {
+  # WP shipped a generic-slug filename as alt text for the unnamed 2-2
+  # logo placeholder. Replace with a neutral fallback so screen readers
+  # don't read out file slugs.
+  $h = $h.Replace('alt="2-2 企業ロゴ"', 'alt="協賛企業ロゴ"')
+  return $h
+}
+
 function Apply-AccessStaleGuard([string]$h) {
   # access.html ships with a bus-stop timetable imported verbatim from WP
   # at 第7回 (2025). Bus schedules change year to year; append a disclaimer
@@ -530,6 +539,9 @@ function Build-Page([hashtable]$page) {
   }
   if ($page.slug -eq "access") {
     $content = Apply-AccessStaleGuard $content
+  }
+  if ($page.slug -eq "sponsor") {
+    $content = Apply-SponsorAltFix $content
   }
   if ($page.slug -eq "event") {
     $banner = @'

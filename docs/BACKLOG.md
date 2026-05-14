@@ -57,6 +57,13 @@
   - **M2** 完了: hero-fireworks-real の 800w / 1280w 派生を生成（モバイル 491KB → 86KB、約 82% 削減）。`<link rel=preload>` を imagesrcset 対応 + CSS を media query ベースのレスポンシブ背景に
   - **M3** 完了: gallery / press / faq の各 CMS セクションに testimonial と同じ `data-has-fallback` フラグ尊重ロジックを実装。空 CMS でも静的フォールバックを優先表示
   - SW v9 + キャッシュバスター 2026-05-15 に更新
+- Round 29 (2026-05-15): フォントレンダーブロック解消 + 軽微な a11y 修正
+  - **Google Fonts CSS を非同期読み込みに**: 全 15 HTML で `<link rel="stylesheet">` を `<link rel="preload" ... onload="this.rel='stylesheet'">` + `<noscript>` fallback パターンに変更
+  - render-blocking から解放され FCP/LCP が改善 (特にサブページで効く)
+  - `display=swap` パラメータ済なので FOUT は短時間で完了
+  - **sponsor.html の不明ロゴ alt 修正**: `alt="2-2 企業ロゴ"` (ファイル名スラッグ) → `alt="協賛企業ロゴ"` (汎用説明)
+  - **generate.ps1**: テンプレートを async fonts に + Apply-SponsorAltFix 関数を新設 (再生成時も維持)
+  - SW v22 + キャッシュバスター 20260515l
 - Round 28 (2026-05-15): Cloudflare Pages HTTP ヘッダー最適化
   - **新規 `_headers` ファイル**: Cloudflare Pages の規約に沿ったヘッダー設定
   - **セキュリティヘッダー (全レスポンス)**:
