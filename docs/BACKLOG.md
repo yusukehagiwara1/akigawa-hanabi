@@ -58,6 +58,16 @@
   - **M2** 完了: hero-fireworks-real の 800w / 1280w 派生を生成（モバイル 491KB → 86KB、約 82% 削減）。`<link rel=preload>` を imagesrcset 対応 + CSS を media query ベースのレスポンシブ背景に
   - **M3** 完了: gallery / press / faq の各 CMS セクションに testimonial と同じ `data-has-fallback` フラグ尊重ロジックを実装。空 CMS でも静的フォールバックを優先表示
   - SW v9 + キャッシュバスター 2026-05-15 に更新
+- Round 16 (2026-05-15): デザイン質感引き上げ — 花火の夜空感
+  - **Hero 雰囲気**: aurora オーバーレイ（暖色の radial-gradient が 18s でゆっくり漂う）+ sparkles 層（12 個の twinkling 金粒子、2 系統のオフセット）を追加。`mix-blend-mode: screen` で写真と自然に重なる。`prefers-reduced-motion` 尊重
+  - **セクション見出し**: h2 の下に gold→red グラデの 64×2px アクセントストライプ + 金グロー
+  - **カード hover 統一**: stats / ticket / info / program / testimonial / sponsor を `cubic-bezier(0.2,0.8,0.2,1)` の上品なリフト + 金縁グロー + 強いシャドウに統一
+  - **ボタン**: primary の hover に強い金 glow + 内側白ハイライト。secondary も hover で金縁
+  - **スクロールプログレス**: 既存の金→赤グラデに `box-shadow` で発光感
+  - **サイトヘッダー**: スクロール時に金グラデの細線がフッターに出現
+  - **モバイル**: hero タイポの shadow 強化、CTA を 1 行ストレッチで親指フィット
+  - **fade-in スタガー**: ui.js でグリッド系コンテナの子要素に 75ms 刻みの transition-delay（最大 450ms）
+  - SW v10 + キャッシュバスター 20260515a
 
 ## 📋 リリースカレンダー（2026年 想定）
 

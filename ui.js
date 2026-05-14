@@ -276,11 +276,30 @@
     !window.matchMedia("(prefers-reduced-motion: reduce)").matches
   ) {
     const fadeTargets = document.querySelectorAll(
-      ".section, .notice, .program-card, .stats article, .ticket-card, .info-card, .past-tile, .sponsor-tile, .access-grid, .contact-card"
+      ".section, .notice, .program-card, .stats article, .ticket-card, .info-card, .past-tile, .sponsor-tile, .access-grid, .contact-card, .testimonial-card"
     );
     fadeTargets.forEach(function (el) {
       el.classList.add("fade-target");
     });
+
+    // Group siblings inside common grid containers so their reveal can
+    // stagger when the parent enters the viewport. Each group's index
+    // becomes a transition-delay multiplier — gives a "lit one after
+    // another" feel without overwhelming.
+    const STAGGER_STEP_MS = 75;   // delay between siblings
+    const STAGGER_MAX_MS = 450;   // cap so the last item doesn't lag too long
+    const staggerContainers = document.querySelectorAll(
+      ".past-grid, .testimonial-grid, .stats, .sponsor-grid, .ticket-list, .info-grid, .program-grid"
+    );
+    staggerContainers.forEach(function (container) {
+      Array.prototype.forEach.call(container.children, function (child, i) {
+        if (child.classList && child.classList.contains("fade-target")) {
+          const delay = Math.min(i * STAGGER_STEP_MS, STAGGER_MAX_MS);
+          child.style.transitionDelay = delay + "ms";
+        }
+      });
+    });
+
     const io = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {
