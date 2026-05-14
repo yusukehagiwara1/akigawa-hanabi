@@ -95,6 +95,8 @@ $template = @'
     <link rel="dns-prefetch" href="https://0k3w9bd30b.microcms.io">
     <link rel="dns-prefetch" href="https://images.microcms-assets.io">
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://stats.g.doubleclick.net">
     <link rel="dns-prefetch" href="https://docs.google.com">
     <script type="application/ld+json">
     {
