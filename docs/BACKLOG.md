@@ -57,6 +57,9 @@
   - **M2** 完了: hero-fireworks-real の 800w / 1280w 派生を生成（モバイル 491KB → 86KB、約 82% 削減）。`<link rel=preload>` を imagesrcset 対応 + CSS を media query ベースのレスポンシブ背景に
   - **M3** 完了: gallery / press / faq の各 CMS セクションに testimonial と同じ `data-has-fallback` フラグ尊重ロジックを実装。空 CMS でも静的フォールバックを優先表示
   - SW v9 + キャッシュバスター 2026-05-15 に更新
+- Round 26 (2026-05-15): SEO 鮮度シグナル — sitemap lastmod 更新
+  - **sitemap.xml**: 実コンテンツが変更された 3 ページ (ticket / event / access) の `<lastmod>` を 2026-05-15 に更新。Round 22/24 で page-status-banner や `.ticket-sale-pending` や `.access-timetable-note` を追加した実体変化を反映
+  - 他ページは CSS のみの変更なので lastmod は 2026-05-12 のまま (sitemap シグナルの正確性を維持)
 - Round 25 (2026-05-15): CSS メンテナンス — 効果のないアニメ削除
   - **signup-card-aurora を削除**: radial-gradient が内部位置 (`circle at 88% 12%`) を使い background-size: 100% 100% で fill しているため、`background-position` を 88%→84% に動かしても画面に変化なし。22s 周期の compositor work が無駄だった
   - 経緯コメントで残置 (後の保守者が再追加しないように)
