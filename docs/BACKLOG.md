@@ -58,6 +58,16 @@
   - **M2** 完了: hero-fireworks-real の 800w / 1280w 派生を生成（モバイル 491KB → 86KB、約 82% 削減）。`<link rel=preload>` を imagesrcset 対応 + CSS を media query ベースのレスポンシブ背景に
   - **M3** 完了: gallery / press / faq の各 CMS セクションに testimonial と同じ `data-has-fallback` フラグ尊重ロジックを実装。空 CMS でも静的フォールバックを優先表示
   - SW v9 + キャッシュバスター 2026-05-15 に更新
+- Round 19 (2026-05-15): デザイン質感引き上げ Part 4 — 残る dark セクションを統一
+  - **why-choose-card**: 上品な lift + 金縁 + 強シャドウに統一 (Round 16 のカード共通言語を適用)
+  - **why-choose-icon**: hover で scale(1.08) + 3deg rotate + 金赤グラデで「焦がし」演出
+  - **signup-card**: dark aurora が 22s で drift。中央 CTA セクションに息吹を
+  - **signup-option**: 左下から金 halo が広がる hover + icon は scale(1.1) で金 hover ハイライト
+  - **support-band**: 既存の dot grid に 4 個の金粒子を重ね 6.2s で twinkle
+  - **info-card-thumb**: hover で image scale(1.04) (ニュース cards)
+  - **focus-visible 統一**: 主要 CTA に金 outline (キーボードユーザーへの視認性)
+  - すべて prefers-reduced-motion 尊重
+  - SW v13 + キャッシュバスター 20260515d
 - Round 18 (2026-05-15): デザイン質感引き上げ Part 3 — アンビエント演出
   - **body 背景**: 既存の金/赤 radial-gradient が 42s ease-in-out でゆっくり drift。「生きている感」を全ページに
   - **hero badge**: 既存の pulse に加えて 5.6s 周期で光が badge を sweep する shimmer 効果

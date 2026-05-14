@@ -6352,3 +6352,144 @@ body {
   box-shadow: 0 18px 44px rgba(28, 35, 42, 0.10);
 }
 
+/* ======================================================================
+   Round 19 — Design polish, part 4 (2026-05-15)
+   ----------------------------------------------------------------------
+   Final unification pass — bring the remaining dark CTA sections
+   (signup-card, support-band) and lighter cards (why-choose) up to the
+   same design language. After this, design polish should be done.
+   ====================================================================== */
+
+/* --- why-choose-card: gold rim on hover, icon emboldens --------- */
+.why-choose-card {
+  transition: transform 0.32s cubic-bezier(0.2, 0.8, 0.2, 1),
+              box-shadow 0.32s ease,
+              border-color 0.32s ease;
+}
+
+.why-choose-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(215, 169, 71, 0.45);
+  box-shadow:
+    0 26px 56px rgba(28, 35, 42, 0.14),
+    0 0 0 1px rgba(215, 169, 71, 0.28);
+}
+
+.why-choose-icon {
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+              background 0.35s ease,
+              color 0.35s ease;
+}
+
+.why-choose-card:hover .why-choose-icon {
+  transform: scale(1.08) rotate(-3deg);
+  background: linear-gradient(135deg, rgba(215, 169, 71, 0.35), rgba(184, 63, 55, 0.22));
+  color: var(--red);
+}
+
+/* --- signup-card: aurora drift on its dark gradient -------------- */
+.signup-card {
+  background-size: 100% 100%, 100% 100%, 100% 100%;
+  animation: signup-card-aurora 22s ease-in-out infinite alternate;
+}
+
+@keyframes signup-card-aurora {
+  0%   { background-position: 88% 12%, 12% 90%, 0 0; }
+  100% { background-position: 84% 8%,  16% 86%, 0 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .signup-card { animation: none; }
+}
+
+/* --- signup-option: gold halo on hover + icon spring ------------- */
+.signup-option {
+  position: relative;
+  overflow: hidden;
+}
+
+.signup-option::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 0% 100%,
+    rgba(215, 169, 71, 0.16),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.signup-option:hover::before {
+  opacity: 1;
+}
+
+.signup-option > * {
+  position: relative;
+  z-index: 1;
+}
+
+.signup-option-icon {
+  transition: transform 0.32s cubic-bezier(0.2, 0.8, 0.2, 1),
+              background 0.32s ease,
+              color 0.32s ease;
+}
+
+.signup-option:hover .signup-option-icon {
+  transform: scale(1.1);
+  background: rgba(215, 169, 71, 0.3);
+  color: #ffe8a6;
+}
+
+/* --- support-band: twinkling dots + slow drift ------------------- */
+.support-band::before {
+  /* Replace the static dot grid with a richer twinkling layer */
+  background-image:
+    radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    radial-gradient(circle at 14% 26%, rgba(255, 230, 178, 0.5) 0, rgba(255, 230, 178, 0) 2px),
+    radial-gradient(circle at 78% 42%, rgba(255, 220, 170, 0.55) 0, rgba(255, 220, 170, 0) 2px),
+    radial-gradient(circle at 38% 72%, rgba(255, 245, 215, 0.45) 0, rgba(255, 245, 215, 0) 2px),
+    radial-gradient(circle at 88% 86%, rgba(255, 215, 150, 0.55) 0, rgba(255, 215, 150, 0) 2px);
+  background-size: 32px 32px, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+  background-position: 16px 16px, 0 0, 0 0, 0 0, 0 0;
+  background-repeat: repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+  animation: support-band-twinkle 6.2s ease-in-out infinite;
+}
+
+@keyframes support-band-twinkle {
+  0%, 100% { opacity: 0.5;  }
+  50%      { opacity: 0.85; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .support-band::before { animation: none; opacity: 0.6; }
+}
+
+/* support-band actions: a tiny lift on hover via the cascading button rule */
+
+/* --- info-card (news): tighter hover language ------------------- */
+.info-card-thumb {
+  overflow: hidden;
+}
+
+.info-card-thumb img {
+  transition: transform 0.55s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.info-card:hover .info-card-thumb img {
+  transform: scale(1.04);
+}
+
+/* --- Universal: gentle gold glow on focus-visible for keyboard --
+   Subtle outline replaces the harsher default — only on focus-visible */
+.button.primary:focus-visible,
+.button.secondary:focus-visible,
+.header-cta:focus-visible,
+.signup-option:focus-visible,
+.event-panel-calendar:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+}
+
