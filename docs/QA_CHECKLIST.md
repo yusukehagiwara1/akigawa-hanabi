@@ -115,3 +115,19 @@
 - [ ] 「あと N 日」表示が「本日開催！」に切り替わっている
 - [ ] 雨天時の中止判断は QA ページに反映されている
 - [ ] 緊急告知が必要なら notice 部分を即更新できる体制
+
+## 11. テストモード（事前プレビュー用）
+
+開催 1〜2 週間前に、本番 URL に `?testMode=...` を付けるだけで
+条件付き UI が事前確認できる。HTML 編集不要。
+
+| クエリ | 効果 |
+|---|---|
+| `?testMode=banner-urgent` | `.urgent-banner` を強制表示。デフォルト文言で見え方確認 |
+| `?testMode=countdown-imminent` | カウントダウンを「あと 23 時間 5 分」+ 金赤グラデ + 強パルスでプレビュー |
+| `?testMode=countdown-today` | 「本日開催！」+ 当日演出でプレビュー |
+
+例: https://akigawa-hanabi.pages.dev/?testMode=banner-urgent
+
+不明な値は無視される。`<html data-test-mode="...">` 属性が付与されるので、CSS で追加スタイルを差し込みたい場合のフックにも使える。
+

@@ -7,6 +7,42 @@
   // Used by per-page CSS to scope styling (e.g., sponsor logo tiles).
   const pageSlug = currentPath.replace(/\.html$/i, "").replace(/[^a-z0-9\-]+/gi, "-") || "index";
   document.body.classList.add("page-" + pageSlug);
+
+  // --- Ops preview modes via URL query (?testMode=...) ----------------
+  // Lets the event-day team verify the look of conditional UI without
+  // editing HTML. Use values:
+  //   ?testMode=banner-urgent      — reveal the .urgent-banner with the
+  //                                   default message
+  //   ?testMode=countdown-imminent — simulate < 24h countdown styling
+  //                                   ("あと N 時間 M 分", is-imminent)
+  //   ?testMode=countdown-today    — simulate event-day banner
+  //                                   ("本日開催！", is-today)
+  // Unknown values are ignored. Adds a `data-test-mode` attribute to
+  // <html> so CSS can also scope test-only styling if needed.
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const testMode = params.get("testMode");
+    if (testMode) {
+      document.documentElement.setAttribute("data-test-mode", testMode);
+      if (testMode === "banner-urgent") {
+        const banner = document.querySelector(".urgent-banner");
+        if (banner) banner.removeAttribute("hidden");
+      } else if (testMode === "countdown-imminent") {
+        document.querySelectorAll("[data-countdown-target]").forEach(function (el) {
+          el.classList.remove("is-soon");
+          el.classList.add("is-urgent", "is-imminent");
+          const val = el.querySelector(".notice-countdown-value");
+          if (val) val.innerHTML = 'あと <strong>23</strong> 時間 <strong>5</strong> 分';
+        });
+      } else if (testMode === "countdown-today") {
+        document.querySelectorAll("[data-countdown-target]").forEach(function (el) {
+          el.classList.add("is-today");
+          const val = el.querySelector(".notice-countdown-value");
+          if (val) val.textContent = "本日開催！";
+        });
+      }
+    }
+  } catch (e) {}
   const navLinks = document.querySelectorAll(".nav a, .footer-nav a");
   navLinks.forEach(function (link) {
     const href = link.getAttribute("href") || "";

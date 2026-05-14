@@ -57,6 +57,16 @@
   - **M2** 完了: hero-fireworks-real の 800w / 1280w 派生を生成（モバイル 491KB → 86KB、約 82% 削減）。`<link rel=preload>` を imagesrcset 対応 + CSS を media query ベースのレスポンシブ背景に
   - **M3** 完了: gallery / press / faq の各 CMS セクションに testimonial と同じ `data-has-fallback` フラグ尊重ロジックを実装。空 CMS でも静的フォールバックを優先表示
   - SW v9 + キャッシュバスター 2026-05-15 に更新
+- Round 38 (2026-05-15): 運用テストモード — ?testMode=... クエリパラメータ
+  - **ui.js** に URL クエリ `?testMode=` ハンドラを追加 (約 35 行)
+  - `?testMode=banner-urgent` → `.urgent-banner[hidden]` を強制表示
+  - `?testMode=countdown-imminent` → カウントダウンを「あと 23 時間 5 分」+ is-urgent + is-imminent クラスでプレビュー
+  - `?testMode=countdown-today` → 「本日開催！」+ is-today でプレビュー
+  - `<html data-test-mode="...">` 属性も付与 → CSS で追加スタイル可
+  - 不明な値は無視 (try/catch で URLSearchParams 非対応ブラウザも安全)
+  - QA_CHECKLIST.md に「11. テストモード」セクションを追加して運用手順を文書化
+  - 効果: 開催 1-2 週間前に HTML 編集不要で全条件付き UI を本番 URL でプレビュー可能
+  - SW v31 + キャッシュバスター 20260515s
 - Round 37 (2026-05-15): iOS / Android / Windows レガシー PWA メタ
   - `<meta name="apple-mobile-web-app-capable" content="yes">` — iOS PWA standalone
   - `<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">` — iOS ステータスバー透過
