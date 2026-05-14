@@ -58,6 +58,15 @@
   - **M2** 完了: hero-fireworks-real の 800w / 1280w 派生を生成（モバイル 491KB → 86KB、約 82% 削減）。`<link rel=preload>` を imagesrcset 対応 + CSS を media query ベースのレスポンシブ背景に
   - **M3** 完了: gallery / press / faq の各 CMS セクションに testimonial と同じ `data-has-fallback` フラグ尊重ロジックを実装。空 CMS でも静的フォールバックを優先表示
   - SW v9 + キャッシュバスター 2026-05-15 に更新
+- Round 17 (2026-05-15): デザイン質感引き上げ Part 2 — サイト全体へ展開
+  - **サブページ banner (page-hero)**: 既存のドットテクスチャに 5 個の twinkling 金粒子を重ね、5.4s ease-in-out で twinkle。サブページにも夜空感
+  - **page-hero h1**: 白→淡金のグラデーション文字 + 金グロー text-shadow
+  - **stats 番号 (01/02/03)**: 金→赤グラデーション文字 + 40×2px の装飾線 + hover で drop-shadow
+  - **footer**: 上端に金グラデーションのアクセント線（発光感）+ 6 点の星散背景 + Instagram/お問い合わせの hover を金グロー + フッターナビの hover を金 + letter-spacing
+  - **past-tile**: hover でキャプションが 4px 上昇 + letter-spacing が広がり、暗グラデーションが濃くなる映画的な演出
+  - **FAQ**: hover で +1px lift + 質問文が赤に / +ボタンを淡金グラデに / open 時は金赤グラデ
+  - **event-panel カレンダーボタン**: hover で金 glow
+  - SW v11 + キャッシュバスター 20260515b
 - Round 16 (2026-05-15): デザイン質感引き上げ — 花火の夜空感
   - **Hero 雰囲気**: aurora オーバーレイ（暖色の radial-gradient が 18s でゆっくり漂う）+ sparkles 層（12 個の twinkling 金粒子、2 系統のオフセット）を追加。`mix-blend-mode: screen` で写真と自然に重なる。`prefers-reduced-motion` 尊重
   - **セクション見出し**: h2 の下に gold→red グラデの 64×2px アクセントストライプ + 金グロー
