@@ -6435,20 +6435,13 @@ body {
   color: var(--red);
 }
 
-/* --- signup-card: aurora drift on its dark gradient -------------- */
-.signup-card {
-  background-size: 100% 100%, 100% 100%, 100% 100%;
-  animation: signup-card-aurora 22s ease-in-out infinite alternate;
-}
-
-@keyframes signup-card-aurora {
-  0%   { background-position: 88% 12%, 12% 90%, 0 0; }
-  100% { background-position: 84% 8%,  16% 86%, 0 0; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .signup-card { animation: none; }
-}
+/* Removed: signup-card-aurora animation.
+   Reason: the radial-gradient layers use internal positioning
+   (`circle at 88% 12%`) with background-size:100% 100%. Animating
+   background-position between 88%→84% has no visible effect because each
+   layer already fills the element exactly — there is no extra room for
+   the gradient to drift into. Removing eliminates the unused
+   compositor work without changing the visual. */
 
 /* --- signup-option: gold halo on hover + icon spring ------------- */
 .signup-option {

@@ -57,6 +57,10 @@
   - **M2** 完了: hero-fireworks-real の 800w / 1280w 派生を生成（モバイル 491KB → 86KB、約 82% 削減）。`<link rel=preload>` を imagesrcset 対応 + CSS を media query ベースのレスポンシブ背景に
   - **M3** 完了: gallery / press / faq の各 CMS セクションに testimonial と同じ `data-has-fallback` フラグ尊重ロジックを実装。空 CMS でも静的フォールバックを優先表示
   - SW v9 + キャッシュバスター 2026-05-15 に更新
+- Round 25 (2026-05-15): CSS メンテナンス — 効果のないアニメ削除
+  - **signup-card-aurora を削除**: radial-gradient が内部位置 (`circle at 88% 12%`) を使い background-size: 100% 100% で fill しているため、`background-position` を 88%→84% に動かしても画面に変化なし。22s 周期の compositor work が無駄だった
+  - 経緯コメントで残置 (後の保守者が再追加しないように)
+  - SW v19 + キャッシュバスター 20260515j
 - Round 24 (2026-05-15): 鮮度ガード Part 2 — バス時刻表の出典明記
   - **access.html**: WP から取り込んだ「秋川駅→サマーランドバス停 時刻表」(2025年時点) に注記を追加。「※ 上記時刻表は前回開催（2025年）時点の路線バス情報です」+ 東京サマーランドの公式アクセスページへの誘導
   - **generate.ps1**: Apply-AccessStaleGuard 関数を新設し、Build-Page で access スラッグ時に自動適用。再生成しても注記が維持される
