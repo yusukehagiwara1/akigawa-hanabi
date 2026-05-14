@@ -57,6 +57,19 @@
   - **M2** 完了: hero-fireworks-real の 800w / 1280w 派生を生成（モバイル 491KB → 86KB、約 82% 削減）。`<link rel=preload>` を imagesrcset 対応 + CSS を media query ベースのレスポンシブ背景に
   - **M3** 完了: gallery / press / faq の各 CMS セクションに testimonial と同じ `data-has-fallback` フラグ尊重ロジックを実装。空 CMS でも静的フォールバックを優先表示
   - SW v9 + キャッシュバスター 2026-05-15 に更新
+- Round 23 (2026-05-15): アクセシビリティ + メンテナンス
+  - **a11y: --gold-text 変数を導入** (#8e6a1f、白背景上で ≈5:1 で AA 適合)
+  - **.eyebrow / .tag をコンテキスト別に振り分け**: デフォルトは --gold-text、装飾の line + dot は bright var(--gold) のまま保持。dark 背景セクション (hero / page-hero / signup-card / support-band / event-panel / urgent-banner / subpage-signup-cta / footer) で var(--gold) に上書き
+  - **light context の gold-on-white テキスト 6 箇所を gold-text に置換**:
+    * `.notice-actions .button.secondary:hover`
+    * `.ticket-guide-card:hover .ticket-guide-cta`
+    * `.page-status-banner a:hover`
+    * `.prose .donation-pdf-button:hover`
+    * `.program-num` (非 feature variant)
+    * .eyebrow/.tag のデフォルト
+  - **dead code 除去**: `.stats article:hover span { color: var(--gold) }` を削除 (Round 17 の gradient-text に overrideされていた + webkit/Firefox 不整合)。経緯はコメントで残置
+  - **SEO: sponsor.html の sitemap priority 0.7 → 0.5** (第7回コンテンツ中心のため重要度を下げる) + lastmod を 2026-05-15 に更新
+  - SW v17 + キャッシュバスター 20260515h
 - Round 22 (2026-05-15): 鮮度ガード — 終了済 CTA の無効化
   - **ticket.html 販売リンク無効化**: 第7回時の KKday/アソビュー予約ボタン 6 件（SS/A/フリー × 2 platforms）を `.ticket-sale-pending` 通知 CTA に置換。「販売準備中」ピル + 「販売開始通知を受け取る → index.html#signup」金グラデ CTA。誤誘導リスクを根絶
   - **ticket.html 上部のプラットフォームロゴ**: 外部リンクラッパを除去（ロゴ自体は「前回販売プラットフォーム」として情報残し）、リード文を「前回利用」表現に修正

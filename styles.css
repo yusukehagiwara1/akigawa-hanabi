@@ -4,6 +4,10 @@
   --paper: #fffdf7;
   --cream: #f7efe2;
   --gold: #d7a947;
+  /* AA-compliant darker gold for text on light backgrounds (≈5:1 vs white).
+     Use --gold for backgrounds/borders/decoration; use --gold-text only when
+     gold-colored TEXT sits on a light surface. */
+  --gold-text: #8e6a1f;
   --red: #b83f37;
   --teal: #0f6868;
   --night: #10182a;
@@ -678,19 +682,22 @@ img {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  color: var(--gold);
+  /* Default: text on a light surface. Dark-bg sections override below. */
+  color: var(--gold-text);
   font-size: 0.78rem;
   font-weight: 900;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
+/* Decorative line + dot stay bright gold for the festival vibe — they don't
+   need to meet text contrast since they're not text. */
 .eyebrow::before,
 .tag::before {
   content: "";
   width: 38px;
   height: 2px;
-  background: linear-gradient(90deg, transparent, currentColor);
+  background: linear-gradient(90deg, transparent, var(--gold));
   border-radius: 2px;
 }
 
@@ -700,8 +707,23 @@ img {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: currentColor;
-  box-shadow: 0 0 8px currentColor;
+  background: var(--gold);
+  box-shadow: 0 0 8px var(--gold);
+}
+
+/* Dark-context overrides: keep bright gold where the background is dark
+   (these have plenty of contrast already). */
+.hero .eyebrow,
+.hero .tag,
+.page-hero .tag,
+.signup-card .tag,
+.support-band .tag,
+.subpage-signup-cta-text .tag,
+.event-panel .tag,
+.urgent-banner .tag,
+.footer .tag,
+.footer .eyebrow {
+  color: var(--gold);
 }
 
 h1,
@@ -1028,7 +1050,7 @@ h2 span,
 
 .notice-actions .button.secondary:hover {
   border-color: var(--gold);
-  color: var(--gold);
+  color: var(--gold-text);
 }
 
 /* ===== Press releases (CMS-driven on pr.html) ===== */
@@ -1783,7 +1805,7 @@ a.press-card-title:hover {
 }
 
 .ticket-guide-card:hover .ticket-guide-cta {
-  color: var(--gold);
+  color: var(--gold-text);
 }
 
 /* ===== Access summary table (主要駅からのアクセス) on access.html ===== */
@@ -2441,10 +2463,13 @@ a.press-card-title:hover {
   }
 }
 
-.stats article:hover span {
-  transform: translateX(4px);
-  color: var(--gold);
-}
+/* Removed: .stats article:hover span color override.
+   Reason: .stats span (Round 17) uses background-clip:text + color:transparent
+   for a gradient number. Setting `color: var(--gold)` here was overridden by
+   -webkit-text-fill-color:transparent in WebKit and caused a visual mismatch
+   in Firefox. The card hover lift now comes from .stats article:hover
+   (Round 16) and .stats article:hover .stats-body span (Round 17) — no
+   color change needed on the number itself. */
 
 .stats span::after {
   content: "";
@@ -2747,7 +2772,7 @@ a.ticket-card {
 }
 
 .page-status-banner a:hover {
-  color: var(--gold);
+  color: var(--gold-text);
 }
 
 .page-status-banner .page-status-actions {
@@ -4252,7 +4277,7 @@ a.ticket-card {
 
 .prose .donation-pdf-button:hover {
   border-color: var(--gold);
-  color: var(--gold);
+  color: var(--gold-text);
 }
 
 .prose .benefit-grid {
@@ -4924,7 +4949,7 @@ a.ticket-card {
   padding: 4px 10px;
   border-radius: 999px;
   background: rgba(215, 169, 71, 0.15);
-  color: var(--gold);
+  color: var(--gold-text);
   font-size: 0.78rem;
   font-weight: 900;
   letter-spacing: 0.08em;
