@@ -6206,3 +6206,149 @@ dialog.lightbox .lightbox-close:hover {
   box-shadow: 0 10px 28px rgba(215, 169, 71, 0.32);
 }
 
+/* ======================================================================
+   Round 18 — Design polish, part 3 (2026-05-15)
+   ----------------------------------------------------------------------
+   Ambient touches — body drift, hero badge shimmer, gallery vignette,
+   mobile sticky CTA prominence, hero scroll-hint elegance.
+   ====================================================================== */
+
+/* --- Body background: very slow drift so the page feels alive ------ */
+body {
+  background-size: 100% 100%, 100% 100%, 100% 100%;
+  animation: body-bg-drift 42s ease-in-out infinite alternate;
+}
+
+@keyframes body-bg-drift {
+  0%   { background-position: 88% 16%,  8% 78%,  0 0; }
+  100% { background-position: 92% 12%,  4% 82%,  0 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body { animation: none; }
+}
+
+/* --- Hero badge: light sweep effect riding on top of the pulse ----- */
+.hero-badge {
+  overflow: hidden;
+}
+
+.hero-badge::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    100deg,
+    transparent 0%,
+    rgba(255, 245, 220, 0.32) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+  animation: hero-badge-sweep 5.6s ease-in-out infinite;
+}
+
+@keyframes hero-badge-sweep {
+  0%, 70%, 100% { left: -120%; }
+  85%           { left: 140%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-badge::after { animation: none; opacity: 0; }
+}
+
+/* --- Past-gallery tiles: subtle cinematic vignette ----------------- */
+.past-tile {
+  position: relative;
+}
+
+.past-tile::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  /* Soft vignette that darkens the corners — adds depth to photos */
+  background: radial-gradient(
+    ellipse at center,
+    transparent 50%,
+    rgba(8, 13, 25, 0.32) 100%
+  );
+  opacity: 0.7;
+  transition: opacity 0.4s ease;
+}
+
+.past-tile:hover::before {
+  opacity: 0.45;
+}
+
+/* Caption already z-indexed at 1, push it above the vignette */
+.past-tile figcaption {
+  z-index: 2;
+}
+
+.past-tile .zoom-hint {
+  z-index: 2;
+}
+
+/* --- Mobile sticky CTA: prominent gold-button with subtle pulse --- */
+.mobile-sticky-cta {
+  position: fixed;
+  /* Animate a faint outer ring so it draws attention without annoyance */
+  animation: mobile-cta-pulse 3.8s ease-in-out infinite;
+}
+
+@keyframes mobile-cta-pulse {
+  0%, 100% {
+    box-shadow:
+      0 8px 28px rgba(11, 19, 31, 0.32),
+      0 0 0 0 rgba(215, 169, 71, 0.45);
+  }
+  60% {
+    box-shadow:
+      0 8px 28px rgba(11, 19, 31, 0.32),
+      0 0 0 10px rgba(215, 169, 71, 0);
+  }
+}
+
+.mobile-sticky-cta:hover,
+.mobile-sticky-cta:focus-visible {
+  transform: translateX(-50%) translateY(-2px);
+  box-shadow:
+    0 14px 36px rgba(11, 19, 31, 0.4),
+    0 0 0 1px rgba(255, 232, 166, 0.6);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-sticky-cta { animation: none; }
+}
+
+/* --- Hero scroll-hint: trim to a slim mouse icon look ------------ */
+.hero-scroll-hint {
+  /* Restored: the existing pulse animation handles motion; here we
+     just sharpen the visual cue */
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  background: rgba(8, 13, 25, 0.2);
+  backdrop-filter: blur(4px);
+  transition: background 0.3s ease, border-color 0.3s ease, color 0.25s ease;
+}
+
+.hero-scroll-hint:hover {
+  background: rgba(215, 169, 71, 0.18);
+  border-color: rgba(215, 169, 71, 0.7);
+}
+
+/* --- Notice (homepage): subtle accent on the corner ribbon ------- */
+.notice {
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.notice:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 44px rgba(28, 35, 42, 0.10);
+}
+

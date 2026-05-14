@@ -58,6 +58,15 @@
   - **M2** 完了: hero-fireworks-real の 800w / 1280w 派生を生成（モバイル 491KB → 86KB、約 82% 削減）。`<link rel=preload>` を imagesrcset 対応 + CSS を media query ベースのレスポンシブ背景に
   - **M3** 完了: gallery / press / faq の各 CMS セクションに testimonial と同じ `data-has-fallback` フラグ尊重ロジックを実装。空 CMS でも静的フォールバックを優先表示
   - SW v9 + キャッシュバスター 2026-05-15 に更新
+- Round 18 (2026-05-15): デザイン質感引き上げ Part 3 — アンビエント演出
+  - **body 背景**: 既存の金/赤 radial-gradient が 42s ease-in-out でゆっくり drift。「生きている感」を全ページに
+  - **hero badge**: 既存の pulse に加えて 5.6s 周期で光が badge を sweep する shimmer 効果
+  - **past-tile**: 写真に映画的 vignette (radial-gradient で四隅を暗く)、hover で vignette が薄れて写真の素の色が際立つ
+  - **mobile sticky CTA**: 3.8s 周期で金色のリングが広がる subtle pulse (来場検討者の目を引く)。hover で 2px lift + 強シャドウ + 内側白ハイライト
+  - **hero scroll-hint**: 細枠 pill 化 (背景 blur + 半透明)。hover で金縁
+  - **notice ハイライト**: hover で 2px lift + 強シャドウ
+  - すべて prefers-reduced-motion 尊重
+  - SW v12 + キャッシュバスター 20260515c
 - Round 17 (2026-05-15): デザイン質感引き上げ Part 2 — サイト全体へ展開
   - **サブページ banner (page-hero)**: 既存のドットテクスチャに 5 個の twinkling 金粒子を重ね、5.4s ease-in-out で twinkle。サブページにも夜空感
   - **page-hero h1**: 白→淡金のグラデーション文字 + 金グロー text-shadow
