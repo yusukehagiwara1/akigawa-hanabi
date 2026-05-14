@@ -38,7 +38,9 @@
     <meta name="google-site-verification" content="_SB5wUXCuqfQHGCTuY0_c6xVeaRyJ9jwoDLAwN-SYh0">
     <link rel="icon" href="assets/favicon.ico" sizes="any">
     <link rel="apple-touch-icon" sizes="192x192" href="/assets/icon-192.png">
-    <link rel="preload" as="image" href="assets/hero-fireworks-real.webp" fetchpriority="high">
+    <link rel="preload" as="image" imagesrcset="assets/hero-fireworks-real-800.webp 800w, assets/hero-fireworks-real-1280.webp 1280w, assets/hero-fireworks-real.webp 1920w" imagesizes="100vw" fetchpriority="high">
+    <!-- Fallback for browsers that don't support responsive preload (older Safari) -->
+    <link rel="preload" as="image" href="assets/hero-fireworks-real.webp" media="(min-width: 1281px)">
     <link rel="dns-prefetch" href="https://0k3w9bd30b.microcms.io">
     <link rel="dns-prefetch" href="https://images.microcms-assets.io">
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
@@ -252,7 +254,9 @@
       .nav-toggle{display:flex;width:44px;height:44px;padding:0;border:0;background:transparent;cursor:pointer;align-items:center;justify-content:center;flex-direction:column;gap:6px}
       .nav-toggle span{display:block;width:24px;height:2px;background:#fff;border-radius:2px}
     }
-    .hero{position:relative;display:grid;align-items:end;min-height:92vh;padding:136px clamp(22px,6vw,84px) 7vh;color:#fff;background:linear-gradient(90deg,rgba(8,13,25,.85) 0,rgba(8,13,25,.55) 45%,rgba(8,13,25,.05) 100%),linear-gradient(180deg,rgba(8,13,25,.02) 58%,rgba(8,13,25,.88) 100%),url(assets/hero-fireworks-real.webp) center/cover;isolation:isolate}
+    .hero{position:relative;display:grid;align-items:end;min-height:92vh;padding:136px clamp(22px,6vw,84px) 7vh;color:#fff;background:linear-gradient(90deg,rgba(8,13,25,.85) 0,rgba(8,13,25,.55) 45%,rgba(8,13,25,.05) 100%),linear-gradient(180deg,rgba(8,13,25,.02) 58%,rgba(8,13,25,.88) 100%),url(assets/hero-fireworks-real-800.webp) center/cover;isolation:isolate}
+    @media (min-width:801px){.hero{background-image:linear-gradient(90deg,rgba(8,13,25,.85) 0,rgba(8,13,25,.55) 45%,rgba(8,13,25,.05) 100%),linear-gradient(180deg,rgba(8,13,25,.02) 58%,rgba(8,13,25,.88) 100%),url(assets/hero-fireworks-real-1280.webp)}}
+    @media (min-width:1281px){.hero{background-image:linear-gradient(90deg,rgba(8,13,25,.85) 0,rgba(8,13,25,.55) 45%,rgba(8,13,25,.05) 100%),linear-gradient(180deg,rgba(8,13,25,.02) 58%,rgba(8,13,25,.88) 100%),url(assets/hero-fireworks-real.webp)}}
     .hero-content{max-width:760px}
     .hero h1{max-width:720px;margin-bottom:20px;font-size:clamp(2.4rem,7vw,5.4rem);font-weight:900;line-break:strict;word-break:keep-all;text-shadow:0 2px 24px rgba(0,0,0,.45)}
     .hero-lead{max-width:650px;margin-bottom:32px;color:rgba(255,255,255,.86);font-size:clamp(1.05rem,2.2vw,1.35rem);font-weight:500;text-shadow:0 1px 12px rgba(0,0,0,.4)}
@@ -266,14 +270,14 @@
     .hero-badge-pulse{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--gold)}
     .hero-badge-text strong{color:var(--gold);font-weight:900;letter-spacing:.04em}
     </style>
-    <link rel="preload" href="styles.css?v=20260512d" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="styles.css?v=20260512d"></noscript>
-    <script src="analytics.js?v=20260512d" defer></script>
-    <script src="ui.js?v=20260512d" defer></script>
-    <script src="microcms-config.js?v=20260512d" defer></script>
-    <script src="script.js?v=20260512d" defer></script>
-    <script src="microcms-extras.js?v=20260512d" defer></script>
-    <script src="sponsor-urls.js?v=20260512d" defer></script>
+    <link rel="preload" href="styles.css?v=20260515" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="styles.css?v=20260515"></noscript>
+    <script src="analytics.js?v=20260515" defer></script>
+    <script src="ui.js?v=20260515" defer></script>
+    <script src="microcms-config.js?v=20260515" defer></script>
+    <script src="script.js?v=20260515" defer></script>
+    <script src="microcms-extras.js?v=20260515" defer></script>
+    <script src="sponsor-urls.js?v=20260515" defer></script>
     <script>
       // Register Service Worker for offline support / PWA
       if ("serviceWorker" in navigator) {
@@ -455,7 +459,7 @@
       <section class="section stats" aria-label="大会の特徴">
         <article>
           <div class="stats-thumb">
-            <img src="assets/wp/DSC_0717.webp" alt="紅葉に染まる秋川渓谷と会場周辺の眺め" loading="lazy" decoding="async">
+            <img src="assets/wp/DSC_0717.webp" width="700" height="467" alt="紅葉に染まる秋川渓谷と会場周辺の眺め" loading="lazy" decoding="async">
           </div>
           <div class="stats-body">
             <span>01</span>
@@ -465,7 +469,7 @@
         </article>
         <article>
           <div class="stats-thumb">
-            <img src="assets/wp/DSC_1997.webp" alt="紅葉の前で演奏する吹奏楽団" loading="lazy" decoding="async">
+            <img src="assets/wp/DSC_1997.webp" width="700" height="467" alt="紅葉の前で演奏する吹奏楽団" loading="lazy" decoding="async">
           </div>
           <div class="stats-body">
             <span>02</span>
@@ -475,7 +479,7 @@
         </article>
         <article>
           <div class="stats-thumb">
-            <img src="assets/wp/DSC_0538.webp" alt="運営スタッフが肩を組み気持ちを一つにする様子" loading="lazy" decoding="async">
+            <img src="assets/wp/DSC_0538.webp" width="700" height="467" alt="運営スタッフが肩を組み気持ちを一つにする様子" loading="lazy" decoding="async">
           </div>
           <div class="stats-body">
             <span>03</span>
@@ -597,7 +601,7 @@
         <div class="program-grid">
           <a class="program-card feature" href="event.html">
             <div class="program-card-thumb">
-              <img src="assets/wp/DSC_2628.webp" alt="色とりどりの花火が夜空に咲く瞬間" loading="lazy" decoding="async">
+              <img src="assets/wp/DSC_2628.webp" width="700" height="467" alt="色とりどりの花火が夜空に咲く瞬間" loading="lazy" decoding="async">
             </div>
             <div class="program-card-body">
               <span class="program-num">Music</span>
@@ -610,7 +614,7 @@
           </a>
           <a class="program-card" href="event.html">
             <div class="program-card-thumb">
-              <img src="assets/wp/DSC_2352.webp" alt="ステージで躍動するダンスチームの様子" loading="lazy" decoding="async">
+              <img src="assets/wp/DSC_2352.webp" width="700" height="467" alt="ステージで躍動するダンスチームの様子" loading="lazy" decoding="async">
             </div>
             <div class="program-card-body">
               <span class="program-num">Stage</span>
@@ -620,7 +624,7 @@
           </a>
           <a class="program-card" href="event.html">
             <div class="program-card-thumb">
-              <img src="assets/wp/DSC_2228.webp" alt="会場のキッチンカーで料理を提供するスタッフ" loading="lazy" decoding="async">
+              <img src="assets/wp/DSC_2228.webp" width="700" height="467" alt="会場のキッチンカーで料理を提供するスタッフ" loading="lazy" decoding="async">
             </div>
             <div class="program-card-body">
               <span class="program-num">Food</span>
@@ -630,7 +634,7 @@
           </a>
           <a class="program-card" href="event.html">
             <div class="program-card-thumb">
-              <img src="assets/wp/DSC_1113.webp" alt="会場で楽しそうに走り回る子どもたち" loading="lazy" decoding="async">
+              <img src="assets/wp/DSC_1113.webp" width="700" height="466" alt="会場で楽しそうに走り回る子どもたち" loading="lazy" decoding="async">
             </div>
             <div class="program-card-body">
               <span class="program-num">Play</span>
@@ -640,7 +644,7 @@
           </a>
           <a class="program-card" href="event.html">
             <div class="program-card-thumb">
-              <img src="assets/wp/DSC_2442.webp" alt="夜の会場に集まる地域の人々" loading="lazy" decoding="async">
+              <img src="assets/wp/DSC_2442.webp" width="700" height="467" alt="夜の会場に集まる地域の人々" loading="lazy" decoding="async">
             </div>
             <div class="program-card-body">
               <span class="program-num">Local</span>
@@ -796,25 +800,25 @@
             積み重ねてきた一つひとつの体験が、第7回への礎となっています。
           </p>
         </div>
-        <div class="past-grid" id="cms-gallery-list">
+        <div class="past-grid" id="cms-gallery-list" data-has-fallback="true">
           <figure class="past-tile">
             <span class="zoom-hint" aria-hidden="true"></span>
-            <img src="assets/past-01.webp" alt="夜空に咲く大玉花火" loading="lazy" decoding="async">
+            <img src="assets/past-01.webp" width="1200" height="900" alt="夜空に咲く大玉花火" loading="lazy" decoding="async">
             <figcaption>夜空を埋め尽くす音楽花火</figcaption>
           </figure>
           <figure class="past-tile">
             <span class="zoom-hint" aria-hidden="true"></span>
-            <img src="assets/past-02.webp" alt="提灯が灯る会場の夜の賑わい" loading="lazy" decoding="async">
+            <img src="assets/past-02.webp" width="1200" height="900" alt="提灯が灯る会場の夜の賑わい" loading="lazy" decoding="async">
             <figcaption>提灯と屋台が灯す秋の夜</figcaption>
           </figure>
           <figure class="past-tile">
             <span class="zoom-hint" aria-hidden="true"></span>
-            <img src="assets/past-03.webp" alt="会場で味わえる屋台グルメ" loading="lazy" decoding="async">
+            <img src="assets/past-03.webp" width="700" height="467" alt="会場で味わえる屋台グルメ" loading="lazy" decoding="async">
             <figcaption>屋台・キッチンカーのグルメ</figcaption>
           </figure>
           <figure class="past-tile">
             <span class="zoom-hint" aria-hidden="true"></span>
-            <img src="assets/past-04.webp" alt="ステージで盛り上がるダンスパフォーマンス" loading="lazy" decoding="async">
+            <img src="assets/past-04.webp" width="700" height="467" alt="ステージで盛り上がるダンスパフォーマンス" loading="lazy" decoding="async">
             <figcaption>地域のダンスでステージが沸く</figcaption>
           </figure>
         </div>
@@ -944,15 +948,15 @@
           <p>本大会は、地域の企業・団体・個人の皆さまのご協賛により開催されています。心より御礼申し上げます。</p>
         </div>
         <div class="sponsor-grid" id="cms-sponsor-list" aria-label="協賛企業一覧">
-          <div class="sponsor-tile"><img src="assets/sponsors/sponsor-summerland.webp" alt="東京サマーランド" loading="lazy" decoding="async"></div>
-          <div class="sponsor-tile"><img src="assets/sponsors/sponsor-aeon.webp" alt="イオンモール日の出" loading="lazy" decoding="async"></div>
-          <div class="sponsor-tile"><img src="assets/sponsors/sponsor-humantech.webp" alt="ヒューマンテクノス" loading="lazy" decoding="async"></div>
-          <div class="sponsor-tile"><img src="assets/sponsors/sponsor-tachibana.webp" alt="立花工業" loading="lazy" decoding="async"></div>
-          <div class="sponsor-tile"><img src="assets/sponsors/sponsor-uchida.webp" alt="内田電気" loading="lazy" decoding="async"></div>
-          <div class="sponsor-tile"><img src="assets/sponsors/sponsor-mori.webp" alt="森電気" loading="lazy" decoding="async"></div>
-          <div class="sponsor-tile"><img src="assets/sponsors/sponsor-kyowa.webp" alt="協和" loading="lazy" decoding="async"></div>
-          <div class="sponsor-tile"><img src="assets/sponsors/sponsor-yanagi.webp" alt="YANAGI" loading="lazy" decoding="async"></div>
-          <div class="sponsor-tile"><img src="assets/sponsors/sponsor-jun.webp" alt="ジュン企画" loading="lazy" decoding="async"></div>
+          <div class="sponsor-tile"><img src="assets/sponsors/sponsor-summerland.webp" width="1500" height="500" alt="東京サマーランド" loading="lazy" decoding="async"></div>
+          <div class="sponsor-tile"><img src="assets/sponsors/sponsor-aeon.webp" width="1500" height="500" alt="イオンモール日の出" loading="lazy" decoding="async"></div>
+          <div class="sponsor-tile"><img src="assets/sponsors/sponsor-humantech.webp" width="1500" height="500" alt="ヒューマンテクノス" loading="lazy" decoding="async"></div>
+          <div class="sponsor-tile"><img src="assets/sponsors/sponsor-tachibana.webp" width="1500" height="500" alt="立花工業" loading="lazy" decoding="async"></div>
+          <div class="sponsor-tile"><img src="assets/sponsors/sponsor-uchida.webp" width="1500" height="500" alt="内田電気" loading="lazy" decoding="async"></div>
+          <div class="sponsor-tile"><img src="assets/sponsors/sponsor-mori.webp" width="1500" height="500" alt="森電気" loading="lazy" decoding="async"></div>
+          <div class="sponsor-tile"><img src="assets/sponsors/sponsor-kyowa.webp" width="1500" height="500" alt="協和" loading="lazy" decoding="async"></div>
+          <div class="sponsor-tile"><img src="assets/sponsors/sponsor-yanagi.webp" width="1500" height="500" alt="YANAGI" loading="lazy" decoding="async"></div>
+          <div class="sponsor-tile"><img src="assets/sponsors/sponsor-jun.webp" width="1500" height="500" alt="ジュン企画" loading="lazy" decoding="async"></div>
         </div>
         <p class="sponsor-note">※ 掲載は順不同。第7回協賛企業様の一部をご紹介しています。</p>
         <p class="sponsor-more">

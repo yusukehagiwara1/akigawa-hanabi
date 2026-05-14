@@ -460,11 +460,32 @@ img {
   min-height: 92vh;
   padding: 136px clamp(22px, 6vw, 84px) 7vh;
   color: #fff;
+  /* Mobile-first: serve the 800w variant (≈86KB vs 491KB for 1920w) to small
+     viewports for a meaningful LCP win. Larger viewports get progressively
+     bigger images to keep fidelity. */
   background:
     linear-gradient(90deg, rgba(8, 13, 25, 0.85) 0%, rgba(8, 13, 25, 0.55) 45%, rgba(8, 13, 25, 0.05) 100%),
     linear-gradient(180deg, rgba(8, 13, 25, 0.02) 58%, rgba(8, 13, 25, 0.88) 100%),
-    url("assets/hero-fireworks-real.webp") center / cover;
+    url("assets/hero-fireworks-real-800.webp") center / cover;
   isolation: isolate;
+}
+
+@media (min-width: 801px) {
+  .hero {
+    background-image:
+      linear-gradient(90deg, rgba(8, 13, 25, 0.85) 0%, rgba(8, 13, 25, 0.55) 45%, rgba(8, 13, 25, 0.05) 100%),
+      linear-gradient(180deg, rgba(8, 13, 25, 0.02) 58%, rgba(8, 13, 25, 0.88) 100%),
+      url("assets/hero-fireworks-real-1280.webp");
+  }
+}
+
+@media (min-width: 1281px) {
+  .hero {
+    background-image:
+      linear-gradient(90deg, rgba(8, 13, 25, 0.85) 0%, rgba(8, 13, 25, 0.55) 45%, rgba(8, 13, 25, 0.05) 100%),
+      linear-gradient(180deg, rgba(8, 13, 25, 0.02) 58%, rgba(8, 13, 25, 0.88) 100%),
+      url("assets/hero-fireworks-real.webp");
+  }
 }
 
 .hero::after {

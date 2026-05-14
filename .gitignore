@@ -1,6 +1,7 @@
 # Build artifacts
 _deploy/
 _deploy.zip
+_image-dims.tsv
 
 # OS noise
 Thumbs.db

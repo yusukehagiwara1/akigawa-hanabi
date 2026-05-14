@@ -360,7 +360,50 @@ function Clean-Content([string]$html) {
     }
     return $m.Value
   })
+  # Inject width/height attributes for known image src so the browser can
+  # reserve aspect-ratio boxes during layout (Core Web Vitals: CLS, LCP).
+  $h = Add-ImageDimensions $h
   return $h
+}
+
+# Cache of image natural dimensions: relative path -> @{ W=int; H=int }
+$script:imgDimsCache = $null
+function Get-ImageDimsLookup {
+  if ($script:imgDimsCache) { return $script:imgDimsCache }
+  $script:imgDimsCache = @{}
+  $assetsDir = Join-Path (Split-Path -Parent $PSScriptRoot) "assets"
+  if (-not (Test-Path $assetsDir)) { return $script:imgDimsCache }
+  $shell = New-Object -ComObject Shell.Application
+  Get-ChildItem -Path $assetsDir -Recurse -Include *.webp,*.jpg,*.jpeg,*.png -File | ForEach-Object {
+    $rel = $_.FullName.Substring((Split-Path -Parent $PSScriptRoot).Length + 1) -replace '\\','/'
+    try {
+      $dir = $shell.Namespace($_.DirectoryName)
+      $item = $dir.ParseName($_.Name)
+      $raw = $dir.GetDetailsOf($item, 31)
+      if ($raw -match '(\d+)\s*x\s*(\d+)') {
+        $script:imgDimsCache[$rel] = @{ W = [int]$matches[1]; H = [int]$matches[2] }
+      }
+    } catch {}
+  }
+  return $script:imgDimsCache
+}
+
+function Add-ImageDimensions([string]$html) {
+  $lookup = Get-ImageDimsLookup
+  if ($lookup.Count -eq 0) { return $html }
+  return [regex]::Replace($html, '<img\b[^>]*?>', {
+    param($m)
+    $tag = $m.Value
+    # Skip if already has width or height
+    if ($tag -match '(?i)\swidth\s*=' -or $tag -match '(?i)\sheight\s*=') { return $tag }
+    if ($tag -notmatch '(?i)\ssrc\s*=\s*"([^"]+)"') { return $tag }
+    $src = $matches[1]
+    $norm = $src -replace '^/', '' -replace '[\?#].*$', ''
+    if (-not $lookup.ContainsKey($norm)) { return $tag }
+    $w = $lookup[$norm].W
+    $h = $lookup[$norm].H
+    return [regex]::Replace($tag, '(?i)(\ssrc\s*=\s*"[^"]+")', "`$1 width=`"$w`" height=`"$h`"", 1)
+  })
 }
 
 function Get-ContactBody {
@@ -438,7 +481,7 @@ function Build-Page([hashtable]$page) {
   $html = $html.Replace('{{AMP}}', '&')
 
   $outPath = Join-Path $projectDir $page.file
-  [System.IO.File]::WriteAllText($outPath, $html, [System.Text.UTF8Encoding]::new($false))
+  [System.IO.File]::WriteAllText($outPath, $html, [System.Text.UTF8Encoding]::new($true))
   $size = (Get-Item $outPath).Length
   Write-Output ("OK  {0,8} bytes  {1}" -f $size, $page.file)
 }

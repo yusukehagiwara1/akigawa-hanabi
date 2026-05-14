@@ -2,7 +2,7 @@
 
 未完タスク・将来検討タスクの整理。優先度はビジネスインパクトベース。
 
-最終更新: 2026-05-12
+最終更新: 2026-05-15
 
 ---
 
@@ -21,9 +21,6 @@
 
 | ID | タスク | 効果 | 想定工数 |
 |---|---|---|---|
-| M1 | 画像の width/height 属性を明示し CLS 低減 | LCP/CLS改善 | 2-3 hours |
-| M2 | hero-fireworks-real.webp のモバイル版（800px幅）作成 | モバイル LCP | 1 hour |
-| M3 | testimonial 以外の CMS セクション（gallery / press / faq）にもフォールバック整備 | UX 一貫性 | 1-2 hours |
 | M4 | スポンサーロゴ毎の hover で企業説明 tooltip | UX | 2 hours |
 | M5 | sponsor.html を carousel から grid に統一 | デザイン整合 | 1 hour |
 
@@ -56,6 +53,11 @@
 - R14: LINE tabindex調整 + SW v6
 - Sprint 1: docs 4 件追加（RELEASE / QA / INCIDENT / BACKLOG） + 当日緊急バナー先行配置
 - Sprint 2: Looker Studio セットアップ手順 + 月次レポートテンプレート整備（docs 2 件追加）
+- Round 15 (2026-05-15): Core Web Vitals & CMS 耐障害性
+  - **M1** 完了: コンテンツ画像 147 タグに width/height 属性を一括注入（CLS 低減）。`_wp-content/inject-dims.ps1` ユーティリティ追加 + `generate.ps1` に注入ロジック組込で再生成時も維持
+  - **M2** 完了: hero-fireworks-real の 800w / 1280w 派生を生成（モバイル 491KB → 86KB、約 82% 削減）。`<link rel=preload>` を imagesrcset 対応 + CSS を media query ベースのレスポンシブ背景に
+  - **M3** 完了: gallery / press / faq の各 CMS セクションに testimonial と同じ `data-has-fallback` フラグ尊重ロジックを実装。空 CMS でも静的フォールバックを優先表示
+  - SW v9 + キャッシュバスター 2026-05-15 に更新
 
 ## 📋 リリースカレンダー（2026年 想定）
 

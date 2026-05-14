@@ -8,7 +8,7 @@
 //   * Cross-origin requests, non-GET, sitemap/robots, /_routes/* → pass through.
 //
 // Bump CACHE_VERSION on each deploy that ships static asset changes.
-const CACHE_VERSION = "akigawa-hanabi-v8";
+const CACHE_VERSION = "akigawa-hanabi-v9";
 const PRECACHE_URLS = [
   "/styles.css",
   "/ui.js",
@@ -21,6 +21,8 @@ const PRECACHE_URLS = [
   "/assets/favicon.ico",
   "/assets/logo-npo.webp",
   "/assets/hero-fireworks-real.webp",
+  "/assets/hero-fireworks-real-1280.webp",
+  "/assets/hero-fireworks-real-800.webp",
   "/assets/keyvisual.jpg",
   "/assets/ogp-2026.jpg",
   "/assets/icon-192.png",

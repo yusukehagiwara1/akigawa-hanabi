@@ -16,32 +16,47 @@
   const faqDynamicList = document.querySelector("#cms-faq-list");
   const faqDynamicSection = document.querySelector("#cms-faq-section");
 
+  // Pattern: if the target element has data-has-fallback="true", a CMS-empty
+  // response keeps the static fallback markup visible instead of hiding the
+  // whole section. Sections without static fallback hide on empty.
+  const hasFallback = function (el) {
+    return Boolean(el && el.dataset && el.dataset.hasFallback === "true");
+  };
+
   if (sponsorList && extra.sponsors) {
     loadList(extra.sponsors, sponsorList, renderSponsors);
   }
   if (galleryList && extra.gallery) {
-    loadList(extra.gallery, galleryList, renderGallery);
+    const galleryFallback = hasFallback(galleryList);
+    const gallerySection = galleryList.closest("section");
+    loadList(extra.gallery, galleryList, renderGallery, function (count) {
+      // Empty CMS + no static fallback → hide section. (Gallery static
+      // markup ships with index.html so this normally stays put.)
+      if (count === 0 && gallerySection && !galleryFallback) {
+        gallerySection.style.display = "none";
+      }
+    });
   }
   if (testimonialList && extra.testimonial) {
-    const hasFallback = testimonialList.dataset.hasFallback === "true";
+    const testimonialFallback = hasFallback(testimonialList);
     loadList(extra.testimonial, testimonialList, renderTestimonials, function (count) {
-      // If CMS is empty BUT we have fallback content, keep the section visible.
-      // Only hide the section when CMS is empty AND there's no fallback to show.
-      if (count === 0 && testimonialSection && !hasFallback) {
+      if (count === 0 && testimonialSection && !testimonialFallback) {
         testimonialSection.style.display = "none";
       }
     });
   }
   if (pressList && extra.pressRelease) {
+    const pressFallback = hasFallback(pressList);
     loadList(extra.pressRelease, pressList, renderPressReleases, function (count) {
-      if (count === 0 && pressSection) {
+      if (count === 0 && pressSection && !pressFallback) {
         pressSection.style.display = "none";
       }
     });
   }
   if (faqDynamicList && extra.faqDynamic) {
+    const faqFallback = hasFallback(faqDynamicList);
     loadList(extra.faqDynamic, faqDynamicList, renderFaqDynamic, function (count) {
-      if (count === 0 && faqDynamicSection) {
+      if (count === 0 && faqDynamicSection && !faqFallback) {
         faqDynamicSection.style.display = "none";
       }
     });
