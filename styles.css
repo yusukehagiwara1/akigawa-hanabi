@@ -6698,3 +6698,104 @@ body.page-sponsor .prose .wp-block-table td strong {
   }
 }
 
+/* ======================================================================
+   Round 22 — Freshness guard: stale CTA replacements (2026-05-15)
+   ----------------------------------------------------------------------
+   ticket.html ships with the WP-imported KKday / アソビュー reservation
+   buttons live, even though 第7回 sales have ended and 第8回 sales have
+   not yet opened. The buttons were replaced in-place by `.ticket-sale-
+   pending` notices that redirect to the index #signup flow. CSS below.
+   ====================================================================== */
+
+.ticket-sale-pending {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 22px;
+  padding: 20px 24px;
+  margin: 1.4em 0;
+  background: linear-gradient(135deg, rgba(215, 169, 71, 0.10), rgba(184, 63, 55, 0.05));
+  border: 1px solid rgba(215, 169, 71, 0.38);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(28, 35, 42, 0.05);
+}
+
+.ticket-sale-pending-msg {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.ticket-sale-pending-tag {
+  display: inline-block;
+  width: fit-content;
+  padding: 3px 12px;
+  background: linear-gradient(135deg, var(--gold), #b88e2c);
+  color: #fff;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ticket-sale-pending-msg strong {
+  font-size: 1.02rem;
+  font-weight: 800;
+  color: var(--ink);
+  line-height: 1.45;
+}
+
+.ticket-sale-pending-sub {
+  font-size: 0.86rem;
+  color: var(--muted);
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.ticket-sale-pending-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  background: linear-gradient(135deg, #ffe8a6 0%, var(--gold) 60%, #c79636 100%);
+  color: var(--night);
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 0.94rem;
+  white-space: nowrap;
+  text-decoration: none;
+  box-shadow:
+    0 8px 22px rgba(215, 169, 71, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.ticket-sale-pending-cta:hover,
+.ticket-sale-pending-cta:focus-visible {
+  transform: translateY(-2px);
+  box-shadow:
+    0 14px 32px rgba(215, 169, 71, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  color: var(--night);
+}
+
+.ticket-sale-pending-cta svg {
+  flex-shrink: 0;
+}
+
+@media (max-width: 580px) {
+  .ticket-sale-pending {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 18px 20px;
+  }
+  .ticket-sale-pending-msg {
+    align-items: center;
+  }
+  .ticket-sale-pending-cta {
+    justify-content: center;
+  }
+}
+

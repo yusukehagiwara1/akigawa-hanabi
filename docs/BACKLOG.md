@@ -57,6 +57,13 @@
   - **M2** 完了: hero-fireworks-real の 800w / 1280w 派生を生成（モバイル 491KB → 86KB、約 82% 削減）。`<link rel=preload>` を imagesrcset 対応 + CSS を media query ベースのレスポンシブ背景に
   - **M3** 完了: gallery / press / faq の各 CMS セクションに testimonial と同じ `data-has-fallback` フラグ尊重ロジックを実装。空 CMS でも静的フォールバックを優先表示
   - SW v9 + キャッシュバスター 2026-05-15 に更新
+- Round 22 (2026-05-15): 鮮度ガード — 終了済 CTA の無効化
+  - **ticket.html 販売リンク無効化**: 第7回時の KKday/アソビュー予約ボタン 6 件（SS/A/フリー × 2 platforms）を `.ticket-sale-pending` 通知 CTA に置換。「販売準備中」ピル + 「販売開始通知を受け取る → index.html#signup」金グラデ CTA。誤誘導リスクを根絶
+  - **ticket.html 上部のプラットフォームロゴ**: 外部リンクラッパを除去（ロゴ自体は「前回販売プラットフォーム」として情報残し）、リード文を「前回利用」表現に修正
+  - **event.html**: page-status-banner を追加し、「楽曲・出演団体は前回開催時の内容」と明示
+  - **generate.ps1**: Apply-TicketStaleGuard 関数を新設し、ticket 再生成時にも同じ変換が自動適用される。event の status banner も Build-Page で追加
+  - **styles.css**: `.ticket-sale-pending` の 12 要素 CSS（gold rim グラデ + 金 CTA + 580px 以下で 1 列）
+  - SW v16 + キャッシュバスター 20260515g
 - Round 21 / L2 (2026-05-15): カウントダウンを「日→時間→分」段階表示 + 404 統一
   - **ui.js カウントダウン**: 24h 以上は「あと N 日」、1h-24h は「あと H 時間 M 分」、< 1h は「あと M 分」と段階的に表示
   - **更新頻度**: 距離に応じて適応的 (> 24h: 毎時 / 1-24h: 毎分 / < 1h: 10 秒)。setTimeout チェーンで動的に再スケジュール

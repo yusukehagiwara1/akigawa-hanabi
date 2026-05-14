@@ -406,6 +406,59 @@ function Add-ImageDimensions([string]$html) {
   })
 }
 
+function Apply-TicketStaleGuard([string]$h) {
+  # The WP source ships with live KKday / アソビュー reservation links from
+  # the previous edition. They must not be clickable after 第7回 ended —
+  # rewrite to "販売準備中" notices that funnel to the signup flow.
+
+  # 1) Unwrap the top "purchase method" platform logos
+  $h = [regex]::Replace(
+    $h,
+    '<a href="https://www\.kkday\.com/[^"]+" target="_blank" rel="noopener">(<img[^>]*alt="KKdayで予約"[^>]*/?>)</a>',
+    '$1'
+  )
+  $h = [regex]::Replace(
+    $h,
+    '<a href="https://machizukuricon\.my\.urakata\.app/[^"]+" target="_blank" rel="noopener">(<img[^>]*alt="アソビューで予約"[^>]*/?>)</a>',
+    '$1'
+  )
+  $h = $h.Replace('alt="KKdayで予約"',     'alt="KKday（前回販売プラットフォーム）"')
+  $h = $h.Replace('alt="アソビューで予約"', 'alt="アソビュー（前回販売プラットフォーム）"')
+
+  # 2) Rephrase the lead text above the platform logos
+  $h = $h.Replace(
+    '<p class="u-mb-ctrl u-mb-0">以下2つのサイトからチケットを購入可能です。</p>',
+    '<p class="u-mb-ctrl u-mb-0">前回（第7回）は以下 2 つのプラットフォームで販売しました。第8回の販売開始時にも同様の事前購入制を予定しています（販売開始日・販売チャネルは決定次第ご案内）。</p>'
+  )
+
+  # 3) Replace the SS / A / フリーエリア button-pair columns with the
+  #    `.ticket-sale-pending` notice. The seat name is captured from the
+  #    KKday button span (kept verbatim by WP) and reused in aria-label.
+  $btnPattern = '(?s)<div class="wp-block-columns">\s*<div class="wp-block-column">\s*<div class="swell-block-button blue_[^"]*"><a href="https://www\.kkday\.com/[^"]+" target="_blank" rel="noopener" class="swell-block-button__link"><span>\s*(SS席|A席|フリーエリア)をKKdayで予約する\s*</span></a></div>\s*</div>\s*<div class="wp-block-column">\s*<div class="swell-block-button red_[^"]*"><a href="https://machizukuricon\.my\.urakata\.app/[^"]+" target="_blank" rel="noopener" class="swell-block-button__link"><span><strong>\1をアソビューで予約する</strong></span></a></div>\s*</div>\s*</div>'
+
+  $noticeTemplate = @'
+<div class="ticket-sale-pending" role="status" aria-label="{SEAT}の販売状況">
+  <div class="ticket-sale-pending-msg">
+    <span class="ticket-sale-pending-tag">準備中</span>
+    <strong>第8回（2026.11.14）の販売開始までお待ちください</strong>
+    <span class="ticket-sale-pending-sub">前回（第7回・2025年）の販売は終了しています</span>
+  </div>
+  <a class="ticket-sale-pending-cta" href="index.html#signup" data-ga-cta="ticket-pending:signup">
+    販売開始通知を受け取る
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 5l7 7-7 7"></path></svg>
+  </a>
+</div>
+'@
+
+  $h = [regex]::Replace($h, $btnPattern, {
+    param($m)
+    $seat = $m.Groups[1].Value
+    return $noticeTemplate.Replace('{SEAT}', $seat)
+  })
+
+  return $h
+}
+
 function Get-ContactBody {
   return @'
 <p>協賛・取材・運営に関するご質問、その他お問い合わせは以下のフォームよりお寄せください。内容を確認のうえ、運営委員会よりご連絡いたします。</p>
@@ -445,8 +498,24 @@ function Build-Page([hashtable]$page) {
   if ($page.slug -eq "ticket") {
     $banner = @'
 <aside class="page-status-banner" role="status">
-  <strong>第7回（2025年11月15日）の販売は終了しました。</strong>
-  <p>たくさんのご来場、誠にありがとうございました。次回開催のチケット情報は、本サイトおよび<a href="https://www.instagram.com/akigawa_hanabitaikai/" target="_blank" rel="noopener">公式Instagram</a>でご案内します。</p>
+  <strong>第8回 秋川流域花火大会 開催決定：2026年11月14日（土）</strong>
+  <p>花火打ち上げ 18:00〜18:50／約5,000発。チケット販売開始日は決定次第ご案内します。最新情報は <a href="index.html#signup">次回開催情報ページ</a>、または<a href="https://www.instagram.com/akigawa_hanabitaikai/" target="_blank" rel="noopener">公式Instagram</a>でお知らせします。</p>
+  <p class="page-status-actions">
+    <a class="page-status-calendar" href="akigawa-hanabi-2026.ics" download="akigawa-hanabi-2026.ics" data-ga-cta="calendar:download-ticket">
+      📅 カレンダーに開催日を追加（.ics）
+    </a>
+  </p>
+</aside>
+
+'@
+    $content = $banner + $content
+    $content = Apply-TicketStaleGuard $content
+  }
+  if ($page.slug -eq "event") {
+    $banner = @'
+<aside class="page-status-banner" role="status">
+  <strong>このページの楽曲・出演団体は前回（第7回・2025年）開催時の内容です。</strong>
+  <p>第8回（2026年11月14日 土曜）のプログラム詳細は決定次第本サイトでご案内します。打ち上げ規模・コンセプト・打ち上げ時間（18:00〜18:50）は前回同様の予定です。最新情報は <a href="index.html#signup">次回開催情報ページ</a> または <a href="https://www.instagram.com/akigawa_hanabitaikai/" target="_blank" rel="noopener">公式Instagram</a> でお知らせします。</p>
 </aside>
 
 '@
