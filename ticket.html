@@ -105,11 +105,11 @@
     .page-hero-pill-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--gold)}
     @media (prefers-color-scheme:dark){:root{--ink:#f1eee5;--muted:#a4b1ba;--paper:#0c1320;--cream:#1a2236;--gold-text:#e0c478;--line:rgba(255,255,255,.10)}}
     </style>
-    <link rel="preload" href="styles.css?v=20260524f" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="styles.css?v=20260524f"></noscript>
-    <script src="analytics.js?v=20260524f" defer></script>
-    <script src="ui.js?v=20260524f" defer></script>
-    <script src="sponsor-urls.js?v=20260524f" defer></script>
+    <link rel="preload" href="styles.css?v=20260524g" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="styles.css?v=20260524g"></noscript>
+    <script src="analytics.js?v=20260524g" defer></script>
+    <script src="ui.js?v=20260524g" defer></script>
+    <script src="sponsor-urls.js?v=20260524g" defer></script>
     <script>
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", function () {
@@ -162,6 +162,68 @@
     </a>
   </p>
 </aside>
+
+<!--
+  ===== 販売開始前の「席を今すぐ確保する方法」(Round 62 / 提案①④) =====
+  通常チケット販売は決定次第アナウンス。それまでの数ヶ月、来訪ユーザに
+  「待つ以外の選択肢」(ふるさと納税)を主CTAとして提示し、メール通知は
+  副CTAに後退させる。販売開始後はこのブロック全体を hidden にするか、
+  data-sale-state="open" を body に付けて display:none で隠す運用を想定。
+-->
+<section class="ticket-now-options" aria-label="販売開始前にできること">
+  <div class="ticket-now-options-head">
+    <span class="tag">Before Sale Starts</span>
+    <h2>販売開始までに、できること</h2>
+    <p class="ticket-now-options-lead">
+      通常チケット販売は決定次第ご案内します。一足先に席を確保したい方は、
+      <strong>ふるさと納税の返礼品</strong>として観覧チケットをお選びいただけます。
+    </p>
+  </div>
+
+  <div class="ticket-now-options-grid">
+    <a class="ticket-now-card ticket-now-card-primary" href="https://www.satofull.jp/static/special/fireworks.php#tokyo_akiruno" target="_blank" rel="noopener" data-ga-cta="ticket-now:furusato">
+      <div class="ticket-now-card-head">
+        <span class="ticket-now-card-tag">今すぐ確保</span>
+        <span class="ticket-now-card-badge">通常販売を待たずに</span>
+      </div>
+      <h3>ふるさと納税で席を確保する</h3>
+      <p class="ticket-now-card-lead">
+        あきる野市への寄付で、<strong>SS席・BBQプラン・ペアチケット</strong>などを返礼品として受け取れます。実質負担2,000円から(控除上限内)。
+      </p>
+      <ul class="ticket-now-card-list">
+        <li>地域支援とセットで席を確保できる</li>
+        <li>確定申告またはワンストップ特例で控除</li>
+        <li>例年、人気プランは早期完売</li>
+      </ul>
+      <span class="ticket-now-card-cta">
+        さとふるで返礼品を見る
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 5l7 7-7 7"></path></svg>
+      </span>
+    </a>
+
+    <a class="ticket-now-card ticket-now-card-secondary" href="index.html#signup" data-ga-cta="ticket-now:signup">
+      <div class="ticket-now-card-head">
+        <span class="ticket-now-card-tag is-quiet">通常販売を待つ</span>
+      </div>
+      <h3>販売開始の通知を受け取る</h3>
+      <p class="ticket-now-card-lead">
+        KKday・アソビューでの一般販売を待つ方は、メール・Instagramで開始日を通知します。
+      </p>
+      <ul class="ticket-now-card-list">
+        <li>メール / Instagram で通知</li>
+        <li>第8回は 2026年11月14日 開催</li>
+      </ul>
+      <span class="ticket-now-card-cta is-quiet">
+        通知登録ページへ
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 5l7 7-7 7"></path></svg>
+      </span>
+    </a>
+  </div>
+
+  <p class="ticket-now-options-note">
+    ※ ふるさと納税の返礼品ラインナップ・寄付額・控除上限は <a href="https://www.satofull.jp/static/special/fireworks.php#tokyo_akiruno" target="_blank" rel="noopener">さとふる(あきる野市)</a> でご確認ください。詳細な寄付協賛については <a href="donation.html">寄付協賛ページ</a> もご覧いただけます。
+  </p>
+</section>
 
 <div class="swell-block-fullWide pc-py-20 sp-py-20 alignfull"><div class="swell-block-fullWide__inner l-container">
 <h2 class="wp-block-heading is-style-section_ttl">観覧席（前回・第7回の販売内容）</h2>
