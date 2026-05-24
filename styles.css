@@ -3324,14 +3324,24 @@ a.ticket-card {
 }
 
 .prose h2 {
+  position: relative;
   margin-top: 1.6em;
+  padding-bottom: 0.4em;
   font-size: clamp(1.5rem, 3vw, 2rem);
   word-break: keep-all;
   line-break: strict;
 }
 
-/* Round 66: .prose h2::after のグラデーション横線は削除
-   (qa.html の空 CMS 領域などで線だけが浮いて見え違和感があったため) */
+.prose h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold) 0%, var(--red) 60%, transparent 100%);
+  border-radius: 2px;
+}
 
 .prose h3 {
   margin-top: 1.8em;
