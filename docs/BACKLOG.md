@@ -42,6 +42,21 @@
 
 ## ✅ 完了済み（直近 14 ラウンド）
 
+- Round 64 (2026-05-24): ユーザー指摘 3 件の修正 (下線 / ふるさと納税前提 / カレンダーUX)
+  - **A. カード内テキストの下線除去**:
+    * `.prose a` の `text-decoration: underline` がカード型アンカー(ticket-guide-card / ticket-now-card / ticket-card)全体に伝播していた
+    * `.prose a.ticket-guide-card, .prose a.ticket-now-card, .prose a.ticket-card { text-decoration: none; color: inherit }` で上書き
+  - **B. ふるさと納税の表現を「販売準備中」に正す**:
+    * Round 62 では「ふるさと納税で今すぐ確保」と書いていたが、実際は第8回返礼品も準備中
+    * `.ticket-now-options` の主CTAを「通知メール登録」に差し替え、ふるさと納税は「参考情報」副CTAに降格
+    * 「通常販売・ふるさと納税返礼品ともに準備中」と明示
+    * `.ticket-status-note`(index.html) / `.ticket-card.accent` の文言も同様に修正
+  - **C. カレンダーボタン UX 改善(Google カレンダー直リンク追加)**:
+    * .ics 単発から「Google カレンダーに追加(主)」+「.ics(iPhone / Outlook)(副)」の 2 オプションに
+    * Google Calendar 直リンク: `calendar.google.com/render?action=TEMPLATE` で title/dates/location/details を URL パラメータで指定
+    * 適用: ticket.html `.page-status-calendar-options` / index.html `.event-panel-calendar-options`
+    * デスクトップユーザーは Google Calendar が即起動、ファイル落ちて終わり問題を解消
+  - bump-cache v52→v53 / ?v=20260524h→i
 - Round 63 (2026-05-24): 第2次デザイン監査 完結篇 (Audit Vol.2 / ③⑤⑥⑦)
   - **⑥ 緊急バナーの severity 2層化**:
     * `.urgent-banner` に `data-severity="info|warning|urgent"` のサポートを追加

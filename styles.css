@@ -949,6 +949,34 @@ h2 span,
   flex-shrink: 0;
 }
 
+/* Round 64: Calendar 2 オプション(Google / .ics)レイアウト ----------- */
+.event-panel-calendar-options {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.event-panel-calendar-options .event-panel-calendar {
+  margin-top: 0; /* 親に margin-top: 14px があるため重複を防ぐ */
+}
+
+.event-panel-calendar-secondary {
+  padding: 7px 13px;
+  font-size: 0.78rem;
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.22);
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.event-panel-calendar-secondary:hover,
+.event-panel-calendar-secondary:focus-visible {
+  background: rgba(255, 255, 255, 0.10);
+  border-color: rgba(255, 255, 255, 0.45);
+  color: #fff;
+}
+
 .notice,
 .section {
   width: min(1120px, calc(100% - 40px));
@@ -2950,6 +2978,30 @@ a.ticket-card {
   border-color: var(--red);
 }
 
+/* Round 64: Calendar 2 オプション(Google / .ics)レイアウト ----------- */
+.page-status-banner .page-status-calendar-options {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 0 0;
+  padding: 0;
+}
+
+.page-status-banner .page-status-calendar-secondary {
+  padding: 6px 12px;
+  font-size: 0.80rem;
+  background: transparent;
+  border: 1px solid rgba(184, 63, 55, 0.32);
+  color: var(--muted);
+}
+
+.page-status-banner .page-status-calendar-secondary:hover {
+  background: rgba(184, 63, 55, 0.06);
+  color: var(--red);
+  border-color: rgba(184, 63, 55, 0.55);
+}
+
 /* Skeleton loaders for microCMS news list */
 .info-card.is-skeleton {
   pointer-events: none;
@@ -3359,6 +3411,21 @@ a.ticket-card {
 
 .prose a:hover {
   color: var(--red);
+}
+
+/* Round 64: .prose a の underline がカード型アンカー全体に伝播するのを止める
+   (ticket-guide-card / ticket-now-card は <a> 要素なので .prose a に巻き込まれる) */
+.prose a.ticket-guide-card,
+.prose a.ticket-now-card,
+.prose a.ticket-card {
+  text-decoration: none;
+  color: inherit;
+}
+
+.prose a.ticket-guide-card:hover,
+.prose a.ticket-now-card:hover,
+.prose a.ticket-card:hover {
+  color: inherit;
 }
 
 .prose ul,
