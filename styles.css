@@ -7681,28 +7681,9 @@ body.page-sponsor .prose .wp-block-table td strong {
   }
 }
 
-/* ----------------------------------------------------------------------
-   Round 62 — 実績カードの `--%` プレースホルダは既定で非表示化(提案②)
-   ----------------------------------------------------------------------
-   未集計データを `--%` で表示し続けると信頼性を損なうため、
-   集計が完了するまでカード自体を非表示にする。HTML 側のマークアップは
-   そのまま残し、データが入った段階で <article data-revealed="true"> を
-   付与するだけで再表示できる(CSS 切替のみで戻せる)。
-
-   集計完了後の運用:
-     <article class="achievements-card achievements-card-pending"
-              data-revealed="true">
-       <span class="achievements-num"><em>92</em>%</span>
-       …
-     </article>
-   ====================================================================== */
-.achievements-card-pending {
-  display: none;
-}
-
-.achievements-card-pending[data-revealed="true"] {
-  display: flex;
-}
+/* Round 62 の `.achievements-card-pending { display: none }` は
+   Round 77 で撤去。`--%` カードを再び表示するように戻した(ユーザー判断)。
+   上記の点線+itali化スタイルだけ残し、視覚的に "準備中" を示す。 */
 
 /* CMS empty state (script.js が "公開中のお知らせはありません" を表示
    する p.cms-status も Tier 3 として統一) */
