@@ -1539,6 +1539,18 @@ a.press-card-title:hover {
   font-size: clamp(1.1rem, 1.6vw, 1.22rem);
   font-weight: 600;
   line-height: 1.85;
+  /* Round 73: カタカナ語(イベント等)が途中で折り返されないように。
+     keep-all は CJK 文字間の改行を抑制し、句読点でのみ改行する */
+  word-break: keep-all;
+  line-break: strict;
+  overflow-wrap: anywhere;
+}
+
+/* イントロ本文も同様の処理(カタカナ語の途中改行防止) */
+.intro-body p {
+  word-break: keep-all;
+  line-break: strict;
+  overflow-wrap: anywhere;
 }
 
 .stats {

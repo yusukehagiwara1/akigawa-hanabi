@@ -42,6 +42,13 @@
 
 ## ✅ 完了済み（直近 14 ラウンド）
 
+- Round 73 (2026-05-24): intro セクションの折り返し改善
+  - **問題**: index.html intro-lead が「秋川流域花火大会は、…受け継いで続けているイベ|ント|です」のように、カタカナ語「イベント」の途中で折り返されていた
+  - **修正**:
+    1. テキスト書き換え: 「…受け継いで続けているイベントです。」→「…受け継いでいます。」 (47字→41字、語尾の「イベント」削除)
+    2. CSS: `.intro-body p` および `.intro-body .intro-lead` に `word-break: keep-all; line-break: strict; overflow-wrap: anywhere` を追加 — CJK 文字間の改行を抑制し、句読点でのみ折り返すように
+  - 二段構えで再発防止(将来テキストを変えてもカタカナ語の途中改行は起きない)
+  - bump-cache v61→v62 / ?v=20260524q→r
 - Round 72 (2026-05-24): 全ページの AI 臭日本語を一斉に書き換え(編集38件、9ファイル)
   - **背景**: ユーザー提示の「AI生成文の特徴10項目」(教科書構成 / 過剰丁寧 / 綺麗すぎる接続詞 / 均一な文長 / 体温の薄さ / 優等生な例 / 網羅感 / テンプレ反復 / 適度すぎる自然さ / 完璧整列)を基準に、Agent でスキャン → 編集判断
   - **編集ファイル**: index.html(9件) / ticket.html(5件) / donation.html(4件) / event.html(4件) / access.html(1件) / company.html(5件) / qa.html(5件) / food-application.html(1件) / akiruno-kanko.html(4件)
