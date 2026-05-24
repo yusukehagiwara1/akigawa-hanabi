@@ -42,6 +42,20 @@
 
 ## ✅ 完了済み（直近 14 ラウンド）
 
+- Round 79 (2026-05-24): hero 画像 Real-ESRGAN で 2x 超解像 → 高画質化
+  - **背景**: ユーザーから「hero 画像が荒い」フィードバック。現状 1920x1080 / 479 KB(q≒70 推定)。元 PNG/RAW なし
+  - **手法**: Real-ESRGAN ncnn-vulkan(AI 超解像、GitHub 公式リリース)を `_wp-content/_tools/` に配置(gitignore)。realesrgan-x4plus モデルで 1920×1080 → 3840×2160 に 2x 拡大(AMD GPU で 7分)
+  - **生成バリアント**(3840 PNG を cwebp で再エンコード):
+    * `hero-fireworks-real-2560.webp` 2560×1440 / 361 KB (NEW, retina/4K)
+    * `hero-fireworks-real.webp`      1920×1080 / 280 KB (旧479KB → 41% 削減 + 画質向上)
+    * `hero-fireworks-real-1280.webp` 1280×720  / 162 KB
+    * `hero-fireworks-real-800.webp`  800×450   / 79 KB
+  - **HTML/CSS 対応**:
+    * `<link rel="preload" imagesrcset>` に 2560w 追加
+    * Critical CSS に `@media (min-width: 1921px)` 追加 → 2560 画像を背景に
+    * sw.js precache に 2560 追加(計 23 URLs)
+  - **AI モデルの恩恵**: 単なるアップスケールでなく、デブロッキング・ディテール推論で元の圧縮ノイズも軽減
+  - bump-cache v67→v68 / ?v=20260524w→x
 - Round 74 (2026-05-24): Round 72 の AI 臭書き換えを選択的にリバート(30件戻す、9件維持)
   - **維持(残した9件)**:
     * #4 akiruno-kanko 記事末尾「花火大会当日は会場でもフードや…」
