@@ -63,6 +63,17 @@
   - **M2** 完了: hero-fireworks-real の 800w / 1280w 派生を生成（モバイル 491KB → 86KB、約 82% 削減）。`<link rel=preload>` を imagesrcset 対応 + CSS を media query ベースのレスポンシブ背景に
   - **M3** 完了: gallery / press / faq の各 CMS セクションに testimonial と同じ `data-has-fallback` フラグ尊重ロジックを実装。空 CMS でも静的フォールバックを優先表示
   - SW v9 + キャッシュバスター 2026-05-15 に更新
+- Round 60 (2026-05-24): HOTFIX — Achievements 数字はみ出し修正
+  - Round 57 で `clamp(3.5rem, 8vw, 7rem)` まで拡大した結果、「5,000」(5 文字) がカード幅 180-220px を超えて横にはみ出していた (ユーザー報告 + スクリーンショット)
+  - **修正**:
+    * `clamp(3.5rem, 8vw, 7rem)` → `clamp(2.4rem, 5vw, 3.8rem)` (保守的)
+    * `.achievements-grid` minmax 180 → 210px (5,000 が確実に収まる幅を確保)
+    * `.achievements-card { container-type: inline-size }` で container query 有効化
+    * カード幅 < 240px → さらに `clamp(2.2, 4.5vw, 3.4)rem` に自動縮小
+    * カード幅 < 200px → `clamp(2, 4vw, 2.8)rem` (極小デバイス)
+    * `.achievements-num` に `white-space: nowrap + overflow: hidden` の安全装置
+  - 数字は依然として元の `2.6rem` よりは大きく、Round 57 の "ファースト印象のフック化" 意図は維持しつつ、レイアウト破綻を防止
+  - bump-cache v48→v49
 - Round 59 (2026-05-24): デザイン改善③ — セクション縦リズム + モバイル下部 2 ボタン
   - **⑤ Section padding バリアント**:
     * `.section.is-prominent` → `clamp(80, 13vw, 160)px` (上下、+40-50% 拡張)

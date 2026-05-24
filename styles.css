@@ -7388,27 +7388,51 @@ body.page-sponsor .prose .wp-block-table td strong {
   .hero-bg-alt { animation: none; opacity: 0; }
 }
 
-/* ② Achievements の数字を一気に大きく ---------------------------------- */
+/* ② Achievements の数字を一気に大きく (HOTFIX in Round 60) -------------
+   初版 clamp(3.5rem, 8vw, 7rem) は「5,000」(5 文字) がカード幅
+   180-220px に収まらず横にはみ出していた。container query で
+   カード幅に応じて自動縮小 + 最大値を保守的に下げる。 */
+.achievements-grid {
+  /* 180 → 210px で「5,000」が文字幅 100% でも収まる余裕を確保 */
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+}
+
+.achievements-card {
+  container-type: inline-size;
+  padding-top: 32px;
+  padding-bottom: 28px;
+  gap: 10px;
+}
+
 .achievements-num {
-  font-size: 1.1rem;
+  font-size: 1rem;
   letter-spacing: 0.02em;
+  /* はみ出し防止: nowrap で 1 行固定、はみ出した分は隠す */
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: clip;
 }
 
 .achievements-num em {
-  font-size: clamp(3.5rem, 8vw, 7rem);
+  /* 保守的な clamp: 「5,000」が 5 文字 × ~0.6em で 3em 幅、
+     カード 210px 想定で max ~62px (3.8rem) が安全 */
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
   line-height: 0.95;
   margin: 0 0.04em;
 }
 
-.achievements-card {
-  padding-top: 36px;
-  padding-bottom: 30px;
-  gap: 12px;
+/* コンテナクエリでカード幅に応じてさらに縮小 (安全装置) */
+@container (max-width: 240px) {
+  .achievements-num em { font-size: clamp(2.2rem, 4.5vw, 3.4rem); }
+}
+@container (max-width: 200px) {
+  .achievements-num em { font-size: clamp(2rem, 4vw, 2.8rem); }
 }
 
-/* "Coming soon" バリアントの数字も同じ巨大スケール。色は muted を維持 */
+/* "Coming soon" バリアントの数字は若干控えめだが同じスケール感 */
 .achievements-card-pending .achievements-num em {
-  font-size: clamp(3.2rem, 7.5vw, 6rem);
+  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
   color: var(--muted);
   background: none;
   -webkit-text-fill-color: var(--muted);
