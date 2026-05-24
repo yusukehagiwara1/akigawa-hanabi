@@ -7477,3 +7477,83 @@ body.page-sponsor .prose .wp-block-table td strong {
   }
 }
 
+/* ======================================================================
+   Round 58 — コンテンツ表現改善 (Audit ④⑥)
+   ----------------------------------------------------------------------
+   ④ 過去ギャラリーを「ヒーロー + 下段サムネ列」のマガジンレイアウトに
+   ⑥ カードに 3 層階層を導入 (Hero / Info / Status の視覚的差別化)
+   ====================================================================== */
+
+/* ④ Past-gallery magazine layout ------------------------------------- */
+/* 3 列グリッドに変更し、最初の写真を「ヒーロー」として全幅 + 16:9 で
+   配置。残り (3-5 枚) は下段の正方形サムネ列に。
+   - 静的 fallback: 4 枚 → ヒーロー + 3 サムネ
+   - CMS: 6 枚 → ヒーロー + 3 (row2) + 2 (row3, 中央右寄せ) または
+                  ヒーロー + 5 (row2-3 を auto-fit)
+   - SP: 2 列に折り返し、ヒーローは全幅維持 */
+.past-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.past-tile {
+  aspect-ratio: 4 / 3;
+}
+
+.past-grid > .past-tile:first-child {
+  grid-column: 1 / -1;
+  aspect-ratio: 16 / 9;
+}
+
+@media (max-width: 620px) {
+  .past-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .past-grid > .past-tile:first-child {
+    grid-column: 1 / -1;
+    aspect-ratio: 16 / 10;
+  }
+}
+
+/* ヒーロータイル: figcaption を少し大きく、より目立たせる */
+.past-grid > .past-tile:first-child figcaption {
+  font-size: 1.06rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}
+
+/* ⑥ Card 3-tier hierarchy --------------------------------------------- */
+/* Tier 1 (Hero): .ticket-card.accent, .button.primary は既に金/teal の
+   グラデで明確に区別済み。.accent に subtle scale を追加して "最も大切な
+   選択肢" であることを強化。 */
+.ticket-card.accent:hover {
+  transform: translateY(-5px) scale(1.015);
+}
+
+/* Tier 3 (Status/placeholder): dashed border + 縮小 font で
+   「仮表示」感を一段強める */
+.achievements-card-pending {
+  border-style: dashed;
+  border-color: rgba(98, 112, 122, 0.45);
+}
+
+.achievements-card-pending p {
+  font-size: 0.82rem;
+}
+
+.achievements-card-pending .achievements-pending-note {
+  font-style: italic;
+}
+
+@media (prefers-color-scheme: dark) {
+  .achievements-card-pending {
+    border-color: rgba(255, 255, 255, 0.22);
+  }
+}
+
+/* CMS empty state (script.js が "公開中のお知らせはありません" を表示
+   する p.cms-status も Tier 3 として統一) */
+.cms-status {
+  border-style: dashed !important;
+  font-style: italic;
+}
+

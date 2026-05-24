@@ -63,6 +63,16 @@
   - **M2** 完了: hero-fireworks-real の 800w / 1280w 派生を生成（モバイル 491KB → 86KB、約 82% 削減）。`<link rel=preload>` を imagesrcset 対応 + CSS を media query ベースのレスポンシブ背景に
   - **M3** 完了: gallery / press / faq の各 CMS セクションに testimonial と同じ `data-has-fallback` フラグ尊重ロジックを実装。空 CMS でも静的フォールバックを優先表示
   - SW v9 + キャッシュバスター 2026-05-15 に更新
+- Round 58 (2026-05-24): デザイン改善② — マガジンギャラリー + カード 3 層階層
+  - **④ 過去ギャラリーをマガジンレイアウトに**: `.past-grid` を 3 列に変更し、最初の写真を全幅 + 16:9 ヒーロー表示。残り 3 枚は 4:3 のサムネ列で下段に。「夜空を埋め尽くす音楽花火」(past-01) がページの "顔" として大きく見える
+    * SP 620px 以下: 2 列に折り返し、ヒーローは全幅維持 (16:10 アスペクトに微調整)
+    * ヒーロータイルの figcaption は 1.06rem + font-weight 800 で他より目立つ
+    * CMS で 6 枚返ってきた場合も 3 列グリッドで自動配置 (graceful)
+  - **⑥ カード 3 層階層**:
+    * **Tier 1 (Hero)**: `.ticket-card.accent` (ふるさと納税) に hover で +5px lift + scale(1.015) を追加 → "最も推す選択肢" 感を強化
+    * **Tier 3 (Status/placeholder)**: `.achievements-card-pending` を dashed border + p font-size 0.82rem + .achievements-pending-note italic に。`.cms-status` も dashed + italic で統一
+    * ダークモードでも dashed border が見える色 (`rgba(255,255,255,0.22)`) に
+    * Tier 2 (標準 info-card / why-choose-card) は現状維持
 - Round 57 (2026-05-24): デザイン改善① — Hero 画像クロスフェード + 数字拡大 + CTA 階層
   - **① Hero 画像クロスフェード**: `past-02.webp` から `hero-night-crowd-800.webp` (32KB) / `hero-night-crowd-1280.webp` (56KB) を cwebp で生成。`.hero-bg-alt` 要素 (z-index:0) を追加し、14 秒周期で「花火 → 夜の賑わい → 花火」をクロスフェード。`animation-delay: 4s` で初回表示は花火優先 / `prefers-reduced-motion` で無効化
   - SW v45 → v46、PRECACHE に新画像 2 枚追加
