@@ -63,6 +63,14 @@
   - **M2** 完了: hero-fireworks-real の 800w / 1280w 派生を生成（モバイル 491KB → 86KB、約 82% 削減）。`<link rel=preload>` を imagesrcset 対応 + CSS を media query ベースのレスポンシブ背景に
   - **M3** 完了: gallery / press / faq の各 CMS セクションに testimonial と同じ `data-has-fallback` フラグ尊重ロジックを実装。空 CMS でも静的フォールバックを優先表示
   - SW v9 + キャッシュバスター 2026-05-15 に更新
+- Round 61 (2026-05-24): HOTFIX — why-choose 5 カードの 4+1 孤児解消
+  - **問題**: 5 枚の why-choose カードが auto-fit grid で 4+1 になり、5 枚目「紅葉×音楽×花火」が単独で 2 行目に取り残されていた (ユーザー報告)
+  - **修正**: `display: grid` → `display: flex; flex-wrap: wrap; justify-content: center;` に変更
+    * 各カード `flex: 1 1 calc((100% - 72px) / 5)` で 5 枚均等並びを基本に
+    * 960px 以下: 3 列レイアウト
+    * 620px 以下: 2 列 (orphan は中央寄せ)
+    * 420px 以下: 1 列
+  - 5 枚が一列に並ぶ or 折り返し時は orphan が中央寄せされてバランスが取れる
 - Round 60 (2026-05-24): HOTFIX — Achievements 数字はみ出し修正
   - Round 57 で `clamp(3.5rem, 8vw, 7rem)` まで拡大した結果、「5,000」(5 文字) がカード幅 180-220px を超えて横にはみ出していた (ユーザー報告 + スクリーンショット)
   - **修正**:
