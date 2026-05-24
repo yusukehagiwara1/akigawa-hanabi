@@ -42,6 +42,31 @@
 
 ## ✅ 完了済み（直近 14 ラウンド）
 
+- Round 63 (2026-05-24): 第2次デザイン監査 完結篇 (Audit Vol.2 / ③⑤⑥⑦)
+  - **⑥ 緊急バナーの severity 2層化**:
+    * `.urgent-banner` に `data-severity="info|warning|urgent"` のサポートを追加
+    * info=teal系の控えめ / warning=黄系の注意喚起 / urgent=現状の赤(default)
+    * HTMLコメントで運用手順を明記(オオカミ少年化防止)
+    * urgent 使用時は aria-live="assertive" を併用する旨を記載
+  - **⑤ 年表記の視覚的整理 (`.year-badge`)**:
+    * past セクション h2「第6回 開催の歩み」に `2024` バッジを付与
+    * testimonials セクション h2「来場された方の声」に `2025` バッジを付与
+    * sponsors セクション h2「第7回 協賛企業様」に `2025` バッジを付与
+    * `.year-badge-past`(金グラデ) / `.year-badge-next`(赤グラデ)の2バリアント
+    * ダーク・forced-colors・モバイル全対応
+  - **③ 日時繰り返しの階層化**:
+    * `.signup-lead` の「**第8回は 2026年11月14日（土）開催決定！**」を削除(hero badge と重複)
+    * 代わりに「チケット販売開始日・プログラム詳細・当日のシャトルバス情報など」に書き換えて新情報訴求
+    * `.ticket-status-note` を日時再掲ではなく「販売前に席確保したい方へ」のふるさと納税誘導に再構成
+  - **⑦ ペルソナルータ実装**:
+    * `support-band` の上に `.persona-router` セクションを新設「あなたに合った、ひとつの参加方法」
+    * 3カード: 観客(視聴) / 個人支援(寄付) / 企業連携(協賛) — それぞれ単一CTA
+    * カラーコーディング: 観客=金 / 支援=赤 / 企業=teal
+    * data-ga-cta="persona:visitor|donor|company" で計測対応
+    * hover で gold→red グラデの上部ラインが浮かび上がる演出
+    * ダーク・forced-colors・reduced-motion 全対応
+  - bump-cache v51→v52 / ?v=20260524g→h
+  - Audit Vol.2 全項目完了。残課題は運営側データ待ち(H1-H7)
 - Round 62 (2026-05-24): 第2次デザイン監査 — 情報設計・コンテンツ改善 (Audit Vol.2 / ①②④)
   - **② 実績カード `--%` プレースホルダを既定非表示化**:
     * `.achievements-card-pending { display: none }` を styles.css に追加
@@ -55,7 +80,7 @@
     * 通常販売開始後の運用想定: `body[data-sale-state="open"]` で非表示切替予定
     * dark mode / forced-colors / reduced-motion 全対応
   - **意図**: 第8回チケット販売開始までの数ヶ月、ユーザに「待つ以外の選択肢」を提示する。ふるさと納税はもともと ticket.html 下部のカードに埋もれていたが、上部に主CTAとして昇格させて「販売前でも今すぐ席を確保できる」体験を作る
-  - 残り Audit Vol.2 項目: ③日時繰り返し階層化 / ⑤年表記統一 / ⑥緊急バナー2層化 / ⑦ペルソナルータ（必要時に着手）
+  - 残り Audit Vol.2 項目は Round 63 ですべて完了
   - bump-cache v50→v51 / ?v=20260524f→g
 - R1: 空 alt 86件補完
 - R2: 13サブページ独自 description

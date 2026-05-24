@@ -2091,10 +2091,50 @@ a.press-card-title:hover {
   position: sticky;
   top: 72px; /* ヘッダー高さ */
   z-index: 19;
+  /* デフォルト = data-severity="urgent" と同等の赤グラデ */
   background: linear-gradient(135deg, var(--red), #d4604a);
   color: #fff;
   box-shadow: 0 8px 24px rgba(184, 63, 55, 0.32);
   animation: urgent-banner-in 0.45s ease-out both;
+}
+
+/* ---- Round 63 / Audit Vol.2 ⑥: severity 2 層化 ---- */
+/* オオカミ少年化を防ぐため、severity に応じて視覚強度を変える */
+
+/* info: 青系の控えめバナー(チケット販売開始など、通常告知) */
+.urgent-banner[data-severity="info"] {
+  background: linear-gradient(135deg, var(--teal), #1f8c8c);
+  box-shadow: 0 6px 18px rgba(15, 104, 104, 0.24);
+}
+
+/* warning: 黄系のバナー(注意喚起、台風接近予報など) */
+.urgent-banner[data-severity="warning"] {
+  background: linear-gradient(135deg, #b8860b, var(--gold));
+  color: #1a1300;
+  box-shadow: 0 6px 18px rgba(184, 134, 11, 0.30);
+}
+
+.urgent-banner[data-severity="warning"] .urgent-banner-tag {
+  background: rgba(0, 0, 0, 0.18);
+  border-color: rgba(0, 0, 0, 0.30);
+  color: #1a1300;
+}
+
+.urgent-banner[data-severity="warning"] .urgent-banner-action {
+  background: rgba(0, 0, 0, 0.12);
+  border-color: rgba(0, 0, 0, 0.42);
+  color: #1a1300;
+}
+
+.urgent-banner[data-severity="warning"] .urgent-banner-action:hover {
+  background: rgba(0, 0, 0, 0.22);
+  color: #1a1300;
+}
+
+/* urgent: 赤系の強いバナー(中止・緊急変更、open default のまま) */
+.urgent-banner[data-severity="urgent"] {
+  background: linear-gradient(135deg, var(--red), #d4604a);
+  box-shadow: 0 8px 24px rgba(184, 63, 55, 0.32);
 }
 
 .urgent-banner-inner {
@@ -7771,6 +7811,237 @@ body.page-access .mobile-sticky-btn-primary { flex: 1; }
     background: ButtonFace;
     color: ButtonText;
     border: 1px solid ButtonText;
+  }
+}
+
+/* ======================================================================
+   Round 63 — ペルソナルータ (Audit Vol.2 / 提案⑦)
+   ----------------------------------------------------------------------
+   参加方法を「観客 / 個人支援 / 企業連携」の3つに整理し、各カードに
+   単一CTAだけを提示。CTA過多による選択疲れを防ぎ、ユーザが「自分の役」
+   を選びやすくする。GA4 で persona:visitor|donor|company を計測。
+   ====================================================================== */
+.section.persona-router {
+  padding-top: clamp(56px, 8vw, 96px);
+  padding-bottom: clamp(56px, 8vw, 96px);
+}
+
+.persona-router-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: min(1080px, calc(100% - 40px));
+  margin-inline: auto;
+}
+
+@media (max-width: 920px) {
+  .persona-router-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}
+
+.persona-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 28px 26px 26px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  color: var(--ink);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.persona-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--gold), var(--red));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.persona-card:hover,
+.persona-card:focus-visible {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 48px rgba(28, 35, 42, 0.10);
+  border-color: rgba(215, 169, 71, 0.45);
+}
+
+.persona-card:hover::before,
+.persona-card:focus-visible::before {
+  opacity: 1;
+}
+
+.persona-card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(215, 169, 71, 0.18), rgba(184, 63, 55, 0.10));
+  color: var(--gold-text);
+}
+
+.persona-card-visitor .persona-card-icon {
+  background: linear-gradient(135deg, rgba(215, 169, 71, 0.22), rgba(215, 169, 71, 0.08));
+  color: var(--gold-text);
+}
+
+.persona-card-donor .persona-card-icon {
+  background: linear-gradient(135deg, rgba(184, 63, 55, 0.18), rgba(184, 63, 55, 0.06));
+  color: var(--red);
+}
+
+.persona-card-company .persona-card-icon {
+  background: linear-gradient(135deg, rgba(15, 104, 104, 0.18), rgba(15, 104, 104, 0.06));
+  color: var(--teal);
+}
+
+.persona-card h3 {
+  margin: 0;
+  font-family: "Zen Old Mincho", serif;
+  font-size: 1.25rem;
+  color: var(--ink);
+  line-height: 1.35;
+}
+
+.persona-card p {
+  margin: 0;
+  flex: 1;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+.persona-card-cta {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 4px;
+  color: var(--gold-text);
+  font-size: 0.92rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  transition: gap 0.25s ease, transform 0.25s ease;
+}
+
+.persona-card-donor .persona-card-cta { color: var(--red); }
+.persona-card-company .persona-card-cta { color: var(--teal); }
+
+.persona-card:hover .persona-card-cta,
+.persona-card:focus-visible .persona-card-cta {
+  transform: translateX(4px);
+}
+
+@media (prefers-color-scheme: dark) {
+  .persona-card {
+    background: rgba(26, 34, 54, 0.65);
+    border-color: rgba(255, 255, 255, 0.10);
+  }
+  .persona-card:hover,
+  .persona-card:focus-visible {
+    border-color: rgba(215, 169, 71, 0.45);
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
+  }
+  .persona-card-visitor .persona-card-icon { color: var(--gold); }
+}
+
+@media (forced-colors: active) {
+  .persona-card {
+    border: 1px solid ButtonText;
+  }
+  .persona-card-icon {
+    border: 1px solid ButtonText;
+    background: ButtonFace;
+    color: ButtonText;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .persona-card,
+  .persona-card::before,
+  .persona-card-cta {
+    transition: none;
+  }
+  .persona-card:hover,
+  .persona-card:focus-visible {
+    transform: none;
+  }
+  .persona-card:hover .persona-card-cta,
+  .persona-card:focus-visible .persona-card-cta {
+    transform: none;
+  }
+}
+
+/* ======================================================================
+   Round 63 — 年表記の視覚的整理 (Audit Vol.2 / 提案⑤)
+   ----------------------------------------------------------------------
+   過去開催の写真・声・スポンサーが「いつのもの」か一目で分かるよう、
+   セクション見出しに金色の年バッジを付与する。2024 / 2025 / 2026 が
+   混在しているため、視認性を上げて混乱を防ぐ。
+
+   使い方:
+     <h2>
+       <span class="year-badge year-badge-past">2024</span>
+       第6回 開催の歩み
+     </h2>
+   ====================================================================== */
+.year-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-family: "Noto Sans JP", system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.year-badge-past {
+  background: linear-gradient(135deg, var(--gold), #b88e2c);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(215, 169, 71, 0.32);
+}
+
+.year-badge-next {
+  background: linear-gradient(135deg, var(--red), #d4604a);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(184, 63, 55, 0.32);
+}
+
+@media (max-width: 620px) {
+  .year-badge {
+    font-size: 0.66rem;
+    padding: 3px 10px;
+    margin-right: 8px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .year-badge-past {
+    background: linear-gradient(135deg, var(--gold), #c79636);
+    color: var(--night);
+  }
+}
+
+@media (forced-colors: active) {
+  .year-badge {
+    border: 1px solid ButtonText;
+    background: ButtonFace;
+    color: ButtonText;
   }
 }
 

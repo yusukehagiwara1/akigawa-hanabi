@@ -303,14 +303,14 @@
     .hero-badge-text strong{color:var(--gold);font-weight:900;letter-spacing:.04em}
     @media (prefers-color-scheme:dark){:root{--ink:#f1eee5;--muted:#a4b1ba;--paper:#0c1320;--cream:#1a2236;--line:rgba(255,255,255,.10)}}
     </style>
-    <link rel="preload" href="styles.css?v=20260524g" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="styles.css?v=20260524g"></noscript>
-    <script src="analytics.js?v=20260524g" defer></script>
-    <script src="ui.js?v=20260524g" defer></script>
-    <script src="microcms-config.js?v=20260524g" defer></script>
-    <script src="script.js?v=20260524g" defer></script>
-    <script src="microcms-extras.js?v=20260524g" defer></script>
-    <script src="sponsor-urls.js?v=20260524g" defer></script>
+    <link rel="preload" href="styles.css?v=20260524h" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="styles.css?v=20260524h"></noscript>
+    <script src="analytics.js?v=20260524h" defer></script>
+    <script src="ui.js?v=20260524h" defer></script>
+    <script src="microcms-config.js?v=20260524h" defer></script>
+    <script src="script.js?v=20260524h" defer></script>
+    <script src="microcms-extras.js?v=20260524h" defer></script>
+    <script src="sponsor-urls.js?v=20260524h" defer></script>
     <script>
       // Register Service Worker for offline support / PWA
       if ("serviceWorker" in navigator) {
@@ -385,17 +385,25 @@
 
     <main id="main-content">
       <!--
-        ===== 開催直前期・当日 緊急告知バナー =====
+        ===== 開催直前期・当日 緊急告知バナー (Round 63 / Audit Vol.2 ⑥) =====
         通常は非表示。開催 1 週間前 / 当日に hidden 属性を外して有効化。
         例: 雨天決行 / 中止 / 開催地変更 / 公共交通の遅延などを即時告知できる。
 
+        【data-severity による視覚強度の切替】
+        オオカミ少年化を防ぐため、告知の重要度に応じて severity を分ける。
+        - data-severity="info"    → 青系の控えめなバナー(通常告知に近い)
+        - data-severity="warning" → 黄系のバナー(注意喚起)
+        - data-severity="urgent" or 省略 → 赤系のバナー(中止・緊急変更等、最強)
+
         運用手順:
         1. hidden 属性を外す
-        2. <strong> の文言を当日の状況に合わせて編集
-        3. .urgent-banner-action の href を必要に応じて差し替え
-        4. 必要に応じて aria-live="assertive" でスクリーンリーダー読み上げ
+        2. data-severity を状況に応じて設定 (省略時は urgent 扱い)
+        3. .urgent-banner-tag の文言を「お知らせ / 注意 / 緊急」など severity に合わせる
+        4. <strong> の文言を当日の状況に合わせて編集
+        5. .urgent-banner-action の href を必要に応じて差し替え
+        6. urgent の場合は aria-live="assertive" を併用してスクリーンリーダー即時読み上げ
       -->
-      <aside class="urgent-banner" role="alert" aria-live="polite" hidden>
+      <aside class="urgent-banner" role="alert" aria-live="polite" data-severity="urgent" hidden>
         <div class="urgent-banner-inner">
           <span class="urgent-banner-tag">緊急</span>
           <strong class="urgent-banner-msg">本日は予定通り開催いたします。お気をつけてご来場ください。</strong>
@@ -471,8 +479,7 @@
             <span class="tag">Next Edition</span>
             <h2>次回開催情報を<br>いち早く受け取る</h2>
             <p class="signup-lead">
-              <strong>第8回は 2026年11月14日（土）開催決定！</strong><br>
-              チケット販売開始・プログラム詳細など、公開され次第いち早くお届けします。
+              チケット販売開始日・プログラム詳細・当日のシャトルバス情報など、公開され次第いち早くお届けします。
             </p>
             <div class="signup-options">
               <a class="signup-option signup-instagram" href="https://www.instagram.com/akigawa_hanabitaikai/" target="_blank" rel="noopener" data-ga-cta="signup:instagram">
@@ -808,8 +815,8 @@
             来場スタイルに合わせたチケットを用意しています。
           </p>
           <p class="ticket-status-note">
-            <strong>第8回（2026年11月14日 土曜）開催決定！</strong>
-            チケット販売開始日は決定次第ご案内します。最新情報は <a href="#signup">こちら</a> から受け取れます。
+            <strong>通常販売開始までに席を確保したい方へ。</strong>
+            <a href="ticket.html">ふるさと納税の返礼品</a> としてSS席やBBQプランなどをお選びいただけます（あきる野市・さとふる経由）。販売開始の通知メールは <a href="#signup">こちら</a> から登録可能です。
           </p>
         </div>
         <div class="ticket-list">
@@ -837,6 +844,53 @@
         <p class="ticket-more">
           <a class="button-text" href="ticket.html">前回開催の観覧席・料金の詳細を見る →</a>
         </p>
+      </section>
+
+      <!--
+        ===== Round 63 / Audit Vol.2 ⑦: ペルソナルータ =====
+        参加方法を「観客 / 支援者 / 企業」の3パターンに整理し、
+        それぞれに1つの推奨アクションだけを提示する。CTA 過多による
+        選択疲れを防ぐ。GA4 で persona:visitor|donor|company を計測。
+      -->
+      <section class="section persona-router" id="join" aria-label="あなたに合った参加方法">
+        <div class="section-heading">
+          <span class="tag">Join Us</span>
+          <h2>あなたに合った、ひとつの参加方法</h2>
+          <p>来場・支援・連携 — どの形でも、秋川の夜を一緒に灯すお仲間として歓迎いたします。</p>
+        </div>
+        <div class="persona-router-grid">
+          <a class="persona-card persona-card-visitor" href="ticket.html" data-ga-cta="persona:visitor">
+            <div class="persona-card-icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 7h18"></path><path d="M6 7v10a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7"></path><path d="M9 11h6"></path>
+              </svg>
+            </div>
+            <h3>観客として来場する</h3>
+            <p>当日、家族や友人と紅葉と音楽花火を楽しみたい方へ。</p>
+            <span class="persona-card-cta">観覧席を確認する →</span>
+          </a>
+          <a class="persona-card persona-card-donor" href="donation.html#01" data-ga-cta="persona:donor">
+            <div class="persona-card-icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+              </svg>
+            </div>
+            <h3>個人として支援する</h3>
+            <p>1万円からの寄付で、花火大会の灯を一緒につないでいただけます。</p>
+            <span class="persona-card-cta">寄付の方法を見る →</span>
+          </a>
+          <a class="persona-card persona-card-company" href="donation.html#02" data-ga-cta="persona:company">
+            <div class="persona-card-icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+            </div>
+            <h3>企業として連携する</h3>
+            <p>10万円からの協賛で、地域連携のPR・ブランド露出機会をご提供します。</p>
+            <span class="persona-card-cta">企業協賛の詳細 →</span>
+          </a>
+        </div>
       </section>
 
       <section class="section support-band" id="support">
@@ -890,7 +944,10 @@
       <section class="section past" id="past">
         <div class="section-heading">
           <span class="tag">Past Events</span>
-          <h2>第6回（2024年）の歩み</h2>
+          <h2>
+            <span class="year-badge year-badge-past">2024</span>
+            第6回 開催の歩み
+          </h2>
           <p>
             前回大会は3,000人を超える来場者で賑わい、有料席は完売席種が続出しました。
             積み重ねてきた一つひとつの体験が、第7回への礎となっています。
@@ -926,7 +983,10 @@
       <section class="section testimonials" id="testimonials" aria-label="来場者の声">
         <div class="section-heading">
           <span class="tag">Voices</span>
-          <h2>来場された方の声</h2>
+          <h2>
+            <span class="year-badge year-badge-past">2025</span>
+            来場された方の声
+          </h2>
           <p>会場で過ごした時間が、どんな記憶になったのか。実際に観覧された方の感想をご紹介します。</p>
         </div>
         <div class="testimonial-grid" id="cms-testimonial-list" data-has-fallback="true">
@@ -1040,7 +1100,10 @@
       <section class="section sponsors is-quiet" id="sponsors">
         <div class="section-heading">
           <span class="tag">Sponsors</span>
-          <h2>第7回 協賛企業様</h2>
+          <h2>
+            <span class="year-badge year-badge-past">2025</span>
+            第7回 協賛企業様
+          </h2>
           <p>本大会は、地域の企業・団体・個人の皆さまのご協賛により開催されています。心より御礼申し上げます。</p>
         </div>
         <div class="sponsor-grid" id="cms-sponsor-list" aria-label="協賛企業一覧">
