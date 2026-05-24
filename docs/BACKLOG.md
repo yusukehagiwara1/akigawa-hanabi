@@ -63,6 +63,12 @@
   - **M2** 完了: hero-fireworks-real の 800w / 1280w 派生を生成（モバイル 491KB → 86KB、約 82% 削減）。`<link rel=preload>` を imagesrcset 対応 + CSS を media query ベースのレスポンシブ背景に
   - **M3** 完了: gallery / press / faq の各 CMS セクションに testimonial と同じ `data-has-fallback` フラグ尊重ロジックを実装。空 CMS でも静的フォールバックを優先表示
   - SW v9 + キャッシュバスター 2026-05-15 に更新
+- Round 57 (2026-05-24): デザイン改善① — Hero 画像クロスフェード + 数字拡大 + CTA 階層
+  - **① Hero 画像クロスフェード**: `past-02.webp` から `hero-night-crowd-800.webp` (32KB) / `hero-night-crowd-1280.webp` (56KB) を cwebp で生成。`.hero-bg-alt` 要素 (z-index:0) を追加し、14 秒周期で「花火 → 夜の賑わい → 花火」をクロスフェード。`animation-delay: 4s` で初回表示は花火優先 / `prefers-reduced-motion` で無効化
+  - SW v45 → v46、PRECACHE に新画像 2 枚追加
+  - **② 実績数字を巨大化**: `.achievements-num em` を `2.6rem` → `clamp(3.5rem, 8vw, 7rem)` に拡大。Round 55 のカウントアップアニメと相まって「ファースト印象のフック」化。`.achievements-card-pending` (集計中) は slightly 控えめ (clamp 3.2-6rem) で実数カードと差別化
+  - **③ Hero CTA 階層強化**: プライマリ「チケット情報」→「チケット情報を見る」+ font-size 1.05rem / min-height 52px / padding 28px に拡大。セカンダリ「協賛する」→「協賛のご案内 →」の下線テキストリンク化。SP では縦並びでプライマリ全幅
+  - 期待効果: チケット CTA クリック率 +20-30% (audit 試算) / 来場意思決定の摩擦軽減 / 花火以外の体験軸 (夜の賑わい) を最初の数秒で多重伝達
 - Round 56 (2026-05-15): トップ「選ばれる理由」+「実績」拡張 — 渋滞 / 駐車場 / 顧客満足度 / リピーター率
   - **why-choose-grid に 5 枚目を追加**: 「渋滞は軽微」(`<svg>` で wind/flow アイコン)
     * 文言: 「都心の人気花火大会と違い、会場周辺の渋滞は軽微。ストレスフリーな来場体験で、家路もスムーズに帰れます。」

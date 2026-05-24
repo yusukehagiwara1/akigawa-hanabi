@@ -303,14 +303,14 @@
     .hero-badge-text strong{color:var(--gold);font-weight:900;letter-spacing:.04em}
     @media (prefers-color-scheme:dark){:root{--ink:#f1eee5;--muted:#a4b1ba;--paper:#0c1320;--cream:#1a2236;--line:rgba(255,255,255,.10)}}
     </style>
-    <link rel="preload" href="styles.css?v=20260524a" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="styles.css?v=20260524a"></noscript>
-    <script src="analytics.js?v=20260524a" defer></script>
-    <script src="ui.js?v=20260524a" defer></script>
-    <script src="microcms-config.js?v=20260524a" defer></script>
-    <script src="script.js?v=20260524a" defer></script>
-    <script src="microcms-extras.js?v=20260524a" defer></script>
-    <script src="sponsor-urls.js?v=20260524a" defer></script>
+    <link rel="preload" href="styles.css?v=20260524b" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="styles.css?v=20260524b"></noscript>
+    <script src="analytics.js?v=20260524b" defer></script>
+    <script src="ui.js?v=20260524b" defer></script>
+    <script src="microcms-config.js?v=20260524b" defer></script>
+    <script src="script.js?v=20260524b" defer></script>
+    <script src="microcms-extras.js?v=20260524b" defer></script>
+    <script src="sponsor-urls.js?v=20260524b" defer></script>
     <script>
       // Register Service Worker for offline support / PWA
       if ("serviceWorker" in navigator) {
@@ -404,6 +404,7 @@
       </aside>
 
       <section class="hero" aria-label="秋川流域花火大会">
+        <div class="hero-bg-alt" aria-hidden="true"></div>
         <div class="hero-sparks" aria-hidden="true"></div>
         <div class="hero-content">
           <a class="hero-badge" href="#signup" data-ga-cta="hero:next-edition" aria-label="第8回 開催決定 2026年11月14日">
@@ -417,8 +418,8 @@
             <span>紅葉に染まる山々と穏やかな秋川を背景に、</span><span>音楽と花火が重なる東京最大級の秋花火。</span>
           </p>
           <div class="hero-actions" aria-label="主要アクション">
-            <a class="button primary" href="ticket.html">チケット情報</a>
-            <a class="button secondary" href="donation.html">協賛する</a>
+            <a class="button primary hero-cta-primary" href="ticket.html" data-ga-cta="hero:ticket">チケット情報を見る</a>
+            <a class="hero-cta-secondary" href="donation.html" data-ga-cta="hero:donation">協賛のご案内</a>
           </div>
         </div>
 

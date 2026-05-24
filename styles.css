@@ -7348,3 +7348,132 @@ body.page-sponsor .prose .wp-block-table td strong {
   }
 }
 
+/* ======================================================================
+   Round 57 — Hero エリア改善 (Audit ①②③)
+   ----------------------------------------------------------------------
+   ① ヒーロー写真クロスフェード (花火 ↔ 夜の賑わい)
+   ② 実績数字を clamp(3.5rem, 8vw, 7rem) に拡大、ファースト印象のフック化
+   ③ プライマリ CTA を 40% 拡大、セカンダリを下線テキスト化
+   ====================================================================== */
+
+/* ① Hero background cross-fade ----------------------------------------- */
+.hero-bg-alt {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: url("assets/hero-night-crowd-800.webp") center / cover;
+  opacity: 0;
+  animation: hero-bg-rotate 14s ease-in-out infinite;
+  animation-delay: 4s;
+  pointer-events: none;
+}
+
+@media (min-width: 801px) {
+  .hero-bg-alt {
+    background-image: url("assets/hero-night-crowd-1280.webp");
+  }
+}
+
+@keyframes hero-bg-rotate {
+  /* 14 秒周期で hero (花火) ↔ alt (夜の賑わい) をクロスフェード。
+     0-30%: alt 非表示 (花火が見える)
+     40-60%: alt フェードイン → 完全表示
+     70-100%: alt フェードアウト → 花火に戻る
+     つまり 1 周期で alt が 5-6 秒間ほど表示される。 */
+  0%, 30%, 70%, 100% { opacity: 0; }
+  40%, 60% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-bg-alt { animation: none; opacity: 0; }
+}
+
+/* ② Achievements の数字を一気に大きく ---------------------------------- */
+.achievements-num {
+  font-size: 1.1rem;
+  letter-spacing: 0.02em;
+}
+
+.achievements-num em {
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  line-height: 0.95;
+  margin: 0 0.04em;
+}
+
+.achievements-card {
+  padding-top: 36px;
+  padding-bottom: 30px;
+  gap: 12px;
+}
+
+/* "Coming soon" バリアントの数字も同じ巨大スケール。色は muted を維持 */
+.achievements-card-pending .achievements-num em {
+  font-size: clamp(3.2rem, 7.5vw, 6rem);
+  color: var(--muted);
+  background: none;
+  -webkit-text-fill-color: var(--muted);
+}
+
+/* ③ Hero CTA の主従関係 ------------------------------------------------ */
+.hero-actions {
+  gap: 18px;
+  align-items: center;
+}
+
+.hero-cta-primary {
+  font-size: 1.05rem;
+  padding: 0 28px;
+  min-height: 52px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.hero-cta-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 4px;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: rgba(255, 255, 255, 0.4);
+  transition: color 0.25s ease, text-decoration-color 0.25s ease, gap 0.25s ease;
+}
+
+.hero-cta-secondary::after {
+  content: "→";
+  font-size: 1em;
+  transition: transform 0.25s ease;
+}
+
+.hero-cta-secondary:hover,
+.hero-cta-secondary:focus-visible {
+  color: var(--gold);
+  text-decoration-color: var(--gold);
+  gap: 8px;
+}
+
+.hero-cta-secondary:hover::after,
+.hero-cta-secondary:focus-visible::after {
+  transform: translateX(3px);
+}
+
+@media (max-width: 620px) {
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+  .hero-cta-primary {
+    width: 100%;
+    padding: 0 22px;
+  }
+  .hero-cta-secondary {
+    align-self: center;
+    padding: 10px 14px;
+  }
+}
+
