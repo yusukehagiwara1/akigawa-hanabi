@@ -42,6 +42,21 @@
 
 ## ✅ 完了済み（直近 14 ラウンド）
 
+- Round 74 (2026-05-24): Round 72 の AI 臭書き換えを選択的にリバート(30件戻す、9件維持)
+  - **維持(残した9件)**:
+    * #4 akiruno-kanko 記事末尾「花火大会当日は会場でもフードや…」
+    * #9 company 理念「思い出を、みんなで」
+    * #13 donation プラン補足「お名前をホームページに掲載します」
+    * #16 event 2025年見どころ長文の整理
+    * #17 event 楽曲紹介「世代を問わず親しまれてきた」
+    * #24 index why-choose 渋滞「会場周辺の渋滞はわずか/帰り道もスムーズ」
+    * #25 index why-choose 都心から「"近場で非日常" 削除」
+    * #29 index testimonials「実際に観覧された方の感想を紹介します」
+    * #38 ticket 購入方法の2社販売文
+  - **リバート(30件)**: その他すべて R71 以前の状態に戻す
+    * index.html(7件), ticket.html(4件), donation.html(3件), event.html(2件), access.html(1件), company.html(4件), qa.html(5件), food-application.html(1件), akiruno-kanko.html(3件)
+  - **R73 で追加した .intro-body p の word-break:keep-all CSS は維持**(将来テキスト変更時の保険)
+  - bump-cache v62→v63 / ?v=20260524r→s
 - Round 73 (2026-05-24): intro セクションの折り返し改善
   - **問題**: index.html intro-lead が「秋川流域花火大会は、…受け継いで続けているイベ|ント|です」のように、カタカナ語「イベント」の途中で折り返されていた
   - **修正**:
