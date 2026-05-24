@@ -7557,3 +7557,138 @@ body.page-sponsor .prose .wp-block-table td strong {
   font-style: italic;
 }
 
+/* ======================================================================
+   Round 59 — レイアウト改善 (Audit ⑤⑦)
+   ----------------------------------------------------------------------
+   ⑤ セクション縦リズムにメリハリ (重要 CTA セクション +40% / 情報 -20%)
+   ⑦ モバイル下部 CTA を 2 ボタンバーに (チケット + アクセス、現在ページは自動非表示)
+   ====================================================================== */
+
+/* ⑤ Section padding variants ----------------------------------------- */
+/* 既存の .section { padding: clamp(58px, 9vw, 104px) 0 } をベースに、
+   重要度別の修飾子を導入。HTML 側で <section class="section signup is-prominent">
+   のように付与する。 */
+
+.section.is-prominent {
+  padding-top: clamp(80px, 13vw, 160px);
+  padding-bottom: clamp(80px, 13vw, 160px);
+}
+
+.section.is-quiet {
+  padding-top: clamp(36px, 5vw, 64px);
+  padding-bottom: clamp(36px, 5vw, 64px);
+}
+
+/* SP では極端な変化を避けて読みやすさ優先 (差は ~30% に圧縮) */
+@media (max-width: 620px) {
+  .section.is-prominent {
+    padding-top: clamp(60px, 11vw, 110px);
+    padding-bottom: clamp(60px, 11vw, 110px);
+  }
+  .section.is-quiet {
+    padding-top: clamp(28px, 5vw, 44px);
+    padding-bottom: clamp(28px, 5vw, 44px);
+  }
+}
+
+/* ⑦ Mobile sticky bar (2-button) ------------------------------------- */
+/* 旧 .mobile-sticky-cta は HTML から全削除済 (14 ファイル + generate.ps1)
+   ですが、念のため CSS で hide オーバーライド。 */
+.mobile-sticky-cta { display: none !important; }
+
+.mobile-sticky-bar {
+  display: none;
+  position: fixed;
+  z-index: 18;
+  left: 12px;
+  right: 12px;
+  bottom: calc(12px + env(safe-area-inset-bottom));
+  gap: 8px;
+}
+
+.mobile-sticky-btn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px 14px;
+  min-height: 48px;
+  border-radius: 999px;
+  font-size: 0.92rem;
+  font-weight: 800;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.mobile-sticky-btn svg { flex-shrink: 0; display: block; }
+
+.mobile-sticky-btn-primary {
+  flex: 2;
+  color: var(--night);
+  background: linear-gradient(135deg, #ffe8a6, var(--gold));
+  box-shadow:
+    0 8px 22px rgba(11, 19, 31, 0.30),
+    0 0 0 0 rgba(215, 169, 71, 0.4);
+  animation: mobile-cta-pulse 3.8s ease-in-out infinite;
+}
+
+.mobile-sticky-btn-primary:hover,
+.mobile-sticky-btn-primary:focus-visible {
+  transform: translateY(-2px);
+  box-shadow:
+    0 14px 32px rgba(11, 19, 31, 0.42),
+    0 0 0 1px rgba(255, 232, 166, 0.6);
+}
+
+.mobile-sticky-btn-secondary {
+  color: var(--ink);
+  background: rgba(255, 253, 247, 0.96);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 6px 18px rgba(11, 19, 31, 0.18);
+}
+
+.mobile-sticky-btn-secondary:hover,
+.mobile-sticky-btn-secondary:focus-visible {
+  transform: translateY(-2px);
+  background: #fff;
+  border-color: rgba(215, 169, 71, 0.4);
+}
+
+@media (max-width: 920px) {
+  .mobile-sticky-bar { display: flex; }
+  body { padding-bottom: 80px; }
+}
+
+/* Hide the button that targets the current page (avoid self-link) */
+body.page-ticket .mobile-sticky-btn[data-page-target="ticket"],
+body.page-access .mobile-sticky-btn[data-page-target="access"] {
+  display: none;
+}
+/* When one button is hidden, the remaining one fills the bar */
+body.page-ticket .mobile-sticky-btn-secondary,
+body.page-access .mobile-sticky-btn-primary { flex: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-sticky-btn-primary { animation: none; }
+}
+
+@media (prefers-color-scheme: dark) {
+  .mobile-sticky-btn-secondary {
+    background: rgba(26, 34, 54, 0.94);
+    color: var(--ink);
+    border-color: rgba(255, 255, 255, 0.14);
+  }
+}
+
+@media (forced-colors: active) {
+  .mobile-sticky-btn-primary,
+  .mobile-sticky-btn-secondary {
+    background: ButtonFace;
+    color: ButtonText;
+    border: 1px solid ButtonText;
+  }
+}
+

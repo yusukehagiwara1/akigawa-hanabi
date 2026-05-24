@@ -240,13 +240,16 @@ $template = @'
       </svg>
     </button>
 
-    <a class="mobile-sticky-cta" href="ticket.html" aria-label="チケットを見る">
-      <span>チケットを見る</span>
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M5 12h14"></path>
-        <path d="M13 5l7 7-7 7"></path>
-      </svg>
-    </a>
+    <div class="mobile-sticky-bar" aria-label="主要アクション">
+      <a class="mobile-sticky-btn mobile-sticky-btn-primary" href="ticket.html" data-page-target="ticket" data-ga-cta="mobile-sticky:ticket">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h18"></path><path d="M6 7v10a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7"></path><path d="M9 11h6"></path></svg>
+        <span>チケット</span>
+      </a>
+      <a class="mobile-sticky-btn mobile-sticky-btn-secondary" href="access.html" data-page-target="access" data-ga-cta="mobile-sticky:access">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+        <span>アクセス</span>
+      </a>
+    </div>
 
     <footer class="footer">
       <div class="footer-grid">

@@ -63,6 +63,21 @@
   - **M2** 完了: hero-fireworks-real の 800w / 1280w 派生を生成（モバイル 491KB → 86KB、約 82% 削減）。`<link rel=preload>` を imagesrcset 対応 + CSS を media query ベースのレスポンシブ背景に
   - **M3** 完了: gallery / press / faq の各 CMS セクションに testimonial と同じ `data-has-fallback` フラグ尊重ロジックを実装。空 CMS でも静的フォールバックを優先表示
   - SW v9 + キャッシュバスター 2026-05-15 に更新
+- Round 59 (2026-05-24): デザイン改善③ — セクション縦リズム + モバイル下部 2 ボタン
+  - **⑤ Section padding バリアント**:
+    * `.section.is-prominent` → `clamp(80, 13vw, 160)px` (上下、+40-50% 拡張)
+    * `.section.is-quiet` → `clamp(36, 5vw, 64)px` (上下、-30%)
+    * SP では極端な変化を避け差を ~30% に圧縮 (60-110px / 28-44px)
+    * 適用先: signup と tickets を is-prominent / faq・sponsors・news-gallery を is-quiet
+  - **⑦ Mobile sticky bar (2 ボタン)**:
+    * 旧 `.mobile-sticky-cta` (単一 pill) を 14 HTML から regex 一括除去
+    * 新 `.mobile-sticky-bar` (チケット 2/3 + アクセス 1/3) を導入
+    * チケット = 金グラデ pill + Round 18 のパルス継承 / アクセス = 白 pill backdrop-blur
+    * `data-page-target` で現在ページ判定: `body.page-ticket` だと チケットボタン非表示 (アクセスが全幅)、`body.page-access` だと逆
+    * safe-area-inset-bottom 対応 (iPhone ホームインジケータ回避)
+    * forced-colors / prefers-reduced-motion / ダークモード全対応
+    * generate.ps1 のテンプレも同期 (再生成時も維持)
+  - 期待効果: ヒーローからフッターまでのスクロールに強弱が生まれ完走率 +10% / モバイルからのアクセスページ訪問 +25-40%
 - Round 58 (2026-05-24): デザイン改善② — マガジンギャラリー + カード 3 層階層
   - **④ 過去ギャラリーをマガジンレイアウトに**: `.past-grid` を 3 列に変更し、最初の写真を全幅 + 16:9 ヒーロー表示。残り 3 枚は 4:3 のサムネ列で下段に。「夜空を埋め尽くす音楽花火」(past-01) がページの "顔" として大きく見える
     * SP 620px 以下: 2 列に折り返し、ヒーローは全幅維持 (16:10 アスペクトに微調整)
