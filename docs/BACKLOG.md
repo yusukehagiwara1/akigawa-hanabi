@@ -42,6 +42,15 @@
 
 ## ✅ 完了済み（直近 14 ラウンド）
 
+- Round 66 (2026-05-24): .ics ボタン削除 + .prose h2 グラデ線削除(ユーザー判断)
+  - **.ics(iPhone / Outlook)ボタンを削除**:
+    * Round 64 で Google カレンダー直リンクと並べた副ボタンを撤去
+    * index.html の .event-panel-calendar-options と ticket.html の .page-status-calendar-options を解体し、Google カレンダー単一ボタンに戻す
+    * 関連 CSS(.event-panel-calendar-secondary / .page-status-calendar-secondary 等)も削除
+  - **.prose h2::after のグラデーション横線削除**:
+    * qa.html「最新のよくある質問」など、CMS 内容が空のセクションで線だけが浮いて見え違和感があった
+    * 全サブページの h2 から金→赤グラデの下線が消える(よりミニマルな見た目に)
+  - bump-cache v54→v55 / ?v=20260524j→k
 - Round 65 (2026-05-24): ticket-now-options セクション撤去(ユーザー判断)
   - Round 62 で追加した「販売開始までに、できること」ブロック(.ticket-now-options)を
     ticket.html から丸ごと削除
