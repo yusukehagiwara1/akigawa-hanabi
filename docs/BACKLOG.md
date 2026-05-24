@@ -42,6 +42,15 @@
 
 ## ✅ 完了済み（直近 14 ラウンド）
 
+- Round 65 (2026-05-24): ticket-now-options セクション撤去(ユーザー判断)
+  - Round 62 で追加した「販売開始までに、できること」ブロック(.ticket-now-options)を
+    ticket.html から丸ごと削除
+  - 関連 CSS(styles.css の Round 62 ブロック)も全削除
+  - 撤去理由: 通常販売・ふるさと納税ともに準備中の現状では、ふるさと納税は
+    #tickets セクションのカード(.ticket-card.accent)と ticket.html 本文の
+    「チケット購入方法」記載で十分カバーされており、追加ブロックは情報重複
+  - underline override から `.ticket-now-card` を除去(参照クラスがなくなったため)
+  - bump-cache v53→v54 / ?v=20260524i→j
 - Round 64 (2026-05-24): ユーザー指摘 3 件の修正 (下線 / ふるさと納税前提 / カレンダーUX)
   - **A. カード内テキストの下線除去**:
     * `.prose a` の `text-decoration: underline` がカード型アンカー(ticket-guide-card / ticket-now-card / ticket-card)全体に伝播していた
