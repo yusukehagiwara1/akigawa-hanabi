@@ -303,14 +303,14 @@
     .hero-badge-text strong{color:var(--gold);font-weight:900;letter-spacing:.04em}
     @media (prefers-color-scheme:dark){:root{--ink:#f1eee5;--muted:#a4b1ba;--paper:#0c1320;--cream:#1a2236;--line:rgba(255,255,255,.10)}}
     </style>
-    <link rel="preload" href="styles.css?v=20260516e" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="styles.css?v=20260516e"></noscript>
-    <script src="analytics.js?v=20260516e" defer></script>
-    <script src="ui.js?v=20260516e" defer></script>
-    <script src="microcms-config.js?v=20260516e" defer></script>
-    <script src="script.js?v=20260516e" defer></script>
-    <script src="microcms-extras.js?v=20260516e" defer></script>
-    <script src="sponsor-urls.js?v=20260516e" defer></script>
+    <link rel="preload" href="styles.css?v=20260524a" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="styles.css?v=20260524a"></noscript>
+    <script src="analytics.js?v=20260524a" defer></script>
+    <script src="ui.js?v=20260524a" defer></script>
+    <script src="microcms-config.js?v=20260524a" defer></script>
+    <script src="script.js?v=20260524a" defer></script>
+    <script src="microcms-extras.js?v=20260524a" defer></script>
+    <script src="sponsor-urls.js?v=20260524a" defer></script>
     <script>
       // Register Service Worker for offline support / PWA
       if ("serviceWorker" in navigator) {
@@ -583,6 +583,17 @@
           <article class="why-choose-card">
             <div class="why-choose-icon" aria-hidden="true">
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9.59 4.59A2 2 0 1 1 11 8H2"></path>
+                <path d="M12.59 19.41A2 2 0 1 0 14 16H2"></path>
+                <path d="M17.73 7.73A2.5 2.5 0 1 1 19.5 12H2"></path>
+              </svg>
+            </div>
+            <h3>渋滞は軽微</h3>
+            <p>都心の人気花火大会と違い、<strong>会場周辺の渋滞は軽微</strong>。ストレスフリーな来場体験で、家路もスムーズに帰れます。</p>
+          </article>
+          <article class="why-choose-card">
+            <div class="why-choose-icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="12" cy="12" r="10"></circle>
                 <polyline points="12,6 12,12 16,14"></polyline>
               </svg>
@@ -631,6 +642,16 @@
           <article class="achievements-card">
             <span class="achievements-num"><em>10</em>媒体+</span>
             <p>TVニュース・新聞・WEBで紹介<br>TBS Nスタ／ウォーカープラス 他</p>
+          </article>
+          <!-- TODO: 第7回 (2025) 来場者アンケート結果が確定次第、--% を実数に差し替え。
+               docs/BACKLOG.md の H7 タスク参照。 -->
+          <article class="achievements-card achievements-card-pending" aria-label="顧客満足度（アンケート集計中）">
+            <span class="achievements-num"><em>--</em>%</span>
+            <p>顧客満足度<br><span class="achievements-pending-note">第7回 来場者アンケート集計中</span></p>
+          </article>
+          <article class="achievements-card achievements-card-pending" aria-label="リピーター率（アンケート集計中）">
+            <span class="achievements-num"><em>--</em>%</span>
+            <p>「また来たい」回答比率<br><span class="achievements-pending-note">第7回 来場者アンケート集計中</span></p>
           </article>
         </div>
       </section>

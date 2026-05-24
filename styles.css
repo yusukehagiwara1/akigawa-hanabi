@@ -1730,6 +1730,33 @@ a.press-card-title:hover {
   color: var(--muted);
 }
 
+/* "Coming soon" achievement cards — visually de-emphasized so the
+   placeholder doesn't read as a real metric. Swap to a real number +
+   remove the .achievements-card-pending class when data is in. */
+.achievements-card-pending {
+  opacity: 0.78;
+  background: linear-gradient(180deg, #fff, var(--cream));
+}
+
+.achievements-card-pending .achievements-num em {
+  color: var(--muted);
+  font-style: normal;
+}
+
+.achievements-pending-note {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.74rem;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+@media (prefers-color-scheme: dark) {
+  .achievements-card-pending {
+    background: linear-gradient(180deg, #1a2236, #131a28);
+  }
+}
+
 /* ===== Ticket guide (席選びガイド) on ticket.html ===== */
 .prose .ticket-guide {
   margin: 28px 0 36px;

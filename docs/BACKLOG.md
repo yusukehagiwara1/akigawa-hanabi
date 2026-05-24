@@ -21,6 +21,7 @@
 | H4 | LINE 公式アカウント開設後に friend 追加 URL を index.html に反映 | 運営側で LINE 公式開設 | 30 min |
 | H5 | Google フォーム メール登録運用開始 | 運営側でフォーム作成 | 30 min |
 | H6 | 寄付・協賛 PDF を第8回版に差し替え | 第8回 PDF 作成 | 30 min |
+| H7 | 顧客満足度・リピーター率の実数値をトップ achievements に反映 | 第7回 (2025) 来場者アンケート集計結果 | 30 min |
 
 ## 🟡 中優先（自律的に進められる）
 
@@ -62,6 +63,18 @@
   - **M2** 完了: hero-fireworks-real の 800w / 1280w 派生を生成（モバイル 491KB → 86KB、約 82% 削減）。`<link rel=preload>` を imagesrcset 対応 + CSS を media query ベースのレスポンシブ背景に
   - **M3** 完了: gallery / press / faq の各 CMS セクションに testimonial と同じ `data-has-fallback` フラグ尊重ロジックを実装。空 CMS でも静的フォールバックを優先表示
   - SW v9 + キャッシュバスター 2026-05-15 に更新
+- Round 56 (2026-05-15): トップ「選ばれる理由」+「実績」拡張 — 渋滞 / 駐車場 / 顧客満足度 / リピーター率
+  - **why-choose-grid に 5 枚目を追加**: 「渋滞は軽微」(`<svg>` で wind/flow アイコン)
+    * 文言: 「都心の人気花火大会と違い、会場周辺の渋滞は軽微。ストレスフリーな来場体験で、家路もスムーズに帰れます。」
+    * 既存「駐車場あり・無料」と並んで来場ストレス軽減ポイントを 2 枚で強調
+  - **achievements-grid に 6 枚目・7 枚目を追加 (`.achievements-card-pending`)**
+    * 「顧客満足度: --%」+「第7回 来場者アンケート集計中」
+    * 「「また来たい」回答比率 (リピーター率): --%」+「第7回 来場者アンケート集計中」
+    * プレースホルダ視覚化: opacity 0.78 + cream グラデ背景 + 数字 em を `--muted` 色
+    * HTML コメントに TODO 明記 (H7 タスク参照)
+    * Round 55 の数字カウントアップは `--` を 5 未満として skip → アニメ無し
+  - **BACKLOG.md に新規 H7 タスク追加**: 実データ反映 (運営側アンケート集計待ち)
+  - ダークモードの `.achievements-card-pending` も対応 (背景 dark surface)
 - Round 55 (2026-05-15): デザイン磨き込み — 数字カウントアップ + Hero タイトル focus-in
   - **ui.js**: `.achievements-num em` を IntersectionObserver で監視、ビューポートに 40% 入った瞬間に 0 → 目標値へ 1.2s でカウントアップ (ease-out cubic)
     * 第8回 / 5,000発 / 10社+ / 10媒体+ の 4 つの achievement 数字に適用
