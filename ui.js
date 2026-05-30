@@ -29,7 +29,7 @@
     toast.setAttribute("role", "status");
     toast.setAttribute("aria-live", "polite");
     toast.innerHTML =
-      '<span>サイトが更新されました。再読み込みすると最新版を表示します。</span>' +
+      '<span>新しいバージョンがあります</span>' +
       '<button type="button" class="sw-update-toast-btn">再読み込み</button>' +
       '<button type="button" class="sw-update-toast-close" aria-label="閉じる">×</button>';
     document.body.appendChild(toast);

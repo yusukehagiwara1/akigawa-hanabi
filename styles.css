@@ -7392,6 +7392,9 @@ body.page-sponsor .prose .wp-block-table td strong {
 .sw-update-toast span {
   flex: 1 1 auto;
   min-width: 0;
+  /* Round 86: テキストを1行に固定し、CJK が1文字ずつ折り返して
+     トーストが縦長の円形に潰れるのを防ぐ */
+  white-space: nowrap;
 }
 
 .sw-update-toast-btn {
@@ -7442,16 +7445,39 @@ body.page-sponsor .prose .wp-block-table td strong {
 }
 
 @media (max-width: 480px) {
+  /* Round 86: モバイルでは left/right を固定して幅を確定させる。
+     これをしないと position:fixed + display:flex が shrink-to-fit となり、
+     トーストが縦長の円形に潰れる。アニメーションも translateX を使わない
+     ものに差し替える(left/right 固定と translateX(-50%) は両立しない)。 */
   .sw-update-toast {
-    bottom: 84px; /* avoid mobile sticky CTA */
-    padding: 10px 12px 10px 16px;
+    left: 16px;
+    right: 16px;
+    transform: none;
+    max-width: none;
+    bottom: calc(84px + env(safe-area-inset-bottom)); /* avoid mobile sticky CTA */
+    padding: 12px 14px;
+    border-radius: 16px;
     font-size: 0.84rem;
-    gap: 8px;
+    gap: 8px 10px;
+    flex-wrap: wrap; /* 極小画面ではボタンが2行目に回る */
+    animation: sw-toast-in-mobile 0.4s ease-out both;
+  }
+  .sw-update-toast span {
+    flex: 1 1 100%; /* テキストは常に1行目を占有 */
   }
   .sw-update-toast-btn {
-    padding: 7px 12px;
+    flex: 1 1 auto;
+    padding: 8px 12px;
     font-size: 0.82rem;
   }
+  .sw-update-toast-close {
+    flex: 0 0 auto;
+  }
+}
+
+@keyframes sw-toast-in-mobile {
+  from { transform: translateY(16px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
 }
 
 /* ======================================================================
