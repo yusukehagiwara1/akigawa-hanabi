@@ -281,7 +281,7 @@
     @media (max-width:920px){
       /* Mobile: nav は display 切替で開閉する（styles.css でも同じ実装）*/
       .nav{display:none}
-      .nav.is-open{display:flex;position:fixed;top:66px;left:0;right:0;bottom:0;width:100%;height:calc(100vh - 66px);flex-direction:column;background:rgba(10,16,28,.97);z-index:30;padding:24px 20px 32px;overflow-y:auto}
+      .nav.is-open{display:flex;position:fixed;top:66px;left:0;right:0;bottom:0;width:100%;height:calc(100vh - 66px);height:calc(100dvh - 66px);flex-direction:column;background:rgba(10,16,28,.97);z-index:30;padding:24px 20px 32px;overflow-y:auto}
       .nav-toggle{display:flex;width:44px;height:44px;padding:0;border:0;background:transparent;cursor:pointer;align-items:center;justify-content:center;flex-direction:column;gap:6px}
       .nav-toggle span{display:block;width:24px;height:2px;background:#fff;border-radius:2px}
     }
@@ -303,14 +303,14 @@
     .hero-badge-text strong{color:var(--gold);font-weight:900;letter-spacing:.04em}
     @media (prefers-color-scheme:dark){:root{--ink:#f1eee5;--muted:#a4b1ba;--paper:#0c1320;--cream:#1a2236;--line:rgba(255,255,255,.10)}}
     </style>
-    <link rel="preload" href="styles.css?v=20260530c" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="styles.css?v=20260530c"></noscript>
-    <script src="analytics.js?v=20260530c" defer></script>
-    <script src="ui.js?v=20260530c" defer></script>
-    <script src="microcms-config.js?v=20260530c" defer></script>
-    <script src="script.js?v=20260530c" defer></script>
-    <script src="microcms-extras.js?v=20260530c" defer></script>
-    <script src="sponsor-urls.js?v=20260530c" defer></script>
+    <link rel="preload" href="styles.css?v=20260531a" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="styles.css?v=20260531a"></noscript>
+    <script src="analytics.js?v=20260531a" defer></script>
+    <script src="ui.js?v=20260531a" defer></script>
+    <script src="microcms-config.js?v=20260531a" defer></script>
+    <script src="script.js?v=20260531a" defer></script>
+    <script src="microcms-extras.js?v=20260531a" defer></script>
+    <script src="sponsor-urls.js?v=20260531a" defer></script>
     <script>
       // Register Service Worker for offline support / PWA
       if ("serviceWorker" in navigator) {

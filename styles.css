@@ -5654,6 +5654,7 @@ dialog.lightbox .lightbox-close:hover {
     bottom: 0;
     width: 100%;
     height: calc(100vh - 66px);
+    height: calc(100dvh - 66px); /* iOS Safari のアドレスバー伸縮対策（dvh非対応は上行にフォールバック） */
     flex-direction: column;
     align-items: stretch;
     gap: 0;
@@ -5703,6 +5704,7 @@ dialog.lightbox .lightbox-close:hover {
   .info-grid,
   .access-grid,
   .program-grid,
+  .testimonial-grid,
   .contact-card,
   .footer-grid {
     grid-template-columns: 1fr;
@@ -7819,7 +7821,9 @@ body.page-sponsor .prose .wp-block-table td strong {
 
 @media (max-width: 920px) {
   .mobile-sticky-bar { display: flex; }
-  body { padding-bottom: 80px; }
+  /* sticky-bar(実高 ~72px)+ ノッチ系端末の safe-area を二重に確保し、
+     フッター下端がバーに隠れないように */
+  body { padding-bottom: calc(84px + env(safe-area-inset-bottom)); }
 }
 
 /* Hide the button that targets the current page (avoid self-link) */
