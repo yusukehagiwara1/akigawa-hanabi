@@ -8121,8 +8121,9 @@ body.page-access .mobile-sticky-btn-primary { flex: 1; }
 .donation-flyer-button {
   display: inline-flex;
   margin-top: 14px;
-  font-size: 0.86rem;
-  padding: 10px 20px;
+  min-height: 38px;
+  font-size: 0.82rem;
+  padding: 7px 16px;
   gap: 6px;
 }
 
