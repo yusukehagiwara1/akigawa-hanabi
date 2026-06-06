@@ -8120,11 +8120,15 @@ body.page-access .mobile-sticky-btn-primary { flex: 1; }
 }
 .donation-flyer-button {
   display: inline-flex;
-  margin-top: 14px;
-  min-height: 38px;
-  font-size: 0.82rem;
-  padding: 7px 16px;
-  gap: 6px;
+  margin-top: 12px;
+  min-height: 32px;
+  font-size: 0.78rem;
+  padding: 5px 14px;
+  gap: 5px;
+}
+.donation-flyer-button svg {
+  width: 13px;
+  height: 13px;
 }
 
 /* 寄付は1カードのみ。2カラムグリッドの左半分にならないよう、中央に適度な幅で配置 */
