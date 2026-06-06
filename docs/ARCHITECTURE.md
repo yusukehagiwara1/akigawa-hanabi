@@ -108,4 +108,5 @@ Claude Code での修正時はこの依存関係を踏まえること。
 - **microCMS**: `0k3w9bd30b.microcms.io`（news/sponsors/gallery/testimonial/press_release/faq_dynamic）
 - **GA4**: `G-GWF9DQCZQ3`
 - **お問い合わせ**: Googleフォーム（contact.html / Get-ContactBody 内にURL固定）
-- **ホスティング**: Cloudflare Pages（GitHub `yusukehagiwara1/akigawa-hanabi` 連携・push自動デプロイ）
+- **ホスティング(現行・暫定)**: Cloudflare Pages（GitHub `yusukehagiwara1/akigawa-hanabi` 連携・push自動デプロイ）
+- **ホスティング(最終移行先)**: ConoHa（国内レンタルサーバー）。移行後は公開URLが独自ドメインに変わり、デプロイ手順も ConoHa 向けに変わる可能性がある（GitHub→自動公開が使えるとは限らない）。移行時はリダイレクト設定と microCMS 連携の動作確認が必要。
