@@ -1,0 +1,55 @@
+name: Deploy to ConoHa WING
+
+# main ブランチに push されると、サイト一式を ConoHa WING の
+# 公開フォルダ（public_html）へ FTPS で自動アップロードします。
+# 手動実行（Actions タブの「Run workflow」）も可能です。
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# 同時に複数のデプロイが走らないように直列化
+concurrency:
+  group: deploy-conoha
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: リポジトリを取得
+        uses: actions/checkout@v4
+
+      - name: ConoHa WING へ FTPS デプロイ
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          # --- 接続情報（GitHub の Secrets に登録）---
+          server: ${{ secrets.CONOHA_FTP_HOST }}        # 例: www123.conoha.ne.jp
+          username: ${{ secrets.CONOHA_FTP_USER }}      # ConoHa WING の FTPユーザー名
+          password: ${{ secrets.CONOHA_FTP_PASSWORD }}  # FTPパスワード
+          protocol: ftps                                # FTP over TLS（暗号化）
+          port: 21
+
+          # --- アップロード元（リポジトリのルート）---
+          local-dir: ./
+
+          # --- アップロード先（公開フォルダ）---
+          # ConoHa WING の公開フォルダ。多くは ./public_html/ 配下。
+          # 環境に合わせて Secret CONOHA_SERVER_DIR で指定（末尾スラッシュ必須）。
+          server-dir: ${{ secrets.CONOHA_SERVER_DIR }}
+
+          # --- 公開しないファイル（除外）---
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.github/**
+            **/.claude/**
+            **/_wp-content/**
+            **/docs/**
+            **/README.md
+            **/_image-dims.tsv
+            **/_headers
+            **/_redirects
+            **/*.ps1
+            **/*.md

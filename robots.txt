@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /_wp-content/
 
-Sitemap: https://akigawa-hanabi.pages.dev/sitemap.xml
+Sitemap: https://machizukuri-con.or.jp/sitemap.xml

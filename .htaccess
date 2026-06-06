@@ -1,0 +1,145 @@
+# ======================================================================
+# 秋川流域花火大会 公式サイト — Apache 設定（ConoHa WING 本番環境用）
+# Cloudflare Pages の _headers と _redirects 相当を Apache に移植したもの。
+# 静的HTMLサイト。ConoHa WING は Apache + mod_rewrite/mod_headers/mod_expires 対応。
+# ======================================================================
+
+# ----------------------------------------------------------------------
+# 既定ドキュメント / 文字コード
+# ----------------------------------------------------------------------
+DirectoryIndex index.html
+AddDefaultCharset UTF-8
+
+# カスタム404ページ
+ErrorDocument 404 /404.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # --------------------------------------------------------------------
+  # 1) HTTPS 強制（http → https）
+  # --------------------------------------------------------------------
+  RewriteCond %{HTTPS} !=on [OR]
+  RewriteCond %{HTTP:X-Forwarded-Proto} =http
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+  # --------------------------------------------------------------------
+  # 2) www あり → www なし に正規化（canonical は machizukuri-con.or.jp）
+  # --------------------------------------------------------------------
+  RewriteCond %{HTTP_HOST} ^www\.machizukuri-con\.or\.jp$ [NC]
+  RewriteRule ^(.*)$ https://machizukuri-con.or.jp/$1 [R=301,L]
+
+  # --------------------------------------------------------------------
+  # 3) 旧WordPress URL → 新静的サイトURL（301恒久リダイレクト）
+  #    WordPress は /slug/（末尾スラッシュ）、新サイトは /slug.html
+  # --------------------------------------------------------------------
+
+  # フロントページ /home/ → /
+  RewriteRule ^home/?$ / [R=301,L]
+
+  # スラッグが変わったページ
+  RewriteRule ^company-overview/?$ /company.html [R=301,L]
+  RewriteRule ^sponsor-2025/?$ /sponsor.html [R=301,L]
+
+  # 新サイトに無いページの転送先（ユーザー指定）
+  RewriteRule ^lost-item/?$ / [R=301,L]
+  RewriteRule ^yahoo-news/?$ /pr.html [R=301,L]
+
+  # スラッグ同名ページ /slug/ → /slug.html
+  RewriteRule ^2024-hanabi/?$ /2024-hanabi.html [R=301,L]
+  RewriteRule ^access/?$ /access.html [R=301,L]
+  RewriteRule ^akiruno-kanko/?$ /akiruno-kanko.html [R=301,L]
+  RewriteRule ^contact/?$ /contact.html [R=301,L]
+  RewriteRule ^donation/?$ /donation.html [R=301,L]
+  RewriteRule ^event/?$ /event.html [R=301,L]
+  RewriteRule ^food-application/?$ /food-application.html [R=301,L]
+  RewriteRule ^pr/?$ /pr.html [R=301,L]
+  RewriteRule ^privacy-policy/?$ /privacy-policy.html [R=301,L]
+  RewriteRule ^qa/?$ /qa.html [R=301,L]
+  RewriteRule ^ticket/?$ /ticket.html [R=301,L]
+</IfModule>
+
+# ----------------------------------------------------------------------
+# 4) セキュリティヘッダー（全レスポンス共通／_headers の /* と同等）
+# ----------------------------------------------------------------------
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Cross-Origin-Opener-Policy "same-origin"
+  # HTTPS を常時利用するため HSTS を付与（6か月）。問題なければ将来 max-age 延長可。
+  Header always set Strict-Transport-Security "max-age=15768000"
+</IfModule>
+
+# ----------------------------------------------------------------------
+# 5) キャッシュ制御（_headers の各ルールと同等）
+# ----------------------------------------------------------------------
+<IfModule mod_headers.c>
+  # 画像・フォント・アイコン・PDF（/assets 配下）— 1年 immutable
+  <FilesMatch "\.(?:webp|jpg|jpeg|png|gif|svg|ico|woff2?|ttf|otf|pdf)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  # バージョン付きスクリプト/スタイル（?v= で更新）— 1年 immutable
+  <FilesMatch "\.(?:css|js)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  # Service Worker — キャッシュせず常に最新を取得
+  <Files "sw.js">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+    Header set Service-Worker-Allowed "/"
+  </Files>
+
+  # PWA マニフェスト — 短時間キャッシュ
+  <Files "manifest.json">
+    Header set Cache-Control "public, max-age=3600"
+  </Files>
+
+  # HTMLページ — 5分（SWがオフライン対応を担う）
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=300, must-revalidate"
+    Header set X-Robots-Tag "index, follow"
+  </FilesMatch>
+
+  # 404ページ — クローラに索引させない
+  <Files "404.html">
+    Header set X-Robots-Tag "noindex, follow"
+  </Files>
+
+  # サイトマップ / robots — 1時間
+  <Files "sitemap.xml">
+    Header set Cache-Control "public, max-age=3600"
+  </Files>
+  <Files "robots.txt">
+    Header set Cache-Control "public, max-age=3600"
+  </Files>
+</IfModule>
+
+# favicon は 30日キャッシュ（FilesMatch の immutable を上書き）
+<IfModule mod_headers.c>
+  <Files "favicon.ico">
+    Header set Cache-Control "public, max-age=2592000"
+  </Files>
+</IfModule>
+
+# ----------------------------------------------------------------------
+# 6) 圧縮（転送量削減）
+# ----------------------------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/xml text/plain
+  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE image/svg+xml application/xml
+</IfModule>
+
+# ----------------------------------------------------------------------
+# 7) 隠しファイル・内部ファイルへの直接アクセスを禁止
+# ----------------------------------------------------------------------
+<FilesMatch "^\.">
+  Require all denied
+</FilesMatch>
+<IfModule mod_rewrite.c>
+  RewriteRule ^_wp-content/ - [F,L]
+</IfModule>
