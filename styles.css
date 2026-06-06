@@ -8121,6 +8121,16 @@ body.page-access .mobile-sticky-btn-primary { flex: 1; }
 .donation-flyer-button {
   display: inline-flex;
   margin-top: 14px;
+  font-size: 0.86rem;
+  padding: 10px 20px;
+  gap: 6px;
+}
+
+/* 寄付は1カードのみ。2カラムグリッドの左半分にならないよう、中央に適度な幅で配置 */
+.donation-section#01 .plan-grid {
+  grid-template-columns: 1fr;
+  max-width: 480px;
+  margin-inline: auto;
 }
 
 /* PDF ボタンの統一スタイル（ビラ・寄付・協賛とも同じ見た目で常時はっきり表示）。

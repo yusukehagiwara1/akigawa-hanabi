@@ -105,11 +105,11 @@
     .page-hero-pill-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--gold)}
     @media (prefers-color-scheme:dark){:root{--ink:#f1eee5;--muted:#a4b1ba;--paper:#0c1320;--cream:#1a2236;--gold-text:#e0c478;--line:rgba(255,255,255,.10)}}
     </style>
-    <link rel="preload" href="styles.css?v=20260607d" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="styles.css?v=20260607d"></noscript>
-    <script src="analytics.js?v=20260607d" defer></script>
-    <script src="ui.js?v=20260607d" defer></script>
-    <script src="sponsor-urls.js?v=20260607d" defer></script>
+    <link rel="preload" href="styles.css?v=20260607e" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="styles.css?v=20260607e"></noscript>
+    <script src="analytics.js?v=20260607e" defer></script>
+    <script src="ui.js?v=20260607e" defer></script>
+    <script src="sponsor-urls.js?v=20260607e" defer></script>
     <script>
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", function () {
@@ -184,24 +184,17 @@
         <li>地域の花火大会を支える寄付プランです</li>
         <li>お礼・特典の詳細は、寄付依頼書（PDF）をご確認ください</li>
       </ul>
+      <div class="plan-actions">
+        <a class="button plan-action-pdf" href="assets/wp/donation-2026.pdf" target="_blank" rel="noopener">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+          寄付依頼書（PDF）を見る
+        </a>
+        <a class="button primary plan-action-form" href="https://forms.gle/Zg46Q8vKpHgQEN4s8" target="_blank" rel="noopener" data-ga-cta="donation:form">
+          寄付のお申し込み
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 5l7 7-7 7"></path></svg>
+        </a>
+      </div>
     </article>
-  </div>
-
-  <div class="donation-cta">
-    <a class="button donation-pdf-button" href="assets/wp/donation-2026.pdf" target="_blank" rel="noopener">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-        <polyline points="14 2 14 8 20 8"></polyline>
-      </svg>
-      寄付依頼書（PDF）を見る
-    </a>
-    <a class="button primary donation-cta-button" href="https://forms.gle/Zg46Q8vKpHgQEN4s8" target="_blank" rel="noopener" data-ga-cta="donation:form">
-      寄付お申し込みフォームを開く
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M5 12h14"></path>
-        <path d="M13 5l7 7-7 7"></path>
-      </svg>
-    </a>
   </div>
 </section>
 
@@ -211,6 +204,7 @@
 
   <div class="plan-grid">
     <article class="plan-card">
+      <p class="plan-tag">中口</p>
       <p class="plan-price"><strong>30,000円</strong> <span>〜</span></p>
       <h3 class="plan-name">中口協賛</h3>
       <ul class="plan-features">
