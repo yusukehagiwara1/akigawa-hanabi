@@ -26,10 +26,12 @@ Claude Code での修正時はこの依存関係を踏まえること。
 ├ ui.js / analytics.js / sponsor-urls.js   全ページ共通JS
 ├ script.js / microcms-config.js / microcms-extras.js   index専用JS
 ├ sw.js                   Service Worker（CACHE_VERSION保持）
-├ manifest.json / _headers / sitemap.xml / robots.txt
+├ manifest.json / sitemap.xml / robots.txt
+├ _headers                Cloudflare(レビュー用)のHTTPヘッダ設定
+├ .htaccess               ConoHa(本番)のApache設定（HTTPS強制/旧URL301/WP遮断/キャッシュ）
 ├ assets/                 共有画像（hero・logo・icon・past-NN 等）
 │  ├ sponsors/            協賛ロゴ
-│  └ wp/                  本文中の画像・PDF（130枚以上）
+│  └ wp/                  本文中の画像・PDF（未使用ファイルは整理済み）
 ├ _build/            ビルド資材（非公開）
 │  ├ *.json (13本)        各サブページのソース
 │  ├ generate.ps1         サブページHTML生成（※通常使わない）
@@ -49,7 +51,7 @@ Claude Code での修正時はこの依存関係を踏まえること。
 |---|---|---|---|
 | `styles.css` | 全16 | 全ページ共通スタイル（サブページのcritical CSSはgenerate.ps1内に別途インライン） | 全ページの見た目 |
 | `ui.js` | 全16 | ナビ開閉/SW更新トースト/カウントダウン/スクロール演出/数字カウントアップ/`?testMode=`プレビュー | 全ページの挙動 |
-| `analytics.js` | 全16 | GA4（`G-GWF9DQCZQ3`）+ CTAクリック計測 + Web Vitals + スクロール深度 | 全ページの計測 |
+| `analytics.js` | 全16 | GA4（`G-W9P24GJY72`）+ CTAクリック計測 + Web Vitals + スクロール深度 | 全ページの計測 |
 | `sponsor-urls.js` | 全16 | 協賛ロゴ`<img>`をURL付きアンカーで包む（`SPONSOR_URL_MAP`） | index/sponsorで効く |
 | `sw.js` | 全16 | Service Worker。HTML=network-first、静的=SWR。`CACHE_VERSION`保持 | 全ページのキャッシュ |
 | `microcms-config.js` | index のみ | microCMS接続設定（serviceDomain/apiKey/endpoint） | トップの動的設定 |
@@ -97,7 +99,7 @@ Claude Code での修正時はこの依存関係を踏まえること。
 | 共有画像 | `assets/` 直下（sw.jsのPRECACHE_URLSにも記載） |
 | 本文中画像・PDF | `assets/wp/` |
 | 協賛ロゴ画像 | `assets/sponsors/` |
-| HTTPヘッダ | `_headers` |
+| HTTPヘッダ・リダイレクト | レビュー用 `_headers`(Cloudflare) / 本番用 `.htaccess`(ConoHa) |
 | 旧キャッシュ破棄 | `_build/bump-cache.ps1` 実行（全HTML `?v=` + sw.js `CACHE_VERSION`） |
 | 公開前検証 | `_build/validate-site.ps1` |
 
@@ -106,7 +108,10 @@ Claude Code での修正時はこの依存関係を踏まえること。
 ## 外部サービス依存（コード変更では変わらない）
 
 - **microCMS**: `0k3w9bd30b.microcms.io`（news/sponsors/gallery/testimonial/press_release/faq_dynamic）
-- **GA4**: `G-GWF9DQCZQ3`
+- **GA4**: `G-W9P24GJY72`（団体アカウント machizukuriconsortium / プロパティ「秋川流域花火大会 公式サイト」）
+- **Search Console**: 団体アカウントで `machizukuri-con.or.jp` のドメイン所有権をDNS(TXT)で確認済み（永続）
 - **お問い合わせ**: Googleフォーム（contact.html / Get-ContactBody 内にURL固定）
-- **ホスティング(現行・暫定)**: Cloudflare Pages（GitHub `yusukehagiwara1/akigawa-hanabi` 連携・push自動デプロイ）
-- **ホスティング(最終移行先)**: ConoHa（国内レンタルサーバー）。移行後は公開URLが独自ドメインに変わり、デプロイ手順も ConoHa 向けに変わる可能性がある（GitHub→自動公開が使えるとは限らない）。移行時はリダイレクト設定と microCMS 連携の動作確認が必要。
+- **本番ホスティング**: ConoHa WING。独自ドメイン `https://machizukuri-con.or.jp/`（DNS・無料SSL設定済み）。`main` への push で GitHub Actions が FTPS で公開フォルダ（`/home/c4387059/public_html/machizukuri-con.or.jp/`）へ自動デプロイ（`.github/workflows/deploy-conoha.yml`）。Apache設定は `.htaccess`。
+  - ⏸ **現在は組織内レビューのため一時的に WordPress に戻し、自動デプロイ(push)を停止中。** レビューOK後に `.htaccess` を静的用へ戻し、push自動デプロイを再開して本番公開する。
+- **レビュー用ミラー**: Cloudflare Pages（`https://akigawa-hanabi.pages.dev/`・push自動デプロイ）。組織内レビュー用。公開後の扱いは別途決定。
+- **リポジトリ / 組織**: 現状 `yusukehagiwara1/akigawa-hanabi`（個人）。GitHub Organization `machizukuri-consortium`（NPO法人名義）は作成済み。**公開のタイミングでリポジトリを組織へ移管**（Cloudflare再連携・Secrets再確認を1回でまとめて実施）。
