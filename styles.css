@@ -54,7 +54,7 @@ html {
   place-items: center;
   border: 0;
   border-radius: 50%;
-  background: rgba(26, 22, 34, 0.85);
+  background: rgba(10, 16, 28, 0.85);
   color: #fff;
   cursor: pointer;
   box-shadow: 0 6px 20px rgba(11, 19, 31, 0.28);
@@ -321,13 +321,13 @@ img {
   min-height: 72px;
   padding: 14px clamp(18px, 4vw, 54px);
   color: #fff;
-  background: rgba(26, 22, 34, 0.94);
+  background: rgba(10, 16, 28, 0.94);
   backdrop-filter: blur(12px);
   transition: background 0.25s ease, box-shadow 0.25s ease;
 }
 
 .site-header.is-scrolled {
-  background: rgba(26, 22, 34, 0.98);
+  background: rgba(10, 16, 28, 0.98);
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
 }
 
@@ -863,7 +863,7 @@ h2 span,
   padding: 22px 24px;
   border: 1px solid rgba(255, 255, 255, 0.28);
   border-radius: 10px;
-  background: rgba(26, 22, 34, 0.58);
+  background: rgba(10, 18, 31, 0.58);
   backdrop-filter: blur(16px);
   box-shadow: var(--shadow);
   overflow: hidden;
@@ -1332,7 +1332,7 @@ a.press-card-title:hover {
   background:
     radial-gradient(circle at 88% 12%, rgba(215, 169, 71, 0.32), transparent 55%),
     radial-gradient(circle at 12% 90%, rgba(184, 63, 55, 0.18), transparent 50%),
-    linear-gradient(135deg, #1a1622 0%, #45343e 70%, #2c4a38 100%);
+    linear-gradient(135deg, #10182a 0%, #173a51 70%, #0f3939 100%);
   color: #fff;
   box-shadow: 0 24px 70px rgba(11, 19, 31, 0.22);
 }
@@ -2591,7 +2591,7 @@ a.press-card-title:hover {
   background:
     radial-gradient(circle at 88% 12%, rgba(215, 169, 71, 0.32), transparent 55%),
     radial-gradient(circle at 12% 90%, rgba(184, 63, 55, 0.18), transparent 50%),
-    linear-gradient(135deg, #1a1622 0%, #45343e 70%, #2c4a38 100%);
+    linear-gradient(135deg, #10182a 0%, #173a51 70%, #0f3939 100%);
   color: #fff;
   box-shadow: 0 24px 70px rgba(11, 19, 31, 0.22);
 }
@@ -2713,7 +2713,7 @@ a.ticket-card {
 .ticket-card.accent {
   color: #fff;
   border-color: transparent;
-  background: linear-gradient(135deg, var(--teal), #45343e);
+  background: linear-gradient(135deg, var(--teal), #173a51);
 }
 
 .ticket-card.accent p {
@@ -3210,7 +3210,7 @@ a.ticket-card {
   background:
     radial-gradient(circle at 12% 18%, rgba(215, 169, 71, 0.18), transparent 55%),
     radial-gradient(circle at 88% 22%, rgba(184, 63, 55, 0.12), transparent 50%),
-    linear-gradient(180deg, #1a1622, #2c4a38 70%, var(--cream));
+    linear-gradient(180deg, #0f1828, #0f3939 70%, var(--cream));
   color: #fff;
   animation: hero-fade 0.7s ease-out both;
   overflow: hidden;
@@ -3548,7 +3548,7 @@ a.ticket-card {
 }
 
 .prose .swell-block-button.green_ .swell-block-button__link {
-  background: linear-gradient(135deg, var(--teal), #2c4a38);
+  background: linear-gradient(135deg, var(--teal), #0f3939);
   color: #fff !important;
 }
 
@@ -4563,7 +4563,7 @@ a.ticket-card {
   border-radius: 14px;
   background:
     radial-gradient(circle at 92% 8%, rgba(215, 169, 71, 0.18), transparent 50%),
-    linear-gradient(140deg, #1a1622 0%, #2e2a3a 60%, #2c4a38 100%);
+    linear-gradient(140deg, #10182a 0%, #12283f 60%, #0f3939 100%);
   color: #fff;
   box-shadow: 0 20px 60px rgba(11, 19, 31, 0.25);
   position: relative;
@@ -4946,7 +4946,7 @@ a.ticket-card {
   bottom: 12px;
   padding: 4px 10px;
   border-radius: 999px;
-  background: rgba(26, 22, 34, 0.85);
+  background: rgba(10, 16, 28, 0.85);
   color: #fff;
   font-size: 0.78rem;
   font-weight: 700;
@@ -5112,7 +5112,7 @@ a.ticket-card {
 .program-card.feature .program-card-body {
   background:
     radial-gradient(circle at 85% 0%, rgba(215, 169, 71, 0.4), transparent 55%),
-    linear-gradient(135deg, #2a2436, #2c4a38);
+    linear-gradient(135deg, #14233a, #0f3939);
   color: #fff;
 }
 
@@ -5450,7 +5450,7 @@ dialog.lightbox .lightbox-close:hover {
   color: #fff;
   background:
     radial-gradient(circle at 90% 10%, rgba(215, 169, 71, 0.45), transparent 55%),
-    linear-gradient(135deg, #1a1622, #45343e 70%, #0f6868);
+    linear-gradient(135deg, #10182a, #173a51 70%, #0f6868);
   box-shadow: var(--shadow);
   overflow: hidden;
 }
@@ -5660,7 +5660,7 @@ dialog.lightbox .lightbox-close:hover {
     align-items: stretch;
     gap: 0;
     padding: 24px clamp(20px, 5vw, 32px) 32px;
-    background: rgba(26, 22, 34, 0.97);
+    background: rgba(10, 16, 28, 0.97);
     backdrop-filter: blur(16px);
     overflow-y: auto;
     z-index: 30;
@@ -7383,7 +7383,7 @@ body.page-sponsor .prose .wp-block-table td strong {
   max-width: calc(100% - 32px);
   padding: 12px 14px 12px 20px;
   border-radius: 999px;
-  background: rgba(26, 22, 34, 0.94);
+  background: rgba(10, 16, 28, 0.94);
   color: #fff;
   font-size: 0.9rem;
   font-weight: 600;
@@ -7583,7 +7583,7 @@ body.page-sponsor .prose .wp-block-table td strong {
   position: absolute;
   inset: 0 0 auto 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--ember), var(--gold));
+  background: linear-gradient(90deg, var(--gold), #f0d28a);
 }
 .achievements-num::after {
   content: "";
