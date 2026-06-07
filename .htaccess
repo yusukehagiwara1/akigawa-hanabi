@@ -10,6 +10,9 @@
 DirectoryIndex index.html
 AddDefaultCharset UTF-8
 
+# ディレクトリ一覧の自動表示を無効化（WordPressの残存フォルダ等の露出防止）
+Options -Indexes
+
 # カスタム404ページ
 ErrorDocument 404 /404.html
 
