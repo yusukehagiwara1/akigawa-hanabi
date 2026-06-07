@@ -84,6 +84,47 @@ GitHub リポジトリ > Settings > Secrets and variables > Actions > New reposi
 
 ---
 
+## 実施結果（2026-06-07 移行完了）
+
+### 判明した前提
+- `machizukuri-con.or.jp` は**既に ConoHa WING 上で WordPress 稼働中**だった。
+  → DNS切替・独自SSLは**すでに完了済み**。実作業は「同一サーバー上のWPを静的サイトに置き換える」だけだった。
+- 公開フォルダ（ドキュメントルート）: `/home/c4387059/public_html/machizukuri-con.or.jp/`
+- FTP: `www1047.conoha.ne.jp` / ユーザー `ghdeploy@machizukuri-con.or.jp` / FTPS / port 21
+- WordPressファイルは削除せず残置（自動バックアップ14日分が有効）。静的サイトの
+  index.html と .htaccess が上書き・優先されることで切替。
+
+### GitHub Secrets（登録済みの実値）
+| Secret | 値 |
+|---|---|
+| `CONOHA_FTP_HOST` | `www1047.conoha.ne.jp` |
+| `CONOHA_FTP_USER` | `ghdeploy@machizukuri-con.or.jp` |
+| `CONOHA_FTP_PASSWORD` | （非公開） |
+| `CONOHA_SERVER_DIR` | `public_html/machizukuri-con.or.jp/`（**相対パス**。FTPログイン先 /home/c4387059/ 起点） |
+
+### ハマったポイントと対処（重要）
+1. **server-dir はフルパスNG → 相対パス**
+   `/home/c4387059/public_html/...` を指定すると、FTPログイン先(home)起点で
+   解決され `home/c4387059/...` の入れ子に誤アップロードされた。
+   → `public_html/machizukuri-con.or.jp/`（相対）に修正して解決。
+2. **HTTPS判定でリダイレクトループ**
+   ConoHa WING は SSL をプロキシで終端するため `%{HTTPS}` が常に off と判定され、
+   https→https の無限301ループが発生。
+   → `RewriteCond %{HTTP:X-Forwarded-Proto} =http` で判定するよう修正して解決。
+3. **残存WordPressの遮断**
+   wp-admin/xmlrpc.php/wp-cron.php 等がまだ実行可能（攻撃面）だったため、
+   `.htaccess` で `wp-admin` `wp-includes` `wp-content` `xmlrpc.php` `wp-*.php` を
+   403遮断。
+
+### 残作業
+- [ ] 初回失敗デプロイのゴミ `/home/c4387059/home/` フォルダを削除（公開フォルダ外・無害）
+- [ ] （任意）WPファイルを物理的に退避/削除して整理（現状は403遮断済みで実害なし）
+- [ ] Search Console に新ドメインのサイトマップ再送信
+- [ ] Cloudflare Pages（pages.dev）の扱いを決定（リダイレクト or 停止）
+- [ ] 運用マニュアル（管理者用）の公開手順を「ConoHa自動デプロイ」に更新
+
+---
+
 ## 補足
 - WordPress投稿（ニュース記事9件）は microCMS のお知らせに集約済み。個別の旧投稿URLは
   必要に応じて後から `.htaccess` にリダイレクトを追加できる。
