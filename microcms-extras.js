@@ -48,7 +48,9 @@
   if (pressList && extra.pressRelease) {
     const pressFallback = hasFallback(pressList);
     loadList(extra.pressRelease, pressList, renderPressReleases, function (count) {
-      if (count === 0 && pressSection && !pressFallback) {
+      // count<=0 はデータ0件 または 取得失敗(-1)。フォールバックが無ければ
+      // 見出しごとセクションを隠す（空グリッドの露出防止）。
+      if (count <= 0 && pressSection && !pressFallback) {
         pressSection.style.display = "none";
       }
     });
