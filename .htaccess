@@ -22,8 +22,10 @@ ErrorDocument 404 /404.html
 
   # --------------------------------------------------------------------
   # 1) HTTPS 強制（http → https）
+  #    ConoHa WING は SSL をプロキシで終端するため %{HTTPS} は常に off に
+  #    見える。これで判定するとリダイレクトループになるので、
+  #    X-Forwarded-Proto が明示的に http のときだけ転送する。
   # --------------------------------------------------------------------
-  RewriteCond %{HTTPS} !=on [OR]
   RewriteCond %{HTTP:X-Forwarded-Proto} =http
   RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
 
