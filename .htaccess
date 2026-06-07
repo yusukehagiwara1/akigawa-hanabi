@@ -158,5 +158,5 @@ ErrorDocument 404 /404.html
   Require all denied
 </FilesMatch>
 <IfModule mod_rewrite.c>
-  RewriteRule ^_wp-content/ - [F,L]
+  RewriteRule ^_build/ - [F,L]
 </IfModule>

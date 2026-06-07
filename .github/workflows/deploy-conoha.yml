@@ -47,7 +47,7 @@ jobs:
             **/.git*/**
             **/.github/**
             **/.claude/**
-            **/_wp-content/**
+            **/_build/**
             **/docs/**
             **/README.md
             **/_image-dims.tsv

@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /_wp-content/
 
 Sitemap: https://machizukuri-con.or.jp/sitemap.xml

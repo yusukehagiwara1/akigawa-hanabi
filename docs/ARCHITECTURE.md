@@ -9,7 +9,7 @@ Claude Code での修正時はこの依存関係を踏まえること。
 
 1. **index.html だけが動的ページ** — microCMS（news / sponsors / gallery / testimonial / press / faq）と連動。残り15ページは静的。
 2. **共通ファイルは全ページに波及** — `styles.css` / `ui.js` / `analytics.js` / `sponsor-urls.js` / `sw.js` の5つは全16ページが読み込む。1行直すと全ページに影響。
-3. **サブページ本文は HTML を直接編集** — `_wp-content/*.json` や `generate.ps1` は初回生成用の道具。通常は使わない（後述）。
+3. **サブページ本文は HTML を直接編集** — `_build/*.json` や `generate.ps1` は初回生成用の道具。通常は使わない（後述）。
 
 ---
 
@@ -30,7 +30,7 @@ Claude Code での修正時はこの依存関係を踏まえること。
 ├ assets/                 共有画像（hero・logo・icon・past-NN 等）
 │  ├ sponsors/            協賛ロゴ
 │  └ wp/                  本文中の画像・PDF（130枚以上）
-├ _wp-content/            ビルド資材（非公開）
+├ _build/            ビルド資材（非公開）
 │  ├ *.json (13本)        各サブページのソース
 │  ├ generate.ps1         サブページHTML生成（※通常使わない）
 │  ├ bump-cache.ps1       キャッシュ番号一括更新
@@ -39,7 +39,7 @@ Claude Code での修正時はこの依存関係を踏まえること。
 └ docs/                   運用ドキュメント
 ```
 
-公開対象 = ルート直下のHTML/CSS/JS + assets。`_wp-content`・`docs` は非公開。
+公開対象 = ルート直下のHTML/CSS/JS + assets。`_build`・`docs` は非公開。
 
 ---
 
@@ -98,8 +98,8 @@ Claude Code での修正時はこの依存関係を踏まえること。
 | 本文中画像・PDF | `assets/wp/` |
 | 協賛ロゴ画像 | `assets/sponsors/` |
 | HTTPヘッダ | `_headers` |
-| 旧キャッシュ破棄 | `_wp-content/bump-cache.ps1` 実行（全HTML `?v=` + sw.js `CACHE_VERSION`） |
-| 公開前検証 | `_wp-content/validate-site.ps1` |
+| 旧キャッシュ破棄 | `_build/bump-cache.ps1` 実行（全HTML `?v=` + sw.js `CACHE_VERSION`） |
+| 公開前検証 | `_build/validate-site.ps1` |
 
 ---
 

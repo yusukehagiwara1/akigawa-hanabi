@@ -2,7 +2,7 @@
 _deploy/
 _deploy.zip
 _image-dims.tsv
-_wp-content/_tools/
+_build/_tools/
 
 # OS noise
 Thumbs.db

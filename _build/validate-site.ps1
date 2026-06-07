@@ -84,7 +84,7 @@ if ($missingSw.Count -eq 0) {
 
 # 4) generate.ps1 parses
 Section "generate.ps1 syntax"
-$genPath = Join-Path $Root "_wp-content\generate.ps1"
+$genPath = Join-Path $Root "_build\generate.ps1"
 $genContent = [System.IO.File]::ReadAllText($genPath, [System.Text.Encoding]::UTF8)
 $tokens = $errors = $null
 [System.Management.Automation.Language.Parser]::ParseInput($genContent, [ref]$tokens, [ref]$errors) | Out-Null

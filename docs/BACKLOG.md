@@ -44,7 +44,7 @@
 
 - Round 79 (2026-05-24): hero 画像 Real-ESRGAN で 2x 超解像 → 高画質化
   - **背景**: ユーザーから「hero 画像が荒い」フィードバック。現状 1920x1080 / 479 KB(q≒70 推定)。元 PNG/RAW なし
-  - **手法**: Real-ESRGAN ncnn-vulkan(AI 超解像、GitHub 公式リリース)を `_wp-content/_tools/` に配置(gitignore)。realesrgan-x4plus モデルで 1920×1080 → 3840×2160 に 2x 拡大(AMD GPU で 7分)
+  - **手法**: Real-ESRGAN ncnn-vulkan(AI 超解像、GitHub 公式リリース)を `_build/_tools/` に配置(gitignore)。realesrgan-x4plus モデルで 1920×1080 → 3840×2160 に 2x 拡大(AMD GPU で 7分)
   - **生成バリアント**(3840 PNG を cwebp で再エンコード):
     * `hero-fireworks-real-2560.webp` 2560×1440 / 361 KB (NEW, retina/4K)
     * `hero-fireworks-real.webp`      1920×1080 / 280 KB (旧479KB → 41% 削減 + 画質向上)
@@ -240,7 +240,7 @@
 - Sprint 1: docs 4 件追加（RELEASE / QA / INCIDENT / BACKLOG） + 当日緊急バナー先行配置
 - Sprint 2: Looker Studio セットアップ手順 + 月次レポートテンプレート整備（docs 2 件追加）
 - Round 15 (2026-05-15): Core Web Vitals & CMS 耐障害性
-  - **M1** 完了: コンテンツ画像 147 タグに width/height 属性を一括注入（CLS 低減）。`_wp-content/inject-dims.ps1` ユーティリティ追加 + `generate.ps1` に注入ロジック組込で再生成時も維持
+  - **M1** 完了: コンテンツ画像 147 タグに width/height 属性を一括注入（CLS 低減）。`_build/inject-dims.ps1` ユーティリティ追加 + `generate.ps1` に注入ロジック組込で再生成時も維持
   - **M2** 完了: hero-fireworks-real の 800w / 1280w 派生を生成（モバイル 491KB → 86KB、約 82% 削減）。`<link rel=preload>` を imagesrcset 対応 + CSS を media query ベースのレスポンシブ背景に
   - **M3** 完了: gallery / press / faq の各 CMS セクションに testimonial と同じ `data-has-fallback` フラグ尊重ロジックを実装。空 CMS でも静的フォールバックを優先表示
   - SW v9 + キャッシュバスター 2026-05-15 に更新
@@ -333,11 +333,11 @@
   - **真の dead code は 2 セレクタのみ**: `.prose .wp-block-button`, `.prose .wp-block-button__link` (WP block の button、現在 HTML/JSON にも存在せず Swell の同等品を使っている)
   - 削除: 複数セレクタリストから wp- 版だけ抜く (swell- 版は維持)
   - 「孤児」候補は 30 件あったが、99% は WP 動的レンダー / JS 動的付与 / WP block 名 / モダナイザ式 (`.js`, `.webp`) で false positive
-  - **新規 `_wp-content/compact-css.ps1`**: 空白圧縮ユーティリティ (試した結果、コメント保持の安全圧縮では 2 バイトしか削減せず、コメント全削除すれば 12% 削減できるがメンテ性損失大のため不採用)
+  - **新規 `_build/compact-css.ps1`**: 空白圧縮ユーティリティ (試した結果、コメント保持の安全圧縮では 2 バイトしか削減せず、コメント全削除すれば 12% 削減できるがメンテ性損失大のため不採用)
   - styles.css は既に十分タイト。これ以上の機械的削減は手作業またはツール化が必要
   - SW v43 + キャッシュバスター 20260516d
 - Round 52 (2026-05-15): 大型画像の一括再圧縮 — assets/wp 12MB → 9.8MB
-  - **新規 `_wp-content/recompress-large-webp.ps1`**: libwebp 1.6 (winget) を使った一括再圧縮ユーティリティ
+  - **新規 `_build/recompress-large-webp.ps1`**: libwebp 1.6 (winget) を使った一括再圧縮ユーティリティ
   - dwebp で PNG にデコード → cwebp `-q 72 -m 6 -mt` で再エンコード
   - 100KB 以上のファイルのみ対象、20% 以上の削減があった場合のみ置換 (品質維持)
   - **結果**: 32 ファイル全部 30-48% 削減、**合計 1.98 MB (18%) 削減**

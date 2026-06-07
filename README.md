@@ -26,7 +26,7 @@
 │   ├── keyvisual.jpg
 │   ├── past-*.jpg, sponsors/, wp/  などの画像・PDF
 │   └── favicon.ico
-└── _wp-content/            WordPressから取得したJSONとビルドスクリプト
+└── _build/            WordPressから取得したJSONとビルドスクリプト
     ├── *.json              各ページのコンテンツソース
     └── generate.ps1        サブページHTMLの再生成スクリプト
 ```
@@ -45,10 +45,10 @@ push後、Cloudflare Pages が自動的にビルドして約30秒でサイトに
 
 ## サブページの再生成（WordPressコンテンツを再取得したい時）
 
-`_wp-content/*.json` をWordPress REST APIから取り直して、サブページHTMLを生成し直します。
+`_build/*.json` をWordPress REST APIから取り直して、サブページHTMLを生成し直します。
 
 ```powershell
-cd _wp-content
+cd _build
 .\generate.ps1
 cd ..
 
