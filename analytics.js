@@ -8,7 +8,7 @@
 //     sns_click              - Instagram / other social media links
 //     sponsor_logo_click     - Sponsor company logo click-through
 (function () {
-  var MEASUREMENT_ID = "G-GWF9DQCZQ3"; // GA4 measurement ID
+  var MEASUREMENT_ID = "G-W9P24GJY72"; // GA4 measurement ID（団体アカウント machizukuriconsortium / 秋川流域花火大会 公式サイト）
 
   if (!MEASUREMENT_ID || MEASUREMENT_ID.indexOf("XXXX") !== -1) {
     if (typeof console !== "undefined") {
