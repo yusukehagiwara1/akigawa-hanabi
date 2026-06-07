@@ -7572,6 +7572,29 @@ body.page-sponsor .prose .wp-block-table td strong {
   -webkit-text-fill-color: var(--muted);
 }
 
+/* Round 101: 実績カードに金のトップアクセント＋数字下の金ライン（"実績"感を強調） */
+.achievements-card {
+  position: relative;
+  overflow: hidden;
+}
+.achievements-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), #f0d28a);
+}
+.achievements-num::after {
+  content: "";
+  display: block;
+  width: 26px;
+  height: 2px;
+  margin: 11px auto 0;
+  background: var(--gold);
+  border-radius: 2px;
+  opacity: 0.85;
+}
+
 /* ③ Hero CTA の主従関係 ------------------------------------------------ */
 .hero-actions {
   gap: 18px;
