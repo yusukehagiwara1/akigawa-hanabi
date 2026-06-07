@@ -17,17 +17,18 @@
 
 :root {
   --ink: #172026;
-  --muted: #62707a;
-  --paper: #fffdf7;
-  --cream: #f7efe2;
+  --muted: #6c6258;
+  --paper: #fffbf3;
+  --cream: #f6ebda;
   --gold: #d7a947;
   /* AA-compliant darker gold for text on light backgrounds (≈5:1 vs white).
      Use --gold for backgrounds/borders/decoration; use --gold-text only when
      gold-colored TEXT sits on a light surface. */
   --gold-text: #8e6a1f;
-  --red: #b83f37;
-  --teal: #0f6868;
-  --night: #10182a;
+  --red: #a8392f;
+  --teal: #356048;
+  --night: #1a1622;
+  --ember: #c2632c;
   --line: rgba(23, 32, 38, 0.13);
   --shadow: 0 22px 70px rgba(11, 19, 31, 0.18);
 }
