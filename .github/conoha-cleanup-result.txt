@@ -1,0 +1,15 @@
+実行日時: 2026-07-04 13:31 UTC
+コマンド: list 223134
+
+===== FTPルート =====
+Not connected
+===== 公開フォルダ (SERVER_DIR) =====
+Not connected
+===== /home があれば中身(2階層) =====
+Not connected
+FTPルートに /home なし
+Not connected
+Unknown command `true'.
+===== 公開フォルダ内の home があれば中身 =====
+Not connected
+公開フォルダ内に home なし
