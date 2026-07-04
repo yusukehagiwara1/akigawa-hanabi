@@ -16,6 +16,9 @@ concurrency:
   group: conoha-cleanup
   cancel-in-progress: false
 
+permissions:
+  contents: write
+
 jobs:
   cleanup:
     runs-on: ubuntu-latest
@@ -34,9 +37,15 @@ jobs:
       - name: コマンドを実行
         run: |
           CMD_FILE=".github/conoha-cleanup-command.txt"
+          RESULT=".github/conoha-cleanup-result.txt"
           MODE=$(head -1 "$CMD_FILE" | awk '{print $1}')
           TARGET=$(head -1 "$CMD_FILE" | awk '{print $2}')
           echo "MODE=$MODE TARGET=$TARGET"
+          {
+            echo "実行日時: $(date -u '+%Y-%m-%d %H:%M UTC')"
+            echo "コマンド: $MODE $TARGET"
+            echo ""
+          } > "$RESULT"
 
           if [ "$MODE" = "list" ]; then
             lftp -u "$FTP_USER","$FTP_PASS" -e "
@@ -52,22 +61,21 @@ jobs:
               echo '===== 公開フォルダ内の home があれば中身 =====';
               cls -la ${SERVER_DIR}home || echo '公開フォルダ内に home なし';
               bye
-            " "$FTP_HOST"
+            " "$FTP_HOST" >> "$RESULT" 2>&1 || true
 
           elif [ "$MODE" = "delete" ]; then
             # --- 安全ガード ---
             if [ -z "$TARGET" ]; then
-              echo "::error::削除対象が指定されていません"; exit 1
+              echo "削除対象が指定されていません" >> "$RESULT"; exit 0
             fi
             case "$TARGET" in
               *home*) ;; # OK: home を含むパスのみ削除を許可
-              *) echo "::error::安全のため 'home' を含むパスのみ削除できます: $TARGET"; exit 1 ;;
+              *) echo "安全のため 'home' を含むパスのみ削除できます: $TARGET" >> "$RESULT"; exit 0 ;;
             esac
             case "$TARGET" in
               /|.|./|public_html|/public_html)
-                echo "::error::危険なパスは削除できません: $TARGET"; exit 1 ;;
+                echo "危険なパスは削除できません: $TARGET" >> "$RESULT"; exit 0 ;;
             esac
-            echo "削除対象: $TARGET"
             lftp -u "$FTP_USER","$FTP_PASS" -e "
               set ftp:ssl-force true;
               set ssl:verify-certificate no;
@@ -77,8 +85,19 @@ jobs:
               echo '--- 削除後(見つからなければ成功) ---';
               cls -la '$TARGET' || echo '削除完了: もう存在しません';
               bye
-            " "$FTP_HOST"
+            " "$FTP_HOST" >> "$RESULT" 2>&1 || true
 
           else
-            echo "コマンドが list でも delete でもないため何もしません: $MODE"
+            echo "コマンドが list でも delete でもないため何もしません: $MODE" >> "$RESULT"
           fi
+
+          echo "===== 結果 ====="
+          cat "$RESULT"
+
+      - name: 結果をリポジトリにコミット
+        run: |
+          git config user.name "conoha-cleanup-bot"
+          git config user.email "actions@github.com"
+          git add .github/conoha-cleanup-result.txt
+          git commit -m "chore: ConoHa清掃の実行結果を記録 [skip ci]" || echo "変更なし"
+          git push
