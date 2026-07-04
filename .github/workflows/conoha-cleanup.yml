@@ -1,0 +1,78 @@
+# ConoHa WING の一時清掃用ワークフロー(使い捨て)
+# 失敗した初回デプロイが作ったゴミフォルダを安全に削除するためのもの。
+# mode=list でサーバーのフォルダ構成を確認 → mode=delete で対象を削除。
+# 作業が終わったらこのファイルは削除する。
+name: ConoHa cleanup (one-off)
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "list(一覧表示) または delete(削除)"
+        required: true
+        default: "list"
+      target:
+        description: "削除対象パス(FTPルートからの相対パス。mode=delete のときのみ)"
+        required: false
+        default: ""
+
+concurrency:
+  group: conoha-cleanup
+  cancel-in-progress: false
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    env:
+      FTP_HOST: ${{ secrets.CONOHA_FTP_HOST }}
+      FTP_USER: ${{ secrets.CONOHA_FTP_USER }}
+      FTP_PASS: ${{ secrets.CONOHA_FTP_PASSWORD }}
+      SERVER_DIR: ${{ secrets.CONOHA_SERVER_DIR }}
+    steps:
+      - name: lftp をインストール
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+
+      - name: フォルダ構成を一覧表示 (mode=list)
+        if: ${{ inputs.mode == 'list' }}
+        run: |
+          lftp -u "$FTP_USER","$FTP_PASS" -e "
+            set ftp:ssl-force true;
+            set ssl:verify-certificate no;
+            echo '===== FTPルート =====';
+            cls -la /;
+            echo '===== 公開フォルダ (SERVER_DIR) =====';
+            cls -la $SERVER_DIR;
+            echo '===== /home があれば中身 =====';
+            cls -la /home || echo '(FTPルートに /home なし)';
+            echo '===== 公開フォルダ内の home があれば中身 =====';
+            cls -la ${SERVER_DIR}home || echo '(公開フォルダ内に home なし)';
+            bye
+          " "$FTP_HOST"
+
+      - name: ゴミフォルダを削除 (mode=delete)
+        if: ${{ inputs.mode == 'delete' }}
+        run: |
+          TARGET="${{ inputs.target }}"
+          # --- 安全ガード ---
+          if [ -z "$TARGET" ]; then
+            echo "::error::target が空です"; exit 1
+          fi
+          case "$TARGET" in
+            *home*) ;; # OK: home を含むパスのみ削除を許可
+            *) echo "::error::安全のため 'home' を含むパスのみ削除できます: $TARGET"; exit 1 ;;
+          esac
+          case "$TARGET" in
+            /|.|./|public_html|/public_html|"$SERVER_DIR")
+              echo "::error::危険なパスは削除できません: $TARGET"; exit 1 ;;
+          esac
+          echo "削除対象: $TARGET"
+          lftp -u "$FTP_USER","$FTP_PASS" -e "
+            set ftp:ssl-force true;
+            set ssl:verify-certificate no;
+            echo '--- 削除前の確認 ---';
+            cls -la '$TARGET';
+            rm -r '$TARGET';
+            echo '--- 削除後(エラーになれば消えている) ---';
+            cls -la '$TARGET' || echo '削除完了: $TARGET はもう存在しません';
+            bye
+          " "$FTP_HOST"
