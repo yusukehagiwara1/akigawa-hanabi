@@ -41,6 +41,10 @@ jobs:
           MODE=$(head -1 "$CMD_FILE" | awk '{print $1}')
           TARGET=$(head -1 "$CMD_FILE" | awk '{print $2}')
           echo "MODE=$MODE TARGET=$TARGET"
+          # ホスト名からスキームや余分なパスを除去し、明示的に ftp://ホスト:21 で接続する
+          HOST_CLEAN=$(printf '%s' "$FTP_HOST" | sed -E 's#^[a-zA-Z]+://##; s#/.*$##; s#:.*$##')
+          CONNECT_URL="ftp://${HOST_CLEAN}:21"
+          echo "接続先: $CONNECT_URL"
           {
             echo "実行日時: $(date -u '+%Y-%m-%d %H:%M UTC')"
             echo "コマンド: $MODE $TARGET"
@@ -49,19 +53,21 @@ jobs:
 
           if [ "$MODE" = "list" ]; then
             lftp -u "$FTP_USER","$FTP_PASS" -e "
+              set net:timeout 20;
+              set net:max-retries 2;
               set ftp:ssl-force true;
+              set ftp:ssl-protect-data true;
               set ssl:verify-certificate no;
               echo '===== FTPルート =====';
               cls -la /;
               echo '===== 公開フォルダ (SERVER_DIR) =====';
               cls -la $SERVER_DIR;
-              echo '===== /home があれば中身(2階層) =====';
+              echo '===== /home があれば中身 =====';
               cls -la /home || echo 'FTPルートに /home なし';
-              cls -la /home/*/ || true;
               echo '===== 公開フォルダ内の home があれば中身 =====';
               cls -la ${SERVER_DIR}home || echo '公開フォルダ内に home なし';
               bye
-            " "$FTP_HOST" >> "$RESULT" 2>&1 || true
+            " "$CONNECT_URL" >> "$RESULT" 2>&1 || true
 
           elif [ "$MODE" = "delete" ]; then
             # --- 安全ガード ---
@@ -77,7 +83,10 @@ jobs:
                 echo "危険なパスは削除できません: $TARGET" >> "$RESULT"; exit 0 ;;
             esac
             lftp -u "$FTP_USER","$FTP_PASS" -e "
+              set net:timeout 20;
+              set net:max-retries 2;
               set ftp:ssl-force true;
+              set ftp:ssl-protect-data true;
               set ssl:verify-certificate no;
               echo '--- 削除前の確認 ---';
               cls -la '$TARGET';
@@ -85,7 +94,7 @@ jobs:
               echo '--- 削除後(見つからなければ成功) ---';
               cls -la '$TARGET' || echo '削除完了: もう存在しません';
               bye
-            " "$FTP_HOST" >> "$RESULT" 2>&1 || true
+            " "$CONNECT_URL" >> "$RESULT" 2>&1 || true
 
           else
             echo "コマンドが list でも delete でもないため何もしません: $MODE" >> "$RESULT"
