@@ -1,0 +1,37 @@
+# 静的サイト(akigawa-hanabi.pages.dev)は運用終了。
+# 全ページを本番 WordPress サイト(machizukuri-con.or.jp)へ 301 リダイレクトする。
+# 資産(assets/, sw.js 等)はリダイレクトせずそのまま配信し、旧 Service Worker の
+# 自己破棄(sw.js 更新)が機能するようにしている。
+
+/ https://machizukuri-con.or.jp/ 301
+/index.html https://machizukuri-con.or.jp/ 301
+/2024-hanabi https://machizukuri-con.or.jp/2024-hanabi/ 301
+/2024-hanabi.html https://machizukuri-con.or.jp/2024-hanabi/ 301
+/access https://machizukuri-con.or.jp/access/ 301
+/access.html https://machizukuri-con.or.jp/access/ 301
+/akiruno-kanko https://machizukuri-con.or.jp/akiruno-kanko/ 301
+/akiruno-kanko.html https://machizukuri-con.or.jp/akiruno-kanko/ 301
+/company https://machizukuri-con.or.jp/company-overview/ 301
+/company.html https://machizukuri-con.or.jp/company-overview/ 301
+/contact https://machizukuri-con.or.jp/contact/ 301
+/contact.html https://machizukuri-con.or.jp/contact/ 301
+/donation https://machizukuri-con.or.jp/donation/ 301
+/donation.html https://machizukuri-con.or.jp/donation/ 301
+/event https://machizukuri-con.or.jp/event/ 301
+/event.html https://machizukuri-con.or.jp/event/ 301
+/food-application https://machizukuri-con.or.jp/ 301
+/food-application.html https://machizukuri-con.or.jp/ 301
+/offline https://machizukuri-con.or.jp/ 301
+/offline.html https://machizukuri-con.or.jp/ 301
+/404.html https://machizukuri-con.or.jp/ 301
+/pr https://machizukuri-con.or.jp/pr/ 301
+/pr.html https://machizukuri-con.or.jp/pr/ 301
+/privacy-policy https://machizukuri-con.or.jp/privacy-policy/ 301
+/privacy-policy.html https://machizukuri-con.or.jp/privacy-policy/ 301
+/qa https://machizukuri-con.or.jp/qa/ 301
+/qa.html https://machizukuri-con.or.jp/qa/ 301
+/sponsor https://machizukuri-con.or.jp/sponsor-2025/ 301
+/sponsor.html https://machizukuri-con.or.jp/sponsor-2025/ 301
+/ticket https://machizukuri-con.or.jp/ticket/ 301
+/ticket.html https://machizukuri-con.or.jp/ticket/ 301
+/sitemap.xml https://machizukuri-con.or.jp/sitemap.xml 301
