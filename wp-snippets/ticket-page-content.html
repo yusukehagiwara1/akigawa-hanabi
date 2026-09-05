@@ -1,0 +1,928 @@
+<!-- wp:loos/full-wide {"bgColor":"#ffffff","contentSize":"container","pcPadding":"20","spPadding":"20","anchor":"akg-guide"} -->
+<div class="swell-block-fullWide pc-py-20 sp-py-20 alignfull" style="background-color:#ffffff" id="akg-guide"><div class="swell-block-fullWide__inner l-container"><!-- wp:html -->
+<style>
+/* ===== akg-buy: 「チケットの入手方法は3つ」ブロック(自己完結) ===== */
+.akg-buy,
+.akg-buy * { box-sizing: border-box; }
+.akg-buy { max-width: 100%; margin: 0; overflow-wrap: break-word; }
+
+/* 見出し(テーマの is-style-section_ttl をそのまま利用。上余白だけ詰める) */
+.akg-buy .akg-buy__ttl { margin: 0 0 .75em; }
+.akg-buy .akg-buy__lead {
+  margin: 0 0 1.5em;
+  text-align: center;
+  line-height: 1.8;
+}
+
+/* カード一覧: スマホ1列(3列化は末尾のメディアクエリ) */
+.akg-buy__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1em;
+  margin: 0;
+}
+/* カード全体がリンク */
+.akg-buy .akg-buy__card {
+  display: flex;
+  flex-direction: column;
+  min-height: 44px;
+  padding: 1.25em 1.25em 1.1em;
+  border: 1px solid var(--color_border, hsla(0, 0%, 78%, .5));
+  border-radius: 4px;
+  background: var(--color_bg, #ffffff);
+  color: var(--color_text, #000000);
+  text-decoration: none;
+  box-shadow: var(--swl-box_shadow, 0 2px 4px rgba(0, 0, 0, .05), 0 4px 4px -4px rgba(0, 0, 0, .1));
+  transition: border-color .2s, box-shadow .2s;
+}
+.akg-buy .akg-buy__card:hover,
+.akg-buy .akg-buy__card:active {
+  border-color: var(--color_main, #000000);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .12);
+}
+.akg-buy .akg-buy__card:focus-visible {
+  outline: 2px solid var(--color_deep01, #e44141);
+  outline-offset: 2px;
+}
+
+/* 「こんな方に」の一文(番号丸付き) */
+.akg-buy__who {
+  display: flex;
+  align-items: flex-start;
+  gap: .5em;
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.5;
+}
+.akg-buy__num {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.9em;
+  height: 1.9em;
+  margin-top: .05em;
+  border-radius: 50%;
+  background: var(--color_main, #000000);
+  color: #ffffff;
+  font-size: .8em;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* 入手方法の名前(左に赤い線) */
+.akg-buy__name {
+  display: block;
+  margin: .7em 0 .4em;
+  padding-left: .5em;
+  border-left: 3px solid var(--color_deep01, #e44141);
+  font-size: 1.35em;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+/* 説明・補足 */
+.akg-buy__desc {
+  display: block;
+  margin: 0 0 .75em;
+  font-size: .95em;
+  line-height: 1.7;
+}
+.akg-buy__sub {
+  display: block;
+  margin: 0 0 1.1em;
+  font-size: .9em;
+  line-height: 1.6;
+  color: #555555;
+}
+
+/* ボタン風の行き先表示(リンクはカード全体) */
+.akg-buy__cta {
+  display: inline-block;
+  align-self: flex-start;
+  margin-top: auto;
+  padding: .55em 1.25em;
+  border: 1px solid var(--color_main, #000000);
+  border-radius: 80px;
+  font-size: .95em;
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 1.5;
+  color: var(--color_main, #000000);
+  transition: background-color .2s, color .2s;
+}
+.akg-buy .akg-buy__card:hover .akg-buy__cta,
+.akg-buy .akg-buy__card:active .akg-buy__cta {
+  background: var(--color_main, #000000);
+  color: #ffffff;
+}
+.akg-buy__cta::after {
+  content: "\203A";
+  margin-left: .4em;
+}
+
+/* ===== 768px以上: 3列レイアウト(基本ルールより後に書いて上書きする) ===== */
+@media (min-width: 768px) {
+  .akg-buy__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5em;
+  }
+  /* 3列時: 1行目の高さを揃え、行き先表示はカード幅いっぱいにして折り返しを防ぐ */
+  .akg-buy__who { min-height: 3em; }
+  .akg-buy__cta {
+    display: block;
+    align-self: stretch;
+    text-align: center;
+    padding: .55em .9em;
+    letter-spacing: .5px;
+  }
+}
+@media (min-width: 768px) and (max-width: 959px) {
+  .akg-buy .akg-buy__card { padding: 1.1em 1em 1em; }
+}
+</style>
+<div class="akg-buy" id="akg-buy">
+  <h2 class="wp-block-heading is-style-section_ttl akg-buy__ttl"><span class="swl-fz u-fz-xl">チケットの入手方法は3つ</span></h2>
+  <p class="akg-buy__lead">ご希望に合うものをお選びください。</p>
+  <div class="akg-buy__grid">
+
+    <a class="akg-buy__card" href="https://machizukuri-con.or.jp/ticket/#site">
+      <span class="akg-buy__who"><span class="akg-buy__num">1</span><span>今すぐチケットを購入したい</span></span>
+      <span class="akg-buy__name">一般販売</span>
+      <span class="akg-buy__desc">観覧席チケットと駐車券を、各販売サイトから購入できます。</span>
+      <span class="akg-buy__sub">販売サイト：チケットぴあ／アソビュー／KKday／楽天トラベル／JRE MALL</span>
+      <span class="akg-buy__cta">販売サイト一覧へ</span>
+    </a>
+
+    <a class="akg-buy__card" href="https://www.satofull.jp/products/list.php?partner=135200057|%E3%81%BE%E3%81%A1%E3%81%A5%E3%81%8F%E3%82%8A%E3%82%B3%E3%83%B3%E3%82%BD%E3%83%BC%E3%82%B7%E3%82%A2%E3%83%A0&amp;p=1" target="_blank" rel="noopener">
+      <span class="akg-buy__who"><span class="akg-buy__num">2</span><span>地域を応援しながらチケットを受け取りたい</span></span>
+      <span class="akg-buy__name">ふるさと納税</span>
+      <span class="akg-buy__desc">ふるさと納税でご寄付いただいた方に、返礼品として観覧チケットをご用意しています。返礼品の内容は「さとふる」のページでご確認ください。</span>
+      <span class="akg-buy__sub">さとふる（外部サイト・別のタブで開きます）</span>
+      <span class="akg-buy__cta">さとふるで見る</span>
+    </a>
+
+    <a class="akg-buy__card" href="https://machizukuri-con.or.jp/donation/">
+      <span class="akg-buy__who"><span class="akg-buy__num">3</span><span>花火大会そのものを応援したい</span></span>
+      <span class="akg-buy__name">寄付・協賛</span>
+      <span class="akg-buy__desc">寄付（1万円から）・中口協賛（3万円から）・大口協賛（10万円以上）の3つのプランがあります。詳しくは寄付・協賛ページをご覧ください。</span>
+      <span class="akg-buy__sub">依頼書（PDF）とお申し込みフォームは、寄付・協賛ページにあります。</span>
+      <span class="akg-buy__cta">寄付・協賛ページへ</span>
+    </a>
+
+  </div>
+</div>
+<!-- /wp:html -->
+
+<!-- wp:html -->
+<style>
+.akg-quiz{box-sizing:border-box;max-width:100%;margin:0;padding:16px 12px;border:1px solid #000;background:#fff;color:#000;font-size:14px;font-size:max(14px,1rem);line-height:1.7;overflow-wrap:break-word;word-wrap:break-word}
+.akg-quiz *,.akg-quiz *::before,.akg-quiz *::after{box-sizing:border-box}
+.akg-quiz [hidden]{display:none}
+@media (min-width:600px){.akg-quiz{padding:24px 28px}}
+.akg-quiz .akg-quiz__lead{margin:0 0 1em;text-align:center}
+.akg-quiz .akg-quiz__progress{display:flex;align-items:center;gap:10px;margin:0 0 1em;font-size:.85em}
+.akg-quiz .akg-quiz__step{white-space:nowrap}
+.akg-quiz .akg-quiz__bar{flex:1;display:block;height:4px;background:var(--color_gray,hsla(0,0%,78%,.15));overflow:hidden}
+.akg-quiz .akg-quiz__bar i{display:block;height:100%;background:#000;transition:width .25s ease}
+@media (prefers-reduced-motion:reduce){.akg-quiz .akg-quiz__bar i{transition:none}}
+.akg-quiz .akg-quiz__panel{margin:0}
+.akg-quiz .akg-quiz__q{font-weight:700;font-size:1.15em;line-height:1.5;margin:0 0 .75em;outline:none}
+.akg-quiz .akg-quiz__hint{font-size:.9em;margin:-.25em 0 .75em}
+.akg-quiz .akg-quiz__opts{display:grid;grid-template-columns:1fr;gap:10px;margin:0 0 .75em}
+@media (min-width:600px){.akg-quiz .akg-quiz__opts{grid-template-columns:1fr 1fr;gap:12px}.akg-quiz .akg-quiz__opts.-col1{grid-template-columns:1fr;max-width:32em}}
+.akg-quiz .akg-quiz__opt,.akg-quiz .akg-quiz__alt-btn{display:block;width:100%;min-height:56px;margin:0;padding:12px 16px;border:1px solid #000;border-radius:4px;background:#fff;color:#000;text-align:left;font:inherit;line-height:1.5;cursor:pointer;-webkit-appearance:none;appearance:none;-webkit-tap-highlight-color:transparent}
+@media (hover:hover){.akg-quiz .akg-quiz__opt:hover,.akg-quiz .akg-quiz__alt-btn:hover{background:#000;color:#fff}}
+.akg-quiz .akg-quiz__opt:active,.akg-quiz .akg-quiz__alt-btn:active{background:#000;color:#fff}
+.akg-quiz .akg-quiz__opt:focus-visible,.akg-quiz .akg-quiz__alt-btn:focus-visible,.akg-quiz .akg-quiz__back:focus-visible,.akg-quiz .akg-quiz__again:focus-visible,.akg-quiz a:focus-visible{outline:3px solid var(--color_deep02,#3d79d5);outline-offset:2px}
+.akg-quiz .akg-quiz__opt-main{display:block;font-weight:700}
+.akg-quiz .akg-quiz__opt-sub{display:block;font-size:.85em;opacity:.85;margin-top:2px}
+.akg-quiz .akg-quiz__back{display:inline-flex;align-items:center;min-height:44px;margin:0;padding:0 4px;border:0;background:none;color:var(--color_link,#1e73be);font:inherit;font-size:.9em;text-decoration:underline;cursor:pointer;-webkit-appearance:none;appearance:none}
+.akg-quiz .akg-quiz__result{margin:0}
+.akg-quiz .akg-quiz__picked{font-size:.85em;margin:0 0 .5em;color:#555}
+.akg-quiz .akg-quiz__label{display:inline-block;background:#000;color:#fff;font-size:.8em;font-weight:700;padding:.15em .8em;margin:0 0 .5em}
+.akg-quiz .akg-quiz__seat{font-size:1.4em;font-weight:700;line-height:1.35;margin:0 0 .2em;outline:none}
+.akg-quiz .akg-quiz__catch{color:var(--color_deep01,#e44141);font-weight:700;margin:0 0 .9em}
+.akg-quiz .akg-quiz__body{display:grid;grid-template-columns:1fr;gap:12px;margin:0 0 1em}
+@media (min-width:600px){.akg-quiz .akg-quiz__body{grid-template-columns:5fr 7fr;gap:20px;align-items:start}}
+.akg-quiz .akg-quiz__fig{margin:0;padding:0}
+.akg-quiz .akg-quiz__fig img{display:block;width:100%;max-width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;background:var(--color_gray,hsla(0,0%,78%,.15))}
+.akg-quiz .akg-quiz__price{font-size:1.2em;font-weight:700;line-height:1.4;margin:0 0 .5em}
+.akg-quiz .akg-quiz__spec{list-style:none;margin:0 0 .75em;padding:0;font-size:.9em}
+.akg-quiz .akg-quiz__spec li{position:relative;padding-left:1.1em;margin:0;line-height:1.6}
+.akg-quiz .akg-quiz__spec li::before{content:"・";position:absolute;left:0}
+.akg-quiz .akg-quiz__why{margin:0}
+.akg-quiz .swell-block-button{margin:0 0 .5em}
+.akg-quiz .swell-block-button__link{display:inline-flex;align-items:center;justify-content:center;min-height:44px;max-width:100%;background:var(--the-btn-bg,#ff0000);color:#fff;font-weight:700;text-decoration:none;border-radius:var(--the-btn-radius,80px)}
+.akg-quiz .akg-quiz__sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.akg-quiz .akg-quiz__cta-hint{font-size:.85em;text-align:center;margin:0 0 .25em}
+.akg-quiz .akg-quiz__sub{font-size:.9em;text-align:center;margin:0 0 1em}
+.akg-quiz .akg-quiz__sub a{display:inline-block;min-height:44px;line-height:44px;text-decoration:underline;color:var(--color_link,#1e73be)}
+.akg-quiz .akg-quiz__alt{border-top:1px solid var(--color_border,hsla(0,0%,78%,.5));padding-top:1em;margin:0 0 1em}
+.akg-quiz .akg-quiz__alt-label{font-size:.85em;font-weight:700;margin:0 0 .5em}
+.akg-quiz .akg-quiz__note{font-size:.85em;margin:.5em 0 0;color:#555}
+.akg-quiz .akg-quiz__foot{margin:1em 0 0}
+.akg-quiz .akg-quiz__again{display:inline-flex;align-items:center;min-height:44px;margin:0;padding:0 1.5em;border:1px solid #000;border-radius:80px;background:#fff;color:#000;font:inherit;font-weight:700;cursor:pointer;-webkit-appearance:none;appearance:none}
+</style>
+<div class="akg-quiz" id="akg-quiz" role="region" aria-label="座席診断">
+  <p class="akg-quiz__lead">2つの質問に答えるだけで、おすすめの席をご案内します。</p>
+  <div class="akg-quiz__progress" aria-hidden="true">
+    <span class="akg-quiz__step" data-akg="step">質問 1 / 2</span>
+    <span class="akg-quiz__bar"><i data-akg="bar" style="width:33%"></i></span>
+  </div>
+  <div class="akg-quiz__panel" data-akg="panel" aria-live="polite">
+    <p class="akg-quiz__q" tabindex="-1">どなたと観覧しますか？</p>
+    <div class="akg-quiz__opts">
+      <button type="button" class="akg-quiz__opt" data-q="with" data-v="family"><span class="akg-quiz__opt-main">家族で</span><span class="akg-quiz__opt-sub">お子さま連れ、ご両親とご一緒の方も</span></button>
+      <button type="button" class="akg-quiz__opt" data-q="with" data-v="friends"><span class="akg-quiz__opt-main">友人・グループで</span><span class="akg-quiz__opt-sub">お仲間や同僚と</span></button>
+      <button type="button" class="akg-quiz__opt" data-q="with" data-v="couple"><span class="akg-quiz__opt-main">カップル・ご夫婦で</span><span class="akg-quiz__opt-sub">ふたりで</span></button>
+      <button type="button" class="akg-quiz__opt" data-q="with" data-v="solo"><span class="akg-quiz__opt-main">おひとりで</span><span class="akg-quiz__opt-sub">1名でゆっくり</span></button>
+    </div>
+  </div>
+  <p class="akg-quiz__note" data-akg="note">※おすすめは目安です。</p>
+  <noscript><p class="akg-quiz__note">この診断はJavaScriptが有効な環境でご利用いただけます。席の説明は、このページ下の「観覧席」をご覧ください。<a href="#site">販売サイトの一覧を見る</a></p></noscript>
+</div>
+<script>
+(function () {
+  'use strict';
+  var root = document.getElementById('akg-quiz');
+  if (!root) { return; }
+  var panel = root.querySelector('[data-akg="panel"]');
+  var stepEl = root.querySelector('[data-akg="step"]');
+  var barEl = root.querySelector('[data-akg="bar"]');
+  var noteEl = root.querySelector('[data-akg="note"]');
+  if (!panel) { return; }
+
+  // Asoview (urakata) list page: SS / S / A seats are bought from this list
+  var LIST_URL = 'https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products?salesProductTagCode=v4h0rdje5x';
+  var UP = 'https://machizukuri-con.or.jp/wp-content/uploads/';
+
+  // Seat facts (price, spec, photo, purchase URL). Same as the seat cards on the ticket page.
+  var SEATS = {
+    recliner: { name: 'リクライニングペアシート席', catchcopy: '夜空を見上げる、くつろぎの体験', price: '1組 30,000円（2席）',
+      spec: ['指定席。リクライニングシート付き。', 'アソビューだけで販売しています。'],
+      img: UP + 'リクライニングシート_画像1-1024x768.jpg', alt: 'リクライニングペアシート席の写真',
+      url: 'https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products/e42dce79-988e-4b5d-bc20-099dbaf02d1d',
+      only: true, hint: 'アソビューの予約ページが新しいタブで開きます。',
+      why: 'ふたり並んで背もたれを倒し、夜空を見上げながら花火を観覧できる席です。1組2席・30,000円で、アソビューだけで販売しています。' },
+    ss: { name: 'SS席', catchcopy: '家族で最高の思い出を', price: '1テーブル 35,000円（4名掛けのテーブル席）',
+      spec: ['指定席。カフェチェア、カフェテーブル付き。', '第7回と異なりテントはありません。', 'お席は購入時に自動で決まります（ご自身で選ぶことはできません）。'],
+      img: UP + '2026_SS席-1024x768.jpg', alt: 'SS席の写真', url: LIST_URL,
+      only: false, hint: 'アソビューの一覧が新しいタブで開きます。「SS席」を選んでお進みください。',
+      why: '4名掛けのテーブル席に、カフェチェアとカフェテーブルが付いています。家族やグループで、食事と花火をテーブルを囲んで楽しめます。4名なら1人あたり8,750円の計算です。※テントはありません。' },
+    s: { name: 'S席', catchcopy: '特別な人と観る花火', price: '1テーブル 14,000円（2名掛けのテーブル席）',
+      spec: ['指定席。テーブル、イス付き。'],
+      img: UP + '2026_S席-1024x768.jpg', alt: 'S席の写真', url: LIST_URL,
+      only: false, hint: 'アソビューの一覧が新しいタブで開きます。「S席」を選んでお進みください。',
+      why: '2名掛けのテーブル席で、テーブルとイスが付いています。デートや記念日など、大切な時間にどうぞ。2名なら1人あたり7,000円の計算です。' },
+    a: { name: 'A席', catchcopy: '迷ったらこれ！快適に楽しむ特等席', price: '大人 5,000円／子ども 2,000円（椅子席）',
+      spec: ['指定席。テーブルなし。', 'お席は購入時に自動で決まります（ご自身で選ぶことはできません）。', '小さなお子さまの膝上観覧は無料です。'],
+      img: UP + '2026_A席-1024x768.jpg', alt: 'A席の写真', url: LIST_URL,
+      only: false, hint: 'アソビューの一覧が新しいタブで開きます。「A席」を選んでお進みください。',
+      why: '大人5,000円・子ども2,000円の椅子席（テーブルなし）。はじめての方に最も選ばれているスタンダードで、指定席なので場所取りの心配がありません。' },
+    free: { name: 'フリーエリア（西多摩在住者限定）', catchcopy: '西多摩在住者限定！フリーエリア', price: 'おとな 2,000円（13歳以上）／こども 1,000円（3歳〜12歳）／2歳以下 無料',
+      spec: ['限定1,000名。予定枚数に達し次第、販売を終了します。', '対象地域：青梅市・福生市・羽村市・あきる野市・瑞穂町・日の出町・檜原村・奥多摩町', 'エリア内の好きな場所で観覧できます。立ち見はできません。', '小さな折りたたみイス（30cm程度）と人数分のレジャーシートは持ち込めます。', 'アソビューだけで販売しています。'],
+      img: UP + 'フリーエリアチケット-1024x768.jpg', alt: 'フリーエリアの写真',
+      url: 'https://machizukuricon.my.urakata.app/channels/d58e8525-0f46-4109-9740-1c1b928b5aa0/products/6dbcf060-4a33-4e3c-9348-551a867822d1',
+      only: true, hint: 'アソビューの予約ページが新しいタブで開きます。',
+      why: '西多摩にお住まいの方だけが買えるチケットです。おとな2,000円・こども1,000円・2歳以下無料。エリア内の好きな場所で観覧できます（立ち見はできません）。限定1,000名です。' }
+  };
+
+  // Questions. Q3 (area) is asked only when Q2 = price.
+  var QUESTIONS = {
+    with: { text: 'どなたと観覧しますか？', hint: '', col1: false, opts: [
+      { v: 'family', main: '家族で', sub: 'お子さま連れ、ご両親とご一緒の方も' },
+      { v: 'friends', main: '友人・グループで', sub: 'お仲間や同僚と' },
+      { v: 'couple', main: 'カップル・ご夫婦で', sub: 'ふたりで' },
+      { v: 'solo', main: 'おひとりで', sub: '1名でゆっくり' } ] },
+    priority: { text: 'いちばん大切にしたいことは？', hint: '', col1: false, opts: [
+      { v: 'relax', main: 'ゆったり過ごしたい', sub: '席でゆっくりくつろぎたい' },
+      { v: 'focus', main: '花火に集中して楽しみたい', sub: 'テーブルはなくても、花火をしっかり観たい' },
+      { v: 'price', main: '料金を抑えたい', sub: '気軽に楽しみたい' },
+      { v: 'special', main: '特別な時間にしたい', sub: '記念日やごほうびに' } ] },
+    area: { text: '西多摩にお住まいですか？', hint: '西多摩にお住まいの方だけが買える「フリーエリアチケット」があります。', col1: true, opts: [
+      { v: 'yes', main: 'はい、住んでいます', sub: '青梅市・福生市・羽村市・あきる野市・瑞穂町・日の出町・檜原村・奥多摩町' },
+      { v: 'no', main: 'いいえ', sub: 'それ以外の地域' } ] }
+  };
+
+  // Result table (all 20 combinations).
+  // Key: with|priority  or  with|price|area
+  // seat = first choice, alt = second choice, altHint = one line on the second-choice card, why = reason shown for the first choice
+  // To change a recommendation, edit only the matching line here (seat / alt must be one of: recliner, ss, s, a, free).
+  var RULES = {
+    'family|relax':      { seat: 'ss', alt: 'a', altHint: '人数分をそろえやすい椅子席。子ども料金（2,000円）があります', why: '4名掛けのテーブル席に、カフェチェアとカフェテーブルが付いています。飲食ブースの食事をテーブルに広げて、昼からゆっくり過ごせます。4名なら1人あたり8,750円の計算です。※テントはありません。' },
+    'family|focus':      { seat: 'a', alt: 'ss', altHint: '4名でテーブルを囲みたいときに（1テーブル35,000円）', why: '指定席なので場所取りの心配がなく、18時からの約1時間・5,000発の花火に集中できます。子ども料金（2,000円）があり、小さなお子さまの膝上観覧は無料です。' },
+    'family|price|yes':  { seat: 'free', alt: 'a', altHint: '売り切れのときや、椅子でゆっくり座りたいときに', why: 'おとな2,000円・こども1,000円・2歳以下は無料と、いちばんお手頃です。エリア内の好きな場所で、人数分のレジャーシートや小さな折りたたみイスを使えます（立ち見はできません）。限定1,000名です。' },
+    'family|price|no':   { seat: 'a', alt: 's', altHint: '大人2人なら、あと4,000円でテーブル・イス付きの2名掛け席に（1テーブル14,000円）', why: '大人5,000円・子ども2,000円の椅子席で、西多摩以外にお住まいの方が選べる席の中ではいちばん手頃です。指定席なので、早く来て場所取りをする必要がありません。小さなお子さまの膝上観覧は無料です。' },
+    'family|special':    { seat: 'ss', alt: 's', altHint: '大人2人で観覧するなら、2名掛けのテーブル席（1テーブル14,000円）', why: '「家族で最高の思い出を」のテーブル席です。カフェチェアとカフェテーブルで、食事と花火を家族みんなで囲めます。※テントはありません。' },
+    'friends|relax':     { seat: 'ss', alt: 's', altHint: '2人ずつなら、2名掛けのテーブル席（1テーブル14,000円）', why: '4名掛けのテーブル席にカフェチェアとカフェテーブル付き。12時からのキッチンカーや、午後からのパフォーマンス、18時の花火まで、ゆっくり滞在できます。4名なら1人あたり8,750円の計算です。※テントはありません。' },
+    'friends|focus':     { seat: 'a', alt: 'ss', altHint: '4名でテーブルを囲むなら（1テーブル35,000円）', why: '大人1人5,000円の指定席で、人数分をそろえやすい席です。はじめての方に最も選ばれているスタンダードで、場所取りの心配なく花火に集中できます。' },
+    'friends|price|yes': { seat: 'free', alt: 'a', altHint: '売り切れのときや、椅子に座りたいときに（大人5,000円）', why: 'おとな2,000円（13歳以上）で、いちばんお手頃です。エリア内の好きな場所で、人数分のレジャーシートや小さな折りたたみイスを使えます（立ち見はできません）。限定1,000名です。' },
+    'friends|price|no':  { seat: 'a', alt: 's', altHint: '2人でテーブルがほしいなら、1テーブル14,000円（1人あたり7,000円の計算）', why: '大人1人5,000円の椅子席で、西多摩以外にお住まいの方が選べる席の中ではいちばん手頃です。指定席なので場所取りは不要で、集合時間もゆとりをもって決められます。' },
+    'friends|special':   { seat: 'ss', alt: 's', altHint: '2人ずつなら、2名掛けのテーブル席（1テーブル14,000円）', why: '4名掛けのテーブル席で、カフェチェアとカフェテーブル付き。音楽とシンクロした花火を、テーブルを囲んで楽しめます。※テントはありません。' },
+    'couple|relax':      { seat: 'recliner', alt: 's', altHint: 'テーブル付きで食事も楽しむなら（1テーブル14,000円）', why: 'ふたり並んで背もたれを倒し、夜空を見上げながら花火を観覧できる席です。1組2席・30,000円で、アソビューだけで販売しています。' },
+    'couple|focus':      { seat: 's', alt: 'a', altHint: 'テーブルがなくてよければ、おふたりで10,000円の椅子席', why: '2名掛けのテーブル席で、テーブルとイスが付いています。指定席なので場所取りの心配がなく、18時からの約1時間・5,000発の花火に集中できます。' },
+    'couple|price|yes':  { seat: 'free', alt: 'a', altHint: '売り切れのときや、椅子に座りたいときに（おふたりで10,000円）', why: 'おとな2,000円で、おふたりなら4,000円といちばんお手頃です。エリア内の好きな場所で、ふたり分のレジャーシートや小さな折りたたみイスを使えます（立ち見はできません）。限定1,000名です。' },
+    'couple|price|no':   { seat: 'a', alt: 's', altHint: 'あと4,000円でテーブル・イス付きの2名掛け席に（1テーブル14,000円）', why: '大人5,000円の椅子席で、おふたりで10,000円。西多摩以外にお住まいの方が選べる席の中ではいちばん手頃です。指定席なので、早く来て場所取りをする必要がありません。' },
+    'couple|special':    { seat: 'recliner', alt: 's', altHint: '「特別な人と観る花火」のテーブル席（1テーブル14,000円）', why: '「夜空を見上げる、くつろぎの体験」。ふたり並んでリクライニングシートに身をあずける、記念日にもぴったりの席です。アソビューだけで販売しています。' },
+    'solo|relax':        { seat: 'a', alt: 's', altHint: 'テーブルがほしい場合は、2名掛けのテーブルをひとりで（1テーブル14,000円）', why: '1名から買える椅子席です。指定席なので場所取りの心配がなく、ゆっくり座って観覧できます。はじめての方に最も選ばれているスタンダードです。' },
+    'solo|focus':        { seat: 'a', alt: 's', altHint: 'テーブル付きでゆっくりするなら（1テーブル14,000円）', why: '大人1人5,000円の指定席です。場所取りの心配がなく、18時からの約1時間・5,000発の花火に集中できます。' },
+    'solo|price|yes':    { seat: 'free', alt: 'a', altHint: '売り切れのときや、椅子に座りたいときに（大人5,000円）', why: 'おとな2,000円で、いちばんお手頃です。エリア内の好きな場所で、レジャーシートや小さな折りたたみイスを使えます（立ち見はできません）。限定1,000名です。' },
+    'solo|price|no':     { seat: 'a', alt: 's', altHint: 'テーブル付きにするなら（1テーブル14,000円）', why: '大人1人5,000円の椅子席で、西多摩以外にお住まいの方が選べる席の中ではいちばん手頃です。指定席なので場所取りは不要です。' },
+    'solo|special':      { seat: 's', alt: 'a', altHint: '気軽に楽しむなら、大人1人5,000円の椅子席', why: '「特別な人と観る花火」のテーブル席を、ひとりでぜいたくに。テーブルとイス付きで、自分のペースで花火を楽しめます。' }
+  };
+
+  // Labels used to repeat the chosen answers on the result screen
+  var LABELS = { family: '家族で', friends: '友人・グループで', couple: 'カップル・ご夫婦で', solo: 'おひとりで',
+    relax: 'ゆったり過ごしたい', focus: '花火に集中して楽しみたい', price: '料金を抑えたい', special: '特別な時間にしたい',
+    yes: '西多摩にお住まい', no: '西多摩以外' };
+
+  var state = { with: null, priority: null, area: null, step: 'with', started: false, source: '', lastSent: '' };
+
+  function track(name, params) {
+    try { if (typeof gtag === 'function') { gtag('event', name, params || {}); } } catch (e) {}
+  }
+
+  // Move focus without scrolling the page. Uses focus({preventScroll:true}) where supported,
+  // otherwise restores the scroll position right after focusing.
+  var canPreventScroll = false;
+  try { document.createElement('div').focus({ get preventScroll() { canPreventScroll = true; return true; } }); } catch (e) {}
+  function focusEl(el) {
+    if (!el) { return; }
+    if (canPreventScroll) { try { el.focus({ preventScroll: true }); } catch (e) {} return; }
+    var x = window.pageXOffset, y = window.pageYOffset;
+    try { el.focus(); } catch (e) {}
+    try { window.scrollTo(x, y); } catch (e) {}
+  }
+
+  function setProgress(text, pct) {
+    if (stepEl) { stepEl.textContent = text; }
+    if (barEl) { barEl.style.width = pct + '%'; }
+  }
+
+  // The photo is created with createElement so that the theme's lazy-load rewrite never touches it.
+  function makeImg(s) {
+    var img = document.createElement('img');
+    img.src = s.img;
+    img.alt = s.alt;
+    img.setAttribute('width', '1024');
+    img.setAttribute('height', '768');
+    img.setAttribute('loading', 'lazy');
+    img.setAttribute('decoding', 'async');
+    return img;
+  }
+
+  function renderQuestion(key) {
+    var q = QUESTIONS[key];
+    var html = '<p class="akg-quiz__q" tabindex="-1">' + q.text + '</p>';
+    if (q.hint) { html += '<p class="akg-quiz__hint">' + q.hint + '</p>'; }
+    html += '<div class="akg-quiz__opts' + (q.col1 ? ' -col1' : '') + '">';
+    for (var i = 0; i < q.opts.length; i++) {
+      var o = q.opts[i];
+      html += '<button type="button" class="akg-quiz__opt" data-q="' + key + '" data-v="' + o.v + '">' +
+        '<span class="akg-quiz__opt-main">' + o.main + '</span><span class="akg-quiz__opt-sub">' + o.sub + '</span></button>';
+    }
+    html += '</div>';
+    if (key !== 'with') { html += '<button type="button" class="akg-quiz__back" data-act="back">← 前の質問に戻る</button>'; }
+    panel.innerHTML = html;
+    if (key === 'with') { setProgress('質問 1 / 2', 33); }
+    else if (key === 'priority') { setProgress('質問 2 / 2', 66); }
+    else { setProgress('あと1問だけ 3 / 3', 85); }
+    if (noteEl) { noteEl.hidden = false; }
+    state.step = key;
+    state.source = '';
+    focusEl(panel.querySelector('.akg-quiz__q'));
+  }
+
+  function ruleKey() {
+    return state.with + '|' + state.priority + (state.priority === 'price' ? '|' + state.area : '');
+  }
+
+  function renderResult(seatKey, altKey, why, altHint, source) {
+    var s = SEATS[seatKey], alt = SEATS[altKey];
+    var picked = LABELS[state.with] + ' × ' + LABELS[state.priority] + (state.priority === 'price' ? ' × ' + LABELS[state.area] : '');
+    var html = '<div class="akg-quiz__result">';
+    html += '<p class="akg-quiz__picked">' + picked + '</p>';
+    html += '<p class="akg-quiz__label">' + (source === 'second' ? '第2候補' : 'あなたにおすすめの席') + '</p>';
+    html += '<p class="akg-quiz__seat" id="akg-quiz-result-title" role="heading" aria-level="3" tabindex="-1">' + s.name + '</p>';
+    html += '<p class="akg-quiz__catch">' + s.catchcopy + '</p>';
+    html += '<div class="akg-quiz__body"><figure class="akg-quiz__fig" data-akg="fig"></figure>';
+    html += '<div><p class="akg-quiz__price">' + s.price + '</p><ul class="akg-quiz__spec">';
+    for (var i = 0; i < s.spec.length; i++) { html += '<li>' + s.spec[i] + '</li>'; }
+    html += '</ul><p class="akg-quiz__why">' + why + '</p></div></div>';
+    html += '<div class="swell-block-button red_ -size-l is-style-btn_normal"><a href="' + s.url + '" target="_blank" rel="noopener" class="swell-block-button__link" data-akg-cta="' + seatKey + '">' +
+      '<span><strong>この席をアソビューで予約する</strong><span class="akg-quiz__sr">（新しいタブで開きます）</span></span></a></div>';
+    html += '<p class="akg-quiz__cta-hint">' + s.hint + '</p>';
+    if (s.only) {
+      html += '<p class="akg-quiz__sub">この席はアソビューだけで販売しています。<a href="#site">販売サイトの一覧を見る</a></p>';
+    } else {
+      html += '<p class="akg-quiz__sub"><a href="#site">他の販売サイトで買う</a>（チケットぴあ・KKday・楽天トラベル・JRE MALL でも販売しています）</p>';
+    }
+    html += '<div class="akg-quiz__alt"><p class="akg-quiz__alt-label">' + (source === 'second' ? '最初のおすすめ' : '第2候補') + '</p>';
+    html += '<button type="button" class="akg-quiz__alt-btn" data-act="alt" data-seat="' + altKey + '" data-prev="' + seatKey + '">' +
+      '<span class="akg-quiz__opt-main">' + alt.name + '　' + alt.price + '</span>' +
+      '<span class="akg-quiz__opt-sub">' + altHint + ' → この席を見る</span></button></div>';
+    html += '<p class="akg-quiz__note">※おすすめは目安です。席の詳しい説明は、このページ下の「観覧席」をご覧ください。</p>';
+    html += '<p class="akg-quiz__foot"><button type="button" class="akg-quiz__again" data-act="reset">もう一度診断する</button></p>';
+    html += '</div>';
+    panel.innerHTML = html;
+    var fig = panel.querySelector('[data-akg="fig"]');
+    if (fig) { fig.appendChild(makeImg(s)); }
+    setProgress('診断結果', 100);
+    if (noteEl) { noteEl.hidden = true; }
+    state.step = 'result';
+    state.source = source;
+    focusEl(panel.querySelector('#akg-quiz-result-title'));
+    var sendKey = [seatKey, state.with, state.priority, state.area || 'na', source].join('|');
+    if (sendKey !== state.lastSent) {
+      state.lastSent = sendKey;
+      track('seat_quiz_result', { seat_type: seatKey, quiz_with: state.with, quiz_priority: state.priority, quiz_area: state.area || 'na', quiz_source: source });
+    }
+  }
+
+  function showPrimary() {
+    var r = RULES[ruleKey()];
+    if (!r) { renderQuestion('with'); return; }
+    renderResult(r.seat, r.alt, r.why, r.altHint, 'primary');
+  }
+
+  function next() {
+    if (!state.with) { renderQuestion('with'); return; }
+    if (!state.priority) { renderQuestion('priority'); return; }
+    if (state.priority === 'price' && !state.area) { renderQuestion('area'); return; }
+    showPrimary();
+  }
+
+  function closestAttr(el, attr) {
+    while (el && el !== root) {
+      if (el.getAttribute && el.getAttribute(attr) !== null) { return el; }
+      el = el.parentNode;
+    }
+    return null;
+  }
+
+  root.addEventListener('click', function (e) {
+    var cta = closestAttr(e.target, 'data-akg-cta');
+    if (cta) {
+      track('seat_quiz_cta', { seat_type: cta.getAttribute('data-akg-cta'), quiz_source: state.source || 'primary', transport_type: 'beacon' });
+      return; // plain link: let the browser open it
+    }
+    var btn = closestAttr(e.target, 'data-q') || closestAttr(e.target, 'data-act');
+    if (!btn) { return; }
+    var q = btn.getAttribute('data-q');
+    var act = btn.getAttribute('data-act');
+    if (q) {
+      state[q] = btn.getAttribute('data-v');
+      if (q === 'with') { state.priority = null; state.area = null; }
+      if (q === 'priority') { state.area = null; }
+      if (!state.started) { state.started = true; track('seat_quiz_start', {}); }
+      next();
+    } else if (act === 'back') {
+      if (state.step === 'area') { state.area = null; state.priority = null; renderQuestion('priority'); }
+      else if (state.step === 'priority') { state.priority = null; state.with = null; renderQuestion('with'); }
+    } else if (act === 'alt') {
+      var seatKey = btn.getAttribute('data-seat');
+      var r = RULES[ruleKey()];
+      if (!r || !SEATS[seatKey]) { return; }
+      if (seatKey === r.seat) { showPrimary(); }
+      else { renderResult(seatKey, r.seat, SEATS[seatKey].why, '最初におすすめした席に戻る', 'second'); }
+    } else if (act === 'reset') {
+      state.with = null; state.priority = null; state.area = null; state.lastSent = '';
+      track('seat_quiz_restart', {});
+      renderQuestion('with');
+    }
+  });
+
+  // Self-check: run AKG_QUIZ.check() in the browser console after editing RULES. Expect {rules:20, missing:[], bad:[]}.
+  window.AKG_QUIZ = { seats: SEATS, rules: RULES, check: function () {
+    var bad = [], missing = [], keys = Object.keys(RULES), i, j, k, key;
+    var W = ['family', 'friends', 'couple', 'solo'], P = ['relax', 'focus', 'price', 'special'], A = ['yes', 'no'];
+    for (i = 0; i < W.length; i++) {
+      for (j = 0; j < P.length; j++) {
+        if (P[j] === 'price') {
+          for (k = 0; k < A.length; k++) { key = W[i] + '|price|' + A[k]; if (!RULES[key]) { missing.push(key); } }
+        } else {
+          key = W[i] + '|' + P[j]; if (!RULES[key]) { missing.push(key); }
+        }
+      }
+    }
+    for (i = 0; i < keys.length; i++) {
+      var r = RULES[keys[i]];
+      if (!SEATS[r.seat] || !SEATS[r.alt] || r.seat === r.alt || !r.why || !r.altHint) { bad.push(keys[i]); }
+    }
+    return { rules: keys.length, missing: missing, bad: bad };
+  } };
+
+  renderQuestion('with');
+})();
+</script>
+<!-- /wp:html --></div></div>
+<!-- /wp:loos/full-wide -->
+
+<!-- wp:loos/full-wide {"bgColor":"#ffffff","contentSize":"container","pcPadding":"20","spPadding":"20","anchor":"site"} -->
+<div class="swell-block-fullWide pc-py-20 sp-py-20 alignfull" style="background-color:#ffffff" id="site"><div class="swell-block-fullWide__inner l-container"><!-- wp:heading {"className":"is-style-section_ttl"} -->
+<h2 class="wp-block-heading is-style-section_ttl"><span class="swl-fz u-fz-xl">販売サイト</span></h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"","style":{"typography":{"textAlign":"center"}}} -->
+<p class="has-text-align-center"><strong><span class="swl-fz u-fz-l"><span class="swl-inline-color has-swl-deep-01-color">以下の販売サイトのロゴから、</span></span></strong>[spbr]<strong><span class="swl-fz u-fz-l"><span class="swl-inline-color has-swl-deep-01-color">各種サイトへ進み、</span></span></strong>[spbr]<strong><span class="swl-fz u-fz-l"><span class="swl-inline-color has-swl-deep-01-color">チケットを購入してください。</span></span></strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:columns {"isStackedOnMobile":false} -->
+<div class="wp-block-columns is-not-stacked-on-mobile"><!-- wp:column -->
+<div class="wp-block-column"><!-- wp:image {"lightbox":{"enabled":false},"id":4247,"sizeSlug":"large","linkDestination":"custom"} -->
+<figure class="wp-block-image size-large"><a href="https://experiences.travel.rakuten.co.jp/experiences/62751"><img src="https://machizukuri-con.or.jp/wp-content/uploads/2-3-1024x341.jpg" alt="" class="wp-image-4247"/></a></figure>
+<!-- /wp:image --></div>
+<!-- /wp:column -->
+
+<!-- wp:column -->
+<div class="wp-block-column"><!-- wp:image {"lightbox":{"enabled":false},"id":4246,"sizeSlug":"large","linkDestination":"custom"} -->
+<figure class="wp-block-image size-large"><a href="https://event.jreast.co.jp/shop/detail/a180"><img src="https://machizukuri-con.or.jp/wp-content/uploads/1-3-1024x341.jpg" alt="" class="wp-image-4246"/></a></figure>
+<!-- /wp:image --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns -->
+
+<!-- wp:paragraph {"metadata":{"blockVisibility":false},"className":"has-border -border01 is-style-big_icon_check"} -->
+<p class="has-border -border01 is-style-big_icon_check">駐車場は無料ですが、先着順となりますので、お早めにお越しください。<br>※SS席を購入いただいた方には駐車場を確保しております。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:columns {"isStackedOnMobile":false} -->
+<div class="wp-block-columns is-not-stacked-on-mobile"><!-- wp:column -->
+<div class="wp-block-column"><!-- wp:image {"lightbox":{"enabled":false},"id":4222,"sizeSlug":"full","linkDestination":"custom"} -->
+<figure class="wp-block-image size-full"><a href="https://t.pia.jp/pia/event/event.do?eventBundleCd=b2669369"><img src="https://machizukuri-con.or.jp/wp-content/uploads/ぴあ_ロゴ_正方形.jpg" alt="" class="wp-image-4222"/></a></figure>
+<!-- /wp:image --></div>
+<!-- /wp:column -->
+
+<!-- wp:column -->
+<div class="wp-block-column"><!-- wp:image {"lightbox":{"enabled":false},"id":4223,"sizeSlug":"full","linkDestination":"custom"} -->
+<figure class="wp-block-image size-full"><a href="https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products?salesProductTagCode=v4h0rdje5x"><img src="https://machizukuri-con.or.jp/wp-content/uploads/アソビュー_ロゴ_正方形.jpg" alt="" class="wp-image-4223"/></a></figure>
+<!-- /wp:image --></div>
+<!-- /wp:column -->
+
+<!-- wp:column -->
+<div class="wp-block-column"><!-- wp:image {"lightbox":{"enabled":false},"id":4224,"sizeSlug":"full","linkDestination":"custom"} -->
+<figure class="wp-block-image size-full"><a href="https://www.kkday.com/ja/product/527261"><img src="https://machizukuri-con.or.jp/wp-content/uploads/KKday_ロゴ_正方形.jpg" alt="" class="wp-image-4224"/></a></figure>
+<!-- /wp:image --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns -->
+
+<!-- wp:table {"swlScrollable":"sp","swlTableWidth":"800px"} -->
+<figure class="wp-block-table"><table class="has-fixed-layout"><thead><tr><th>提携サイト</th><th>リクライニングシート席</th><th>SS席</th><th>S席</th><th>A席</th><th>フリーエリア</th><th>駐車場</th></tr></thead><tbody><tr><td>チケットぴあ</td><td>ー</td><td><span style="--the-icon-svg: url(data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjFlbSIgd2lkdGg9IjFlbSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBhcmlhLWhpZGRlbj0idHJ1ZSIgdmlld0JveD0iMCAwIDQ4IDQ4Ij48cGF0aCBkPSJNMjQgNDYuNUMxMS42IDQ2LjUgMS41IDM2LjQgMS41IDI0UzExLjYgMS41IDI0IDEuNSA0Ni41IDExLjYgNDYuNSAyNCAzNi40IDQ2LjUgMjQgNDYuNXptMC00MEMxNC40IDYuNSA2LjUgMTQuNCA2LjUgMjRTMTQuNCA0MS41IDI0IDQxLjUgNDEuNSAzMy42IDQxLjUgMjQgMzMuNiA2LjUgMjQgNi41eiI+PC9wYXRoPjwvc3ZnPg==)" data-icon="LsCircle" data-id="0" aria-hidden="true" class="swl-inline-icon"> </span></td><td><span style="--the-icon-svg: url(data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjFlbSIgd2lkdGg9IjFlbSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBhcmlhLWhpZGRlbj0idHJ1ZSIgdmlld0JveD0iMCAwIDQ4IDQ4Ij48cGF0aCBkPSJNMjQgNDYuNUMxMS42IDQ2LjUgMS41IDM2LjQgMS41IDI0UzExLjYgMS41IDI0IDEuNSA0Ni41IDExLjYgNDYuNSAyNCAzNi40IDQ2LjUgMjQgNDYuNXptMC00MEMxNC40IDYuNSA2LjUgMTQuNCA2LjUgMjRTMTQuNCA0MS41IDI0IDQxLjUgNDEuNSAzMy42IDQxLjUgMjQgMzMuNiA2LjUgMjQgNi41eiI+PC9wYXRoPjwvc3ZnPg==)" data-icon="LsCircle" data-id="0" aria-hidden="true" class="swl-inline-icon"> </span></td><td><span style="--the-icon-svg: url(data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjFlbSIgd2lkdGg9IjFlbSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBhcmlhLWhpZGRlbj0idHJ1ZSIgdmlld0JveD0iMCAwIDQ4IDQ4Ij48cGF0aCBkPSJNMjQgNDYuNUMxMS42IDQ2LjUgMS41IDM2LjQgMS41IDI0UzExLjYgMS41IDI0IDEuNSA0Ni41IDExLjYgNDYuNSAyNCAzNi40IDQ2LjUgMjQgNDYuNXptMC00MEMxNC40IDYuNSA2LjUgMTQuNCA2LjUgMjRTMTQuNCA0MS41IDI0IDQxLjUgNDEuNSAzMy42IDQxLjUgMjQgMzMuNiA2LjUgMjQgNi41eiI+PC9wYXRoPjwvc3ZnPg==)" data-icon="LsCircle" data-id="0" aria-hidden="true" class="swl-inline-icon"> </span></td><td>ー</td><td><span style="--the-icon-svg: url(data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjFlbSIgd2lkdGg9IjFlbSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBhcmlhLWhpZGRlbj0idHJ1ZSIgdmlld0JveD0iMCAwIDQ4IDQ4Ij48cGF0aCBkPSJNMjQgNDYuNUMxMS42IDQ2LjUgMS41IDM2LjQgMS41IDI0UzExLjYgMS41IDI0IDEuNSA0Ni41IDExLjYgNDYuNSAyNCAzNi40IDQ2LjUgMjQgNDYuNXptMC00MEMxNC40IDYuNSA2LjUgMTQuNCA2LjUgMjRTMTQuNCA0MS41IDI0IDQxLjUgNDEuNSAzMy42IDQxLjUgMjQgMzMuNiA2LjUgMjQgNi41eiI+PC9wYXRoPjwvc3ZnPg==)" data-icon="LsCircle" data-id="0" aria-hidden="true" class="swl-inline-icon"> </span></td></tr><tr><td>アソビュー！</td><td><span style="--the-icon-svg: url(data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjFlbSIgd2lkdGg9IjFlbSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBhcmlhLWhpZGRlbj0idHJ1ZSIgdmlld0JveD0iMCAwIDQ4IDQ4Ij48cGF0aCBkPSJNMjQgNDYuNUMxMS42IDQ2LjUgMS41IDM2LjQgMS41IDI0UzExLjYgMS41IDI0IDEuNSA0Ni41IDExLjYgNDYuNSAyNCAzNi40IDQ2LjUgMjQgNDYuNXptMC00MEMxNC40IDYuNSA2LjUgMTQuNCA2LjUgMjRTMTQuNCA0MS41IDI0IDQxLjUgNDEuNSAzMy42IDQxLjUgMjQgMzMuNiA2LjUgMjQgNi41eiI+PC9wYXRoPjwvc3ZnPg==)" data-icon="LsCircle" data-id="0" aria-hidden="true" class="swl-inline-icon"> </span></td><td><span style="--the-icon-svg: url(data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjFlbSIgd2lkdGg9IjFlbSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBhcmlhLWhpZGRlbj0idHJ1ZSIgdmlld0JveD0iMCAwIDQ4IDQ4Ij48cGF0aCBkPSJNMjQgNDYuNUMxMS42IDQ2LjUgMS41IDM2LjQgMS41IDI0UzExLjYgMS41IDI0IDEuNSA0Ni41IDExLjYgNDYuNSAyNCAzNi40IDQ2LjUgMjQgNDYuNXptMC00MEMxNC40IDYuNSA2LjUgMTQuNCA2LjUgMjRTMTQuNCA0MS41IDI0IDQxLjUgNDEuNSAzMy42IDQxLjUgMjQgMzMuNiA2LjUgMjQgNi41eiI+PC9wYXRoPjwvc3ZnPg==)" data-icon="LsCircle" data-id="0" aria-hidden="true" class="swl-inline-icon"> </span></td><td><span style="--the-icon-svg: url(data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjFlbSIgd2lkdGg9IjFlbSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBhcmlhLWhpZGRlbj0idHJ1ZSIgdmlld0JveD0iMCAwIDQ4IDQ4Ij48cGF0aCBkPSJNMjQgNDYuNUMxMS42IDQ2LjUgMS41IDM2LjQgMS41IDI0UzExLjYgMS41IDI0IDEuNSA0Ni41IDExLjYgNDYuNSAyNCAzNi40IDQ2LjUgMjQgNDYuNXptMC00MEMxNC40IDYuNSA2LjUgMTQuNCA2LjUgMjRTMTQuNCA0MS41IDI0IDQxLjUgNDEuNSAzMy42IDQxLjUgMjQgMzMuNiA2LjUgMjQgNi41eiI+PC9wYXRoPjwvc3ZnPg==)" data-icon="LsCircle" data-id="0" aria-hidden="true" class="swl-inline-icon"> </span></td><td><span style="--the-icon-svg: url(data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjFlbSIgd2lkdGg9IjFlbSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBhcmlhLWhpZGRlbj0idHJ1ZSIgdmlld0JveD0iMCAwIDQ4IDQ4Ij48cGF0aCBkPSJNMjQgNDYuNUMxMS42IDQ2LjUgMS41IDM2LjQgMS41IDI0UzExLjYgMS41IDI0IDEuNSA0Ni41IDExLjYgNDYuNSAyNCAzNi40IDQ2LjUgMjQgNDYuNXptMC00MEMxNC40IDYuNSA2LjUgMTQuNCA2LjUgMjRTMTQuNCA0MS41IDI0IDQxLjUgNDEuNSAzMy42IDQxLjUgMjQgMzMuNiA2LjUgMjQgNi41eiI+PC9wYXRoPjwvc3ZnPg==)" data-icon="LsCircle" data-id="0" aria-hidden="true" class="swl-inline-icon"> </span></td><td>〇</td><td><span data-icon="LsCircle" data-id="0" style="--the-icon-svg: url(data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjFlbSIgd2lkdGg9IjFlbSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBhcmlhLWhpZGRlbj0idHJ1ZSIgdmlld0JveD0iMCAwIDQ4IDQ4Ij48cGF0aCBkPSJNMjQgNDYuNUMxMS42IDQ2LjUgMS41IDM2LjQgMS41IDI0UzExLjYgMS41IDI0IDEuNSA0Ni41IDExLjYgNDYuNSAyNCAzNi40IDQ2LjUgMjQgNDYuNXptMC00MEMxNC40IDYuNSA2LjUgMTQuNCA2LjUgMjRTMTQuNCA0MS41IDI0IDQxLjUgNDEuNSAzMy42IDQxLjUgMjQgMzMuNiA2LjUgMjQgNi41eiI+PC9wYXRoPjwvc3ZnPg==)" aria-hidden="true" class="swl-inline-icon"> </span></td></tr><tr><td>KKday</td><td>ー</td><td><span style="--the-icon-svg: url(data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjFlbSIgd2lkdGg9IjFlbSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBhcmlhLWhpZGRlbj0idHJ1ZSIgdmlld0JveD0iMCAwIDQ4IDQ4Ij48cGF0aCBkPSJNMjQgNDYuNUMxMS42IDQ2LjUgMS41IDM2LjQgMS41IDI0UzExLjYgMS41IDI0IDEuNSA0Ni41IDExLjYgNDYuNSAyNCAzNi40IDQ2LjUgMjQgNDYuNXptMC00MEMxNC40IDYuNSA2LjUgMTQuNCA2LjUgMjRTMTQuNCA0MS41IDI0IDQxLjUgNDEuNSAzMy42IDQxLjUgMjQgMzMuNiA2LjUgMjQgNi41eiI+PC9wYXRoPjwvc3ZnPg==)" data-icon="LsCircle" data-id="0" aria-hidden="true" class="swl-inline-icon"> </span></td><td><span style="--the-icon-svg: url(data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjFlbSIgd2lkdGg9IjFlbSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBhcmlhLWhpZGRlbj0idHJ1ZSIgdmlld0JveD0iMCAwIDQ4IDQ4Ij48cGF0aCBkPSJNMjQgNDYuNUMxMS42IDQ2LjUgMS41IDM2LjQgMS41IDI0UzExLjYgMS41IDI0IDEuNSA0Ni41IDExLjYgNDYuNSAyNCAzNi40IDQ2LjUgMjQgNDYuNXptMC00MEMxNC40IDYuNSA2LjUgMTQuNCA2LjUgMjRTMTQuNCA0MS41IDI0IDQxLjUgNDEuNSAzMy42IDQxLjUgMjQgMzMuNiA2LjUgMjQgNi41eiI+PC9wYXRoPjwvc3ZnPg==)" data-icon="LsCircle" data-id="0" aria-hidden="true" class="swl-inline-icon"> </span></td><td><span style="--the-icon-svg: url(data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjFlbSIgd2lkdGg9IjFlbSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBhcmlhLWhpZGRlbj0idHJ1ZSIgdmlld0JveD0iMCAwIDQ4IDQ4Ij48cGF0aCBkPSJNMjQgNDYuNUMxMS42IDQ2LjUgMS41IDM2LjQgMS41IDI0UzExLjYgMS41IDI0IDEuNSA0Ni41IDExLjYgNDYuNSAyNCAzNi40IDQ2LjUgMjQgNDYuNXptMC00MEMxNC40IDYuNSA2LjUgMTQuNCA2LjUgMjRTMTQuNCA0MS41IDI0IDQxLjUgNDEuNSAzMy42IDQxLjUgMjQgMzMuNiA2LjUgMjQgNi41eiI+PC9wYXRoPjwvc3ZnPg==)" data-icon="LsCircle" data-id="0" aria-hidden="true" class="swl-inline-icon"> </span></td><td>ー</td><td><span style="--the-icon-svg: url(data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjFlbSIgd2lkdGg9IjFlbSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBhcmlhLWhpZGRlbj0idHJ1ZSIgdmlld0JveD0iMCAwIDQ4IDQ4Ij48cGF0aCBkPSJNMjQgNDYuNUMxMS42IDQ2LjUgMS41IDM2LjQgMS41IDI0UzExLjYgMS41IDI0IDEuNSA0Ni41IDExLjYgNDYuNSAyNCAzNi40IDQ2LjUgMjQgNDYuNXptMC00MEMxNC40IDYuNSA2LjUgMTQuNCA2LjUgMjRTMTQuNCA0MS41IDI0IDQxLjUgNDEuNSAzMy42IDQxLjUgMjQgMzMuNiA2LjUgMjQgNi41eiI+PC9wYXRoPjwvc3ZnPg==)" data-icon="LsCircle" data-id="0" aria-hidden="true" class="swl-inline-icon"> </span></td></tr><tr><td>楽天トラベル</td><td>ー</td><td><span style="--the-icon-svg: url(data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjFlbSIgd2lkdGg9IjFlbSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBhcmlhLWhpZGRlbj0idHJ1ZSIgdmlld0JveD0iMCAwIDQ4IDQ4Ij48cGF0aCBkPSJNMjQgNDYuNUMxMS42IDQ2LjUgMS41IDM2LjQgMS41IDI0UzExLjYgMS41IDI0IDEuNSA0Ni41IDExLjYgNDYuNSAyNCAzNi40IDQ2LjUgMjQgNDYuNXptMC00MEMxNC40IDYuNSA2LjUgMTQuNCA2LjUgMjRTMTQuNCA0MS41IDI0IDQxLjUgNDEuNSAzMy42IDQxLjUgMjQgMzMuNiA2LjUgMjQgNi41eiI+PC9wYXRoPjwvc3ZnPg==)" data-icon="LsCircle" data-id="0" aria-hidden="true" class="swl-inline-icon"> </span></td><td><span style="--the-icon-svg: url(data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjFlbSIgd2lkdGg9IjFlbSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBhcmlhLWhpZGRlbj0idHJ1ZSIgdmlld0JveD0iMCAwIDQ4IDQ4Ij48cGF0aCBkPSJNMjQgNDYuNUMxMS42IDQ2LjUgMS41IDM2LjQgMS41IDI0UzExLjYgMS41IDI0IDEuNSA0Ni41IDExLjYgNDYuNSAyNCAzNi40IDQ2LjUgMjQgNDYuNXptMC00MEMxNC40IDYuNSA2LjUgMTQuNCA2LjUgMjRTMTQuNCA0MS41IDI0IDQxLjUgNDEuNSAzMy42IDQxLjUgMjQgMzMuNiA2LjUgMjQgNi41eiI+PC9wYXRoPjwvc3ZnPg==)" data-icon="LsCircle" data-id="0" aria-hidden="true" class="swl-inline-icon"> </span></td><td><span style="--the-icon-svg: url(data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjFlbSIgd2lkdGg9IjFlbSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBhcmlhLWhpZGRlbj0idHJ1ZSIgdmlld0JveD0iMCAwIDQ4IDQ4Ij48cGF0aCBkPSJNMjQgNDYuNUMxMS42IDQ2LjUgMS41IDM2LjQgMS41IDI0UzExLjYgMS41IDI0IDEuNSA0Ni41IDExLjYgNDYuNSAyNCAzNi40IDQ2LjUgMjQgNDYuNXptMC00MEMxNC40IDYuNSA2LjUgMTQuNCA2LjUgMjRTMTQuNCA0MS41IDI0IDQxLjUgNDEuNSAzMy42IDQxLjUgMjQgMzMuNiA2LjUgMjQgNi41eiI+PC9wYXRoPjwvc3ZnPg==)" data-icon="LsCircle" data-id="0" aria-hidden="true" class="swl-inline-icon"> </span></td><td>ー</td><td><span style="--the-icon-svg: url(data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjFlbSIgd2lkdGg9IjFlbSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBhcmlhLWhpZGRlbj0idHJ1ZSIgdmlld0JveD0iMCAwIDQ4IDQ4Ij48cGF0aCBkPSJNMjQgNDYuNUMxMS42IDQ2LjUgMS41IDM2LjQgMS41IDI0UzExLjYgMS41IDI0IDEuNSA0Ni41IDExLjYgNDYuNSAyNCAzNi40IDQ2LjUgMjQgNDYuNXptMC00MEMxNC40IDYuNSA2LjUgMTQuNCA2LjUgMjRTMTQuNCA0MS41IDI0IDQxLjUgNDEuNSAzMy42IDQxLjUgMjQgMzMuNiA2LjUgMjQgNi41eiI+PC9wYXRoPjwvc3ZnPg==)" data-icon="LsCircle" data-id="0" aria-hidden="true" class="swl-inline-icon"> </span></td></tr><tr><td>JRE MALL</td><td>ー</td><td><span style="--the-icon-svg: url(data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjFlbSIgd2lkdGg9IjFlbSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBhcmlhLWhpZGRlbj0idHJ1ZSIgdmlld0JveD0iMCAwIDQ4IDQ4Ij48cGF0aCBkPSJNMjQgNDYuNUMxMS42IDQ2LjUgMS41IDM2LjQgMS41IDI0UzExLjYgMS41IDI0IDEuNSA0Ni41IDExLjYgNDYuNSAyNCAzNi40IDQ2LjUgMjQgNDYuNXptMC00MEMxNC40IDYuNSA2LjUgMTQuNCA2LjUgMjRTMTQuNCA0MS41IDI0IDQxLjUgNDEuNSAzMy42IDQxLjUgMjQgMzMuNiA2LjUgMjQgNi41eiI+PC9wYXRoPjwvc3ZnPg==)" data-icon="LsCircle" data-id="0" aria-hidden="true" class="swl-inline-icon"> </span></td><td><span style="--the-icon-svg: url(data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjFlbSIgd2lkdGg9IjFlbSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBhcmlhLWhpZGRlbj0idHJ1ZSIgdmlld0JveD0iMCAwIDQ4IDQ4Ij48cGF0aCBkPSJNMjQgNDYuNUMxMS42IDQ2LjUgMS41IDM2LjQgMS41IDI0UzExLjYgMS41IDI0IDEuNSA0Ni41IDExLjYgNDYuNSAyNCAzNi40IDQ2LjUgMjQgNDYuNXptMC00MEMxNC40IDYuNSA2LjUgMTQuNCA2LjUgMjRTMTQuNCA0MS41IDI0IDQxLjUgNDEuNSAzMy42IDQxLjUgMjQgMzMuNiA2LjUgMjQgNi41eiI+PC9wYXRoPjwvc3ZnPg==)" data-icon="LsCircle" data-id="0" aria-hidden="true" class="swl-inline-icon"> </span></td><td><span style="--the-icon-svg: url(data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjFlbSIgd2lkdGg9IjFlbSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBhcmlhLWhpZGRlbj0idHJ1ZSIgdmlld0JveD0iMCAwIDQ4IDQ4Ij48cGF0aCBkPSJNMjQgNDYuNUMxMS42IDQ2LjUgMS41IDM2LjQgMS41IDI0UzExLjYgMS41IDI0IDEuNSA0Ni41IDExLjYgNDYuNSAyNCAzNi40IDQ2LjUgMjQgNDYuNXptMC00MEMxNC40IDYuNSA2LjUgMTQuNCA2LjUgMjRTMTQuNCA0MS41IDI0IDQxLjUgNDEuNSAzMy42IDQxLjUgMjQgMzMuNiA2LjUgMjQgNi41eiI+PC9wYXRoPjwvc3ZnPg==)" data-icon="LsCircle" data-id="0" aria-hidden="true" class="swl-inline-icon"> </span></td><td>ー</td><td><span style="--the-icon-svg: url(data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjFlbSIgd2lkdGg9IjFlbSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBhcmlhLWhpZGRlbj0idHJ1ZSIgdmlld0JveD0iMCAwIDQ4IDQ4Ij48cGF0aCBkPSJNMjQgNDYuNUMxMS42IDQ2LjUgMS41IDM2LjQgMS41IDI0UzExLjYgMS41IDI0IDEuNSA0Ni41IDExLjYgNDYuNSAyNCAzNi40IDQ2LjUgMjQgNDYuNXptMC00MEMxNC40IDYuNSA2LjUgMTQuNCA2LjUgMjRTMTQuNCA0MS41IDI0IDQxLjUgNDEuNSAzMy42IDQxLjUgMjQgMzMuNiA2LjUgMjQgNi41eiI+PC9wYXRoPjwvc3ZnPg==)" data-icon="LsCircle" data-id="0" aria-hidden="true" class="swl-inline-icon"> </span></td></tr></tbody></table><figcaption class="wp-element-caption">提携サイトの販売座席対応表</figcaption></figure>
+<!-- /wp:table --></div></div>
+<!-- /wp:loos/full-wide -->
+
+<!-- wp:loos/full-wide {"bgColor":"#ffffff","contentSize":"full","pcPadding":"0","spPadding":"0"} -->
+<div class="swell-block-fullWide pc-py-0 sp-py-0 alignfull" style="background-color:#ffffff"><div class="swell-block-fullWide__inner"><!-- wp:loos/columns {"isScrollable":true,"colWidth":{"pc":"400px","tab":"400px","mobile":"300px"}} -->
+<div class="swell-block-columns" style="--clmn-w--pc:400px;--clmn-w--tab:400px;--clmn-w--mobile:300px" data-scrollable="1"><div class="c-scrollHint"><span>スクロールできます <i class="icon-more_arrow"></i></span></div><div class="swell-block-columns__inner"><!-- wp:loos/column -->
+<div class="swell-block-column swl-has-mb--s"><!-- wp:image {"lightbox":{"enabled":true},"id":4298,"width":"1024px","height":"auto","aspectRatio":"1.7777777777777777","scale":"cover","sizeSlug":"large","linkDestination":"none"} -->
+<figure class="wp-block-image size-large is-resized"><img src="https://machizukuri-con.or.jp/wp-content/uploads/2026_hababi_01-1024x768.jpg" alt="" class="wp-image-4298" style="aspect-ratio:1.7777777777777777;object-fit:cover;width:1024px;height:auto"/></figure>
+<!-- /wp:image --></div>
+<!-- /wp:loos/column -->
+
+<!-- wp:loos/column -->
+<div class="swell-block-column swl-has-mb--s"><!-- wp:image {"lightbox":{"enabled":true},"id":4305,"aspectRatio":"16/9","scale":"cover","sizeSlug":"large","linkDestination":"none"} -->
+<figure class="wp-block-image size-large"><img src="https://machizukuri-con.or.jp/wp-content/uploads/2026_kitchencar-3-1024x768.jpg" alt="" class="wp-image-4305" style="aspect-ratio:16/9;object-fit:cover"/></figure>
+<!-- /wp:image --></div>
+<!-- /wp:loos/column -->
+
+<!-- wp:loos/column -->
+<div class="swell-block-column swl-has-mb--s"><!-- wp:image {"lightbox":{"enabled":true},"id":4301,"aspectRatio":"16/9","scale":"cover","sizeSlug":"large","linkDestination":"none"} -->
+<figure class="wp-block-image size-large"><img src="https://machizukuri-con.or.jp/wp-content/uploads/2023_koyo-1024x768.jpg" alt="" class="wp-image-4301" style="aspect-ratio:16/9;object-fit:cover"/></figure>
+<!-- /wp:image --></div>
+<!-- /wp:loos/column -->
+
+<!-- wp:loos/column -->
+<div class="swell-block-column swl-has-mb--s"><!-- wp:image {"lightbox":{"enabled":true},"id":4295,"aspectRatio":"16/9","scale":"cover","sizeSlug":"large","linkDestination":"none"} -->
+<figure class="wp-block-image size-large"><img src="https://machizukuri-con.or.jp/wp-content/uploads/2026_リクライニングシート席-3-1024x768.jpg" alt="" class="wp-image-4295" style="aspect-ratio:16/9;object-fit:cover"/></figure>
+<!-- /wp:image --></div>
+<!-- /wp:loos/column -->
+
+<!-- wp:loos/column -->
+<div class="swell-block-column swl-has-mb--s"><!-- wp:image {"lightbox":{"enabled":true},"id":4293,"aspectRatio":"16/9","scale":"cover","sizeSlug":"large","linkDestination":"none"} -->
+<figure class="wp-block-image size-large"><img src="https://machizukuri-con.or.jp/wp-content/uploads/2026_SS席-1-1024x768.jpg" alt="" class="wp-image-4293" style="aspect-ratio:16/9;object-fit:cover"/></figure>
+<!-- /wp:image --></div>
+<!-- /wp:loos/column -->
+
+<!-- wp:loos/column -->
+<div class="swell-block-column swl-has-mb--s"><!-- wp:image {"lightbox":{"enabled":true},"id":4297,"aspectRatio":"16/9","scale":"cover","sizeSlug":"large","linkDestination":"none"} -->
+<figure class="wp-block-image size-large"><img src="https://machizukuri-con.or.jp/wp-content/uploads/2026_S席-1-1024x768.jpg" alt="" class="wp-image-4297" style="aspect-ratio:16/9;object-fit:cover"/></figure>
+<!-- /wp:image --></div>
+<!-- /wp:loos/column -->
+
+<!-- wp:loos/column -->
+<div class="swell-block-column swl-has-mb--s"><!-- wp:image {"lightbox":{"enabled":true},"id":4296,"aspectRatio":"16/9","scale":"cover","sizeSlug":"large","linkDestination":"none"} -->
+<figure class="wp-block-image size-large"><img src="https://machizukuri-con.or.jp/wp-content/uploads/2026_A席-1-1024x768.jpg" alt="" class="wp-image-4296" style="aspect-ratio:16/9;object-fit:cover"/></figure>
+<!-- /wp:image --></div>
+<!-- /wp:loos/column --></div></div>
+<!-- /wp:loos/columns --></div></div>
+<!-- /wp:loos/full-wide -->
+
+<!-- wp:loos/full-wide {"bgColor":"#ffffff","contentSize":"container","pcPadding":"20","spPadding":"20"} -->
+<div class="swell-block-fullWide pc-py-20 sp-py-20 alignfull" style="background-color:#ffffff"><div class="swell-block-fullWide__inner l-container"><!-- wp:heading {"className":"is-style-section_ttl"} -->
+<h2 class="wp-block-heading is-style-section_ttl"><span class="swl-fz u-fz-xl">観覧席・駐車場</span></h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"is-style-big_icon_caution","style":{"typography":{"textAlign":"left"}}} -->
+<p class="has-text-align-left is-style-big_icon_caution"><strong><span class="swl-fz u-fz-l"><span class="swl-inline-color has-swl-deep-01-color">本年度から駐車場が有料になりますので、お車でお越しの方は、必ず駐車券を購入してください。</span></span></strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">観覧席</h3>
+<!-- /wp:heading -->
+
+<!-- wp:loos/step {"stepLabel":"SEAT"} -->
+<div class="swell-block-step" data-num-style="circle"><!-- wp:loos/step-item {"stepLabel":"SEAT","isHideNum":true} -->
+<div class="swell-block-step__item"><div class="swell-block-step__number u-bg-main" data-num=""><span class="__label">SEAT</span></div><div class="swell-block-step__title u-fz-l">リクライニングペアシート席</div><div class="swell-block-step__body"><!-- wp:columns -->
+<div class="wp-block-columns"><!-- wp:column -->
+<div class="wp-block-column"><!-- wp:columns -->
+<div class="wp-block-columns"><!-- wp:column -->
+<div class="wp-block-column"><!-- wp:image {"lightbox":{"enabled":true},"id":4435,"aspectRatio":"4/3","scale":"cover","sizeSlug":"full","linkDestination":"none"} -->
+<figure class="wp-block-image size-full"><img src="https://machizukuri-con.or.jp/wp-content/uploads/リクライニングシート_画像1.jpg" alt="" class="wp-image-4435" style="aspect-ratio:4/3;object-fit:cover"/></figure>
+<!-- /wp:image --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns --></div>
+<!-- /wp:column -->
+
+<!-- wp:column -->
+<div class="wp-block-column"><!-- wp:heading {"level":4} -->
+<h4 class="wp-block-heading"><strong>夜空を見上げる、くつろぎの体験</strong></h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p><em>アソビュー限定！</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-20"} -->
+<p class="u-mb-ctrl u-mb-20">1組 30,000円（2席）<br>※指定席。リクライニングシート付き。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:loos/button {"hrefUrl":"https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products/e42dce79-988e-4b5d-bc20-099dbaf02d1d","btnAlign":"left","color":"red","className":"is-style-btn_line"} -->
+<div class="swell-block-button red_ is-style-btn_line" data-align="left"><a href="https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products/e42dce79-988e-4b5d-bc20-099dbaf02d1d" class="swell-block-button__link"><span><strong>アソビューで予約する</strong></span></a></div>
+<!-- /wp:loos/button --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns --></div></div>
+<!-- /wp:loos/step-item -->
+
+<!-- wp:loos/step-item {"stepLabel":"SEAT","isHideNum":true} -->
+<div class="swell-block-step__item"><div class="swell-block-step__number u-bg-main" data-num=""><span class="__label">SEAT</span></div><div class="swell-block-step__title u-fz-l">SS席</div><div class="swell-block-step__body"><!-- wp:columns -->
+<div class="wp-block-columns"><!-- wp:column -->
+<div class="wp-block-column"><!-- wp:columns -->
+<div class="wp-block-columns"><!-- wp:column -->
+<div class="wp-block-column"><!-- wp:image {"lightbox":{"enabled":true},"id":4277,"aspectRatio":"4/3","scale":"cover","sizeSlug":"full","linkDestination":"none"} -->
+<figure class="wp-block-image size-full"><img src="https://machizukuri-con.or.jp/wp-content/uploads/2026_SS席.jpg" alt="" class="wp-image-4277" style="aspect-ratio:4/3;object-fit:cover"/></figure>
+<!-- /wp:image --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns --></div>
+<!-- /wp:column -->
+
+<!-- wp:column -->
+<div class="wp-block-column"><!-- wp:heading {"level":4} -->
+<h4 class="wp-block-heading"><strong>家族で最高の思い出を</strong></h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-20"} -->
+<p class="u-mb-ctrl u-mb-20">1テーブル 35,000円（4名掛けのテーブル席）<br>※指定席。カフェチェア、カフェテーブル付き。<br>※第7回と異なりテントはありません。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:loos/button {"hrefUrl":"https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products?salesProductTagCode=v4h0rdje5x","btnAlign":"left","color":"red","className":"is-style-btn_line"} -->
+<div class="swell-block-button red_ is-style-btn_line" data-align="left"><a href="https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products?salesProductTagCode=v4h0rdje5x" class="swell-block-button__link"><span><strong>アソビューで予約する</strong></span></a></div>
+<!-- /wp:loos/button -->
+
+<!-- wp:paragraph {"className":"u-fz-s"} -->
+<p class="u-fz-s"><a href="#site">他の販売サイト（ぴあ・KKday・楽天トラベル・JRE MALL）で購入</a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns --></div></div>
+<!-- /wp:loos/step-item -->
+
+<!-- wp:loos/step-item {"stepLabel":"SEAT","isHideNum":true} -->
+<div class="swell-block-step__item"><div class="swell-block-step__number u-bg-main" data-num=""><span class="__label">SEAT</span></div><div class="swell-block-step__title u-fz-l">S席</div><div class="swell-block-step__body"><!-- wp:columns -->
+<div class="wp-block-columns"><!-- wp:column -->
+<div class="wp-block-column"><!-- wp:columns -->
+<div class="wp-block-columns"><!-- wp:column -->
+<div class="wp-block-column"><!-- wp:image {"lightbox":{"enabled":true},"id":4278,"aspectRatio":"4/3","scale":"cover","sizeSlug":"full","linkDestination":"none"} -->
+<figure class="wp-block-image size-full"><img src="https://machizukuri-con.or.jp/wp-content/uploads/2026_S席.jpg" alt="" class="wp-image-4278" style="aspect-ratio:4/3;object-fit:cover"/></figure>
+<!-- /wp:image --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns --></div>
+<!-- /wp:column -->
+
+<!-- wp:column -->
+<div class="wp-block-column"><!-- wp:heading {"level":4} -->
+<h4 class="wp-block-heading"><strong>特別な人と観る花火</strong></h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-20"} -->
+<p class="u-mb-ctrl u-mb-20">1テーブル 14,000円（2名掛けのテーブル席）<br>※指定席。テーブル、イス付き。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:loos/button {"hrefUrl":"https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products?salesProductTagCode=v4h0rdje5x","btnAlign":"left","color":"red","className":"is-style-btn_line"} -->
+<div class="swell-block-button red_ is-style-btn_line" data-align="left"><a href="https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products?salesProductTagCode=v4h0rdje5x" class="swell-block-button__link"><span><strong>アソビューで予約する</strong></span></a></div>
+<!-- /wp:loos/button -->
+
+<!-- wp:paragraph {"className":"u-fz-s"} -->
+<p class="u-fz-s"><a href="#site">他の販売サイト（ぴあ・KKday・楽天トラベル・JRE MALL）で購入</a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns --></div></div>
+<!-- /wp:loos/step-item -->
+
+<!-- wp:loos/step-item {"stepLabel":"SEAT","isHideNum":true} -->
+<div class="swell-block-step__item"><div class="swell-block-step__number u-bg-main" data-num=""><span class="__label">SEAT</span></div><div class="swell-block-step__title u-fz-l">A席<br></div><div class="swell-block-step__body"><!-- wp:columns -->
+<div class="wp-block-columns"><!-- wp:column -->
+<div class="wp-block-column"><!-- wp:image {"lightbox":{"enabled":true},"id":4279,"aspectRatio":"4/3","scale":"cover","sizeSlug":"large","linkDestination":"none"} -->
+<figure class="wp-block-image size-large"><img src="https://machizukuri-con.or.jp/wp-content/uploads/2026_A席-1024x768.jpg" alt="" class="wp-image-4279" style="aspect-ratio:4/3;object-fit:cover"/></figure>
+<!-- /wp:image --></div>
+<!-- /wp:column -->
+
+<!-- wp:column -->
+<div class="wp-block-column"><!-- wp:heading {"level":4} -->
+<h4 class="wp-block-heading"><strong>迷ったらこれ！快適に楽しむ特等席</strong></h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-20"} -->
+<p class="u-mb-ctrl u-mb-20">大人 5,000円／子ども 2,000円（椅子席）<br>※指定席。テーブルなし。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:loos/button {"hrefUrl":"https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products?salesProductTagCode=v4h0rdje5x","btnAlign":"left","color":"red","className":"is-style-btn_line"} -->
+<div class="swell-block-button red_ is-style-btn_line" data-align="left"><a href="https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products?salesProductTagCode=v4h0rdje5x" class="swell-block-button__link"><span><strong>アソビューで予約する</strong></span></a></div>
+<!-- /wp:loos/button -->
+
+<!-- wp:paragraph {"className":"u-fz-s"} -->
+<p class="u-fz-s"><a href="#site">他の販売サイト（ぴあ・KKday・楽天トラベル・JRE MALL）で購入</a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns --></div></div>
+<!-- /wp:loos/step-item -->
+
+<!-- wp:loos/step-item {"stepLabel":"SEAT","isHideNum":true} -->
+<div class="swell-block-step__item"><div class="swell-block-step__number u-bg-main" data-num=""><span class="__label">SEAT</span></div><div class="swell-block-step__title u-fz-l">フリーエリア</div><div class="swell-block-step__body"><!-- wp:columns -->
+<div class="wp-block-columns"><!-- wp:column -->
+<div class="wp-block-column"><!-- wp:image {"lightbox":{"enabled":true},"id":4495,"aspectRatio":"4/3","scale":"cover","sizeSlug":"large","linkDestination":"none"} -->
+<figure class="wp-block-image size-large"><img src="https://machizukuri-con.or.jp/wp-content/uploads/フリーエリアチケット-1024x768.jpg" alt="" class="wp-image-4495" style="aspect-ratio:4/3;object-fit:cover"/></figure>
+<!-- /wp:image --></div>
+<!-- /wp:column -->
+
+<!-- wp:column -->
+<div class="wp-block-column"><!-- wp:heading {"level":4} -->
+<h4 class="wp-block-heading">西多摩在住者限定！フリーエリア</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-20"} -->
+<p class="u-mb-ctrl u-mb-20">限定1,000名 ※予定枚数に達し次第、販売を終了します。<br><br>料金：おとな 2,000円(13歳以上1名様分)、こども 1,000円(3歳～12歳1名様分)、幼児無料(2歳以下)<br><br>■対象地域：<br>青梅市／福生市／羽村市／あきる野市／瑞穂町／日の出町／檜原村／奥多摩町</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:loos/button {"hrefUrl":"https://machizukuricon.my.urakata.app/channels/d58e8525-0f46-4109-9740-1c1b928b5aa0/products/6dbcf060-4a33-4e3c-9348-551a867822d1","btnAlign":"left","color":"red","className":"is-style-btn_line"} -->
+<div class="swell-block-button red_ is-style-btn_line" data-align="left"><a href="https://machizukuricon.my.urakata.app/channels/d58e8525-0f46-4109-9740-1c1b928b5aa0/products/6dbcf060-4a33-4e3c-9348-551a867822d1" class="swell-block-button__link"><span><strong>アソビューで予約する</strong></span></a></div>
+<!-- /wp:loos/button --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns --></div></div>
+<!-- /wp:loos/step-item --></div>
+<!-- /wp:loos/step -->
+
+<!-- wp:columns {"metadata":{"blockVisibility":false}} -->
+<div class="wp-block-columns"><!-- wp:column -->
+<div class="wp-block-column"><!-- wp:loos/button {"hrefUrl":"https://www.kkday.com/product/527261?cid=22567\u0026ud1=officialsite","color":"blue","btnSize":"l","className":"is-style-btn_shiny"} -->
+<div class="swell-block-button blue_ -size-l is-style-btn_shiny"><a href="https://www.kkday.com/product/527261?cid=22567&amp;ud1=officialsite" class="swell-block-button__link"><span> SS席をKKdayで予約する </span></a></div>
+<!-- /wp:loos/button --></div>
+<!-- /wp:column -->
+
+<!-- wp:column -->
+<div class="wp-block-column"><!-- wp:loos/button {"hrefUrl":"https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products/0778608f-4f2b-4742-88cf-c1e242f22790","color":"red","btnSize":"l","className":"is-style-btn_line"} -->
+<div class="swell-block-button red_ -size-l is-style-btn_line"><a href="https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products/0778608f-4f2b-4742-88cf-c1e242f22790" class="swell-block-button__link"><span><strong>SS席をアソビューで予約する</strong></span></a></div>
+<!-- /wp:loos/button --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns -->
+
+<!-- wp:columns {"metadata":{"blockVisibility":false}} -->
+<div class="wp-block-columns"><!-- wp:column -->
+<div class="wp-block-column"><!-- wp:loos/button {"hrefUrl":"https://www.kkday.com/product/527261?cid=22567\u0026ud1=officialsite","color":"blue","btnSize":"l","className":"is-style-btn_shiny"} -->
+<div class="swell-block-button blue_ -size-l is-style-btn_shiny"><a href="https://www.kkday.com/product/527261?cid=22567&amp;ud1=officialsite" class="swell-block-button__link"><span> SS席をKKdayで予約する </span></a></div>
+<!-- /wp:loos/button --></div>
+<!-- /wp:column -->
+
+<!-- wp:column -->
+<div class="wp-block-column"><!-- wp:loos/button {"hrefUrl":"https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products/0778608f-4f2b-4742-88cf-c1e242f22790","color":"red","btnSize":"l","className":"is-style-btn_line"} -->
+<div class="swell-block-button red_ -size-l is-style-btn_line"><a href="https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products/0778608f-4f2b-4742-88cf-c1e242f22790" class="swell-block-button__link"><span><strong>SS席をアソビューで予約する</strong></span></a></div>
+<!-- /wp:loos/button --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">駐車場</h3>
+<!-- /wp:heading -->
+
+<!-- wp:loos/step {"numShape":"square","stepLabel":"PARKING"} -->
+<div class="swell-block-step" data-num-style="square"><!-- wp:loos/step-item {"stepLabel":"PARKING","isHideNum":true} -->
+<div class="swell-block-step__item"><div class="swell-block-step__number u-bg-main" data-num=""><span class="__label">PARKING</span></div><div class="swell-block-step__title u-fz-l">駐車場｜観覧会場隣接</div><div class="swell-block-step__body"><!-- wp:columns -->
+<div class="wp-block-columns"><!-- wp:column -->
+<div class="wp-block-column"><!-- wp:image {"lightbox":{"enabled":true},"id":4251,"aspectRatio":"4/3","scale":"cover","sizeSlug":"full","linkDestination":"none","className":"u-mb-ctrl u-mb-10"} -->
+<figure class="wp-block-image size-full u-mb-ctrl u-mb-10"><img src="https://machizukuri-con.or.jp/wp-content/uploads/07_駐車場（観覧会場隣接）.png" alt="" class="wp-image-4251" style="aspect-ratio:4/3;object-fit:cover"/></figure>
+<!-- /wp:image --></div>
+<!-- /wp:column -->
+
+<!-- wp:column -->
+<div class="wp-block-column"><!-- wp:heading {"level":4} -->
+<h4 class="wp-block-heading"><strong>観覧会場隣接で移動がスムーズ！</strong></h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>1,500円（1台）<br>※観覧会場隣接でスムーズに移動可能</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns --></div></div>
+<!-- /wp:loos/step-item -->
+
+<!-- wp:loos/step-item {"stepLabel":"PARKING","isHideNum":true} -->
+<div class="swell-block-step__item"><div class="swell-block-step__number u-bg-main" data-num=""><span class="__label">PARKING</span></div><div class="swell-block-step__title u-fz-l">駐車場｜東京サマーランドプール側</div><div class="swell-block-step__body"><!-- wp:columns -->
+<div class="wp-block-columns"><!-- wp:column -->
+<div class="wp-block-column"><!-- wp:image {"lightbox":{"enabled":true},"id":4252,"aspectRatio":"4/3","scale":"cover","sizeSlug":"large","linkDestination":"none","className":"u-mb-ctrl u-mb-10"} -->
+<figure class="wp-block-image size-large u-mb-ctrl u-mb-10"><img src="https://machizukuri-con.or.jp/wp-content/uploads/08_駐車場（東京サマーランドプール側）-1024x715.png" alt="" class="wp-image-4252" style="aspect-ratio:4/3;object-fit:cover"/></figure>
+<!-- /wp:image --></div>
+<!-- /wp:column -->
+
+<!-- wp:column -->
+<div class="wp-block-column"><!-- wp:heading {"level":4} -->
+<h4 class="wp-block-heading"><strong>無料シャトルバスあり！お手頃駐車場！</strong></h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>1,000円（1台）<br>※無料シャトルバスで観覧会場まで移動可能</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns --></div></div>
+<!-- /wp:loos/step-item --></div>
+<!-- /wp:loos/step -->
+
+<!-- wp:columns {"metadata":{"blockVisibility":false}} -->
+<div class="wp-block-columns"><!-- wp:column -->
+<div class="wp-block-column"><!-- wp:loos/button {"hrefUrl":"https://www.kkday.com/product/527261?cid=22567\u0026ud1=officialsite","color":"blue","btnSize":"l","className":"is-style-btn_shiny"} -->
+<div class="swell-block-button blue_ -size-l is-style-btn_shiny"><a href="https://www.kkday.com/product/527261?cid=22567&amp;ud1=officialsite" class="swell-block-button__link"><span> A席をKKdayで予約する </span></a></div>
+<!-- /wp:loos/button --></div>
+<!-- /wp:column -->
+
+<!-- wp:column -->
+<div class="wp-block-column"><!-- wp:loos/button {"hrefUrl":"https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products/82b9e652-4a19-4dae-95f5-903b1a1a95c0","color":"red","btnSize":"l","className":"is-style-btn_line"} -->
+<div class="swell-block-button red_ -size-l is-style-btn_line"><a href="https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products/82b9e652-4a19-4dae-95f5-903b1a1a95c0" class="swell-block-button__link"><span><strong>A席をアソビューで予約する</strong></span></a></div>
+<!-- /wp:loos/button --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns -->
+
+<!-- wp:heading {"level":3,"metadata":{"blockVisibility":false}} -->
+<h3 class="wp-block-heading">フリーエリア</h3>
+<!-- /wp:heading -->
+
+<!-- wp:columns {"metadata":{"blockVisibility":false},"className":"u-mb-ctrl u-mb-30"} -->
+<div class="wp-block-columns u-mb-ctrl u-mb-30"><!-- wp:column -->
+<div class="wp-block-column"><!-- wp:columns -->
+<div class="wp-block-columns"><!-- wp:column -->
+<div class="wp-block-column"><!-- wp:image {"id":3268,"aspectRatio":"16/9","scale":"cover","sizeSlug":"full","linkDestination":"none"} -->
+<figure class="wp-block-image size-full"><img src="https://machizukuri-con.or.jp/wp-content/uploads/フリー席.jpg" alt="" class="wp-image-3268" style="aspect-ratio:16/9;object-fit:cover"/></figure>
+<!-- /wp:image --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns --></div>
+<!-- /wp:column -->
+
+<!-- wp:column -->
+<div class="wp-block-column"><!-- wp:paragraph -->
+<p><strong><span class="swl-fz u-fz-l">手ごろに楽しみたい方へ</span></strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>大人1,000円<br><br>※フリースペースへの入場券。席指定不可。椅子なし。小学生以下無料。</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns -->
+
+<!-- wp:columns {"metadata":{"blockVisibility":false}} -->
+<div class="wp-block-columns"><!-- wp:column -->
+<div class="wp-block-column"><!-- wp:loos/button {"hrefUrl":"https://www.kkday.com/product/527261?cid=22567\u0026ud1=officialsite","color":"blue","btnSize":"l","className":"is-style-btn_shiny"} -->
+<div class="swell-block-button blue_ -size-l is-style-btn_shiny"><a href="https://www.kkday.com/product/527261?cid=22567&amp;ud1=officialsite" class="swell-block-button__link"><span> フリーエリアをKKdayで予約する </span></a></div>
+<!-- /wp:loos/button --></div>
+<!-- /wp:column -->
+
+<!-- wp:column -->
+<div class="wp-block-column"><!-- wp:loos/button {"hrefUrl":"https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products/ab964b6a-1a37-4025-8a05-23e9f76e5364","color":"red","btnSize":"l","className":"is-style-btn_line"} -->
+<div class="swell-block-button red_ -size-l is-style-btn_line"><a href="https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products/ab964b6a-1a37-4025-8a05-23e9f76e5364" class="swell-block-button__link"><span><strong>フリーエリアをアソビューで予約する</strong></span></a></div>
+<!-- /wp:loos/button --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns --></div></div>
+<!-- /wp:loos/full-wide -->
+
+<!-- wp:loos/full-wide {"bgColor":"#ffffff","contentSize":"container","pcPadding":"20","spPadding":"20"} -->
+<div class="swell-block-fullWide pc-py-20 sp-py-20 alignfull" style="background-color:#ffffff"><div class="swell-block-fullWide__inner l-container"><!-- wp:loos/banner-link {"imageID":4289,"bgOpacity":40} -->
+<div class="swell-block-bannerLink"><a href="https://machizukuri-con.or.jp/ticket/#site" class="c-bannerLink" style="background-color:rgba(0, 0, 0, 0.4)"><figure class="c-bannerLink__figure"><img src="https://machizukuri-con.or.jp/wp-content/uploads/2026_メインビジュアル.jpg" class="c-bannerLink__img wp-image-4289" alt=""/></figure><div class="c-bannerLink__text"><div class="c-bannerLink__title"><strong><span class="swl-fz u-fz-l">チケットを購入する！</span></strong></div><div class="c-bannerLink__description">本年度もお待ちしております。</div></div></a></div>
+<!-- /wp:loos/banner-link --></div></div>
+<!-- /wp:loos/full-wide -->
+
+<!-- wp:loos/full-wide {"bgColor":"#ffffff","contentSize":"container","pcPadding":"20","spPadding":"20"} -->
+<div class="swell-block-fullWide pc-py-20 sp-py-20 alignfull" style="background-color:#ffffff"><div class="swell-block-fullWide__inner l-container"><!-- wp:heading {"className":"is-style-section_ttl"} -->
+<h2 class="wp-block-heading is-style-section_ttl"><span class="swl-fz u-fz-xl">諸注意</span></h2>
+<!-- /wp:heading -->
+
+<!-- wp:list {"className":"is-style-good_list"} -->
+<ul class="wp-block-list is-style-good_list"><!-- wp:list-item -->
+<li>チケットに関する疑問点がありましたら、<a data-type="page" data-id="1754" href="https://machizukuri-con.or.jp/qa/">こちら</a>をご覧ください。</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></div></div>
+<!-- /wp:loos/full-wide -->

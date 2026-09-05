@@ -1,0 +1,174 @@
+<!-- wp:html -->
+<style>
+/* ===== akg-buy: 「チケットの入手方法は3つ」ブロック(自己完結) ===== */
+.akg-buy,
+.akg-buy * { box-sizing: border-box; }
+.akg-buy { max-width: 100%; margin: 0; overflow-wrap: break-word; }
+
+/* 見出し(テーマの is-style-section_ttl をそのまま利用。上余白だけ詰める) */
+.akg-buy .akg-buy__ttl { margin: 0 0 .75em; }
+.akg-buy .akg-buy__lead {
+  margin: 0 0 1.5em;
+  text-align: center;
+  line-height: 1.8;
+}
+
+/* カード一覧: スマホ1列(3列化は末尾のメディアクエリ) */
+.akg-buy__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1em;
+  margin: 0;
+}
+/* カード全体がリンク */
+.akg-buy .akg-buy__card {
+  display: flex;
+  flex-direction: column;
+  min-height: 44px;
+  padding: 1.25em 1.25em 1.1em;
+  border: 1px solid var(--color_border, hsla(0, 0%, 78%, .5));
+  border-radius: 4px;
+  background: var(--color_bg, #ffffff);
+  color: var(--color_text, #000000);
+  text-decoration: none;
+  box-shadow: var(--swl-box_shadow, 0 2px 4px rgba(0, 0, 0, .05), 0 4px 4px -4px rgba(0, 0, 0, .1));
+  transition: border-color .2s, box-shadow .2s;
+}
+.akg-buy .akg-buy__card:hover,
+.akg-buy .akg-buy__card:active {
+  border-color: var(--color_main, #000000);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .12);
+}
+.akg-buy .akg-buy__card:focus-visible {
+  outline: 2px solid var(--color_deep01, #e44141);
+  outline-offset: 2px;
+}
+
+/* 「こんな方に」の一文(番号丸付き) */
+.akg-buy__who {
+  display: flex;
+  align-items: flex-start;
+  gap: .5em;
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.5;
+}
+.akg-buy__num {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.9em;
+  height: 1.9em;
+  margin-top: .05em;
+  border-radius: 50%;
+  background: var(--color_main, #000000);
+  color: #ffffff;
+  font-size: .8em;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* 入手方法の名前(左に赤い線) */
+.akg-buy__name {
+  display: block;
+  margin: .7em 0 .4em;
+  padding-left: .5em;
+  border-left: 3px solid var(--color_deep01, #e44141);
+  font-size: 1.35em;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+/* 説明・補足 */
+.akg-buy__desc {
+  display: block;
+  margin: 0 0 .75em;
+  font-size: .95em;
+  line-height: 1.7;
+}
+.akg-buy__sub {
+  display: block;
+  margin: 0 0 1.1em;
+  font-size: .9em;
+  line-height: 1.6;
+  color: #555555;
+}
+
+/* ボタン風の行き先表示(リンクはカード全体) */
+.akg-buy__cta {
+  display: inline-block;
+  align-self: flex-start;
+  margin-top: auto;
+  padding: .55em 1.25em;
+  border: 1px solid var(--color_main, #000000);
+  border-radius: 80px;
+  font-size: .95em;
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 1.5;
+  color: var(--color_main, #000000);
+  transition: background-color .2s, color .2s;
+}
+.akg-buy .akg-buy__card:hover .akg-buy__cta,
+.akg-buy .akg-buy__card:active .akg-buy__cta {
+  background: var(--color_main, #000000);
+  color: #ffffff;
+}
+.akg-buy__cta::after {
+  content: "\203A";
+  margin-left: .4em;
+}
+
+/* ===== 768px以上: 3列レイアウト(基本ルールより後に書いて上書きする) ===== */
+@media (min-width: 768px) {
+  .akg-buy__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5em;
+  }
+  /* 3列時: 1行目の高さを揃え、行き先表示はカード幅いっぱいにして折り返しを防ぐ */
+  .akg-buy__who { min-height: 3em; }
+  .akg-buy__cta {
+    display: block;
+    align-self: stretch;
+    text-align: center;
+    padding: .55em .9em;
+    letter-spacing: .5px;
+  }
+}
+@media (min-width: 768px) and (max-width: 959px) {
+  .akg-buy .akg-buy__card { padding: 1.1em 1em 1em; }
+}
+</style>
+<div class="akg-buy" id="akg-buy">
+  <h2 class="wp-block-heading is-style-section_ttl akg-buy__ttl"><span class="swl-fz u-fz-xl">チケットの入手方法は3つ</span></h2>
+  <p class="akg-buy__lead">ご希望に合うものをお選びください。</p>
+  <div class="akg-buy__grid">
+
+    <a class="akg-buy__card" href="https://machizukuri-con.or.jp/ticket/#site">
+      <span class="akg-buy__who"><span class="akg-buy__num">1</span><span>今すぐチケットを購入したい</span></span>
+      <span class="akg-buy__name">一般販売</span>
+      <span class="akg-buy__desc">観覧席チケットと駐車券を、各販売サイトから購入できます。</span>
+      <span class="akg-buy__sub">販売サイト：チケットぴあ／アソビュー／KKday／楽天トラベル／JRE MALL</span>
+      <span class="akg-buy__cta">販売サイト一覧へ</span>
+    </a>
+
+    <a class="akg-buy__card" href="https://www.satofull.jp/products/list.php?partner=135200057|%E3%81%BE%E3%81%A1%E3%81%A5%E3%81%8F%E3%82%8A%E3%82%B3%E3%83%B3%E3%82%BD%E3%83%BC%E3%82%B7%E3%82%A2%E3%83%A0&amp;p=1" target="_blank" rel="noopener">
+      <span class="akg-buy__who"><span class="akg-buy__num">2</span><span>地域を応援しながらチケットを受け取りたい</span></span>
+      <span class="akg-buy__name">ふるさと納税</span>
+      <span class="akg-buy__desc">ふるさと納税でご寄付いただいた方に、返礼品として観覧チケットをご用意しています。返礼品の内容は「さとふる」のページでご確認ください。</span>
+      <span class="akg-buy__sub">さとふる（外部サイト・別のタブで開きます）</span>
+      <span class="akg-buy__cta">さとふるで見る</span>
+    </a>
+
+    <a class="akg-buy__card" href="https://machizukuri-con.or.jp/donation/">
+      <span class="akg-buy__who"><span class="akg-buy__num">3</span><span>花火大会そのものを応援したい</span></span>
+      <span class="akg-buy__name">寄付・協賛</span>
+      <span class="akg-buy__desc">寄付（1万円から）・中口協賛（3万円から）・大口協賛（10万円以上）の3つのプランがあります。詳しくは寄付・協賛ページをご覧ください。</span>
+      <span class="akg-buy__sub">依頼書（PDF）とお申し込みフォームは、寄付・協賛ページにあります。</span>
+      <span class="akg-buy__cta">寄付・協賛ページへ</span>
+    </a>
+
+  </div>
+</div>
+<!-- /wp:html -->
