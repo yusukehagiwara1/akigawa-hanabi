@@ -85,3 +85,13 @@
 
 /robots.txt
   Cache-Control: public, max-age=3600
+
+# ----------------------------------------------------------------------
+# wp-snippets — WordPress本文に読み込ませる外部JS/CSSの置き場
+# (本番WPのWAFがインラインJSのPOSTを拒否するため、JSはここから配信する)
+# 10分キャッシュ+再検証。検索エンジンには載せない。
+# ----------------------------------------------------------------------
+/wp-snippets/*
+  Cache-Control: public, max-age=600, must-revalidate
+  X-Robots-Tag: noindex
+  Access-Control-Allow-Origin: *

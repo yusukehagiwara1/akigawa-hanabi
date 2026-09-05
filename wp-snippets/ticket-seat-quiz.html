@@ -1,13 +1,13 @@
 <!-- wp:html -->
 <style>
-.akg-quiz{box-sizing:border-box;max-width:100%;margin:0;padding:16px 12px;border:1px solid #000;background:#fff;color:#000;font-size:14px;font-size:max(14px,1rem);line-height:1.7;overflow-wrap:break-word;word-wrap:break-word}
+.akg-quiz{box-sizing:border-box;max-width:100%;margin:0;padding:16px 12px;border:1px solid #000;background:#fff;color:#000;font-size:14px;font-size:max(14px,1em);line-height:1.7;overflow-wrap:break-word;word-wrap:break-word}
 .akg-quiz *,.akg-quiz *::before,.akg-quiz *::after{box-sizing:border-box}
 .akg-quiz [hidden]{display:none}
 @media (min-width:600px){.akg-quiz{padding:24px 28px}}
 .akg-quiz .akg-quiz__lead{margin:0 0 1em;text-align:center}
 .akg-quiz .akg-quiz__progress{display:flex;align-items:center;gap:10px;margin:0 0 1em;font-size:.85em}
 .akg-quiz .akg-quiz__step{white-space:nowrap}
-.akg-quiz .akg-quiz__bar{flex:1;display:block;height:4px;background:var(--color_gray,hsla(0,0%,78%,.15));overflow:hidden}
+.akg-quiz .akg-quiz__bar{flex:1;display:block;height:4px;background:var(--color_border,hsla(0,0%,78%,.5));overflow:hidden}
 .akg-quiz .akg-quiz__bar i{display:block;height:100%;background:#000;transition:width .25s ease}
 @media (prefers-reduced-motion:reduce){.akg-quiz .akg-quiz__bar i{transition:none}}
 .akg-quiz .akg-quiz__panel{margin:0}
@@ -26,7 +26,7 @@
 .akg-quiz .akg-quiz__picked{font-size:.85em;margin:0 0 .5em;color:#555}
 .akg-quiz .akg-quiz__label{display:inline-block;background:#000;color:#fff;font-size:.8em;font-weight:700;padding:.15em .8em;margin:0 0 .5em}
 .akg-quiz .akg-quiz__seat{font-size:1.4em;font-weight:700;line-height:1.35;margin:0 0 .2em;outline:none}
-.akg-quiz .akg-quiz__catch{color:var(--color_deep01,#e44141);font-weight:700;margin:0 0 .9em}
+.akg-quiz .akg-quiz__catch{color:#c62828;font-weight:700;margin:0 0 .9em}
 .akg-quiz .akg-quiz__body{display:grid;grid-template-columns:1fr;gap:12px;margin:0 0 1em}
 @media (min-width:600px){.akg-quiz .akg-quiz__body{grid-template-columns:5fr 7fr;gap:20px;align-items:start}}
 .akg-quiz .akg-quiz__fig{margin:0;padding:0}
@@ -37,7 +37,8 @@
 .akg-quiz .akg-quiz__spec li::before{content:"・";position:absolute;left:0}
 .akg-quiz .akg-quiz__why{margin:0}
 .akg-quiz .swell-block-button{margin:0 0 .5em}
-.akg-quiz .swell-block-button__link{display:inline-flex;align-items:center;justify-content:center;min-height:44px;max-width:100%;background:var(--the-btn-bg,#ff0000);color:#fff;font-weight:700;text-decoration:none;border-radius:var(--the-btn-radius,80px)}
+.akg-quiz .swell-block-button.red_{--the-btn-color:#d40000}
+.akg-quiz .swell-block-button__link{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:min(100%,22em);max-width:100%;background:var(--the-btn-bg,#d40000);color:#fff;font-weight:700;text-decoration:none;border-radius:var(--the-btn-radius,80px)}
 .akg-quiz .akg-quiz__sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .akg-quiz .akg-quiz__cta-hint{font-size:.85em;text-align:center;margin:0 0 .25em}
 .akg-quiz .akg-quiz__sub{font-size:.9em;text-align:center;margin:0 0 1em}
@@ -47,16 +48,19 @@
 .akg-quiz .akg-quiz__note{font-size:.85em;margin:.5em 0 0;color:#555}
 .akg-quiz .akg-quiz__foot{margin:1em 0 0}
 .akg-quiz .akg-quiz__again{display:inline-flex;align-items:center;min-height:44px;margin:0;padding:0 1.5em;border:1px solid #000;border-radius:80px;background:#fff;color:#000;font:inherit;font-weight:700;cursor:pointer;-webkit-appearance:none;appearance:none}
+/* Seat cards (SS/S/A) further down the page: make the small "other sales sites" link tall enough to tap (about 45px) */
+.post_content .akg-sublink a{display:inline-block;box-sizing:border-box;min-height:44px;padding:.65em 0}
 </style>
 <div class="akg-quiz" id="akg-quiz" role="region" aria-label="座席診断">
-  <p class="akg-quiz__lead">2つの質問に答えるだけで、おすすめの席をご案内します。</p>
+  <p class="akg-quiz__lead">2～3つの質問に答えるだけで、おすすめの席をご案内します。</p>
   <div class="akg-quiz__progress" aria-hidden="true">
     <span class="akg-quiz__step" data-akg="step">質問 1 / 2</span>
     <span class="akg-quiz__bar"><i data-akg="bar" style="width:33%"></i></span>
   </div>
-  <div class="akg-quiz__panel" data-akg="panel" aria-live="polite">
-    <p class="akg-quiz__q" tabindex="-1">どなたと観覧しますか？</p>
-    <div class="akg-quiz__opts">
+  <p class="akg-quiz__sr" data-akg="status" aria-live="polite" aria-atomic="true"></p>
+  <div class="akg-quiz__panel" data-akg="panel">
+    <p class="akg-quiz__q" id="akg-quiz-q" tabindex="-1">どなたと観覧しますか？</p>
+    <div class="akg-quiz__opts" role="group" aria-labelledby="akg-quiz-q">
       <button type="button" class="akg-quiz__opt" data-q="with" data-v="family"><span class="akg-quiz__opt-main">家族で</span><span class="akg-quiz__opt-sub">お子さま連れ、ご両親とご一緒の方も</span></button>
       <button type="button" class="akg-quiz__opt" data-q="with" data-v="friends"><span class="akg-quiz__opt-main">友人・グループで</span><span class="akg-quiz__opt-sub">お仲間や同僚と</span></button>
       <button type="button" class="akg-quiz__opt" data-q="with" data-v="couple"><span class="akg-quiz__opt-main">カップル・ご夫婦で</span><span class="akg-quiz__opt-sub">ふたりで</span></button>
@@ -66,278 +70,5 @@
   <p class="akg-quiz__note" data-akg="note">※おすすめは目安です。</p>
   <noscript><p class="akg-quiz__note">この診断はJavaScriptが有効な環境でご利用いただけます。席の説明は、このページ下の「観覧席」をご覧ください。<a href="#site">販売サイトの一覧を見る</a></p></noscript>
 </div>
-<script>
-(function () {
-  'use strict';
-  var root = document.getElementById('akg-quiz');
-  if (!root) { return; }
-  var panel = root.querySelector('[data-akg="panel"]');
-  var stepEl = root.querySelector('[data-akg="step"]');
-  var barEl = root.querySelector('[data-akg="bar"]');
-  var noteEl = root.querySelector('[data-akg="note"]');
-  if (!panel) { return; }
-
-  // Asoview (urakata) list page: SS / S / A seats are bought from this list
-  var LIST_URL = 'https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products?salesProductTagCode=v4h0rdje5x';
-  var UP = 'https://machizukuri-con.or.jp/wp-content/uploads/';
-
-  // Seat facts (price, spec, photo, purchase URL). Same as the seat cards on the ticket page.
-  var SEATS = {
-    recliner: { name: 'リクライニングペアシート席', catchcopy: '夜空を見上げる、くつろぎの体験', price: '1組 30,000円（2席）',
-      spec: ['指定席。リクライニングシート付き。', 'アソビューだけで販売しています。'],
-      img: UP + 'リクライニングシート_画像1-1024x768.jpg', alt: 'リクライニングペアシート席の写真',
-      url: 'https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products/e42dce79-988e-4b5d-bc20-099dbaf02d1d',
-      only: true, hint: 'アソビューの予約ページが新しいタブで開きます。',
-      why: 'ふたり並んで背もたれを倒し、夜空を見上げながら花火を観覧できる席です。1組2席・30,000円で、アソビューだけで販売しています。' },
-    ss: { name: 'SS席', catchcopy: '家族で最高の思い出を', price: '1テーブル 35,000円（4名掛けのテーブル席）',
-      spec: ['指定席。カフェチェア、カフェテーブル付き。', '第7回と異なりテントはありません。', 'お席は購入時に自動で決まります（ご自身で選ぶことはできません）。'],
-      img: UP + '2026_SS席-1024x768.jpg', alt: 'SS席の写真', url: LIST_URL,
-      only: false, hint: 'アソビューの一覧が新しいタブで開きます。「SS席」を選んでお進みください。',
-      why: '4名掛けのテーブル席に、カフェチェアとカフェテーブルが付いています。家族やグループで、食事と花火をテーブルを囲んで楽しめます。4名なら1人あたり8,750円の計算です。※テントはありません。' },
-    s: { name: 'S席', catchcopy: '特別な人と観る花火', price: '1テーブル 14,000円（2名掛けのテーブル席）',
-      spec: ['指定席。テーブル、イス付き。'],
-      img: UP + '2026_S席-1024x768.jpg', alt: 'S席の写真', url: LIST_URL,
-      only: false, hint: 'アソビューの一覧が新しいタブで開きます。「S席」を選んでお進みください。',
-      why: '2名掛けのテーブル席で、テーブルとイスが付いています。デートや記念日など、大切な時間にどうぞ。2名なら1人あたり7,000円の計算です。' },
-    a: { name: 'A席', catchcopy: '迷ったらこれ！快適に楽しむ特等席', price: '大人 5,000円／子ども 2,000円（椅子席）',
-      spec: ['指定席。テーブルなし。', 'お席は購入時に自動で決まります（ご自身で選ぶことはできません）。', '小さなお子さまの膝上観覧は無料です。'],
-      img: UP + '2026_A席-1024x768.jpg', alt: 'A席の写真', url: LIST_URL,
-      only: false, hint: 'アソビューの一覧が新しいタブで開きます。「A席」を選んでお進みください。',
-      why: '大人5,000円・子ども2,000円の椅子席（テーブルなし）。はじめての方に最も選ばれているスタンダードで、指定席なので場所取りの心配がありません。' },
-    free: { name: 'フリーエリア（西多摩在住者限定）', catchcopy: '西多摩在住者限定！フリーエリア', price: 'おとな 2,000円（13歳以上）／こども 1,000円（3歳〜12歳）／2歳以下 無料',
-      spec: ['限定1,000名。予定枚数に達し次第、販売を終了します。', '対象地域：青梅市・福生市・羽村市・あきる野市・瑞穂町・日の出町・檜原村・奥多摩町', 'エリア内の好きな場所で観覧できます。立ち見はできません。', '小さな折りたたみイス（30cm程度）と人数分のレジャーシートは持ち込めます。', 'アソビューだけで販売しています。'],
-      img: UP + 'フリーエリアチケット-1024x768.jpg', alt: 'フリーエリアの写真',
-      url: 'https://machizukuricon.my.urakata.app/channels/d58e8525-0f46-4109-9740-1c1b928b5aa0/products/6dbcf060-4a33-4e3c-9348-551a867822d1',
-      only: true, hint: 'アソビューの予約ページが新しいタブで開きます。',
-      why: '西多摩にお住まいの方だけが買えるチケットです。おとな2,000円・こども1,000円・2歳以下無料。エリア内の好きな場所で観覧できます（立ち見はできません）。限定1,000名です。' }
-  };
-
-  // Questions. Q3 (area) is asked only when Q2 = price.
-  var QUESTIONS = {
-    with: { text: 'どなたと観覧しますか？', hint: '', col1: false, opts: [
-      { v: 'family', main: '家族で', sub: 'お子さま連れ、ご両親とご一緒の方も' },
-      { v: 'friends', main: '友人・グループで', sub: 'お仲間や同僚と' },
-      { v: 'couple', main: 'カップル・ご夫婦で', sub: 'ふたりで' },
-      { v: 'solo', main: 'おひとりで', sub: '1名でゆっくり' } ] },
-    priority: { text: 'いちばん大切にしたいことは？', hint: '', col1: false, opts: [
-      { v: 'relax', main: 'ゆったり過ごしたい', sub: '席でゆっくりくつろぎたい' },
-      { v: 'focus', main: '花火に集中して楽しみたい', sub: 'テーブルはなくても、花火をしっかり観たい' },
-      { v: 'price', main: '料金を抑えたい', sub: '気軽に楽しみたい' },
-      { v: 'special', main: '特別な時間にしたい', sub: '記念日やごほうびに' } ] },
-    area: { text: '西多摩にお住まいですか？', hint: '西多摩にお住まいの方だけが買える「フリーエリアチケット」があります。', col1: true, opts: [
-      { v: 'yes', main: 'はい、住んでいます', sub: '青梅市・福生市・羽村市・あきる野市・瑞穂町・日の出町・檜原村・奥多摩町' },
-      { v: 'no', main: 'いいえ', sub: 'それ以外の地域' } ] }
-  };
-
-  // Result table (all 20 combinations).
-  // Key: with|priority  or  with|price|area
-  // seat = first choice, alt = second choice, altHint = one line on the second-choice card, why = reason shown for the first choice
-  // To change a recommendation, edit only the matching line here (seat / alt must be one of: recliner, ss, s, a, free).
-  var RULES = {
-    'family|relax':      { seat: 'ss', alt: 'a', altHint: '人数分をそろえやすい椅子席。子ども料金（2,000円）があります', why: '4名掛けのテーブル席に、カフェチェアとカフェテーブルが付いています。飲食ブースの食事をテーブルに広げて、昼からゆっくり過ごせます。4名なら1人あたり8,750円の計算です。※テントはありません。' },
-    'family|focus':      { seat: 'a', alt: 'ss', altHint: '4名でテーブルを囲みたいときに（1テーブル35,000円）', why: '指定席なので場所取りの心配がなく、18時からの約1時間・5,000発の花火に集中できます。子ども料金（2,000円）があり、小さなお子さまの膝上観覧は無料です。' },
-    'family|price|yes':  { seat: 'free', alt: 'a', altHint: '売り切れのときや、椅子でゆっくり座りたいときに', why: 'おとな2,000円・こども1,000円・2歳以下は無料と、いちばんお手頃です。エリア内の好きな場所で、人数分のレジャーシートや小さな折りたたみイスを使えます（立ち見はできません）。限定1,000名です。' },
-    'family|price|no':   { seat: 'a', alt: 's', altHint: '大人2人なら、あと4,000円でテーブル・イス付きの2名掛け席に（1テーブル14,000円）', why: '大人5,000円・子ども2,000円の椅子席で、西多摩以外にお住まいの方が選べる席の中ではいちばん手頃です。指定席なので、早く来て場所取りをする必要がありません。小さなお子さまの膝上観覧は無料です。' },
-    'family|special':    { seat: 'ss', alt: 's', altHint: '大人2人で観覧するなら、2名掛けのテーブル席（1テーブル14,000円）', why: '「家族で最高の思い出を」のテーブル席です。カフェチェアとカフェテーブルで、食事と花火を家族みんなで囲めます。※テントはありません。' },
-    'friends|relax':     { seat: 'ss', alt: 's', altHint: '2人ずつなら、2名掛けのテーブル席（1テーブル14,000円）', why: '4名掛けのテーブル席にカフェチェアとカフェテーブル付き。12時からのキッチンカーや、午後からのパフォーマンス、18時の花火まで、ゆっくり滞在できます。4名なら1人あたり8,750円の計算です。※テントはありません。' },
-    'friends|focus':     { seat: 'a', alt: 'ss', altHint: '4名でテーブルを囲むなら（1テーブル35,000円）', why: '大人1人5,000円の指定席で、人数分をそろえやすい席です。はじめての方に最も選ばれているスタンダードで、場所取りの心配なく花火に集中できます。' },
-    'friends|price|yes': { seat: 'free', alt: 'a', altHint: '売り切れのときや、椅子に座りたいときに（大人5,000円）', why: 'おとな2,000円（13歳以上）で、いちばんお手頃です。エリア内の好きな場所で、人数分のレジャーシートや小さな折りたたみイスを使えます（立ち見はできません）。限定1,000名です。' },
-    'friends|price|no':  { seat: 'a', alt: 's', altHint: '2人でテーブルがほしいなら、1テーブル14,000円（1人あたり7,000円の計算）', why: '大人1人5,000円の椅子席で、西多摩以外にお住まいの方が選べる席の中ではいちばん手頃です。指定席なので場所取りは不要で、集合時間もゆとりをもって決められます。' },
-    'friends|special':   { seat: 'ss', alt: 's', altHint: '2人ずつなら、2名掛けのテーブル席（1テーブル14,000円）', why: '4名掛けのテーブル席で、カフェチェアとカフェテーブル付き。音楽とシンクロした花火を、テーブルを囲んで楽しめます。※テントはありません。' },
-    'couple|relax':      { seat: 'recliner', alt: 's', altHint: 'テーブル付きで食事も楽しむなら（1テーブル14,000円）', why: 'ふたり並んで背もたれを倒し、夜空を見上げながら花火を観覧できる席です。1組2席・30,000円で、アソビューだけで販売しています。' },
-    'couple|focus':      { seat: 's', alt: 'a', altHint: 'テーブルがなくてよければ、おふたりで10,000円の椅子席', why: '2名掛けのテーブル席で、テーブルとイスが付いています。指定席なので場所取りの心配がなく、18時からの約1時間・5,000発の花火に集中できます。' },
-    'couple|price|yes':  { seat: 'free', alt: 'a', altHint: '売り切れのときや、椅子に座りたいときに（おふたりで10,000円）', why: 'おとな2,000円で、おふたりなら4,000円といちばんお手頃です。エリア内の好きな場所で、ふたり分のレジャーシートや小さな折りたたみイスを使えます（立ち見はできません）。限定1,000名です。' },
-    'couple|price|no':   { seat: 'a', alt: 's', altHint: 'あと4,000円でテーブル・イス付きの2名掛け席に（1テーブル14,000円）', why: '大人5,000円の椅子席で、おふたりで10,000円。西多摩以外にお住まいの方が選べる席の中ではいちばん手頃です。指定席なので、早く来て場所取りをする必要がありません。' },
-    'couple|special':    { seat: 'recliner', alt: 's', altHint: '「特別な人と観る花火」のテーブル席（1テーブル14,000円）', why: '「夜空を見上げる、くつろぎの体験」。ふたり並んでリクライニングシートに身をあずける、記念日にもぴったりの席です。アソビューだけで販売しています。' },
-    'solo|relax':        { seat: 'a', alt: 's', altHint: 'テーブルがほしい場合は、2名掛けのテーブルをひとりで（1テーブル14,000円）', why: '1名から買える椅子席です。指定席なので場所取りの心配がなく、ゆっくり座って観覧できます。はじめての方に最も選ばれているスタンダードです。' },
-    'solo|focus':        { seat: 'a', alt: 's', altHint: 'テーブル付きでゆっくりするなら（1テーブル14,000円）', why: '大人1人5,000円の指定席です。場所取りの心配がなく、18時からの約1時間・5,000発の花火に集中できます。' },
-    'solo|price|yes':    { seat: 'free', alt: 'a', altHint: '売り切れのときや、椅子に座りたいときに（大人5,000円）', why: 'おとな2,000円で、いちばんお手頃です。エリア内の好きな場所で、レジャーシートや小さな折りたたみイスを使えます（立ち見はできません）。限定1,000名です。' },
-    'solo|price|no':     { seat: 'a', alt: 's', altHint: 'テーブル付きにするなら（1テーブル14,000円）', why: '大人1人5,000円の椅子席で、西多摩以外にお住まいの方が選べる席の中ではいちばん手頃です。指定席なので場所取りは不要です。' },
-    'solo|special':      { seat: 's', alt: 'a', altHint: '気軽に楽しむなら、大人1人5,000円の椅子席', why: '「特別な人と観る花火」のテーブル席を、ひとりでぜいたくに。テーブルとイス付きで、自分のペースで花火を楽しめます。' }
-  };
-
-  // Labels used to repeat the chosen answers on the result screen
-  var LABELS = { family: '家族で', friends: '友人・グループで', couple: 'カップル・ご夫婦で', solo: 'おひとりで',
-    relax: 'ゆったり過ごしたい', focus: '花火に集中して楽しみたい', price: '料金を抑えたい', special: '特別な時間にしたい',
-    yes: '西多摩にお住まい', no: '西多摩以外' };
-
-  var state = { with: null, priority: null, area: null, step: 'with', started: false, source: '', lastSent: '' };
-
-  function track(name, params) {
-    try { if (typeof gtag === 'function') { gtag('event', name, params || {}); } } catch (e) {}
-  }
-
-  // Move focus without scrolling the page. Uses focus({preventScroll:true}) where supported,
-  // otherwise restores the scroll position right after focusing.
-  var canPreventScroll = false;
-  try { document.createElement('div').focus({ get preventScroll() { canPreventScroll = true; return true; } }); } catch (e) {}
-  function focusEl(el) {
-    if (!el) { return; }
-    if (canPreventScroll) { try { el.focus({ preventScroll: true }); } catch (e) {} return; }
-    var x = window.pageXOffset, y = window.pageYOffset;
-    try { el.focus(); } catch (e) {}
-    try { window.scrollTo(x, y); } catch (e) {}
-  }
-
-  function setProgress(text, pct) {
-    if (stepEl) { stepEl.textContent = text; }
-    if (barEl) { barEl.style.width = pct + '%'; }
-  }
-
-  // The photo is created with createElement so that the theme's lazy-load rewrite never touches it.
-  function makeImg(s) {
-    var img = document.createElement('img');
-    img.src = s.img;
-    img.alt = s.alt;
-    img.setAttribute('width', '1024');
-    img.setAttribute('height', '768');
-    img.setAttribute('loading', 'lazy');
-    img.setAttribute('decoding', 'async');
-    return img;
-  }
-
-  function renderQuestion(key) {
-    var q = QUESTIONS[key];
-    var html = '<p class="akg-quiz__q" tabindex="-1">' + q.text + '</p>';
-    if (q.hint) { html += '<p class="akg-quiz__hint">' + q.hint + '</p>'; }
-    html += '<div class="akg-quiz__opts' + (q.col1 ? ' -col1' : '') + '">';
-    for (var i = 0; i < q.opts.length; i++) {
-      var o = q.opts[i];
-      html += '<button type="button" class="akg-quiz__opt" data-q="' + key + '" data-v="' + o.v + '">' +
-        '<span class="akg-quiz__opt-main">' + o.main + '</span><span class="akg-quiz__opt-sub">' + o.sub + '</span></button>';
-    }
-    html += '</div>';
-    if (key !== 'with') { html += '<button type="button" class="akg-quiz__back" data-act="back">← 前の質問に戻る</button>'; }
-    panel.innerHTML = html;
-    if (key === 'with') { setProgress('質問 1 / 2', 33); }
-    else if (key === 'priority') { setProgress('質問 2 / 2', 66); }
-    else { setProgress('あと1問だけ 3 / 3', 85); }
-    if (noteEl) { noteEl.hidden = false; }
-    state.step = key;
-    state.source = '';
-    focusEl(panel.querySelector('.akg-quiz__q'));
-  }
-
-  function ruleKey() {
-    return state.with + '|' + state.priority + (state.priority === 'price' ? '|' + state.area : '');
-  }
-
-  function renderResult(seatKey, altKey, why, altHint, source) {
-    var s = SEATS[seatKey], alt = SEATS[altKey];
-    var picked = LABELS[state.with] + ' × ' + LABELS[state.priority] + (state.priority === 'price' ? ' × ' + LABELS[state.area] : '');
-    var html = '<div class="akg-quiz__result">';
-    html += '<p class="akg-quiz__picked">' + picked + '</p>';
-    html += '<p class="akg-quiz__label">' + (source === 'second' ? '第2候補' : 'あなたにおすすめの席') + '</p>';
-    html += '<p class="akg-quiz__seat" id="akg-quiz-result-title" role="heading" aria-level="3" tabindex="-1">' + s.name + '</p>';
-    html += '<p class="akg-quiz__catch">' + s.catchcopy + '</p>';
-    html += '<div class="akg-quiz__body"><figure class="akg-quiz__fig" data-akg="fig"></figure>';
-    html += '<div><p class="akg-quiz__price">' + s.price + '</p><ul class="akg-quiz__spec">';
-    for (var i = 0; i < s.spec.length; i++) { html += '<li>' + s.spec[i] + '</li>'; }
-    html += '</ul><p class="akg-quiz__why">' + why + '</p></div></div>';
-    html += '<div class="swell-block-button red_ -size-l is-style-btn_normal"><a href="' + s.url + '" target="_blank" rel="noopener" class="swell-block-button__link" data-akg-cta="' + seatKey + '">' +
-      '<span><strong>この席をアソビューで予約する</strong><span class="akg-quiz__sr">（新しいタブで開きます）</span></span></a></div>';
-    html += '<p class="akg-quiz__cta-hint">' + s.hint + '</p>';
-    if (s.only) {
-      html += '<p class="akg-quiz__sub">この席はアソビューだけで販売しています。<a href="#site">販売サイトの一覧を見る</a></p>';
-    } else {
-      html += '<p class="akg-quiz__sub"><a href="#site">他の販売サイトで買う</a>（チケットぴあ・KKday・楽天トラベル・JRE MALL でも販売しています）</p>';
-    }
-    html += '<div class="akg-quiz__alt"><p class="akg-quiz__alt-label">' + (source === 'second' ? '最初のおすすめ' : '第2候補') + '</p>';
-    html += '<button type="button" class="akg-quiz__alt-btn" data-act="alt" data-seat="' + altKey + '" data-prev="' + seatKey + '">' +
-      '<span class="akg-quiz__opt-main">' + alt.name + '　' + alt.price + '</span>' +
-      '<span class="akg-quiz__opt-sub">' + altHint + ' → この席を見る</span></button></div>';
-    html += '<p class="akg-quiz__note">※おすすめは目安です。席の詳しい説明は、このページ下の「観覧席」をご覧ください。</p>';
-    html += '<p class="akg-quiz__foot"><button type="button" class="akg-quiz__again" data-act="reset">もう一度診断する</button></p>';
-    html += '</div>';
-    panel.innerHTML = html;
-    var fig = panel.querySelector('[data-akg="fig"]');
-    if (fig) { fig.appendChild(makeImg(s)); }
-    setProgress('診断結果', 100);
-    if (noteEl) { noteEl.hidden = true; }
-    state.step = 'result';
-    state.source = source;
-    focusEl(panel.querySelector('#akg-quiz-result-title'));
-    var sendKey = [seatKey, state.with, state.priority, state.area || 'na', source].join('|');
-    if (sendKey !== state.lastSent) {
-      state.lastSent = sendKey;
-      track('seat_quiz_result', { seat_type: seatKey, quiz_with: state.with, quiz_priority: state.priority, quiz_area: state.area || 'na', quiz_source: source });
-    }
-  }
-
-  function showPrimary() {
-    var r = RULES[ruleKey()];
-    if (!r) { renderQuestion('with'); return; }
-    renderResult(r.seat, r.alt, r.why, r.altHint, 'primary');
-  }
-
-  function next() {
-    if (!state.with) { renderQuestion('with'); return; }
-    if (!state.priority) { renderQuestion('priority'); return; }
-    if (state.priority === 'price' && !state.area) { renderQuestion('area'); return; }
-    showPrimary();
-  }
-
-  function closestAttr(el, attr) {
-    while (el && el !== root) {
-      if (el.getAttribute && el.getAttribute(attr) !== null) { return el; }
-      el = el.parentNode;
-    }
-    return null;
-  }
-
-  root.addEventListener('click', function (e) {
-    var cta = closestAttr(e.target, 'data-akg-cta');
-    if (cta) {
-      track('seat_quiz_cta', { seat_type: cta.getAttribute('data-akg-cta'), quiz_source: state.source || 'primary', transport_type: 'beacon' });
-      return; // plain link: let the browser open it
-    }
-    var btn = closestAttr(e.target, 'data-q') || closestAttr(e.target, 'data-act');
-    if (!btn) { return; }
-    var q = btn.getAttribute('data-q');
-    var act = btn.getAttribute('data-act');
-    if (q) {
-      state[q] = btn.getAttribute('data-v');
-      if (q === 'with') { state.priority = null; state.area = null; }
-      if (q === 'priority') { state.area = null; }
-      if (!state.started) { state.started = true; track('seat_quiz_start', {}); }
-      next();
-    } else if (act === 'back') {
-      if (state.step === 'area') { state.area = null; state.priority = null; renderQuestion('priority'); }
-      else if (state.step === 'priority') { state.priority = null; state.with = null; renderQuestion('with'); }
-    } else if (act === 'alt') {
-      var seatKey = btn.getAttribute('data-seat');
-      var r = RULES[ruleKey()];
-      if (!r || !SEATS[seatKey]) { return; }
-      if (seatKey === r.seat) { showPrimary(); }
-      else { renderResult(seatKey, r.seat, SEATS[seatKey].why, '最初におすすめした席に戻る', 'second'); }
-    } else if (act === 'reset') {
-      state.with = null; state.priority = null; state.area = null; state.lastSent = '';
-      track('seat_quiz_restart', {});
-      renderQuestion('with');
-    }
-  });
-
-  // Self-check: run AKG_QUIZ.check() in the browser console after editing RULES. Expect {rules:20, missing:[], bad:[]}.
-  window.AKG_QUIZ = { seats: SEATS, rules: RULES, check: function () {
-    var bad = [], missing = [], keys = Object.keys(RULES), i, j, k, key;
-    var W = ['family', 'friends', 'couple', 'solo'], P = ['relax', 'focus', 'price', 'special'], A = ['yes', 'no'];
-    for (i = 0; i < W.length; i++) {
-      for (j = 0; j < P.length; j++) {
-        if (P[j] === 'price') {
-          for (k = 0; k < A.length; k++) { key = W[i] + '|price|' + A[k]; if (!RULES[key]) { missing.push(key); } }
-        } else {
-          key = W[i] + '|' + P[j]; if (!RULES[key]) { missing.push(key); }
-        }
-      }
-    }
-    for (i = 0; i < keys.length; i++) {
-      var r = RULES[keys[i]];
-      if (!SEATS[r.seat] || !SEATS[r.alt] || r.seat === r.alt || !r.why || !r.altHint) { bad.push(keys[i]); }
-    }
-    return { rules: keys.length, missing: missing, bad: bad };
-  } };
-
-  renderQuestion('with');
-})();
-</script>
+<script src="https://akigawa-hanabi.pages.dev/wp-snippets/seat-quiz.js?v=20260906a" defer></script>
 <!-- /wp:html -->

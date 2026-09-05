@@ -13,6 +13,10 @@
   line-height: 1.8;
 }
 
+/* 本文の文字が小さい端末でも14px以上にする(見出しは変えない) */
+.akg-buy__lead,
+.akg-buy__grid { font-size: max(14px, 1em); }
+
 /* カード一覧: スマホ1列(3列化は末尾のメディアクエリ) */
 .akg-buy__grid {
   display: grid;
@@ -34,7 +38,6 @@
   box-shadow: var(--swl-box_shadow, 0 2px 4px rgba(0, 0, 0, .05), 0 4px 4px -4px rgba(0, 0, 0, .1));
   transition: border-color .2s, box-shadow .2s;
 }
-.akg-buy .akg-buy__card:hover,
 .akg-buy .akg-buy__card:active {
   border-color: var(--color_main, #000000);
   box-shadow: 0 4px 12px rgba(0, 0, 0, .12);
@@ -110,14 +113,20 @@
   color: var(--color_main, #000000);
   transition: background-color .2s, color .2s;
 }
-.akg-buy .akg-buy__card:hover .akg-buy__cta,
 .akg-buy .akg-buy__card:active .akg-buy__cta {
   background: var(--color_main, #000000);
   color: #ffffff;
 }
-.akg-buy__cta::after {
-  content: "\203A";
-  margin-left: .4em;
+/* hover styles only on devices that really hover (iOS Safari keeps :hover after a tap) */
+@media (hover: hover) {
+  .akg-buy .akg-buy__card:hover {
+    border-color: var(--color_main, #000000);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .12);
+  }
+  .akg-buy .akg-buy__card:hover .akg-buy__cta {
+    background: var(--color_main, #000000);
+    color: #ffffff;
+  }
 }
 
 /* ===== 768px以上: 3列レイアウト(基本ルールより後に書いて上書きする) ===== */
@@ -150,7 +159,7 @@
       <span class="akg-buy__name">一般販売</span>
       <span class="akg-buy__desc">観覧席チケットと駐車券を、各販売サイトから購入できます。</span>
       <span class="akg-buy__sub">販売サイト：チケットぴあ／アソビュー／KKday／楽天トラベル／JRE MALL</span>
-      <span class="akg-buy__cta">販売サイト一覧へ</span>
+      <span class="akg-buy__cta">販売サイト一覧へ<span aria-hidden="true"> ›</span></span>
     </a>
 
     <a class="akg-buy__card" href="https://www.satofull.jp/products/list.php?partner=135200057|%E3%81%BE%E3%81%A1%E3%81%A5%E3%81%8F%E3%82%8A%E3%82%B3%E3%83%B3%E3%82%BD%E3%83%BC%E3%82%B7%E3%82%A2%E3%83%A0&amp;p=1" target="_blank" rel="noopener">
@@ -158,15 +167,15 @@
       <span class="akg-buy__name">ふるさと納税</span>
       <span class="akg-buy__desc">ふるさと納税でご寄付いただいた方に、返礼品として観覧チケットをご用意しています。返礼品の内容は「さとふる」のページでご確認ください。</span>
       <span class="akg-buy__sub">さとふる（外部サイト・別のタブで開きます）</span>
-      <span class="akg-buy__cta">さとふるで見る</span>
+      <span class="akg-buy__cta">さとふるで見る<span aria-hidden="true"> ›</span></span>
     </a>
 
     <a class="akg-buy__card" href="https://machizukuri-con.or.jp/donation/">
       <span class="akg-buy__who"><span class="akg-buy__num">3</span><span>花火大会そのものを応援したい</span></span>
       <span class="akg-buy__name">寄付・協賛</span>
-      <span class="akg-buy__desc">寄付（1万円から）・中口協賛（3万円から）・大口協賛（10万円以上）の3つのプランがあります。詳しくは寄付・協賛ページをご覧ください。</span>
+      <span class="akg-buy__desc">寄付（1万円から）・中口協賛（3万円から）・大口協賛（10万円以上）の3つのプランがあります。プランごとの内容や特典は、寄付・協賛ページの依頼書でご確認ください。</span>
       <span class="akg-buy__sub">依頼書（PDF）とお申し込みフォームは、寄付・協賛ページにあります。</span>
-      <span class="akg-buy__cta">寄付・協賛ページへ</span>
+      <span class="akg-buy__cta">寄付・協賛ページへ<span aria-hidden="true"> ›</span></span>
     </a>
 
   </div>
