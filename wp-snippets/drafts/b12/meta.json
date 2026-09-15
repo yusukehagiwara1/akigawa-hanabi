@@ -1,0 +1,19 @@
+{
+  "title": "第8回大会の音楽紹介！今年は「HANABI」「Jupiter」も",
+  "slug": "music-8th",
+  "excerpt": "第8回秋川流域花火大会（2026年11月14日・土）で花火とともに流れる予定の曲をパートごとに紹介。映画『ズートピア2』の「Zoo」で始まり、Mr.Children「HANABI」、平原綾香「Jupiter」など。9月13日時点の予定です。",
+  "categories_note": "お知らせ(news)",
+  "links_from": [
+    "/",
+    "/ticket/",
+    "/event/"
+  ],
+  "links_from_after_publish": [
+    "③ 楽しみ方ページ（公開後。section.html を「感動する｜音楽と花火」節に差し込み、記事へのリンク先をこの記事のURLに直す）",
+    "⑪ 花火師ページ（公開後。「今年（第8回）の花火」の節から）"
+  ],
+  "publish_target": "2026-09-19",
+  "section_target": "S/out/b3/content.html の「感動する｜音楽と花火」節: 段落「花火は18時から19時頃まで…第8回の楽曲は、決まり次第お知らせします。」を section.html の内容で置き換え、写真の下の黄色い枠「【委員会確認】ここに第8回の花火演出の見どころ…」は削除する。",
+  "section_link_note": "section.html の記事リンクは、記事公開前のため お知らせ一覧(/categry/news/) を指している。記事公開後に /news/<記事ID>/ へ差し替える。",
+  "title_note": "曲目が変更になった場合は、タイトルの曲名（HANABI・Jupiter）も見直す。"
+}
