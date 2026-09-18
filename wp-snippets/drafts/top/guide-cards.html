@@ -9,15 +9,15 @@
 
 <!-- wp:html -->
 <style>
-.akg-guide__grid{display:grid;grid-template-columns:1fr;gap:16px;margin:0 0 .5em;padding:0;list-style:none}
+.akg-guide__grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:0 0 .5em;padding:0;list-style:none}
 .akg-guide__grid li{margin:0}
 .akg-guide__card{display:block;height:100%;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.08);color:#222;text-decoration:none;transition:transform .15s}
 .akg-guide__card:hover{transform:translateY(-2px);text-decoration:none;color:#222}
 .akg-guide__card img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover}
-.akg-guide__body{display:block;padding:1.3em 1.4em 1.5em}
-.akg-guide__ttl{display:block;margin:0 0 .55em;font-size:1.1em;font-weight:700;line-height:1.45;letter-spacing:.02em}
-.akg-guide__desc{display:block;margin:0;font-size:.88em;line-height:1.8;color:#555}
-@media (min-width:480px){.akg-guide__grid{grid-template-columns:repeat(2,minmax(0,1fr))}.akg-guide__body{padding:1.2em 1.25em 1.4em}}
+.akg-guide__body{display:block;padding:.9em .9em 1.1em}
+.akg-guide__ttl{display:block;margin:0 0 .4em;font-size:.98em;font-weight:700;line-height:1.4;letter-spacing:.01em}
+.akg-guide__desc{display:block;margin:0;font-size:.8em;line-height:1.65;color:#555}
+@media (min-width:600px){.akg-guide__grid{gap:16px}.akg-guide__body{padding:1.2em 1.25em 1.4em}.akg-guide__ttl{font-size:1.05em}.akg-guide__desc{font-size:.88em;line-height:1.8}}
 @media (min-width:900px){.akg-guide__grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}.akg-guide__body{padding:1.4em 1.5em 1.6em}.akg-guide__ttl{font-size:1.15em}.akg-guide__desc{font-size:.92em}}
 </style>
 <ul class="akg-guide__grid">
