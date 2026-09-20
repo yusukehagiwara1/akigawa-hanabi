@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://machizukuri-con.or.jp/sitemap.xml

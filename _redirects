@@ -1,8 +1,8 @@
 # 静的サイト(akigawa-hanabi.pages.dev)は運用終了。
 # 全ページを本番 WordPress サイト(machizukuri-con.or.jp)へ 301 リダイレクトする。
-# 資産(assets/, sw.js 等)はリダイレクトせずそのまま配信し、旧 Service Worker の
-# 自己破棄(sw.js 更新)が機能するようにしている。
+# sw.js(自己破棄版)と wp-snippets/ はリダイレクトせずそのまま配信する。
 
+# 旧静的サイトの本体は git のブランチ archive/static-site・タグ static-site-final に退避済み(2026-09-20)。
 / https://machizukuri-con.or.jp/ 301
 /index.html https://machizukuri-con.or.jp/ 301
 /2024-hanabi https://machizukuri-con.or.jp/2024-hanabi/ 301
