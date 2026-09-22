@@ -19,9 +19,10 @@ ul.akg-sf__grid li::before{content:none}
 .akg-sf__fig{display:block;padding:0 .65em}
 .akg-sf__fig img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}
 .akg-sf__body{display:flex;flex-direction:column;gap:.45em;flex:1 1 auto;padding:.7em .65em .85em}
-.akg-sf__name{display:inline-block;align-self:flex-start;padding:.12em .65em;background:#888888;color:#ffffff;font-size:.82em;font-weight:700;letter-spacing:.03em;line-height:1.45;word-break:keep-all}
+.akg-sf__name{display:inline-block;align-self:flex-start;padding:.12em .65em;background:#888888;color:#ffffff;font-size:.82em;font-weight:700;letter-spacing:.03em;line-height:1.45;white-space:nowrap}
+.akg-sf--rec .akg-sf__name{font-size:.7em;letter-spacing:0}
 .akg-sf .akg-sf__for{font-size:.78em;line-height:1.6}
-.akg-sf__spec{display:grid;grid-template-columns:minmax(0,1fr);padding-top:.5em;border-top:1px solid #efefef;font-size:.74em;line-height:1.55}
+.akg-sf__spec{display:grid;grid-template-columns:minmax(0,1fr);padding-top:.5em;border-top:1px solid #efefef;font-size:.74em;line-height:1.55;word-break:keep-all;overflow-wrap:anywhere}
 .akg-sf__spec dt{color:#666666}
 .akg-sf__spec dd{margin-bottom:.35em}
 .akg-sf__spec dd:last-child{margin-bottom:0}
@@ -55,6 +56,7 @@ ul.akg-sf__grid,.post_content ul.akg-sf__grid{gap:14px}
 .akg-sf__fig{padding:0 .9em}
 .akg-sf__body{gap:.55em;padding:.85em .9em 1em}
 .akg-sf__name{font-size:.95em;padding:.15em .8em}
+.akg-sf--rec .akg-sf__name{font-size:.8em}
 .akg-sf .akg-sf__for{font-size:.9em}
 .akg-sf__spec{font-size:.85em;line-height:1.6}
 .akg-sf .akg-sf__price{font-size:.82em}
@@ -75,7 +77,7 @@ ul.akg-sf__grid,.post_content ul.akg-sf__grid{grid-template-columns:repeat(5,min
 <div class="akg-sf__head"><span class="akg-sf__no">01</span><span class="akg-sf__mood">ゆったり楽しみたい</span></div>
 <figure class="akg-sf__fig"><img src="https://machizukuri-con.or.jp/wp-content/uploads/リクライニングシート_画像1.jpg" alt="リクライニングシートに座って花火を見る様子" loading="lazy"></figure>
 <div class="akg-sf__body">
-<span class="akg-sf__name">リクライニング<wbr>ペアシート</span>
+<span class="akg-sf__name">リクライニングペアシート</span>
 <p class="akg-sf__for">2人で快適に楽しみたい方に</p>
 <dl class="akg-sf__spec"><dt>定員</dt><dd>2名まで</dd><dt>席</dt><dd>リクライニングシート（2席）</dd></dl>
 <p class="akg-sf__price"><b>30,000<span>円</span></b>2席セット・アソビュー限定</p>
@@ -87,7 +89,7 @@ ul.akg-sf__grid,.post_content ul.akg-sf__grid{grid-template-columns:repeat(5,min
 <div class="akg-sf__body">
 <span class="akg-sf__name">SS席</span>
 <p class="akg-sf__for">みんなでテーブルを囲んで楽しみたい方に</p>
-<dl class="akg-sf__spec"><dt>定員</dt><dd>4名まで</dd><dt>席</dt><dd>カフェチェア・カフェテーブル（4席）</dd></dl>
+<dl class="akg-sf__spec"><dt>定員</dt><dd>4名まで</dd><dt>席</dt><dd>カフェテーブル・椅子（4席）</dd></dl>
 <p class="akg-sf__price"><b>35,000<span>円</span></b>1テーブル（4席）</p>
 <span class="akg-sf__more">くわしく見る<span aria-hidden="true">›</span></span>
 </div></a></li>
@@ -264,7 +266,7 @@ ul.akg-buylist__list li::before{content:none}
 <!-- wp:html -->
 <div class="akg-buylist">
 <ul class="akg-buylist__list">
-<li><a href="https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products?salesProductTagCode=v4h0rdje5x" target="_blank" rel="noopener">アソビューで購入する</a></li>
+<li><a href="https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products/15a2d40e-de69-49cb-aa22-3450dd5e17b3" target="_blank" rel="noopener">アソビューで購入する</a></li>
 <li><a href="https://t.pia.jp/pia/ticketInformation.do?eventCd=2625008&amp;rlsCd=001" target="_blank" rel="noopener">チケットぴあで購入する</a></li>
 <li><a href="https://www.kkday.com/ja/product/527261?cid=22567&amp;ud1=officialsite#optionItem2047519" target="_blank" rel="noopener">KKdayで購入する</a></li>
 <li><a href="https://experiences.travel.rakuten.co.jp/experiences/62751" target="_blank" rel="noopener">楽天トラベルで購入する</a></li>
@@ -331,7 +333,7 @@ ul.akg-buylist__list li::before{content:none}
 <!-- wp:html -->
 <div class="akg-buylist">
 <ul class="akg-buylist__list">
-<li><a href="https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products?salesProductTagCode=v4h0rdje5x" target="_blank" rel="noopener">アソビューで購入する</a></li>
+<li><a href="https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products/15a2d40e-de69-49cb-aa22-3450dd5e17b3" target="_blank" rel="noopener">アソビューで購入する</a></li>
 <li><a href="https://t.pia.jp/pia/ticketInformation.do?eventCd=2625008&amp;rlsCd=001" target="_blank" rel="noopener">チケットぴあで購入する</a></li>
 <li><a href="https://www.kkday.com/ja/product/527261?cid=22567&amp;ud1=officialsite#optionItem2047520" target="_blank" rel="noopener">KKdayで購入する</a></li>
 <li><a href="https://experiences.travel.rakuten.co.jp/experiences/62751" target="_blank" rel="noopener">楽天トラベルで購入する</a></li>
@@ -428,7 +430,7 @@ ul.akg-buylist__list li::before{content:none}
 <!-- wp:html -->
 <div class="akg-buylist">
 <ul class="akg-buylist__list">
-<li><a href="https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products?salesProductTagCode=v4h0rdje5x" target="_blank" rel="noopener">アソビューで購入する</a></li>
+<li><a href="https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products/eeb73892-7a4f-4cc6-aeb9-20d7980d5298" target="_blank" rel="noopener">アソビューで購入する</a></li>
 <li><a href="https://t.pia.jp/pia/ticketInformation.do?eventCd=2625008&amp;rlsCd=001" target="_blank" rel="noopener">チケットぴあで購入する</a></li>
 <li><a href="https://www.kkday.com/ja/product/527261?cid=22567&amp;ud1=officialsite#optionItem2047543" target="_blank" rel="noopener">KKdayで購入する</a></li>
 <li><a href="https://experiences.travel.rakuten.co.jp/experiences/62751" target="_blank" rel="noopener">楽天トラベルで購入する</a></li>
@@ -460,7 +462,7 @@ ul.akg-buylist__list li::before{content:none}
 <!-- wp:html -->
 <div class="akg-buylist">
 <ul class="akg-buylist__list">
-<li><a href="https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products?salesProductTagCode=v4h0rdje5x" target="_blank" rel="noopener">アソビューで購入する</a></li>
+<li><a href="https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products/bcd564e0-361e-4a67-bdec-0a608cc54213" target="_blank" rel="noopener">アソビューで購入する</a></li>
 <li><a href="https://t.pia.jp/pia/ticketInformation.do?eventCd=2625008&amp;rlsCd=001" target="_blank" rel="noopener">チケットぴあで購入する</a></li>
 <li><a href="https://experiences.travel.rakuten.co.jp/experiences/62751" target="_blank" rel="noopener">楽天トラベルで購入する</a></li>
 <li><a href="https://event.jreast.co.jp/activity/detail/a180/a180-10" target="_blank" rel="noopener">JRE MALLで購入する</a></li>
@@ -643,7 +645,7 @@ ul.akg-buylist__list li::before{content:none}
 
 <!-- wp:column -->
 <div class="wp-block-column"><!-- wp:image {"lightbox":{"enabled":false},"id":4223,"sizeSlug":"full","linkDestination":"custom"} -->
-<figure class="wp-block-image size-full"><a href="https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products?salesProductTagCode=v4h0rdje5x"><img src="https://machizukuri-con.or.jp/wp-content/uploads/アソビュー_ロゴ_正方形.jpg" alt="アソビューで購入する" class="wp-image-4223"/></a></figure>
+<figure class="wp-block-image size-full"><a href="https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products/15a2d40e-de69-49cb-aa22-3450dd5e17b3"><img src="https://machizukuri-con.or.jp/wp-content/uploads/アソビュー_ロゴ_正方形.jpg" alt="アソビューで購入する" class="wp-image-4223"/></a></figure>
 <!-- /wp:image --></div>
 <!-- /wp:column -->
 
