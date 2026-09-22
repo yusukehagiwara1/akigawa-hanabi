@@ -38,6 +38,11 @@ ul.akg-sf__grid li::before{content:none}
 .akg-sf--a .akg-sf__no,.akg-sf--a .akg-sf__name{background:#118585}
 .akg-sf--free .akg-sf__card{border-top-color:#4f8c35}
 .akg-sf--free .akg-sf__no,.akg-sf--free .akg-sf__name{background:#4f8c35}
+.akg-sf a.akg-sf__card{color:#222222;text-decoration:none;transition:transform .15s,border-color .15s}
+.akg-sf a.akg-sf__card:hover,.akg-sf a.akg-sf__card:focus-visible{color:#222222;text-decoration:none;transform:translateY(-2px);border-color:#bbbbbb}
+.akg-sf a.akg-sf__card:active{transform:none}
+.akg-sf__more{display:flex;align-items:center;justify-content:flex-end;gap:.25em;margin-top:.5em;font-size:.72em;font-weight:700;line-height:1.5}
+#seat-rec,#seat-ss,#seat-s,#seat-a,#seat-free{scroll-margin-top:110px}
 .akg-sf a.akg-sf__cta{display:flex;align-items:center;justify-content:center;gap:.4em;min-height:56px;padding:.7em 1.2em;border:1px solid #222222;background:#222222;color:#ffffff;font-weight:700;text-align:center;text-decoration:none}
 .akg-sf a.akg-sf__cta:hover,.akg-sf a.akg-sf__cta:active{color:#ffffff;text-decoration:none;opacity:.85}
 .akg-sf .akg-sf__note{margin:.9em 0 0;font-size:.8em;line-height:1.75;color:#555555}
@@ -53,6 +58,7 @@ ul.akg-sf__grid,.post_content ul.akg-sf__grid{gap:14px}
 .akg-sf .akg-sf__for{font-size:.9em}
 .akg-sf__spec{font-size:.85em;line-height:1.6}
 .akg-sf .akg-sf__price{font-size:.82em}
+.akg-sf__more{font-size:.82em}
 .akg-sf__price b{font-size:1.5em}
 }
 @media (min-width:960px){
@@ -65,7 +71,7 @@ ul.akg-sf__grid,.post_content ul.akg-sf__grid{grid-template-columns:repeat(5,min
 <div class="akg-sf">
 <p class="akg-sf__lead">あなたはどんなふうに花火を楽しみたいですか。5つの席からお選びいただけます。</p>
 <ul class="akg-sf__grid">
-<li class="akg-sf--rec"><div class="akg-sf__card">
+<li class="akg-sf--rec"><a class="akg-sf__card" href="https://machizukuri-con.or.jp/ticket/#seat-rec">
 <div class="akg-sf__head"><span class="akg-sf__no">01</span><span class="akg-sf__mood">ゆったり楽しみたい</span></div>
 <figure class="akg-sf__fig"><img src="https://machizukuri-con.or.jp/wp-content/uploads/リクライニングシート_画像1.jpg" alt="リクライニングシートに座って花火を見る様子" loading="lazy"></figure>
 <div class="akg-sf__body">
@@ -73,8 +79,9 @@ ul.akg-sf__grid,.post_content ul.akg-sf__grid{grid-template-columns:repeat(5,min
 <p class="akg-sf__for">2人で快適に楽しみたい方に</p>
 <dl class="akg-sf__spec"><dt>定員</dt><dd>2名まで</dd><dt>席</dt><dd>リクライニングシート（2席）</dd></dl>
 <p class="akg-sf__price"><b>30,000<span>円</span></b>2席セット・アソビュー限定</p>
-</div></div></li>
-<li class="akg-sf--ss"><div class="akg-sf__card">
+<span class="akg-sf__more">くわしく見る<span aria-hidden="true">›</span></span>
+</div></a></li>
+<li class="akg-sf--ss"><a class="akg-sf__card" href="https://machizukuri-con.or.jp/ticket/#seat-ss">
 <div class="akg-sf__head"><span class="akg-sf__no">02</span><span class="akg-sf__mood">みんなで楽しみたい</span></div>
 <figure class="akg-sf__fig"><img src="https://machizukuri-con.or.jp/wp-content/uploads/2026_SS席.jpg" alt="カフェテーブルとカフェチェアが並ぶSS席" loading="lazy"></figure>
 <div class="akg-sf__body">
@@ -82,8 +89,9 @@ ul.akg-sf__grid,.post_content ul.akg-sf__grid{grid-template-columns:repeat(5,min
 <p class="akg-sf__for">みんなでテーブルを囲んで楽しみたい方に</p>
 <dl class="akg-sf__spec"><dt>定員</dt><dd>4名まで</dd><dt>席</dt><dd>カフェチェア・カフェテーブル（4席）</dd></dl>
 <p class="akg-sf__price"><b>35,000<span>円</span></b>1テーブル（4席）</p>
-</div></div></li>
-<li class="akg-sf--s"><div class="akg-sf__card">
+<span class="akg-sf__more">くわしく見る<span aria-hidden="true">›</span></span>
+</div></a></li>
+<li class="akg-sf--s"><a class="akg-sf__card" href="https://machizukuri-con.or.jp/ticket/#seat-s">
 <div class="akg-sf__head"><span class="akg-sf__no">03</span><span class="akg-sf__mood">2人で楽しみたい</span></div>
 <figure class="akg-sf__fig"><img src="https://machizukuri-con.or.jp/wp-content/uploads/2026_S席.jpg" alt="テーブルと椅子が用意されたS席" loading="lazy"></figure>
 <div class="akg-sf__body">
@@ -91,8 +99,9 @@ ul.akg-sf__grid,.post_content ul.akg-sf__grid{grid-template-columns:repeat(5,min
 <p class="akg-sf__for">テーブル付きの席で楽しみたい方に</p>
 <dl class="akg-sf__spec"><dt>定員</dt><dd>2名まで</dd><dt>席</dt><dd>テーブル・椅子（2席）</dd></dl>
 <p class="akg-sf__price"><b>14,000<span>円</span></b>1テーブル（2席）</p>
-</div></div></li>
-<li class="akg-sf--a"><div class="akg-sf__card">
+<span class="akg-sf__more">くわしく見る<span aria-hidden="true">›</span></span>
+</div></a></li>
+<li class="akg-sf--a"><a class="akg-sf__card" href="https://machizukuri-con.or.jp/ticket/#seat-a">
 <div class="akg-sf__head"><span class="akg-sf__no">04</span><span class="akg-sf__mood">気軽に楽しみたい</span></div>
 <figure class="akg-sf__fig"><img src="https://machizukuri-con.or.jp/wp-content/uploads/2026_A席-1024x768.jpg" alt="椅子が並ぶA席" loading="lazy"></figure>
 <div class="akg-sf__body">
@@ -100,8 +109,9 @@ ul.akg-sf__grid,.post_content ul.akg-sf__grid{grid-template-columns:repeat(5,min
 <p class="akg-sf__for">椅子に座って気軽に楽しみたい方に</p>
 <dl class="akg-sf__spec"><dt>定員</dt><dd>1名から</dd><dt>席</dt><dd>椅子のみ（テーブルなし）</dd></dl>
 <p class="akg-sf__price"><b>5,000<span>円</span></b>大人1名（13歳以上）／子ども 2,000円（12歳以下）</p>
-</div></div></li>
-<li class="akg-sf--free"><div class="akg-sf__card">
+<span class="akg-sf__more">くわしく見る<span aria-hidden="true">›</span></span>
+</div></a></li>
+<li class="akg-sf--free"><a class="akg-sf__card" href="https://machizukuri-con.or.jp/ticket/#seat-free">
 <div class="akg-sf__head"><span class="akg-sf__no">05</span><span class="akg-sf__mood">地元で楽しみたい</span></div>
 <figure class="akg-sf__fig"><img src="https://machizukuri-con.or.jp/wp-content/uploads/フリー席.jpg" alt="シートを広げて花火を待つフリーエリアの様子" loading="lazy"></figure>
 <div class="akg-sf__body">
@@ -109,7 +119,8 @@ ul.akg-sf__grid,.post_content ul.akg-sf__grid{grid-template-columns:repeat(5,min
 <p class="akg-sf__for">西多摩にお住まいの方に。限定1,000名</p>
 <dl class="akg-sf__spec"><dt>定員</dt><dd>席の指定なし（シートの持ち込み可）</dd><dt>対象</dt><dd>西多摩の8市町村にお住まいの方</dd></dl>
 <p class="akg-sf__price"><b>2,000<span>円</span></b>おとな1名（13歳以上）／こども 1,000円（3〜12歳）／幼児無料（2歳以下）</p>
-</div></div></li>
+<span class="akg-sf__more">くわしく見る<span aria-hidden="true">›</span></span>
+</div></a></li>
 </ul>
 <a class="akg-sf__cta" href="https://machizukuri-con.or.jp/ticket/#seat">席の詳細・チケットの購入はこちら<span aria-hidden="true">›</span></a>
 <p class="akg-sf__note">価格はすべて税込みです。リクライニングペアシートはアソビューのみでの販売です。そのほかの席は、チケットぴあ・アソビュー・KKday・楽天トラベル・JRE MALLでご購入いただけます（フリーエリアはアソビューのみ）。フリーエリアの対象は、青梅市・福生市・羽村市・あきる野市・瑞穂町・日の出町・檜原村・奥多摩町にお住まいの方です。受付で、お住まいを確認できる書類（身分証など）の提示をお願いする場合があります。</p>
@@ -126,8 +137,8 @@ ul.akg-sf__grid,.post_content ul.akg-sf__grid{grid-template-columns:repeat(5,min
 <p>会場は東京サマーランド第2駐車場です。花火は図の上の方向に打ち上がります。観覧席は図の中央で、打ち上げ場所に近い側からA席・S席・SS席の順に並びます。リクライニングシート席はSS席の右隣、フリーエリアは会場の左側です。</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:image {"lightbox":{"enabled":true},"id":4694,"sizeSlug":"full","linkDestination":"none","className":"u-mb-ctrl u-mb-10"} -->
-<figure class="wp-block-image size-full u-mb-ctrl u-mb-10"><img src="https://machizukuri-con.or.jp/wp-content/uploads/kaijo-map-2026.png" alt="会場図。打ち上げ方向は上で、打ち上げ場所に近い側からA席・S席・SS席が並び、SS席の右隣がリクライニングシート席です。左側にフリーエリアが2か所、右側にBBQ席とVIP席、右下に受付があります。" class="wp-image-4694"/></figure>
+<!-- wp:image {"lightbox":{"enabled":true},"id":4694,"sizeSlug":"full","linkDestination":"none","align":"center","className":"u-mb-ctrl u-mb-10"} -->
+<figure class="wp-block-image aligncenter size-full u-mb-ctrl u-mb-10"><img src="https://machizukuri-con.or.jp/wp-content/uploads/kaijo-map-2026.png" alt="会場図。打ち上げ方向は上で、打ち上げ場所に近い側からA席・S席・SS席が並び、SS席の右隣がリクライニングシート席です。左側にフリーエリアが2か所、右側にBBQ席とVIP席、右下に受付があります。" class="wp-image-4694"/></figure>
 <!-- /wp:image -->
 
 <!-- wp:html -->
@@ -166,8 +177,8 @@ ul.akg-map__list,.post_content ul.akg-map__list{grid-template-columns:repeat(2,m
 <!-- /wp:heading -->
 
 <!-- wp:loos/step {"stepLabel":"SEAT"} -->
-<div class="swell-block-step" data-num-style="circle"><!-- wp:loos/step-item {"stepLabel":"SEAT","isHideNum":true} -->
-<div class="swell-block-step__item"><div class="swell-block-step__number u-bg-main" data-num=""><span class="__label">SEAT</span></div><div class="swell-block-step__title u-fz-l">リクライニングペアシート席</div><div class="swell-block-step__body"><!-- wp:columns -->
+<div class="swell-block-step" data-num-style="circle"><!-- wp:loos/step-item {"anchor":"seat-rec","stepLabel":"SEAT","isHideNum":true} -->
+<div class="swell-block-step__item" id="seat-rec"><div class="swell-block-step__number u-bg-main" data-num=""><span class="__label">SEAT</span></div><div class="swell-block-step__title u-fz-l">リクライニングペアシート席</div><div class="swell-block-step__body"><!-- wp:columns -->
 <div class="wp-block-columns"><!-- wp:column -->
 <div class="wp-block-column"><!-- wp:columns -->
 <div class="wp-block-columns"><!-- wp:column -->
@@ -198,8 +209,8 @@ ul.akg-map__list,.post_content ul.akg-map__list{grid-template-columns:repeat(2,m
 <!-- /wp:columns --></div></div>
 <!-- /wp:loos/step-item -->
 
-<!-- wp:loos/step-item {"stepLabel":"SEAT","isHideNum":true} -->
-<div class="swell-block-step__item"><div class="swell-block-step__number u-bg-main" data-num=""><span class="__label">SEAT</span></div><div class="swell-block-step__title u-fz-l">SS席</div><div class="swell-block-step__body"><!-- wp:columns -->
+<!-- wp:loos/step-item {"anchor":"seat-ss","stepLabel":"SEAT","isHideNum":true} -->
+<div class="swell-block-step__item" id="seat-ss"><div class="swell-block-step__number u-bg-main" data-num=""><span class="__label">SEAT</span></div><div class="swell-block-step__title u-fz-l">SS席</div><div class="swell-block-step__body"><!-- wp:columns -->
 <div class="wp-block-columns"><!-- wp:column -->
 <div class="wp-block-column"><!-- wp:columns -->
 <div class="wp-block-columns"><!-- wp:column -->
@@ -230,8 +241,8 @@ ul.akg-map__list,.post_content ul.akg-map__list{grid-template-columns:repeat(2,m
 <!-- /wp:columns --></div></div>
 <!-- /wp:loos/step-item -->
 
-<!-- wp:loos/step-item {"stepLabel":"SEAT","isHideNum":true} -->
-<div class="swell-block-step__item"><div class="swell-block-step__number u-bg-main" data-num=""><span class="__label">SEAT</span></div><div class="swell-block-step__title u-fz-l">S席</div><div class="swell-block-step__body"><!-- wp:columns -->
+<!-- wp:loos/step-item {"anchor":"seat-s","stepLabel":"SEAT","isHideNum":true} -->
+<div class="swell-block-step__item" id="seat-s"><div class="swell-block-step__number u-bg-main" data-num=""><span class="__label">SEAT</span></div><div class="swell-block-step__title u-fz-l">S席</div><div class="swell-block-step__body"><!-- wp:columns -->
 <div class="wp-block-columns"><!-- wp:column -->
 <div class="wp-block-column"><!-- wp:columns -->
 <div class="wp-block-columns"><!-- wp:column -->
@@ -262,8 +273,8 @@ ul.akg-map__list,.post_content ul.akg-map__list{grid-template-columns:repeat(2,m
 <!-- /wp:columns --></div></div>
 <!-- /wp:loos/step-item -->
 
-<!-- wp:loos/step-item {"stepLabel":"SEAT","isHideNum":true} -->
-<div class="swell-block-step__item"><div class="swell-block-step__number u-bg-main" data-num=""><span class="__label">SEAT</span></div><div class="swell-block-step__title u-fz-l">A席<br></div><div class="swell-block-step__body"><!-- wp:columns -->
+<!-- wp:loos/step-item {"anchor":"seat-a","stepLabel":"SEAT","isHideNum":true} -->
+<div class="swell-block-step__item" id="seat-a"><div class="swell-block-step__number u-bg-main" data-num=""><span class="__label">SEAT</span></div><div class="swell-block-step__title u-fz-l">A席<br></div><div class="swell-block-step__body"><!-- wp:columns -->
 <div class="wp-block-columns"><!-- wp:column -->
 <div class="wp-block-column"><!-- wp:image {"lightbox":{"enabled":true},"id":4279,"aspectRatio":"4/3","scale":"cover","sizeSlug":"large","linkDestination":"none"} -->
 <figure class="wp-block-image size-large"><img src="https://machizukuri-con.or.jp/wp-content/uploads/2026_A席-1024x768.jpg" alt="A席（椅子席）の写真" class="wp-image-4279" style="aspect-ratio:4/3;object-fit:cover"/></figure>
@@ -290,8 +301,8 @@ ul.akg-map__list,.post_content ul.akg-map__list{grid-template-columns:repeat(2,m
 <!-- /wp:columns --></div></div>
 <!-- /wp:loos/step-item -->
 
-<!-- wp:loos/step-item {"stepLabel":"SEAT","isHideNum":true} -->
-<div class="swell-block-step__item"><div class="swell-block-step__number u-bg-main" data-num=""><span class="__label">SEAT</span></div><div class="swell-block-step__title u-fz-l">フリーエリア</div><div class="swell-block-step__body"><!-- wp:columns -->
+<!-- wp:loos/step-item {"anchor":"seat-free","stepLabel":"SEAT","isHideNum":true} -->
+<div class="swell-block-step__item" id="seat-free"><div class="swell-block-step__number u-bg-main" data-num=""><span class="__label">SEAT</span></div><div class="swell-block-step__title u-fz-l">フリーエリア</div><div class="swell-block-step__body"><!-- wp:columns -->
 <div class="wp-block-columns"><!-- wp:column -->
 <div class="wp-block-column"><!-- wp:image {"lightbox":{"enabled":true},"id":4495,"aspectRatio":"4/3","scale":"cover","sizeSlug":"large","linkDestination":"none"} -->
 <figure class="wp-block-image size-large"><img src="https://machizukuri-con.or.jp/wp-content/uploads/フリーエリアチケット-1024x768.jpg" alt="西多摩在住者限定フリーエリアの案内画像" class="wp-image-4495" style="aspect-ratio:4/3;object-fit:cover"/></figure>
