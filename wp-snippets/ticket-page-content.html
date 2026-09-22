@@ -134,18 +134,20 @@ ul.akg-sf__grid,.post_content ul.akg-sf__grid{grid-template-columns:repeat(5,min
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>会場は東京サマーランド第2駐車場です。花火は図の上の方向に打ち上がります。観覧席は図の中央で、打ち上げ場所に近い側からA席・S席・SS席の順に並びます。リクライニングシート席はSS席の右隣、フリーエリアは会場の左側です。</p>
+<p>会場は東京サマーランド第2駐車場です。花火は図の上の方向に打ち上がります。観覧席は図の中央で、打ち上げ場所に近い側からA席・S席・SS席の順に並びます。リクライニングシート席はSS席の右隣、フリーエリアは会場の左側です。図の中の席をクリックすると、その席の詳しい案内に移動します。</p>
 <!-- /wp:paragraph -->
-
-<!-- wp:image {"lightbox":{"enabled":true},"id":4694,"sizeSlug":"full","linkDestination":"none","align":"center","className":"u-mb-ctrl u-mb-10"} -->
-<figure class="wp-block-image aligncenter size-full u-mb-ctrl u-mb-10"><img src="https://machizukuri-con.or.jp/wp-content/uploads/kaijo-map-2026.png" alt="会場図。打ち上げ方向は上で、打ち上げ場所に近い側からA席・S席・SS席が並び、SS席の右隣がリクライニングシート席です。左側にフリーエリアが2か所、右側にBBQ席とVIP席、右下に受付があります。" class="wp-image-4694"/></figure>
-<!-- /wp:image -->
 
 <!-- wp:html -->
 <style>
 .akg-map,.akg-map *,.akg-map *::before,.akg-map *::after{box-sizing:border-box}
 .akg-map{max-width:100%;margin:0 0 1.5em;line-height:1.7;overflow-wrap:break-word;word-wrap:break-word}
 .akg-map p,.akg-map ul,.akg-map li{margin:0;padding:0}
+.akg-map__fig{position:relative;display:block;max-width:1009px;margin:0 auto .6em}
+.akg-map__fig img{display:block;width:100%;height:auto}
+.akg-map a.akg-map__hit{position:absolute;display:block;border:2px solid transparent;background:transparent;text-decoration:none}
+.akg-map a.akg-map__hit:hover,.akg-map a.akg-map__hit:focus-visible{border-color:#111111;background:rgba(255,255,255,.3);text-decoration:none}
+.akg-map__hit span{position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;clip-path:inset(50%);overflow:hidden;white-space:nowrap}
+.akg-map__zoom{display:block;margin:0 0 1em;text-align:center;font-size:.85em}
 ul.akg-map__list,.post_content ul.akg-map__list{display:grid;grid-template-columns:minmax(0,1fr);gap:.4em 1.4em;margin:0 0 .9em;padding:.9em 1.1em;border:1px solid #e0e0e0;border-radius:0;background:#ffffff;list-style:none;font-size:.9em}
 ul.akg-map__list li,.post_content ul.akg-map__list li{display:flex;align-items:baseline;gap:.55em;margin:0;padding:0}
 ul.akg-map__list li::before{content:none}
@@ -156,12 +158,22 @@ ul.akg-map__list,.post_content ul.akg-map__list{grid-template-columns:repeat(2,m
 }
 </style>
 <div class="akg-map">
+<div class="akg-map__fig">
+<img src="https://machizukuri-con.or.jp/wp-content/uploads/kaijo-map-2026.png" alt="会場図。打ち上げ方向は上で、打ち上げ場所に近い側からA席・S席・SS席が並び、SS席の右隣がリクライニングシート席です。左側にフリーエリアが2か所、右側にBBQ席とVIP席、右下に受付があります。" width="1009" height="748">
+<a class="akg-map__hit" href="https://machizukuri-con.or.jp/ticket/#seat-a" style="left:34.89%;top:64.71%;width:45.89%;height:9.22%"><span>A席の詳しい案内へ</span></a>
+<a class="akg-map__hit" href="https://machizukuri-con.or.jp/ticket/#seat-s" style="left:34.89%;top:74.20%;width:45.89%;height:6.95%"><span>S席の詳しい案内へ</span></a>
+<a class="akg-map__hit" href="https://machizukuri-con.or.jp/ticket/#seat-ss" style="left:34.89%;top:81.42%;width:33.60%;height:7.62%"><span>SS席の詳しい案内へ</span></a>
+<a class="akg-map__hit" href="https://machizukuri-con.or.jp/ticket/#seat-rec" style="left:68.68%;top:81.42%;width:12.09%;height:7.62%"><span>リクライニングシート席の詳しい案内へ</span></a>
+<a class="akg-map__hit" href="https://machizukuri-con.or.jp/ticket/#seat-free" style="left:24.78%;top:51.34%;width:14.97%;height:9.22%"><span>フリーエリアの詳しい案内へ</span></a>
+<a class="akg-map__hit" href="https://machizukuri-con.or.jp/ticket/#seat-free" style="left:21.80%;top:64.71%;width:10.31%;height:13.50%"><span>フリーエリアの詳しい案内へ</span></a>
+</div>
+<p class="akg-map__zoom"><a href="https://machizukuri-con.or.jp/wp-content/uploads/kaijo-map-2026.png" target="_blank" rel="noopener">会場図を拡大して見る（別のタブで開きます）</a></p>
 <ul class="akg-map__list">
-<li><i style="background:#5ce1e6"></i>A席（3列のうち打ち上げ場所にいちばん近い列。椅子のみ）</li>
-<li><i style="background:#c1ff72"></i>S席（A席のうしろ。テーブルと椅子）</li>
-<li><i style="background:#ffbd59"></i>SS席（S席のうしろ。カフェテーブルとカフェチェア）</li>
-<li><i style="background:#ff5757"></i>リクライニングシート席（SS席の右隣）</li>
-<li><i style="background:#ff66c4"></i>フリーエリア（会場の左側に2か所。西多摩にお住まいの方限定）</li>
+<li><i style="background:#5ce1e6"></i><a href="https://machizukuri-con.or.jp/ticket/#seat-a">A席</a>（3列のうち打ち上げ場所にいちばん近い列。椅子のみ）</li>
+<li><i style="background:#c1ff72"></i><a href="https://machizukuri-con.or.jp/ticket/#seat-s">S席</a>（A席のうしろ。テーブルと椅子）</li>
+<li><i style="background:#ffbd59"></i><a href="https://machizukuri-con.or.jp/ticket/#seat-ss">SS席</a>（S席のうしろ。カフェテーブルとカフェチェア）</li>
+<li><i style="background:#ff5757"></i><a href="https://machizukuri-con.or.jp/ticket/#seat-rec">リクライニングシート席</a>（SS席の右隣）</li>
+<li><i style="background:#ff66c4"></i><a href="https://machizukuri-con.or.jp/ticket/#seat-free">フリーエリア</a>（会場の左側に2か所。西多摩にお住まいの方限定）</li>
 <li><i style="background:#ff66c4"></i>BBQ席（会場の右側）</li>
 <li><i style="background:#004aad"></i>VIP席（会場の右側）</li>
 <li><i style="background:#ffde59"></i>受付（会場の右下）</li>
