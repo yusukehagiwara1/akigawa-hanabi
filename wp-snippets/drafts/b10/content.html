@@ -7,35 +7,39 @@
 .akg-wx,.akg-wx *,.akg-wx *::before,.akg-wx *::after{box-sizing:border-box}
 .akg-wx{max-width:100%;margin:0 0 1.5em;overflow-wrap:break-word;word-wrap:break-word;line-height:1.7}
 .akg-wx p,.akg-wx ul,.akg-wx ol,.akg-wx dl{margin:0}
-.akg-todo{background:#fff6cc;border:2px dashed #d9a400;padding:.75em 1em;border-radius:6px}
+.akg-todo{background:#fff6cc;border:2px dashed #d9a400;padding:.75em 1em;border-radius:0}
 .akg-wx-nav{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
 .akg-wx-nav li{margin:0;padding:0}
 .akg-wx-nav a{display:inline-flex;align-items:center;min-height:44px;padding:.4em 1em;border:1px solid var(--color_border,#dddddd);border-radius:999px;background:var(--color_bg,#ffffff);color:var(--color_text,#333333);font-weight:700;text-decoration:none}
 .akg-wx-nav a:active{border-color:var(--color_main,#000000)}
-.akg-wx-status{max-width:100%;margin:0 0 1.5em;padding:1.1em 1.1em 1em;border:2px solid #2e7d32;border-left-width:10px;border-radius:10px;background:#f1f8f1;color:#222222;overflow-wrap:break-word;word-wrap:break-word}
-.akg-wx-status p.akg-wx-status__msg{margin:0 0 .4em;font-size:1.3em;font-weight:700;line-height:1.4;color:#1b5e20}
+.akg-wx-status{position:relative;max-width:100%;margin:0 0 1.5em;padding:1.15em 1.3em 1.2em;border:1px solid #e0e0e0;border-top:3px solid #2e7d32;border-radius:0;background:#ffffff;color:#222222;overflow-wrap:break-word;word-wrap:break-word}
+.akg-wx-status p.akg-wx-status__msg{display:flex;align-items:baseline;gap:.5em;margin:0 0 .4em;font-size:1.3em;font-weight:700;line-height:1.4;color:#1b5e20}
+.akg-wx-status p.akg-wx-status__msg::before{content:"";flex:0 0 auto;width:.55em;height:.55em;background:#2e7d32}
 .akg-wx-status p.akg-wx-status__updated{margin:0 0 .6em;font-size:.9em;line-height:1.6;color:#444444}
 .akg-wx-status p.akg-wx-status__note{margin:0;font-size:.95em;line-height:1.7}
 .akg-wx-status .akg-todo{display:inline-block;padding:.1em .5em;font-size:.95em}
-.akg-wx-status--pending{border-color:#e08a00;background:#fff7e6}
+.akg-wx-status--pending{border-top-color:#e08a00}
+.akg-wx-status--pending p.akg-wx-status__msg::before{background:#e08a00}
 .akg-wx-status--pending p.akg-wx-status__msg{color:#8a4b00}
-.akg-wx-status--cancel{border-color:#c62828;background:#fdecea}
+.akg-wx-status--cancel{border-top-color:#c62828}
+.akg-wx-status--cancel p.akg-wx-status__msg::before{background:#c62828}
 .akg-wx-status--cancel p.akg-wx-status__msg{color:#b71c1c}
-.akg-wx-status--end{border-color:#666666;background:#f2f2f2}
+.akg-wx-status--end{border-top-color:#666666}
+.akg-wx-status--end p.akg-wx-status__msg::before{background:#666666}
 .akg-wx-status--end p.akg-wx-status__msg{color:#333333}
 .akg-wx-legend{display:flex;flex-wrap:wrap;gap:6px 16px;margin:0 0 1em;padding:0;list-style:none;font-size:.9em}
 .akg-wx-legend li{display:flex;align-items:center;gap:.4em;margin:0;padding:0}
-.akg-wx-legend i{display:inline-block;width:.95em;height:.95em;border-radius:3px;background:#2e7d32}
+.akg-wx-legend i{display:inline-block;width:.95em;height:.95em;border-radius:0;background:#2e7d32}
 .akg-wx-legend .akg-wx-legend__pending i{background:#e08a00}
 .akg-wx-legend .akg-wx-legend__cancel i{background:#c62828}
 .akg-wx-legend .akg-wx-legend__end i{background:#666666}
 .akg-wx-temp{display:grid;grid-template-columns:minmax(0,1fr);gap:12px;margin:0 0 1em}
-.akg-wx-temp__card{padding:.9em 1em 1em;border:1px solid var(--color_border,#dddddd);border-radius:8px;background:var(--color_bg,#ffffff)}
+.akg-wx-temp__card{padding:.9em 1em 1em;border:1px solid var(--color_border,#dddddd);border-radius:0;background:var(--color_bg,#ffffff)}
 .akg-wx-temp__head{display:block;margin:0 0 .3em;padding-left:.5em;border-left:3px solid var(--color_main,#000000);font-weight:700;line-height:1.4}
 .akg-wx-temp__deg{display:block;margin:0 0 .4em;font-size:1.7em;font-weight:700;line-height:1.2}
 .akg-wx-temp__deg small{font-size:.5em;font-weight:400}
 .akg-wx-temp__txt{display:block;font-size:.95em}
-.akg-wx-contact{margin:0 0 1.5em;padding:1em 1.1em;border:1px solid var(--color_border,#dddddd);border-radius:8px;background:#f5f5f5}
+.akg-wx-contact{margin:0 0 1.5em;padding:1.1em 1.3em;border:1px solid #e0e0e0;border-radius:0;background:#ffffff}
 .akg-wx-contact a{display:inline-flex;align-items:center;min-height:44px;word-break:break-all}
 .akg-wx-contact dt{margin:.7em 0 .1em;font-weight:700}
 .akg-wx-contact dt:first-child{margin-top:0}
