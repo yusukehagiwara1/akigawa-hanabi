@@ -25,6 +25,14 @@ ul.akg-sf__grid li::before{content:none}
 .akg-sf__spec{display:grid;grid-template-columns:minmax(0,1fr);font-size:.74em;line-height:1.55;word-break:keep-all;overflow-wrap:anywhere}
 .akg-sf__spec dt{padding-top:.5em;border-top:1px solid #efefef;color:#666666}
 .akg-sf__spec dd{min-height:3.5em;margin:0;padding-bottom:.5em;word-break:keep-all;overflow-wrap:anywhere}
+.akg-sf__stock{display:inline-flex;align-items:center;gap:.45em;font-weight:700}
+.akg-sf__stock i{flex:0 0 auto;width:.7em;height:.7em;background:#888888}
+.akg-sf__stock--ok{color:#1b5e20}
+.akg-sf__stock--ok i{background:#2e7d32}
+.akg-sf__stock--few{color:#8a4b00}
+.akg-sf__stock--few i{background:#e08a00}
+.akg-sf__stock--none{color:#555555}
+.akg-sf__stock--none i{background:#888888}
 .akg-sf .akg-sf__price{margin-top:0;min-height:7em;padding-top:.55em;border-top:1px solid #efefef;font-size:.72em;line-height:1.55;word-break:keep-all;overflow-wrap:anywhere}
 .akg-sf__price b{display:block;font-size:1.65em;font-weight:700;line-height:1.3}
 .akg-sf__price b span{font-size:.6em}
@@ -77,7 +85,7 @@ ul.akg-sf__grid,.post_content ul.akg-sf__grid{grid-template-columns:repeat(5,min
 <div class="akg-sf__body">
 <span class="akg-sf__name">リクライニングペアシート</span>
 <p class="akg-sf__for">2人で快適に<wbr>楽しみたい方に</p>
-<dl class="akg-sf__spec"><dt>定員</dt><dd>2名まで</dd><dt>席</dt><dd>リクライニングシート（2席）</dd></dl>
+<dl class="akg-sf__spec"><dt>残席</dt><dd><span class="akg-sf__stock akg-sf__stock--few"><i></i>残りわずか</span></dd><dt>定員</dt><dd>2名まで</dd><dt>席</dt><dd>リクライニングシート（2席）</dd></dl>
 <p class="akg-sf__price"><b>30,000<span>円</span></b>2席セット・アソビュー限定</p>
 <span class="akg-sf__more">くわしく見る<span aria-hidden="true">›</span></span>
 </div></a></li>
@@ -87,7 +95,7 @@ ul.akg-sf__grid,.post_content ul.akg-sf__grid{grid-template-columns:repeat(5,min
 <div class="akg-sf__body">
 <span class="akg-sf__name">SS席</span>
 <p class="akg-sf__for">みんなでテーブルを囲んで<wbr>楽しみたい方に</p>
-<dl class="akg-sf__spec"><dt>定員</dt><dd>4名まで</dd><dt>席</dt><dd>カフェテーブル・椅子<wbr>（4席）</dd></dl>
+<dl class="akg-sf__spec"><dt>残席</dt><dd><span class="akg-sf__stock akg-sf__stock--few"><i></i>残りわずか</span></dd><dt>定員</dt><dd>4名まで</dd><dt>席</dt><dd>カフェテーブル・椅子<wbr>（4席）</dd></dl>
 <p class="akg-sf__price"><b>35,000<span>円</span></b>1テーブル（4席）</p>
 <span class="akg-sf__more">くわしく見る<span aria-hidden="true">›</span></span>
 </div></a></li>
@@ -97,7 +105,7 @@ ul.akg-sf__grid,.post_content ul.akg-sf__grid{grid-template-columns:repeat(5,min
 <div class="akg-sf__body">
 <span class="akg-sf__name">S席</span>
 <p class="akg-sf__for">テーブル付きの席で<wbr>楽しみたい方に</p>
-<dl class="akg-sf__spec"><dt>定員</dt><dd>2名まで</dd><dt>席</dt><dd>テーブル・椅子（2席）</dd></dl>
+<dl class="akg-sf__spec"><dt>残席</dt><dd><span class="akg-sf__stock akg-sf__stock--ok"><i></i>空席あり</span></dd><dt>定員</dt><dd>2名まで</dd><dt>席</dt><dd>テーブル・椅子（2席）</dd></dl>
 <p class="akg-sf__price"><b>14,000<span>円</span></b>1テーブル（2席）</p>
 <span class="akg-sf__more">くわしく見る<span aria-hidden="true">›</span></span>
 </div></a></li>
@@ -107,7 +115,7 @@ ul.akg-sf__grid,.post_content ul.akg-sf__grid{grid-template-columns:repeat(5,min
 <div class="akg-sf__body">
 <span class="akg-sf__name">A席</span>
 <p class="akg-sf__for">椅子に座って気軽に<wbr>楽しみたい方に</p>
-<dl class="akg-sf__spec"><dt>定員</dt><dd>1名から</dd><dt>席</dt><dd>椅子のみ<wbr>（テーブルなし）</dd></dl>
+<dl class="akg-sf__spec"><dt>残席</dt><dd><span class="akg-sf__stock akg-sf__stock--ok"><i></i>空席あり</span></dd><dt>定員</dt><dd>1名から</dd><dt>席</dt><dd>椅子のみ<wbr>（テーブルなし）</dd></dl>
 <p class="akg-sf__price"><b>5,000<span>円</span></b>大人1名（13歳以上）<br>子ども 2,000円（12歳以下）</p>
 <span class="akg-sf__more">くわしく見る<span aria-hidden="true">›</span></span>
 </div></a></li>
@@ -117,7 +125,7 @@ ul.akg-sf__grid,.post_content ul.akg-sf__grid{grid-template-columns:repeat(5,min
 <div class="akg-sf__body">
 <span class="akg-sf__name">フリーエリア</span>
 <p class="akg-sf__for">西多摩にお住まいの方に。<wbr>限定1,000名</p>
-<dl class="akg-sf__spec"><dt>定員</dt><dd>自由席<wbr>（シート持ち込み可）</dd><dt>対象</dt><dd>西多摩の8市町村</dd></dl>
+<dl class="akg-sf__spec"><dt>残席</dt><dd><span class="akg-sf__stock akg-sf__stock--few"><i></i>残りわずか</span></dd><dt>定員</dt><dd>自由席<wbr>（シート持ち込み可）</dd><dt>対象</dt><dd>西多摩の8市町村</dd></dl>
 <p class="akg-sf__price"><b>2,000<span>円</span></b>おとな1名（13歳以上）<br>こども 1,000円（3〜12歳）<br>幼児無料（2歳以下）</p>
 <span class="akg-sf__more">くわしく見る<span aria-hidden="true">›</span></span>
 </div></a></li>
@@ -203,12 +211,21 @@ ul.akg-sf__grid,.post_content ul.akg-sf__grid{grid-template-columns:repeat(5,min
 ul.akg-buylist__list,.post_content ul.akg-buylist__list{margin:0;padding:0;border-top:1px solid #e0e0e0;list-style:none}
 ul.akg-buylist__list li,.post_content ul.akg-buylist__list li{margin:0;padding:0;border-bottom:1px solid #e0e0e0}
 ul.akg-buylist__list li::before{content:none}
+.akg-buylist__stock{display:flex;align-items:center;gap:.45em;margin:0 0 .7em;font-size:.95em;font-weight:700}
+.akg-buylist__stock i{flex:0 0 auto;width:.7em;height:.7em;background:#888888}
+.akg-buylist__stock--ok{color:#1b5e20}
+.akg-buylist__stock--ok i{background:#2e7d32}
+.akg-buylist__stock--few{color:#8a4b00}
+.akg-buylist__stock--few i{background:#e08a00}
+.akg-buylist__stock--none{color:#555555}
+.akg-buylist__stock--none i{background:#888888}
 .akg-buylist a{display:flex;align-items:center;justify-content:space-between;gap:.75em;min-height:52px;padding:.7em .3em .7em .9em;background:#ffffff;color:#222222;font-size:.95em;font-weight:700;line-height:1.5;text-decoration:none}
 .akg-buylist a:hover,.akg-buylist a:focus-visible{background:#f7f7f7;color:#222222;text-decoration:none}
 .akg-buylist a::after{content:"›";flex:0 0 auto;padding-right:.6em;color:#999999;font-size:1.35em;font-weight:400;line-height:1}
 .akg-buylist .akg-buylist__note{margin:.6em 0 0;padding:0;font-size:.8em;line-height:1.7;color:#555555}
 </style>
 <div class="akg-buylist">
+<p class="akg-buylist__stock akg-buylist__stock--few"><i></i>残りわずか</p>
 <ul class="akg-buylist__list">
 <li><a href="https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products/e42dce79-988e-4b5d-bc20-099dbaf02d1d" target="_blank" rel="noopener">アソビューで購入する</a></li>
 </ul>
@@ -241,6 +258,7 @@ ul.akg-buylist__list li::before{content:none}
 
 <!-- wp:html -->
 <div class="akg-buylist">
+<p class="akg-buylist__stock akg-buylist__stock--few"><i></i>残りわずか</p>
 <ul class="akg-buylist__list">
 <li><a href="https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products/15a2d40e-de69-49cb-aa22-3450dd5e17b3" target="_blank" rel="noopener">アソビューで購入する</a></li>
 <li><a href="https://t.pia.jp/pia/ticketInformation.do?eventCd=2625008&amp;rlsCd=001" target="_blank" rel="noopener">チケットぴあで購入する</a></li>
@@ -277,6 +295,7 @@ ul.akg-buylist__list li::before{content:none}
 
 <!-- wp:html -->
 <div class="akg-buylist">
+<p class="akg-buylist__stock akg-buylist__stock--ok"><i></i>空席あり</p>
 <ul class="akg-buylist__list">
 <li><a href="https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products/4e015166-974c-4717-aa29-7ea7a902a8c8" target="_blank" rel="noopener">アソビューで購入する</a></li>
 <li><a href="https://t.pia.jp/pia/ticketInformation.do?eventCd=2625008&amp;rlsCd=001" target="_blank" rel="noopener">チケットぴあで購入する</a></li>
@@ -308,6 +327,7 @@ ul.akg-buylist__list li::before{content:none}
 
 <!-- wp:html -->
 <div class="akg-buylist">
+<p class="akg-buylist__stock akg-buylist__stock--ok"><i></i>空席あり</p>
 <ul class="akg-buylist__list">
 <li><a href="https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products/15a2d40e-de69-49cb-aa22-3450dd5e17b3" target="_blank" rel="noopener">アソビューで購入する</a></li>
 <li><a href="https://t.pia.jp/pia/ticketInformation.do?eventCd=2625008&amp;rlsCd=001" target="_blank" rel="noopener">チケットぴあで購入する</a></li>
@@ -340,6 +360,7 @@ ul.akg-buylist__list li::before{content:none}
 
 <!-- wp:html -->
 <div class="akg-buylist">
+<p class="akg-buylist__stock akg-buylist__stock--few"><i></i>残りわずか</p>
 <ul class="akg-buylist__list">
 <li><a href="https://machizukuricon.my.urakata.app/channels/d58e8525-0f46-4109-9740-1c1b928b5aa0/products/6dbcf060-4a33-4e3c-9348-551a867822d1" target="_blank" rel="noopener">アソビューで購入する</a></li>
 </ul>
