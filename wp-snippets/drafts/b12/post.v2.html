@@ -26,17 +26,20 @@
 .akg-music__lead{margin:0 0 1em;font-size:.9em;color:#dbe4ff}
 .akg-music__part{position:relative;margin:0 0 .75em;padding:.9em .9em .8em 1em;border-radius:10px;background:rgba(255,255,255,.07);border-left:5px solid #ffd166}
 .akg-music__part:last-child{margin-bottom:0}
-.akg-music__songs li.akg-music__hidden{padding-left:1.1em;text-indent:0;color:#c9d4f5;font-size:.92em}
-.akg-music__songs li.akg-music__hidden:before{content:none}
-.akg-music__songs{list-style:none;margin:0 0 .35em;padding:0}
-.akg-music__songs li{margin:0 0 .25em;padding-left:1.1em;text-indent:-1.1em}
-.akg-music__songs li:before{content:"・";display:inline-block;width:1.1em;text-indent:0;color:#ffd166}
+.akg-music__songs li.akg-music__hidden{align-items:center;gap:.8em;padding:.9em 0;border-bottom:0;color:#b9c4e8;font-size:.88em;font-weight:700;letter-spacing:.12em}
+.akg-music__songs li.akg-music__hidden:before{content:"";flex:1 1 auto;border-top:1px dashed rgba(255,255,255,.3);color:transparent}
+.akg-music__songs li.akg-music__hidden:after{content:"";flex:1 1 auto;border-top:1px dashed rgba(255,255,255,.3)}
+.akg-music__songs{list-style:none;margin:0;padding:0}
+.akg-music__songs li{display:flex;flex-wrap:wrap;align-items:baseline;gap:.15em .6em;margin:0;padding:.55em 0;border-bottom:1px solid rgba(255,255,255,.1)}
+.akg-music__songs li:last-child{border-bottom:0}
+.akg-music__songs li:before{content:"・";flex:0 0 auto;color:#ffd166}
 .akg-music__song{font-weight:700}
-.akg-music__artist{margin-left:.4em;font-size:.9em;color:#dbe4ff}
+.akg-music__artist{margin-left:auto;font-size:.9em;color:#c6d1f2;text-align:right}
+@media (max-width:479px){.akg-music__artist{width:100%;margin-left:1.35em;text-align:left}}
 .akg-music__note{margin:0;font-size:.88em;color:#eef2ff}
 @media (min-width:600px){.akg-music{padding:1.5em 1.5em 1.25em}.akg-music__part{padding:1em 1.1em .9em 1.2em}}
 </style>
-<div class="akg-music"><p class="akg-music__head">第8回 音楽プログラム（予定）</p><p class="akg-music__lead">打ち上げの順に並べています。2026年9月13日時点の予定です。曲目・順番は変更になる場合があります。</p><div class="akg-music__part"><ul class="akg-music__songs"><li><span class="akg-music__song">「VIVANT」オリジナル・サウンドトラック</span><span class="akg-music__artist">千住 明</span></li><li><span class="akg-music__song">Zoo</span><span class="akg-music__artist">Shakira（シャキーラ）</span></li><li><span class="akg-music__song">爆裂愛してる</span><span class="akg-music__artist">M!LK</span></li><li><span class="akg-music__song">風と町</span><span class="akg-music__artist">Mrs. GREEN APPLE</span></li><li><span class="akg-music__song">見知らぬ糸</span><span class="akg-music__artist">スピッツ</span></li><li class="akg-music__hidden">My花火（曲目は掲載していません）</li><li><span class="akg-music__song">LOVE SONG</span><span class="akg-music__artist">CHAGE and ASKA</span></li><li><span class="akg-music__song">メロディー</span><span class="akg-music__artist">玉置浩二</span></li><li class="akg-music__hidden">My花火（曲目は掲載していません）</li><li><span class="akg-music__song">それを愛と呼ぶなら</span><span class="akg-music__artist">Uru</span></li><li><span class="akg-music__song">月光</span><span class="akg-music__artist">鬼束ちひろ</span></li><li><span class="akg-music__song">Always Remember Us This Way</span><span class="akg-music__artist">Lady Gaga（レディー・ガガ）</span></li><li><span class="akg-music__song">I Will Always Love You</span><span class="akg-music__artist">Whitney Houston（ホイットニー・ヒューストン）</span></li><li><span class="akg-music__song">Jupiter</span><span class="akg-music__artist">平原綾香</span></li></ul></div></div>
+<div class="akg-music"><p class="akg-music__head">第8回 音楽プログラム（予定）</p><p class="akg-music__lead">打ち上げの順に並べています。2026年9月13日時点の予定です。曲目・順番は変更になる場合があります。</p><div class="akg-music__part"><ul class="akg-music__songs"><li><span class="akg-music__song">「VIVANT」オリジナル・サウンドトラック</span><span class="akg-music__artist">千住 明</span></li><li><span class="akg-music__song">Zoo</span><span class="akg-music__artist">Shakira（シャキーラ）</span></li><li><span class="akg-music__song">爆裂愛してる</span><span class="akg-music__artist">M!LK</span></li><li><span class="akg-music__song">風と町</span><span class="akg-music__artist">Mrs. GREEN APPLE</span></li><li><span class="akg-music__song">見知らぬ糸</span><span class="akg-music__artist">スピッツ</span></li><li class="akg-music__hidden"><span>My花火パート</span></li><li><span class="akg-music__song">LOVE SONG</span><span class="akg-music__artist">CHAGE and ASKA</span></li><li><span class="akg-music__song">メロディー</span><span class="akg-music__artist">玉置浩二</span></li><li class="akg-music__hidden"><span>My花火パート</span></li><li><span class="akg-music__song">それを愛と呼ぶなら</span><span class="akg-music__artist">Uru</span></li><li><span class="akg-music__song">月光</span><span class="akg-music__artist">鬼束ちひろ</span></li><li><span class="akg-music__song">Always Remember Us This Way</span><span class="akg-music__artist">Lady Gaga（レディー・ガガ）</span></li><li><span class="akg-music__song">I Will Always Love You</span><span class="akg-music__artist">Whitney Houston（ホイットニー・ヒューストン）</span></li><li><span class="akg-music__song">Jupiter</span><span class="akg-music__artist">平原綾香</span></li></ul></div></div>
 <!-- /wp:html -->
 
 <!-- wp:heading -->
