@@ -21,27 +21,21 @@
 <!-- wp:html -->
 <style>
 .akg-music,.akg-music *{box-sizing:border-box}
-.akg-music{max-width:100%;margin:0 0 2em;padding:0;border:1px solid #e0e0e0;border-top:4px solid #e08a00;border-radius:0;background:#ffffff;color:#222222;font-size:15px;line-height:1.7;overflow-wrap:break-word;word-wrap:break-word}
-.akg-music p,.akg-music ul,.akg-music li{margin:0;padding:0}
-.akg-music .akg-music__head{padding:1.1em 1.2em .2em;font-size:14px;font-weight:700;letter-spacing:.14em;line-height:1.4;color:#8a4b00}
-.akg-music .akg-music__lead{padding:0 1.2em 1.1em;font-size:14px;line-height:1.7;color:#555555}
-.akg-music__part{padding:1.1em 1.2em;border-top:1px solid #efefef}
-.akg-music .akg-music__ttl{display:flex;align-items:baseline;gap:.5em;margin:0 0 .6em;font-size:16px;font-weight:700;line-height:1.4}
-.akg-music__ttl::before{content:"";flex:0 0 auto;width:.5em;height:.5em;background:#e08a00}
-ul.akg-music__songs,.post_content ul.akg-music__songs{margin:0 0 .6em;padding:0;list-style:none}
-ul.akg-music__songs li,.post_content ul.akg-music__songs li{display:flex;flex-wrap:wrap;align-items:baseline;gap:.15em .7em;margin:0;padding:.45em 0;border-bottom:1px dotted #e8e8e8}
-ul.akg-music__songs li::before{content:none}
-ul.akg-music__songs li:last-child,.post_content ul.akg-music__songs li:last-child{border-bottom:0}
-.akg-music__song{font-size:16px;font-weight:700;line-height:1.5}
-.akg-music__artist{font-size:14px;color:#666666;line-height:1.5}
-.akg-music .akg-music__note{margin:0;font-size:14px;line-height:1.7;color:#555555}
-@media (min-width:600px){
-.akg-music .akg-music__head{padding:1.3em 1.6em .2em}
-.akg-music .akg-music__lead{padding:0 1.6em 1.2em}
-.akg-music__part{padding:1.2em 1.6em}
-}
+.akg-music{margin:0 0 2em;padding:1.25em 1em 1em;border-radius:14px;background:linear-gradient(180deg,#0b1a3a 0%,#14264f 60%,#1d2f5c 100%);color:#fff;font-size:1rem;line-height:1.6}
+.akg-music__head{margin:0 0 .25em;font-size:1.05em;font-weight:700;letter-spacing:.05em;color:#ffd166}
+.akg-music__lead{margin:0 0 1em;font-size:.9em;color:#dbe4ff}
+.akg-music__part{position:relative;margin:0 0 .75em;padding:.9em .9em .8em 1em;border-radius:10px;background:rgba(255,255,255,.07);border-left:5px solid #ffd166}
+.akg-music__part:last-child{margin-bottom:0}
+.akg-music__ttl{display:flex;flex-wrap:wrap;align-items:center;gap:.4em .6em;margin:0 0 .4em;font-weight:700;font-size:1.05em}
+.akg-music__songs{list-style:none;margin:0 0 .35em;padding:0}
+.akg-music__songs li{margin:0 0 .25em;padding-left:1.1em;text-indent:-1.1em}
+.akg-music__songs li:before{content:"♪";display:inline-block;width:1.1em;text-indent:0;color:#ffd166}
+.akg-music__song{font-weight:700}
+.akg-music__artist{margin-left:.4em;font-size:.9em;color:#dbe4ff}
+.akg-music__note{margin:0;font-size:.88em;color:#eef2ff}
+@media (min-width:600px){.akg-music{padding:1.5em 1.5em 1.25em}.akg-music__part{padding:1em 1.1em .9em 1.2em}}
 </style>
-<div class="akg-music"><p class="akg-music__head">第8回 音楽プログラム（予定）</p><p class="akg-music__lead">2026年9月13日時点の予定です。曲目・順番は変更になる場合があります。</p><div class="akg-music__part"><p class="akg-music__ttl"><span>overture（開演前）</span></p><ul class="akg-music__songs"><li><span class="akg-music__song">「VIVANT」オリジナル・サウンドトラック</span><span class="akg-music__artist">千住 明</span></li></ul><p class="akg-music__note">花火が始まる前の時間に流れる、ドラマ『VIVANT』の音楽です。</p></div><div class="akg-music__part"><p class="akg-music__ttl"><span>オープニング</span></p><ul class="akg-music__songs"><li><span class="akg-music__song">Zoo</span><span class="akg-music__artist">Shakira（シャキーラ）</span></li></ul><p class="akg-music__note">映画『ズートピア2』の楽曲で幕開けです。</p></div><div class="akg-music__part"><p class="akg-music__ttl"><span>ヒットチャート</span></p><ul class="akg-music__songs"><li><span class="akg-music__song">爆裂愛してる</span><span class="akg-music__artist">M!LK</span></li><li><span class="akg-music__song">風と町</span><span class="akg-music__artist">Mrs. GREEN APPLE</span></li><li><span class="akg-music__song">見知らぬ糸</span><span class="akg-music__artist">スピッツ</span></li></ul><p class="akg-music__note">ヒットチャートから選んだ3曲です。</p></div><div class="akg-music__part"><p class="akg-music__ttl"><span>My花火（前半）</span></p><p class="akg-music__note">このパートの曲目は掲載していません。</p></div><div class="akg-music__part"><p class="akg-music__ttl"><span>懐メロ</span></p><ul class="akg-music__songs"><li><span class="akg-music__song">LOVE SONG</span><span class="akg-music__artist">CHAGE and ASKA</span></li><li><span class="akg-music__song">メロディー</span><span class="akg-music__artist">玉置浩二</span></li></ul><p class="akg-music__note">幅広い世代に親しまれてきた2曲です。</p></div><div class="akg-music__part"><p class="akg-music__ttl"><span>My花火（中半）</span></p><p class="akg-music__note">このパートの曲目は掲載していません。</p></div><div class="akg-music__part"><p class="akg-music__ttl"><span>エンディング</span></p><ul class="akg-music__songs"><li><span class="akg-music__song">Jupiter</span><span class="akg-music__artist">平原綾香</span></li></ul><p class="akg-music__note">平原綾香「Jupiter」で締めくくります。</p></div></div>
+<div class="akg-music"><p class="akg-music__head">第8回 音楽プログラム（予定）</p><p class="akg-music__lead">2026年9月13日時点の予定です。曲目・順番は変更になる場合があります。</p><div class="akg-music__part"><p class="akg-music__ttl"><span>🎼 overture（開演前）</span></p><ul class="akg-music__songs"><li><span class="akg-music__song">「VIVANT」オリジナル・サウンドトラック</span><span class="akg-music__artist">千住 明</span></li></ul><p class="akg-music__note">花火が始まる前の時間に流れる、ドラマ『VIVANT』の音楽です。</p></div><div class="akg-music__part"><p class="akg-music__ttl"><span>🎇 オープニング</span></p><ul class="akg-music__songs"><li><span class="akg-music__song">Zoo</span><span class="akg-music__artist">Shakira（シャキーラ）</span></li></ul><p class="akg-music__note">映画『ズートピア2』の楽曲で幕開けです。</p></div><div class="akg-music__part"><p class="akg-music__ttl"><span>🎤 ヒットチャート</span></p><ul class="akg-music__songs"><li><span class="akg-music__song">爆裂愛してる</span><span class="akg-music__artist">M!LK</span></li><li><span class="akg-music__song">風と町</span><span class="akg-music__artist">Mrs. GREEN APPLE</span></li><li><span class="akg-music__song">見知らぬ糸</span><span class="akg-music__artist">スピッツ</span></li></ul><p class="akg-music__note">ヒットチャートから選んだ3曲です。</p></div><div class="akg-music__part"><p class="akg-music__ttl"><span>🌸 My花火（前半）</span></p><p class="akg-music__note">このパートの曲目は掲載していません。</p></div><div class="akg-music__part"><p class="akg-music__ttl"><span>🎶 懐メロ</span></p><ul class="akg-music__songs"><li><span class="akg-music__song">LOVE SONG</span><span class="akg-music__artist">CHAGE and ASKA</span></li><li><span class="akg-music__song">メロディー</span><span class="akg-music__artist">玉置浩二</span></li></ul><p class="akg-music__note">幅広い世代に親しまれてきた2曲です。</p></div><div class="akg-music__part"><p class="akg-music__ttl"><span>💫 My花火（中半）</span></p><p class="akg-music__note">このパートの曲目は掲載していません。</p></div><div class="akg-music__part"><p class="akg-music__ttl"><span>🎆 エンディング</span></p><ul class="akg-music__songs"><li><span class="akg-music__song">Jupiter</span><span class="akg-music__artist">平原綾香</span></li></ul><p class="akg-music__note">平原綾香「Jupiter」で締めくくります。</p></div></div>
 <!-- /wp:html -->
 
 <!-- wp:heading -->
