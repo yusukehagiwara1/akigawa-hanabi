@@ -23,12 +23,12 @@
 .akg-music,.akg-music *{box-sizing:border-box}
 .akg-music{max-width:100%;margin:0 0 2em;padding:1.2em 1.1em;border-radius:14px;background:linear-gradient(180deg,#1c2a48 0%,#24355b 60%,#2d3e67 100%);color:#ffffff;font-size:15px;line-height:1.6;overflow-wrap:break-word;word-wrap:break-word}
 .akg-music p,.akg-music ul,.akg-music li{margin:0;padding:0}
-ul.akg-music__songs,.post_content ul.akg-music__songs{margin:0;padding:0;list-style:none}
-ul.akg-music__songs li,.post_content ul.akg-music__songs li{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:center;gap:.15em .8em;margin:0;padding:.55em 0;border-bottom:1px solid rgba(255,255,255,.12)}
+ul.akg-music__songs,.post_content ul.akg-music__songs{max-width:620px;margin:0 auto;padding:0;list-style:none}
+ul.akg-music__songs li,.post_content ul.akg-music__songs li{display:flex;flex-wrap:wrap;align-items:baseline;gap:.15em .8em;margin:0;padding:.55em 0;border-bottom:1px solid rgba(255,255,255,.12)}
 ul.akg-music__songs li:last-child,.post_content ul.akg-music__songs li:last-child{border-bottom:0}
 ul.akg-music__songs li::before{content:"・";flex:0 0 auto;color:#ffd166}
 .akg-music__song{flex:0 1 auto;font-size:16px;font-weight:700;letter-spacing:.02em}
-.akg-music__artist{flex:0 0 auto;font-size:14px;color:#c6d1f2;letter-spacing:.02em}
+.akg-music__artist{flex:0 0 auto;margin-left:auto;font-size:14px;color:#c6d1f2;letter-spacing:.02em;text-align:right}
 ul.akg-music__songs li.akg-music__hidden{align-items:center;gap:.9em;padding:1em 0;border-bottom:0;color:#ffd166;font-size:16px;font-weight:700;letter-spacing:.1em}
 ul.akg-music__songs li.akg-music__hidden::before{content:"";flex:1 1 0;border-top:1px solid rgba(255,209,102,.5);color:transparent}
 ul.akg-music__songs li.akg-music__hidden::after{content:"";flex:1 1 0;border-top:1px solid rgba(255,209,102,.5)}
