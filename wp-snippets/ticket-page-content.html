@@ -221,18 +221,21 @@ ul.akg-buylist__list li::before{content:none}
 .akg-buylist__stock--few i{background:#e08a00}
 .akg-buylist__stock--none{color:#555555}
 .akg-buylist__stock--none i{background:#888888}
-.akg-buylist a{display:flex;align-items:center;justify-content:space-between;gap:.75em;min-height:52px;padding:.7em .3em .7em .9em;background:#ffffff;color:#222222;font-size:15px;font-weight:700;line-height:1.5;text-decoration:none}
+.akg-buylist a,.akg-buylist .akg-buylist__row{display:flex;align-items:center;justify-content:space-between;gap:.75em;min-height:52px;padding:.7em .9em;background:#ffffff;color:#222222;font-size:15px;font-weight:700;line-height:1.5;text-decoration:none}
+.akg-buylist__name{flex:1 1 auto}
+.akg-buylist__mark{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:32px;padding:0 .5em;border:1px solid #222222;background:#ffffff;color:#222222;font-size:15px;font-weight:700;line-height:1}
+.akg-buylist a:hover .akg-buylist__mark,.akg-buylist a:focus-visible .akg-buylist__mark{background:#222222;color:#ffffff}
+.akg-buylist__item--out .akg-buylist__row{background:#f2f2f2;color:#767676;cursor:default}
+.akg-buylist__mark--out{border-color:#c9c9c9;background:#e3e3e3;color:#6b6b6b}
 .akg-buylist a:hover{background:#f7f7f7;color:#222222;text-decoration:none}
 .akg-buylist a:focus-visible{background:#f7f7f7;color:#222222;text-decoration:none;outline:4px solid #1a1a1c;outline-offset:-2px;box-shadow:0 0 0 2px #ffd43d inset}
-.akg-buylist__ext{margin-left:.4em;font-size:14px;font-weight:400}
 .akg-buylist__sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;clip-path:inset(50%);overflow:hidden;white-space:nowrap}
-.akg-buylist a::after{content:"›";flex:0 0 auto;padding-right:.6em;color:#999999;font-size:1.35em;font-weight:400;line-height:1}
 .akg-buylist .akg-buylist__note{margin:.6em 0 0;padding:0;font-size:.8em;line-height:1.7;color:#555555}
 </style>
 <div class="akg-buylist">
 <p class="akg-buylist__stock akg-buylist__stock--few"><i></i>残りわずか</p>
 <ul class="akg-buylist__list">
-<li><a href="https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products/e42dce79-988e-4b5d-bc20-099dbaf02d1d" target="_blank" rel="noopener">アソビューで購入する<span class="akg-buylist__ext" aria-hidden="true">↗</span><span class="akg-buylist__sr">（新しいタブで開きます）</span></a></li>
+<li><a href="https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products/e42dce79-988e-4b5d-bc20-099dbaf02d1d" target="_blank" rel="noopener"><span class="akg-buylist__name">アソビューで購入する</span><span class="akg-buylist__mark" aria-hidden="true">○</span><span class="akg-buylist__sr">在庫あり・新しいタブで開きます</span></a></li>
 </ul>
 </div>
 <!-- /wp:html --></div>
@@ -265,11 +268,11 @@ ul.akg-buylist__list li::before{content:none}
 <div class="akg-buylist">
 <p class="akg-buylist__stock akg-buylist__stock--few"><i></i>残りわずか</p>
 <ul class="akg-buylist__list">
-<li><a href="https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products/15a2d40e-de69-49cb-aa22-3450dd5e17b3" target="_blank" rel="noopener">アソビューで購入する<span class="akg-buylist__ext" aria-hidden="true">↗</span><span class="akg-buylist__sr">（新しいタブで開きます）</span></a></li>
-<li><a href="https://t.pia.jp/pia/ticketInformation.do?eventCd=2625008&amp;rlsCd=001" target="_blank" rel="noopener">チケットぴあで購入する<span class="akg-buylist__ext" aria-hidden="true">↗</span><span class="akg-buylist__sr">（新しいタブで開きます）</span></a></li>
-<li><a href="https://www.kkday.com/ja/product/527261?cid=22567&amp;ud1=officialsite#optionItem2047519" target="_blank" rel="noopener">KKdayで購入する<span class="akg-buylist__ext" aria-hidden="true">↗</span><span class="akg-buylist__sr">（新しいタブで開きます）</span></a></li>
-<li><a href="https://experiences.travel.rakuten.co.jp/experiences/62751" target="_blank" rel="noopener">楽天トラベルで購入する<span class="akg-buylist__ext" aria-hidden="true">↗</span><span class="akg-buylist__sr">（新しいタブで開きます）</span></a></li>
-<li><a href="https://event.jreast.co.jp/activity/detail/a180/a180-09#plan-3734" target="_blank" rel="noopener">JRE MALLで購入する<span class="akg-buylist__ext" aria-hidden="true">↗</span><span class="akg-buylist__sr">（新しいタブで開きます）</span></a></li>
+<li><a href="https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products/15a2d40e-de69-49cb-aa22-3450dd5e17b3" target="_blank" rel="noopener"><span class="akg-buylist__name">アソビューで購入する</span><span class="akg-buylist__mark" aria-hidden="true">○</span><span class="akg-buylist__sr">在庫あり・新しいタブで開きます</span></a></li>
+<li class="akg-buylist__item--out"><span class="akg-buylist__row"><span class="akg-buylist__name">チケットぴあで購入する</span><span class="akg-buylist__mark akg-buylist__mark--out" aria-hidden="true">✕</span><span class="akg-buylist__sr">この販売サイトでは売り切れです</span></span></li>
+<li><a href="https://www.kkday.com/ja/product/527261?cid=22567&amp;ud1=officialsite#optionItem2047519" target="_blank" rel="noopener"><span class="akg-buylist__name">KKdayで購入する</span><span class="akg-buylist__mark" aria-hidden="true">○</span><span class="akg-buylist__sr">在庫あり・新しいタブで開きます</span></a></li>
+<li><a href="https://experiences.travel.rakuten.co.jp/experiences/62751" target="_blank" rel="noopener"><span class="akg-buylist__name">楽天トラベルで購入する</span><span class="akg-buylist__mark" aria-hidden="true">○</span><span class="akg-buylist__sr">在庫あり・新しいタブで開きます</span></a></li>
+<li><a href="https://event.jreast.co.jp/activity/detail/a180/a180-09#plan-3734" target="_blank" rel="noopener"><span class="akg-buylist__name">JRE MALLで購入する</span><span class="akg-buylist__mark" aria-hidden="true">○</span><span class="akg-buylist__sr">在庫あり・新しいタブで開きます</span></a></li>
 </ul>
 </div>
 <!-- /wp:html --></div>
@@ -302,10 +305,10 @@ ul.akg-buylist__list li::before{content:none}
 <div class="akg-buylist">
 <p class="akg-buylist__stock akg-buylist__stock--few"><i></i>残りわずか</p>
 <ul class="akg-buylist__list">
-<li><a href="https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products/4e015166-974c-4717-aa29-7ea7a902a8c8" target="_blank" rel="noopener">アソビューで購入する<span class="akg-buylist__ext" aria-hidden="true">↗</span><span class="akg-buylist__sr">（新しいタブで開きます）</span></a></li>
-<li><a href="https://t.pia.jp/pia/ticketInformation.do?eventCd=2625008&amp;rlsCd=001" target="_blank" rel="noopener">チケットぴあで購入する<span class="akg-buylist__ext" aria-hidden="true">↗</span><span class="akg-buylist__sr">（新しいタブで開きます）</span></a></li>
-<li><a href="https://experiences.travel.rakuten.co.jp/experiences/62751" target="_blank" rel="noopener">楽天トラベルで購入する<span class="akg-buylist__ext" aria-hidden="true">↗</span><span class="akg-buylist__sr">（新しいタブで開きます）</span></a></li>
-<li><a href="https://event.jreast.co.jp/activity/detail/a180/a180-09#plan-3735" target="_blank" rel="noopener">JRE MALLで購入する<span class="akg-buylist__ext" aria-hidden="true">↗</span><span class="akg-buylist__sr">（新しいタブで開きます）</span></a></li>
+<li><a href="https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products/4e015166-974c-4717-aa29-7ea7a902a8c8" target="_blank" rel="noopener"><span class="akg-buylist__name">アソビューで購入する</span><span class="akg-buylist__mark" aria-hidden="true">○</span><span class="akg-buylist__sr">在庫あり・新しいタブで開きます</span></a></li>
+<li class="akg-buylist__item--out"><span class="akg-buylist__row"><span class="akg-buylist__name">チケットぴあで購入する</span><span class="akg-buylist__mark akg-buylist__mark--out" aria-hidden="true">✕</span><span class="akg-buylist__sr">この販売サイトでは売り切れです</span></span></li>
+<li><a href="https://experiences.travel.rakuten.co.jp/experiences/62751" target="_blank" rel="noopener"><span class="akg-buylist__name">楽天トラベルで購入する</span><span class="akg-buylist__mark" aria-hidden="true">○</span><span class="akg-buylist__sr">在庫あり・新しいタブで開きます</span></a></li>
+<li><a href="https://event.jreast.co.jp/activity/detail/a180/a180-09#plan-3735" target="_blank" rel="noopener"><span class="akg-buylist__name">JRE MALLで購入する</span><span class="akg-buylist__mark" aria-hidden="true">○</span><span class="akg-buylist__sr">在庫あり・新しいタブで開きます</span></a></li>
 </ul>
 </div>
 <!-- /wp:html --></div>
@@ -334,11 +337,11 @@ ul.akg-buylist__list li::before{content:none}
 <div class="akg-buylist">
 <p class="akg-buylist__stock akg-buylist__stock--ok"><i></i>空席あり</p>
 <ul class="akg-buylist__list">
-<li><a href="https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products/15a2d40e-de69-49cb-aa22-3450dd5e17b3" target="_blank" rel="noopener">アソビューで購入する<span class="akg-buylist__ext" aria-hidden="true">↗</span><span class="akg-buylist__sr">（新しいタブで開きます）</span></a></li>
-<li><a href="https://t.pia.jp/pia/ticketInformation.do?eventCd=2625008&amp;rlsCd=001" target="_blank" rel="noopener">チケットぴあで購入する<span class="akg-buylist__ext" aria-hidden="true">↗</span><span class="akg-buylist__sr">（新しいタブで開きます）</span></a></li>
-<li><a href="https://www.kkday.com/ja/product/527261?cid=22567&amp;ud1=officialsite#optionItem2047520" target="_blank" rel="noopener">KKdayで購入する<span class="akg-buylist__ext" aria-hidden="true">↗</span><span class="akg-buylist__sr">（新しいタブで開きます）</span></a></li>
-<li><a href="https://experiences.travel.rakuten.co.jp/experiences/62751" target="_blank" rel="noopener">楽天トラベルで購入する<span class="akg-buylist__ext" aria-hidden="true">↗</span><span class="akg-buylist__sr">（新しいタブで開きます）</span></a></li>
-<li><a href="https://event.jreast.co.jp/activity/detail/a180/a180-09#plan-3736" target="_blank" rel="noopener">JRE MALLで購入する<span class="akg-buylist__ext" aria-hidden="true">↗</span><span class="akg-buylist__sr">（新しいタブで開きます）</span></a></li>
+<li><a href="https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products/15a2d40e-de69-49cb-aa22-3450dd5e17b3" target="_blank" rel="noopener"><span class="akg-buylist__name">アソビューで購入する</span><span class="akg-buylist__mark" aria-hidden="true">○</span><span class="akg-buylist__sr">在庫あり・新しいタブで開きます</span></a></li>
+<li><a href="https://t.pia.jp/pia/ticketInformation.do?eventCd=2625008&amp;rlsCd=001" target="_blank" rel="noopener"><span class="akg-buylist__name">チケットぴあで購入する</span><span class="akg-buylist__mark" aria-hidden="true">○</span><span class="akg-buylist__sr">在庫あり・新しいタブで開きます</span></a></li>
+<li><a href="https://www.kkday.com/ja/product/527261?cid=22567&amp;ud1=officialsite#optionItem2047520" target="_blank" rel="noopener"><span class="akg-buylist__name">KKdayで購入する</span><span class="akg-buylist__mark" aria-hidden="true">○</span><span class="akg-buylist__sr">在庫あり・新しいタブで開きます</span></a></li>
+<li><a href="https://experiences.travel.rakuten.co.jp/experiences/62751" target="_blank" rel="noopener"><span class="akg-buylist__name">楽天トラベルで購入する</span><span class="akg-buylist__mark" aria-hidden="true">○</span><span class="akg-buylist__sr">在庫あり・新しいタブで開きます</span></a></li>
+<li><a href="https://event.jreast.co.jp/activity/detail/a180/a180-09#plan-3736" target="_blank" rel="noopener"><span class="akg-buylist__name">JRE MALLで購入する</span><span class="akg-buylist__mark" aria-hidden="true">○</span><span class="akg-buylist__sr">在庫あり・新しいタブで開きます</span></a></li>
 </ul>
 </div>
 <!-- /wp:html --></div>
@@ -367,7 +370,7 @@ ul.akg-buylist__list li::before{content:none}
 <div class="akg-buylist">
 <p class="akg-buylist__stock akg-buylist__stock--ok"><i></i>空席あり</p>
 <ul class="akg-buylist__list">
-<li><a href="https://machizukuricon.my.urakata.app/channels/d58e8525-0f46-4109-9740-1c1b928b5aa0/products/6dbcf060-4a33-4e3c-9348-551a867822d1" target="_blank" rel="noopener">アソビューで購入する<span class="akg-buylist__ext" aria-hidden="true">↗</span><span class="akg-buylist__sr">（新しいタブで開きます）</span></a></li>
+<li><a href="https://machizukuricon.my.urakata.app/channels/d58e8525-0f46-4109-9740-1c1b928b5aa0/products/6dbcf060-4a33-4e3c-9348-551a867822d1" target="_blank" rel="noopener"><span class="akg-buylist__name">アソビューで購入する</span><span class="akg-buylist__mark" aria-hidden="true">○</span><span class="akg-buylist__sr">在庫あり・新しいタブで開きます</span></a></li>
 </ul>
 </div>
 <!-- /wp:html --></div>
@@ -432,11 +435,11 @@ ul.akg-buylist__list li::before{content:none}
 <!-- wp:html -->
 <div class="akg-buylist">
 <ul class="akg-buylist__list">
-<li><a href="https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products/eeb73892-7a4f-4cc6-aeb9-20d7980d5298" target="_blank" rel="noopener">アソビューで購入する<span class="akg-buylist__ext" aria-hidden="true">↗</span><span class="akg-buylist__sr">（新しいタブで開きます）</span></a></li>
-<li><a href="https://t.pia.jp/pia/ticketInformation.do?eventCd=2625008&amp;rlsCd=001" target="_blank" rel="noopener">チケットぴあで購入する<span class="akg-buylist__ext" aria-hidden="true">↗</span><span class="akg-buylist__sr">（新しいタブで開きます）</span></a></li>
-<li><a href="https://www.kkday.com/ja/product/527261?cid=22567&amp;ud1=officialsite#optionItem2047543" target="_blank" rel="noopener">KKdayで購入する<span class="akg-buylist__ext" aria-hidden="true">↗</span><span class="akg-buylist__sr">（新しいタブで開きます）</span></a></li>
-<li><a href="https://experiences.travel.rakuten.co.jp/experiences/62751" target="_blank" rel="noopener">楽天トラベルで購入する<span class="akg-buylist__ext" aria-hidden="true">↗</span><span class="akg-buylist__sr">（新しいタブで開きます）</span></a></li>
-<li><a href="https://event.jreast.co.jp/activity/detail/a180/a180-10" target="_blank" rel="noopener">JRE MALLで購入する<span class="akg-buylist__ext" aria-hidden="true">↗</span><span class="akg-buylist__sr">（新しいタブで開きます）</span></a></li>
+<li><a href="https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products/eeb73892-7a4f-4cc6-aeb9-20d7980d5298" target="_blank" rel="noopener"><span class="akg-buylist__name">アソビューで購入する</span><span class="akg-buylist__mark" aria-hidden="true">○</span><span class="akg-buylist__sr">在庫あり・新しいタブで開きます</span></a></li>
+<li><a href="https://t.pia.jp/pia/ticketInformation.do?eventCd=2625008&amp;rlsCd=001" target="_blank" rel="noopener"><span class="akg-buylist__name">チケットぴあで購入する</span><span class="akg-buylist__mark" aria-hidden="true">○</span><span class="akg-buylist__sr">在庫あり・新しいタブで開きます</span></a></li>
+<li><a href="https://www.kkday.com/ja/product/527261?cid=22567&amp;ud1=officialsite#optionItem2047543" target="_blank" rel="noopener"><span class="akg-buylist__name">KKdayで購入する</span><span class="akg-buylist__mark" aria-hidden="true">○</span><span class="akg-buylist__sr">在庫あり・新しいタブで開きます</span></a></li>
+<li><a href="https://experiences.travel.rakuten.co.jp/experiences/62751" target="_blank" rel="noopener"><span class="akg-buylist__name">楽天トラベルで購入する</span><span class="akg-buylist__mark" aria-hidden="true">○</span><span class="akg-buylist__sr">在庫あり・新しいタブで開きます</span></a></li>
+<li><a href="https://event.jreast.co.jp/activity/detail/a180/a180-10" target="_blank" rel="noopener"><span class="akg-buylist__name">JRE MALLで購入する</span><span class="akg-buylist__mark" aria-hidden="true">○</span><span class="akg-buylist__sr">在庫あり・新しいタブで開きます</span></a></li>
 </ul>
 </div>
 <!-- /wp:html --></div>
@@ -464,10 +467,10 @@ ul.akg-buylist__list li::before{content:none}
 <!-- wp:html -->
 <div class="akg-buylist">
 <ul class="akg-buylist__list">
-<li><a href="https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products/bcd564e0-361e-4a67-bdec-0a608cc54213" target="_blank" rel="noopener">アソビューで購入する<span class="akg-buylist__ext" aria-hidden="true">↗</span><span class="akg-buylist__sr">（新しいタブで開きます）</span></a></li>
-<li><a href="https://t.pia.jp/pia/ticketInformation.do?eventCd=2625008&amp;rlsCd=001" target="_blank" rel="noopener">チケットぴあで購入する<span class="akg-buylist__ext" aria-hidden="true">↗</span><span class="akg-buylist__sr">（新しいタブで開きます）</span></a></li>
-<li><a href="https://experiences.travel.rakuten.co.jp/experiences/62751" target="_blank" rel="noopener">楽天トラベルで購入する<span class="akg-buylist__ext" aria-hidden="true">↗</span><span class="akg-buylist__sr">（新しいタブで開きます）</span></a></li>
-<li><a href="https://event.jreast.co.jp/activity/detail/a180/a180-10" target="_blank" rel="noopener">JRE MALLで購入する<span class="akg-buylist__ext" aria-hidden="true">↗</span><span class="akg-buylist__sr">（新しいタブで開きます）</span></a></li>
+<li><a href="https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products/bcd564e0-361e-4a67-bdec-0a608cc54213" target="_blank" rel="noopener"><span class="akg-buylist__name">アソビューで購入する</span><span class="akg-buylist__mark" aria-hidden="true">○</span><span class="akg-buylist__sr">在庫あり・新しいタブで開きます</span></a></li>
+<li><a href="https://t.pia.jp/pia/ticketInformation.do?eventCd=2625008&amp;rlsCd=001" target="_blank" rel="noopener"><span class="akg-buylist__name">チケットぴあで購入する</span><span class="akg-buylist__mark" aria-hidden="true">○</span><span class="akg-buylist__sr">在庫あり・新しいタブで開きます</span></a></li>
+<li><a href="https://experiences.travel.rakuten.co.jp/experiences/62751" target="_blank" rel="noopener"><span class="akg-buylist__name">楽天トラベルで購入する</span><span class="akg-buylist__mark" aria-hidden="true">○</span><span class="akg-buylist__sr">在庫あり・新しいタブで開きます</span></a></li>
+<li><a href="https://event.jreast.co.jp/activity/detail/a180/a180-10" target="_blank" rel="noopener"><span class="akg-buylist__name">JRE MALLで購入する</span><span class="akg-buylist__mark" aria-hidden="true">○</span><span class="akg-buylist__sr">在庫あり・新しいタブで開きます</span></a></li>
 </ul>
 </div>
 <!-- /wp:html --></div>
@@ -677,3 +680,7 @@ ul.akg-buylist__list li::before{content:none}
 <!-- /wp:list-item --></ul>
 <!-- /wp:list --></div></div>
 <!-- /wp:loos/full-wide -->
+
+<!-- wp:html -->
+<script src="https://akigawa-hanabi.pages.dev/wp-snippets/seat-quiz.js?v=20260906a" defer></script>
+<!-- /wp:html -->
