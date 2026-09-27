@@ -45,7 +45,7 @@ for si,(name,cols,alloc,note) in enumerate(SEATS):
     for sj,(label,key) in enumerate(SITES):
         a=(si%2==1)
         top=("border-top:2px solid %s;"%NAVY) if sj==0 else ""
-        S(r,1,name if sj==0 else "",CELL(a,"left",top+"font-weight:bold" if sj==0 else top))
+        S(r,1,name,CELL(a,"left",top+("font-weight:bold" if sj==0 else "color:#888888")))
         S(r,2,label,CELL(a,"left",top))
         S(r,3,"" if label=="さとふる" else str(alloc.get(label,0)),CELL(a,"right",top))
         m="IFERROR(MATCH($H{0},集計!$B$3:$B$8,0),MATCH($H{0},集計!$A$3:$A$8,0))".format(r)
@@ -53,7 +53,7 @@ for si,(name,cols,alloc,note) in enumerate(SEATS):
         S(r,4,"=IFERROR(%s,0)"%("+".join(parts)),CELL(a,"right",top))
         S(r,5,'=IF($C{0}="","",$C{0}-$D{0})'.format(r),CELL(a,"right",top+"font-weight:bold"))
         S(r,6,'=IF(OR($C{0}="",$C{0}=0),"",IFERROR(TEXT($E{0}/$C{0},"0%"),""))'.format(r),CELL(a,"right",top))
-        S(r,7,'=IFS($C{0}="","―",$C{0}=0,"―",$E{0}<=0,"✕",IFERROR($E{0}/$C{0},1)<={1},"△",IFERROR(VLOOKUP($A{2},$A$7:$D$13,4,FALSE)/VLOOKUP($A{2},$A$7:$B$13,2,FALSE),1)<={1},"△",TRUE,"〇")'.format(r,FEW,"$A$%d"%(17+si*6)),CELL(a,"center",top+"font-size:13pt;font-weight:bold"))
+        S(r,7,'=IFS($C{0}="","―",$C{0}=0,"―",$E{0}<=0,"✕",IFERROR($E{0}/$C{0},1)<={1},"△",IFERROR(VLOOKUP($A{0},$A$7:$D$13,4,FALSE)/VLOOKUP($A{0},$A$7:$B$13,2,FALSE),1)<={1},"△",TRUE,"〇")'.format(r,FEW),CELL(a,"center",top+"font-size:13pt;font-weight:bold"))
         S(r,8,key,CELL(a,"left",top+"font-size:8pt;color:#888888"))
         r+=1
 S(60,1,"※さとふる（ふるさと納税）は座席按分シートに割当がないため、販売数だけを表示しています（①の残りには含めて計算）。",DESC); span[(60,1)]=8
