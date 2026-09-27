@@ -32,7 +32,7 @@ for i,(name,cols,alloc) in enumerate(SEATS):
     S(r,2,"=SUMIF($A$16:$A$57,$A%d,$C$16:$C$57)"%r,C("right"))
     S(r,3,"=SUMIF($A$16:$A$57,$A%d,$D$16:$D$57)"%r,C("right"))
     S(r,4,"=$B%d-$C%d"%(r,r),C("right","font-weight:bold"))
-    S(r,5,'=IFS($D{0}<=0,"✕ 完売",IFERROR($D{0}/$B{0},1)<={1},"△ 残りわずか",TRUE,"〇 空席あり")'.format(r,FEW),C("center","font-weight:bold"))
+    S(r,5,'=IFS($D{0}<=0,"🔴 完売",IFERROR($D{0}/$B{0},1)<={1},"🟡 残りわずか",TRUE,"🟢 空席あり")'.format(r,FEW),C("center","font-weight:bold"))
 S(14,1,"② 販売サイト別",BLK); span[(14,1)]=COLS
 for i,h in enumerate(["席種","販売サイト","配分","販売","残り","記号"]): S(15,i+1,h,HEAD)
 r=16
@@ -47,7 +47,7 @@ for si,(name,cols,alloc) in enumerate(SEATS):
         parts=["INDEX(集計!${0}$3:${0}$8,{1})".format(c,m) for c in cols]
         S(r,4,"=IFERROR(%s,0)"%("+".join(parts)),C("right",top))
         S(r,5,'=IF($C{0}="","",$C{0}-$D{0})'.format(r),C("right",top+"font-weight:bold"))
-        S(r,6,'=IFS($C{0}="","―",$C{0}=0,"―",$E{0}<=0,"✕",IFERROR($E{0}/$C{0},1)<={1},"△",IFERROR(VLOOKUP($A{0},$A$6:$D$12,4,FALSE)/VLOOKUP($A{0},$A$6:$B$12,2,FALSE),1)<={1},"△",TRUE,"〇")'.format(r,FEW),C("center",top+"font-size:12pt;font-weight:bold"))
+        S(r,6,'=IFS($C{0}="","―",$C{0}=0,"―",$E{0}<=0,"🔴",IFERROR($E{0}/$C{0},1)<={1},"🟡",IFERROR(VLOOKUP($A{0},$A$6:$D$12,4,FALSE)/VLOOKUP($A{0},$A$6:$B$12,2,FALSE),1)<={1},"🟡",TRUE,"🟢")'.format(r,FEW),C("center",top+"font-size:12pt;font-weight:bold"))
         r+=1
 S(59,1,"※さとふるは按分の割当がないため販売数のみ。S席アソビューの配分130は座席番号の記載が80席分のみで要確認。",NOTE); span[(59,1)]=COLS
 
