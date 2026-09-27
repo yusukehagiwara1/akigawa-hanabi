@@ -58,7 +58,7 @@ for ri,row in enumerate(grid,1):
     out.append('<tr>'); ci=1
     while ci<=COLS:
         v,st=row[ci-1]; cs=span.get((ri,ci),1)
-        out.append('<td%s style="%s">%s</td>'%((' colspan="%d"'%cs) if cs>1 else '',st,html.escape(v) if v else '&nbsp;'))
+        out.append('<td%s style="%s">%s</td>'%((' colspan="%d"'%cs) if cs>1 else '',st,html.escape(v)))
         ci+=cs
     out.append('</tr>')
 out.append('</table>')
