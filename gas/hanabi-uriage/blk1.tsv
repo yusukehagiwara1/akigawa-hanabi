@@ -1,8 +1,0 @@
-残率	状況
-=IFERROR(TEXT($D6/$B6,"0%"),"")	=IFS($D6<=0,"✕",IFERROR($D6/$B6,1)<=0.25,"△",TRUE,"〇")
-=IFERROR(TEXT($D7/$B7,"0%"),"")	=IFS($D7<=0,"✕",IFERROR($D7/$B7,1)<=0.25,"△",TRUE,"〇")
-=IFERROR(TEXT($D8/$B8,"0%"),"")	=IFS($D8<=0,"✕",IFERROR($D8/$B8,1)<=0.25,"△",TRUE,"〇")
-=IFERROR(TEXT($D9/$B9,"0%"),"")	=IFS($D9<=0,"✕",IFERROR($D9/$B9,1)<=0.25,"△",TRUE,"〇")
-=IFERROR(TEXT($D10/$B10,"0%"),"")	=IFS($D10<=0,"✕",IFERROR($D10/$B10,1)<=0.25,"△",TRUE,"〇")
-=IFERROR(TEXT($D11/$B11,"0%"),"")	=IFS($D11<=0,"✕",IFERROR($D11/$B11,1)<=0.25,"△",TRUE,"〇")
-=IFERROR(TEXT($D12/$B12,"0%"),"")	=IFS($D12<=0,"✕",IFERROR($D12/$B12,1)<=0.25,"△",TRUE,"〇")
