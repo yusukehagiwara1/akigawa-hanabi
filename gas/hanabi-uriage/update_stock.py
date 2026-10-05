@@ -88,17 +88,10 @@ def main():
     seat, site = load_sheet(csv_path)
     s = io.open(html_path, encoding='utf-8').read()
     changes = []
-
-    # 比較カード
-    def card(m):
-        key = CARD_CLASS[m.group(1)]
-        cls, label = STOCK[seat[key]]
-        new = '<span class="akg-sf__stock akg-sf__stock--%s"><i></i>%s</span>' % (cls, label)
-        if m.group(2) != new:
-            changes.append('カード %s: %s → %s' % (key, re.sub('<[^>]+>', '', m.group(2)), label))
-        return m.group(0).replace(m.group(2), new)
-    s = re.sub(r'<li class="akg-sf--(rec|ss|s|a|free)">.*?(<span class="akg-sf__stock akg-sf__stock--\w+"><i></i>[^<]+</span>)',
-               card, s, flags=re.S)
+    # 席全体の状況は、ページに出す販売サイトの記号から決める
+    # （〇が1つでもあれば空席あり／〇がなく△があれば残りわずか／全部✕なら完売）。
+    # 未発売の枠を数えないので、実際に買える席数に沿った表示になる。
+    status = {}
 
     # 席の詳細・駐車場ブロック
     parts = re.split(r'(?=<!-- wp:loos/step-item )', s)
@@ -110,13 +103,7 @@ def main():
             key = next((v for k, v in PARKING_TITLE.items() if t and k in t.group(1)), None)
         if not key:
             continue
-        if key in seat:
-            cls, label = STOCK[seat[key]]
-            new = '<p class="akg-buylist__stock akg-buylist__stock--%s"><i></i>%s</p>' % (cls, label)
-            old = re.search(r'<p class="akg-buylist__stock akg-buylist__stock--\w+"><i></i>[^<]+</p>', blk)
-            if old and old.group(0) != new:
-                changes.append('詳細 %s: %s → %s' % (key, re.sub('<[^>]+>', '', old.group(0)), label))
-                blk = blk.replace(old.group(0), new)
+        marks = []
 
         def li(m):
             body = m.group(0)
@@ -131,14 +118,37 @@ def main():
             url = href.group(1) if href else URLS.get((key, st))
             if mark != '✕' and not url:
                 changes.append('!! URL不明 %s / %s（✕のまま）' % (key, st))
+                marks.append('✕')
                 return body
+            marks.append(mark)
             new = row_html(st, mark, url)
             if new != body:
                 cur = re.search(r'aria-hidden="true">(.)<', body)
                 changes.append('%s / %s: %s → %s' % (key, st, cur.group(1) if cur else '?', mark))
             return new
-        parts[n] = re.sub(r'<li(?: class="akg-buylist__item--out")?>.*?</li>', li, blk, flags=re.S)
+        blk = re.sub(r'<li(?: class="akg-buylist__item--out")?>.*?</li>', li, blk, flags=re.S)
+
+        if key in seat and marks:
+            status[key] = '〇' if '〇' in marks else ('△' if '△' in marks else '✕')
+            cls, label = STOCK[status[key]]
+            new = '<p class="akg-buylist__stock akg-buylist__stock--%s"><i></i>%s</p>' % (cls, label)
+            old = re.search(r'<p class="akg-buylist__stock akg-buylist__stock--\w+"><i></i>[^<]+</p>', blk)
+            if old and old.group(0) != new:
+                changes.append('詳細 %s: %s → %s' % (key, re.sub('<[^>]+>', '', old.group(0)), label))
+                blk = blk.replace(old.group(0), new)
+        parts[n] = blk
     s = ''.join(parts)
+
+    # 比較カード（席の詳細と同じ判定）
+    def card(m):
+        key = CARD_CLASS[m.group(1)]
+        cls, label = STOCK[status.get(key, seat[key])]
+        new = '<span class="akg-sf__stock akg-sf__stock--%s"><i></i>%s</span>' % (cls, label)
+        if m.group(2) != new:
+            changes.append('カード %s: %s → %s' % (key, re.sub('<[^>]+>', '', m.group(2)), label))
+        return m.group(0).replace(m.group(2), new)
+    s = re.sub(r'<li class="akg-sf--(rec|ss|s|a|free)">.*?(<span class="akg-sf__stock akg-sf__stock--\w+"><i></i>[^<]+</span>)',
+               card, s, flags=re.S)
 
     print('\n'.join(changes) if changes else '変更なし')
     if write and changes:
