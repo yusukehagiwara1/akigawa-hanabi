@@ -40,6 +40,12 @@ URLS = {
 
 STOCK = {'〇': ('ok', '空席あり'), '△': ('few', '残りわずか'), '✕': ('none', '完売')}
 
+# 割当はあるが、販売サイト側でまだ売り出していない枠（売り出したら外す）
+NOT_ON_SALE = {
+    ('SS席', 'チケットぴあ'),  # 10/5按分で15卓追加、ぴあは「予定枚数終了」のまま
+    ('S席', 'チケットぴあ'),   # 10/5按分で5席追加、同上
+}
+
 
 def row_html(site, mark, url):
     name = '<span class="akg-buylist__name">%sで購入する</span>' % site
@@ -117,7 +123,7 @@ def main():
                 return body
             st = nm.group(1)
             mark = site.get((key, st), '')
-            if mark in ('', '―'):
+            if mark in ('', '―') or (key, st) in NOT_ON_SALE:
                 mark = '✕'
             href = re.search(r'href="([^"]+)"', body)
             url = href.group(1) if href else URLS.get((key, st))
