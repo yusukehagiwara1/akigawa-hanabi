@@ -40,10 +40,14 @@ URLS = {
 
 STOCK = {'〇': ('ok', '空席あり'), '△': ('few', '残りわずか'), '✕': ('none', '完売')}
 
+# 記号を手で決めている枠（シートの判定より優先）
+FORCE_MARK = {
+    ('SS席', 'チケットぴあ'): '△',  # 10/7 ぴあで販売再開。シートは割当15・残り15で〇になるが△で表示（萩原さん判断）
+}
+
 # 割当はあるが、販売サイト側でまだ売り出していない枠（売り出したら外す）
 NOT_ON_SALE = {
-    ('SS席', 'チケットぴあ'),  # 10/5按分で15卓追加、ぴあは「予定枚数終了」のまま
-    ('S席', 'チケットぴあ'),   # 10/5按分で5席追加、同上
+    ('S席', 'チケットぴあ'),   # 10/5按分で5席追加、ぴあは「予定枚数終了」のまま（10/7確認）
 }
 
 
@@ -112,6 +116,7 @@ def main():
             mark = site.get((key, st), '')
             if mark in ('', '―') or (key, st) in NOT_ON_SALE:
                 mark = '✕'
+            mark = FORCE_MARK.get((key, st), mark)
             href = re.search(r'href="([^"]+)"', body)
             url = href.group(1) if href else URLS.get((key, st))
             if mark != '✕' and not url:
