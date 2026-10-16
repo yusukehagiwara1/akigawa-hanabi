@@ -107,11 +107,13 @@
   }
   function effective(r) {
     var e = { seat: r.seat, alt: r.alt, why: r.why, altHint: r.altHint };
+    // 4名掛けのSS席を代わりに出すのは、家族・グループのときだけ
+    var tables = (state.with === 'family' || state.with === 'friends') ? ['ss', 's'] : ['s'];
     if (e.seat !== 'a' && soldOut(e.seat)) {
       e.seat = 'a'; e.why = SEATS.a.why;
-      if (e.alt === 'a' || soldOut(e.alt)) { e.alt = firstAvailable(['ss', 's'], 'a'); e.altHint = e.alt ? ALT_HINTS[e.alt] : ''; }
+      if (e.alt === 'a' || soldOut(e.alt)) { e.alt = firstAvailable(tables, 'a'); e.altHint = e.alt ? ALT_HINTS[e.alt] : ''; }
     } else if (soldOut(e.alt)) {
-      e.alt = firstAvailable(['a', 'ss', 's'], e.seat); e.altHint = e.alt ? ALT_HINTS[e.alt] : '';
+      e.alt = firstAvailable(['a'].concat(tables), e.seat); e.altHint = e.alt ? ALT_HINTS[e.alt] : '';
     }
     return e;
   }
