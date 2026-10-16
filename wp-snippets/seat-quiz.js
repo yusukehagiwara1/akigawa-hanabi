@@ -93,6 +93,29 @@
     'solo|special':      { seat: 's', alt: 'a', altHint: '気軽に楽しむなら、大人1人5,000円の椅子席', why: '2名掛けのテーブル席を、ひとりでゆったり使えます。テーブルとイス付きで、自分のペースで花火を楽しめます。' }
   };
 
+  // 完売した席はすすめない。チケットページの比較カードが「完売」になった席は、
+  // おすすめをA席に置き換える（第2候補が完売・A席と重なるときは、残っているテーブル席に）。
+  var CARD_CLASS = { recliner: 'rec', ss: 'ss', s: 's', a: 'a', free: 'free' };
+  var ALT_HINTS = { a: '気軽に楽しむなら、大人5,000円の椅子席', ss: 'テーブルを囲むなら、4名掛けのテーブル席', s: 'テーブル付きにするなら、2名掛けのテーブル席' };
+  function soldOut(key) {
+    var c = CARD_CLASS[key];
+    return !!(c && document.querySelector('.akg-sf--' + c + ' .akg-sf__stock--none'));
+  }
+  function firstAvailable(list, not) {
+    for (var i = 0; list.length > i; i++) { if (list[i] !== not && !soldOut(list[i])) { return list[i]; } }
+    return null;
+  }
+  function effective(r) {
+    var e = { seat: r.seat, alt: r.alt, why: r.why, altHint: r.altHint };
+    if (e.seat !== 'a' && soldOut(e.seat)) {
+      e.seat = 'a'; e.why = SEATS.a.why;
+      if (e.alt === 'a' || soldOut(e.alt)) { e.alt = firstAvailable(['ss', 's'], 'a'); e.altHint = e.alt ? ALT_HINTS[e.alt] : ''; }
+    } else if (soldOut(e.alt)) {
+      e.alt = firstAvailable(['a', 'ss', 's'], e.seat); e.altHint = e.alt ? ALT_HINTS[e.alt] : '';
+    }
+    return e;
+  }
+
   // Labels used to repeat the chosen answers on the result screen
   var LABELS = { family: '家族で', friends: '友人・グループで', couple: 'カップル・ご夫婦で', solo: 'おひとりで',
     relax: 'ゆったり過ごしたい', focus: '花火に集中して楽しみたい', price: '料金を抑えたい', special: '特別な時間にしたい',
@@ -163,7 +186,7 @@
   }
 
   function renderResult(seatKey, altKey, why, altHint, source) {
-    var s = SEATS[seatKey], alt = SEATS[altKey];
+    var s = SEATS[seatKey], alt = altKey ? SEATS[altKey] : null;
     var picked = LABELS[state.with] + '／' + LABELS[state.priority] + (state.priority === 'price' ? '／' + LABELS[state.area] : '');
     var html = '<div class="akg-quiz__result">';
     html += '<p class="akg-quiz__picked">' + picked + '</p>';
@@ -182,10 +205,12 @@
     } else {
       html += '<p class="akg-quiz__sub"><a href="#site">他の販売サイトで購入する</a>（チケットぴあ・KKday・楽天トラベル・JRE MALLでも販売しています）</p>';
     }
-    html += '<div class="akg-quiz__alt"><p class="akg-quiz__alt-label">' + (source === 'second' ? '最初のおすすめ' : '第2候補') + '</p>';
-    html += '<button type="button" class="akg-quiz__alt-btn" data-act="alt" data-seat="' + altKey + '" data-prev="' + seatKey + '">' +
-      '<span class="akg-quiz__opt-main">' + alt.name + '　' + alt.price + '</span>' +
-      '<span class="akg-quiz__opt-sub">' + altHint + '<span aria-hidden="true"> →</span> この席を見る</span></button></div>';
+    if (alt) {
+      html += '<div class="akg-quiz__alt"><p class="akg-quiz__alt-label">' + (source === 'second' ? '最初のおすすめ' : '第2候補') + '</p>';
+      html += '<button type="button" class="akg-quiz__alt-btn" data-act="alt" data-seat="' + altKey + '" data-prev="' + seatKey + '">' +
+        '<span class="akg-quiz__opt-main">' + alt.name + '　' + alt.price + '</span>' +
+        '<span class="akg-quiz__opt-sub">' + altHint + '<span aria-hidden="true"> →</span> この席を見る</span></button></div>';
+    }
     html += '<p class="akg-quiz__note">※おすすめは目安です。席の詳しい説明は、このページ下の「観覧席」をご覧ください。</p>';
     html += '<p class="akg-quiz__foot"><button type="button" class="akg-quiz__again" data-act="reset">もう一度診断する</button></p>';
     html += '</div>';
@@ -209,7 +234,8 @@
   function showPrimary() {
     var r = RULES[ruleKey()];
     if (!r) { renderQuestion('with'); return; }
-    renderResult(r.seat, r.alt, r.why, r.altHint, 'primary');
+    var e = effective(r);
+    renderResult(e.seat, e.alt, e.why, e.altHint, 'primary');
   }
 
   function next() {
@@ -251,8 +277,9 @@
       var seatKey = btn.getAttribute('data-seat');
       var r = RULES[ruleKey()];
       if (!r || !SEATS[seatKey]) { return; }
-      if (seatKey === r.seat) { showPrimary(); }
-      else { renderResult(seatKey, r.seat, SEATS[seatKey].why, '最初におすすめした席', 'second'); }
+      var e = effective(r);
+      if (seatKey === e.seat) { showPrimary(); }
+      else { renderResult(seatKey, e.seat, SEATS[seatKey].why, '最初におすすめした席', 'second'); }
     } else if (act === 'reset') {
       state.with = null; state.priority = null; state.area = null; state.lastSent = '';
       track('seat_quiz_restart', {});
