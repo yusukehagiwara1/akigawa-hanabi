@@ -2,13 +2,14 @@
 """
 花火売上集計の「在庫」シート（CSV）から、チケットページの在庫表示を更新する。
 
-  python update_stock.py <zaiko.csv> <ticket-page-content.html> [--write]
+  python update_stock.py <zaiko.csv> <ticket-page-content.html> [--write] [--date 10月18日]
 
 - 席ごとの表示（比較カード・席の詳細）: ① 状況 〇/△/✕ → 空席あり/残りわずか/完売
 - 販売サイトごとの記号（購入リンク）: ② 記号 〇/△/✕。配分0の「―」は ✕ として扱う
+- 「○月○日時点」の日付（akg-asof）: --date を付けないときは今日の日付
 --write を付けないときは変更点を表示するだけ（ファイルは書き換えない）。
 """
-import csv, io, re, sys
+import csv, datetime, io, re, sys
 
 SEAT_ANCHOR = {
     'seat-rec': 'リクライニング席（ペア）',
@@ -50,6 +51,12 @@ NOT_ON_SALE = {
     ('S席', 'チケットぴあ'),   # 10/5按分で5席追加、ぴあは「予定枚数終了」のまま（10/7確認）
 }
 
+# 販売サイトの画面で売り切れを確認した枠（集計より先に売り切れることがある）
+SOLD_OUT = {
+    ('S席', 'アソビュー'),  # 10/18 「予定枚数終了」を確認（シートは10/16集計で残り1）
+    ('S席', 'JRE MALL'),    # 10/18 カレンダーの✕を確認（シートは10/16集計で残り2）
+}
+
 
 def row_html(site, mark, url):
     name = '<span class="akg-buylist__name">%sで購入する</span>' % site
@@ -87,6 +94,8 @@ def load_sheet(path):
 def main():
     csv_path, html_path = sys.argv[1], sys.argv[2]
     write = '--write' in sys.argv
+    today = datetime.date.today()
+    asof = sys.argv[sys.argv.index('--date') + 1] if '--date' in sys.argv else '%d月%d日' % (today.month, today.day)
     seat, site = load_sheet(csv_path)
     s = io.open(html_path, encoding='utf-8').read()
     changes = []
@@ -114,7 +123,7 @@ def main():
                 return body
             st = nm.group(1)
             mark = site.get((key, st), '')
-            if mark in ('', '―') or (key, st) in NOT_ON_SALE:
+            if mark in ('', '―') or (key, st) in NOT_ON_SALE or (key, st) in SOLD_OUT:
                 mark = '✕'
             mark = FORCE_MARK.get((key, st), mark)
             href = re.search(r'href="([^"]+)"', body)
@@ -152,6 +161,12 @@ def main():
         return m.group(0).replace(m.group(2), new)
     s = re.sub(r'<li class="akg-sf--(rec|ss|s|a|free)">.*?(<span class="akg-sf__stock akg-sf__stock--\w+"><i></i>[^<]+</span>)',
                card, s, flags=re.S)
+
+    # 「○月○日時点」の日付
+    olds = set(re.findall(r'<span class="akg-asof">([^<]*)</span>', s))
+    if olds != {asof}:
+        changes.append('時点の日付: %s → %s' % ('・'.join(sorted(olds)) or 'なし', asof))
+        s = re.sub(r'(<span class="akg-asof">)[^<]*(</span>)', r'\g<1>%s\g<2>' % asof, s)
 
     print('\n'.join(changes) if changes else '変更なし')
     if write and changes:
