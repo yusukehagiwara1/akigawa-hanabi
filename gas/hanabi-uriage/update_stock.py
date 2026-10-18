@@ -2,12 +2,14 @@
 """
 花火売上集計の「在庫」シート（CSV）から、チケットページの在庫表示を更新する。
 
-  python update_stock.py <zaiko.csv> <ticket-page-content.html> [--write] [--date 10月18日]
+  python update_stock.py <zaiko.csv> <ticket-page-content.html> [--write] [--date 2026-10-18]
 
 - 席ごとの表示（比較カード・席の詳細）: ① 状況 〇/△/✕ → 空席あり/残りわずか/完売
 - 販売サイトごとの記号（購入リンク）: ② 記号 〇/△/✕。配分0の「―」は ✕ として扱う
 - 「○月○日時点」の日付（akg-asof）: --date を付けないときは今日の日付
 --write を付けないときは変更点を表示するだけ（ファイルは書き換えない）。
+
+毎日の自動更新（build_stock_json.py）もこのファイルの transform() を使う。
 """
 import csv, datetime, io, re, sys
 
@@ -20,6 +22,11 @@ SEAT_ANCHOR = {
 }
 CARD_CLASS = {'rec': 'リクライニング席（ペア）', 'ss': 'SS席', 's': 'S席', 'a': 'A席（大人＋子ども）', 'free': 'フリーエリア'}
 PARKING_TITLE = {'観覧会場隣接': '駐車場①（会場隣接）', 'プール側': '駐車場②（プール側）'}
+# 購入リンクの枠（div.akg-buylist）に付ける data-stock。stock.js がこれで差し替え先を探す
+STOCK_ID = {
+    'リクライニング席（ペア）': 'rec', 'SS席': 'ss', 'S席': 's', 'A席（大人＋子ども）': 'a', 'フリーエリア': 'free',
+    '駐車場①（会場隣接）': 'park1', '駐車場②（プール側）': 'park2',
+}
 
 # ✕ の行にはリンクが残らないので、在庫が戻ったときのためのURL
 PIA = 'https://t.pia.jp/pia/ticketInformation.do?eventCd=2625008&amp;rlsCd=001'
@@ -55,6 +62,7 @@ NOT_ON_SALE = {
 SOLD_OUT = {
     ('S席', 'アソビュー'),  # 10/18 「予定枚数終了」を確認（シートは10/16集計で残り1）
     ('S席', 'JRE MALL'),    # 10/18 カレンダーの✕を確認（シートは10/16集計で残り2）
+    ('SS席', '楽天トラベル'),  # 10/18 楽天の在庫確認で1枚も確保できないことを確認（シートは10/16集計で残り1）
 }
 
 
@@ -73,8 +81,8 @@ def row_html(site, mark, url):
     return '<li><a href="%s" target="_blank" rel="noopener">%s%s</a></li>' % (url, name, m)
 
 
-def load_sheet(path):
-    rows = list(csv.reader(io.open(path, encoding='utf-8')))
+def parse_sheet(text):
+    rows = list(csv.reader(io.StringIO(text)))
     seat, site = {}, {}
     # ① 席種ごと: 「席種,在庫,販売,残り,残率,状況」の下
     i = next(k for k, r in enumerate(rows) if r[:6] == ['席種', '在庫', '販売', '残り', '残率', '状況'])
@@ -91,14 +99,31 @@ def load_sheet(path):
     return seat, site
 
 
-def main():
-    csv_path, html_path = sys.argv[1], sys.argv[2]
-    write = '--write' in sys.argv
-    today = datetime.date.today()
-    asof = sys.argv[sys.argv.index('--date') + 1] if '--date' in sys.argv else '%d月%d日' % (today.month, today.day)
-    seat, site = load_sheet(csv_path)
-    s = io.open(html_path, encoding='utf-8').read()
-    changes = []
+def load_sheet(path):
+    return parse_sheet(io.open(path, encoding='utf-8').read())
+
+
+def asof_label(date):
+    return '%d月%d日' % (date.month, date.day)
+
+
+def combine(mark, public):
+    """シートの記号に、販売サイトの画面で見た状態を重ねる（悪い方をとる。在庫を増やす方向には変えない）"""
+    if public == 'soldout':
+        return '✕'
+    if public == 'few' and mark == '〇':
+        return '△'
+    return mark
+
+
+def transform(s, seat, site, date, public=None):
+    """ページHTMLの在庫表示を書き換える。
+
+    public: 関数 (席種, 販売サイト名, URL) -> 'available' | 'few' | 'soldout' | None。
+            販売サイトの画面で確認した状態。None は「確認していない／取れなかった」。
+    戻り値: (新しいHTML, 変更点のリスト, 行ごとの判定 [(席種, サイト, シート, 画面, 表示)])
+    """
+    changes, rows = [], []
     # 席全体の状況は、ページに出す販売サイトの記号から決める
     # （〇が1つでもあれば空席あり／〇がなく△があれば残りわずか／全部✕なら完売）。
     # 未発売の枠を数えないので、実際に買える席数に沿った表示になる。
@@ -114,6 +139,8 @@ def main():
             key = next((v for k, v in PARKING_TITLE.items() if t and k in t.group(1)), None)
         if not key:
             continue
+        blk = re.sub(r'<div class="akg-buylist"(?: data-stock="[^"]*")?>',
+                     '<div class="akg-buylist" data-stock="%s">' % STOCK_ID[key], blk)
         marks = []
 
         def li(m):
@@ -122,12 +149,16 @@ def main():
             if not nm:
                 return body
             st = nm.group(1)
-            mark = site.get((key, st), '')
+            sheet_mark = site.get((key, st), '')
+            mark = sheet_mark
             if mark in ('', '―') or (key, st) in NOT_ON_SALE or (key, st) in SOLD_OUT:
                 mark = '✕'
             mark = FORCE_MARK.get((key, st), mark)
             href = re.search(r'href="([^"]+)"', body)
             url = href.group(1) if href else URLS.get((key, st))
+            seen = public(key, st, url) if (public and url) else None
+            mark = combine(mark, seen)
+            rows.append((key, st, sheet_mark or '―', seen or '', mark))
             if mark != '✕' and not url:
                 changes.append('!! URL不明 %s / %s（✕のまま）' % (key, st))
                 marks.append('✕')
@@ -136,7 +167,8 @@ def main():
             new = row_html(st, mark, url)
             if new != body:
                 cur = re.search(r'aria-hidden="true">(.)<', body)
-                changes.append('%s / %s: %s → %s' % (key, st, cur.group(1) if cur else '?', mark))
+                changes.append('%s / %s: %s → %s%s' % (key, st, cur.group(1) if cur else '?', mark,
+                                                      '（販売サイトの画面: %s）' % seen if seen else ''))
             return new
         blk = re.sub(r'<li(?: class="akg-buylist__item--out")?>.*?</li>', li, blk, flags=re.S)
 
@@ -162,14 +194,26 @@ def main():
     s = re.sub(r'<li class="akg-sf--(rec|ss|s|a|free)">.*?(<span class="akg-sf__stock akg-sf__stock--\w+"><i></i>[^<]+</span>)',
                card, s, flags=re.S)
 
-    # 「○月○日時点」の日付
-    olds = set(re.findall(r'<span class="akg-asof">([^<]*)</span>', s))
-    if olds != {asof}:
-        changes.append('時点の日付: %s → %s' % ('・'.join(sorted(olds)) or 'なし', asof))
-        s = re.sub(r'(<span class="akg-asof">)[^<]*(</span>)', r'\g<1>%s\g<2>' % asof, s)
+    # 「○月○日時点」の日付（data-date は stock.js が新旧を比べるのに使う）
+    span = '<span class="akg-asof" data-date="%s">%s</span>' % (date.isoformat(), asof_label(date))
+    olds = set(re.findall(r'<span class="akg-asof"[^>]*>[^<]*</span>', s))
+    if olds != {span}:
+        changes.append('時点の日付: %s → %s' % ('・'.join(sorted(re.sub('<[^>]+>', '', o) for o in olds)) or 'なし',
+                                              asof_label(date)))
+        s = re.sub(r'<span class="akg-asof"[^>]*>[^<]*</span>', span, s)
+    return s, changes, rows
 
+
+def main():
+    csv_path, html_path = sys.argv[1], sys.argv[2]
+    write = '--write' in sys.argv
+    date = (datetime.date.fromisoformat(sys.argv[sys.argv.index('--date') + 1]) if '--date' in sys.argv
+            else datetime.date.today())
+    seat, site = load_sheet(csv_path)
+    orig = io.open(html_path, encoding='utf-8').read()
+    s, changes, _ = transform(orig, seat, site, date)
     print('\n'.join(changes) if changes else '変更なし')
-    if write and changes:
+    if write and s != orig:
         io.open(html_path, 'w', encoding='utf-8', newline='').write(s)
         print('書き込みました')
 
