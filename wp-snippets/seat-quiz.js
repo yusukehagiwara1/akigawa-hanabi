@@ -101,6 +101,12 @@
     var c = CARD_CLASS[key];
     return !!(c && document.querySelector('.akg-sf--' + c + ' .akg-sf__stock--none'));
   }
+  // おすすめの席がアソビューだけ売り切れ（ほかのサイトでは買える）か。購入リンクの枠の✕で判断する
+  function asoviewOut(key) {
+    var n = document.querySelectorAll('.akg-buylist[data-stock="' + CARD_CLASS[key] + '"] .akg-buylist__item--out .akg-buylist__name');
+    for (var i = 0; n.length > i; i++) { if (n[i].textContent.indexOf('アソビュー') === 0) { return true; } }
+    return false;
+  }
   function firstAvailable(list, not) {
     for (var i = 0; list.length > i; i++) { if (list[i] !== not && !soldOut(list[i])) { return list[i]; } }
     return null;
@@ -199,13 +205,20 @@
     html += '<div><p class="akg-quiz__price">' + s.price + '</p><ul class="akg-quiz__spec">';
     for (var i = 0; s.spec.length > i; i++) { html += '<li>' + s.spec[i] + '</li>'; }
     html += '</ul><p class="akg-quiz__why">' + why + '</p></div></div>';
-    html += '<div class="swell-block-button red_ -size-l is-style-btn_normal"><a href="' + s.url + '" target="_blank" rel="noopener" class="swell-block-button__link" data-akg-cta="' + seatKey + '">' +
-      '<span><strong>この席をアソビューで予約する</strong><span class="akg-quiz__sr">（新しいタブで開きます）</span></span></a></div>';
-    html += '<p class="akg-quiz__cta-hint">' + s.hint + '</p>';
-    if (s.only) {
-      html += '<p class="akg-quiz__sub">この席はアソビューだけで販売しています。<a href="#site">販売サイトの一覧を見る</a></p>';
+    if (asoviewOut(seatKey)) {
+      // アソビューでは売り切れ・ほかのサイトでは買える席は、ページ内の購入リンク（販売サイト別）へ案内する
+      html += '<div class="swell-block-button red_ -size-l is-style-btn_normal"><a href="#seat-' + CARD_CLASS[seatKey] + '" class="swell-block-button__link" data-akg-cta="' + seatKey + '">' +
+        '<span><strong>この席の販売サイトを見る</strong></span></a></div>';
+      html += '<p class="akg-quiz__cta-hint">アソビューでは売り切れました。ほかの販売サイトで購入できます。</p>';
     } else {
-      html += '<p class="akg-quiz__sub"><a href="#site">他の販売サイトで購入する</a>（チケットぴあ・KKday・楽天トラベル・JRE MALLでも販売しています）</p>';
+      html += '<div class="swell-block-button red_ -size-l is-style-btn_normal"><a href="' + s.url + '" target="_blank" rel="noopener" class="swell-block-button__link" data-akg-cta="' + seatKey + '">' +
+        '<span><strong>この席をアソビューで予約する</strong><span class="akg-quiz__sr">（新しいタブで開きます）</span></span></a></div>';
+      html += '<p class="akg-quiz__cta-hint">' + s.hint + '</p>';
+      if (s.only) {
+        html += '<p class="akg-quiz__sub">この席はアソビューだけで販売しています。<a href="#site">販売サイトの一覧を見る</a></p>';
+      } else {
+        html += '<p class="akg-quiz__sub"><a href="#site">他の販売サイトで購入する</a>（チケットぴあ・KKday・楽天トラベル・JRE MALLでも販売しています）</p>';
+      }
     }
     if (alt) {
       html += '<div class="akg-quiz__alt"><p class="akg-quiz__alt-label">' + (source === 'second' ? '最初のおすすめ' : '第2候補') + '</p>';

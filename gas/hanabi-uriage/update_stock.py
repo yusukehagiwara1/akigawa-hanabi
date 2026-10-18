@@ -28,25 +28,52 @@ STOCK_ID = {
     '駐車場①（会場隣接）': 'park1', '駐車場②（プール側）': 'park2',
 }
 
-# ✕ の行にはリンクが残らないので、在庫が戻ったときのためのURL
+# ✕ の行にはリンクが残らないので、在庫が戻ったときのためのURL（ページにある全行ぶん）
 PIA = 'https://t.pia.jp/pia/ticketInformation.do?eventCd=2625008&amp;rlsCd=001'
 RAKUTEN = 'https://experiences.travel.rakuten.co.jp/experiences/62751'
 KK = 'https://www.kkday.com/ja/product/527261?cid=22567&amp;ud1=officialsite#optionItem'
 ASO = 'https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products/'
+ASO_MAIN = ASO + '15a2d40e-de69-49cb-aa22-3450dd5e17b3'   # SS・S・A席がまとめて入っている商品
+JRE09 = 'https://event.jreast.co.jp/activity/detail/a180/a180-09'
+JRE10 = 'https://event.jreast.co.jp/activity/detail/a180/a180-10'
 URLS = {
-    ('SS席', 'アソビュー'): ASO + '15a2d40e-de69-49cb-aa22-3450dd5e17b3',
+    ('リクライニング席（ペア）', 'アソビュー'): ASO + 'e42dce79-988e-4b5d-bc20-099dbaf02d1d',
+    ('SS席', 'アソビュー'): ASO_MAIN,
     ('SS席', 'チケットぴあ'): PIA,
     ('SS席', 'KKday'): KK + '2047519',
     ('SS席', '楽天トラベル'): RAKUTEN,
-    ('SS席', 'JRE MALL'): 'https://event.jreast.co.jp/activity/detail/a180/a180-09#plan-3734',
-    ('S席', 'アソビュー'): ASO + '4e015166-974c-4717-aa29-7ea7a902a8c8',
+    ('SS席', 'JRE MALL'): JRE09 + '#plan-3734',
+    ('S席', 'アソビュー'): ASO_MAIN,
     ('S席', 'チケットぴあ'): PIA,
     ('S席', 'KKday'): KK + '2047527',
     ('S席', '楽天トラベル'): RAKUTEN,
-    ('S席', 'JRE MALL'): 'https://event.jreast.co.jp/activity/detail/a180/a180-09#plan-3735',
+    ('S席', 'JRE MALL'): JRE09 + '#plan-3735',
+    ('A席（大人＋子ども）', 'アソビュー'): ASO_MAIN,
+    ('A席（大人＋子ども）', 'チケットぴあ'): PIA,
+    ('A席（大人＋子ども）', 'KKday'): KK + '2047520',
+    ('A席（大人＋子ども）', '楽天トラベル'): RAKUTEN,
+    ('A席（大人＋子ども）', 'JRE MALL'): JRE09 + '#plan-3736',
+    ('フリーエリア', 'アソビュー'): ('https://machizukuricon.my.urakata.app/channels/d58e8525-0f46-4109-9740-1c1b928b5aa0'
+                                  '/products/6dbcf060-4a33-4e3c-9348-551a867822d1'),
+    ('駐車場①（会場隣接）', 'アソビュー'): ASO + 'eeb73892-7a4f-4cc6-aeb9-20d7980d5298',
+    ('駐車場①（会場隣接）', 'チケットぴあ'): PIA,
+    ('駐車場①（会場隣接）', 'KKday'): KK + '2047543',
+    ('駐車場①（会場隣接）', '楽天トラベル'): RAKUTEN,
+    ('駐車場①（会場隣接）', 'JRE MALL'): JRE10,
+    ('駐車場②（プール側）', 'アソビュー'): ASO + 'bcd564e0-361e-4a67-bdec-0a608cc54213',
+    ('駐車場②（プール側）', 'チケットぴあ'): PIA,
+    ('駐車場②（プール側）', 'KKday'): KK + '2047562',
+    ('駐車場②（プール側）', '楽天トラベル'): RAKUTEN,
+    ('駐車場②（プール側）', 'JRE MALL'): JRE10,
 }
 
 STOCK = {'〇': ('ok', '空席あり'), '△': ('few', '残りわずか'), '✕': ('none', '完売')}
+MARK_RANK = {'〇': 0, '△': 1, '✕': 2}
+# シートの記号の表記ゆれ。これ以外（#VALUE! など）が来たら止める
+MARK_NORM = {'〇': '〇', '○': '〇', '◯': '〇', '△': '△', '✕': '✕', '×': '✕', '―': '―', '': ''}
+SHEET_SEATS = ('リクライニング席（ペア）', 'SS席', 'S席', 'A席（大人＋子ども）', 'フリーエリア',
+               '駐車場①（会場隣接）', '駐車場②（プール側）')
+SHEET_SITES = ('アソビュー', 'チケットぴあ', '楽天トラベル', 'KKday', 'JRE MALL', 'さとふる')
 
 # 記号を手で決めている枠（シートの判定より優先）
 FORCE_MARK = {
@@ -82,6 +109,7 @@ def row_html(site, mark, url):
 
 
 def parse_sheet(text):
+    """在庫シートを読む。席種・サイトがそろっていない、記号が読めないときは ValueError（表示を変えずに止める）"""
     rows = list(csv.reader(io.StringIO(text)))
     seat, site = {}, {}
     # ① 席種ごと: 「席種,在庫,販売,残り,残率,状況」の下
@@ -90,12 +118,18 @@ def parse_sheet(text):
         if not r or not r[0]:
             break
         seat[r[0]] = r[5].strip()
-    # ② 販売サイト別
+    # ② 販売サイト別: 見出しの下から、注記（※）の行か最後まで。空行は読み飛ばす
     j = next(k for k, r in enumerate(rows) if r[:7] == ['席種', '販売サイト', '配分', '販売', '残り', '残率', '記号'])
     for r in rows[j + 1:]:
-        if not r or not r[0]:
+        if r and r[0].startswith('※'):
             break
-        site[(r[0], r[1])] = r[6].strip()
+        if not r or not any(c.strip() for c in r):
+            continue
+        site[(r[0], r[1])] = r[6].strip() if len(r) > 6 else ''
+    want = {(a, b) for a in SHEET_SEATS for b in SHEET_SITES}
+    if set(seat) != set(SHEET_SEATS) or set(site) != want:
+        raise ValueError('在庫シートの席種・販売サイトが想定と違う: ①に無い %s ②に無い %s ②に余分 %s' % (
+            sorted(set(SHEET_SEATS) - set(seat)), sorted(want - set(site)), sorted(set(site) - want)))
     return seat, site
 
 
@@ -149,20 +183,28 @@ def transform(s, seat, site, date, public=None):
             if not nm:
                 return body
             st = nm.group(1)
-            sheet_mark = site.get((key, st), '')
-            mark = sheet_mark
-            if mark in ('', '―') or (key, st) in NOT_ON_SALE or (key, st) in SOLD_OUT:
+            if (key, st) not in site:
+                raise ValueError('在庫シートに行が無い: %s / %s' % (key, st))
+            sheet_mark = site[(key, st)]
+            if (key, st) in NOT_ON_SALE or (key, st) in SOLD_OUT:
                 mark = '✕'
-            mark = FORCE_MARK.get((key, st), mark)
+            elif sheet_mark not in MARK_NORM:
+                raise ValueError('在庫シートの記号が読めない: %s / %s = %r' % (key, st, sheet_mark))
+            else:
+                mark = MARK_NORM[sheet_mark]
+                if mark in ('', '―'):
+                    mark = '✕'
+            # 手で決めた記号は、表示を悪い方へ寄せるときだけ使う（シートが✕なら✕のまま）
+            force = FORCE_MARK.get((key, st))
+            if force and MARK_RANK[force] > MARK_RANK[mark]:
+                mark = force
             href = re.search(r'href="([^"]+)"', body)
             url = href.group(1) if href else URLS.get((key, st))
-            seen = public(key, st, url) if (public and url) else None
+            if not url:
+                raise ValueError('購入リンクのURLが分からない: %s / %s（URLS に足す）' % (key, st))
+            seen = public(key, st, url) if public else None
             mark = combine(mark, seen)
             rows.append((key, st, sheet_mark or '―', seen or '', mark))
-            if mark != '✕' and not url:
-                changes.append('!! URL不明 %s / %s（✕のまま）' % (key, st))
-                marks.append('✕')
-                return body
             marks.append(mark)
             new = row_html(st, mark, url)
             if new != body:
