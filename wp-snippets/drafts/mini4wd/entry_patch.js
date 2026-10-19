@@ -34,7 +34,7 @@
       '<div class="swell-block-button green_ is-style-btn_shiny"><a href="https://machizukuri-con.or.jp/ticket/" class="swell-block-button__link"><span>チケット情報を見る</span></a></div>\n<!-- /wp:loos/button -->',
       '\n\n<!-- wp:paragraph {"align":"center","className":"u-mt-ctrl u-mt-40"} -->\n<p class="has-text-align-center u-mt-ctrl u-mt-40"><strong>ミニ四駆の走行体験がセットになった、花火＋ミニ四駆のコラボチケットもあります。</strong></p>\n<!-- /wp:paragraph -->\n\n' +
       '<!-- wp:image {"id":4816,"width":"640px","sizeSlug":"large","linkDestination":"custom","align":"center"} -->\n<figure class="wp-block-image aligncenter size-large is-resized"><a href="' + M4 + '"><img src="' + KV + '" alt="' + KV_ALT + '" class="wp-image-4816" style="width:640px"/></a></figure>\n<!-- /wp:image -->\n\n' +
-      '<!-- wp:loos/button {"hrefUrl":"' + M4 + '","color":"red","className":"is-style-btn_line"} -->\n<div class="swell-block-button red_ is-style-btn_line"><a href="' + M4 + '" class="swell-block-button__link"><span>ミニ四駆☆TOKYO 秋川流域 GRAND PRIX 2026</span></a></div>\n<!-- /wp:loos/button -->') },
+      '<!-- wp:loos/button {"hrefUrl":"' + M4 + '","color":"red","className":"is-style-btn_line"} -->\n<div class="swell-block-button red_ is-style-btn_line"><a href="' + M4 + '" class="swell-block-button__link"><span>ミニ四駆大会のページを見る</span></a></div>\n<!-- /wp:loos/button -->') },
     // イベント一覧: 冒頭の注記（第7回の記録）の直後に、第8回の新企画として1節
     { type: 'pages', id: 1702, name: 'イベント一覧', fn: s => insertAfter(s,
       '第8回大会（2026年11月14日）の内容は、決まり次第順次更新します。</p>\n<!-- /wp:paragraph -->',
