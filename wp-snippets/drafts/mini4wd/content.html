@@ -1,0 +1,222 @@
+<!-- wp:html -->
+<style>
+.akg-m4,.akg-m4 *,.akg-m4 *::before,.akg-m4 *::after{box-sizing:border-box}
+.akg-m4{max-width:100%;margin:0 0 1.5em;overflow-wrap:break-word;line-height:1.75;color:#222222}
+.akg-m4 p,.akg-m4 ul,.akg-m4 li,.akg-m4 dl,.akg-m4 dt,.akg-m4 dd,.akg-m4 figure{margin:0;padding:0}
+.akg-m4 ul{list-style:none}
+.akg-m4 .akg-m4__kv{margin:0 0 1.2em}
+.akg-m4 .akg-m4__kv img{display:block;width:100%;height:auto}
+.akg-m4 .akg-m4__lead{margin:0 0 1.2em;font-size:1.05em}
+.akg-m4 .akg-m4__lead span{display:inline-block}
+.akg-m4 .akg-m4__info{display:grid;grid-template-columns:auto 1fr;gap:0;border:1px solid #dddddd;border-top:3px solid #1d4fa8;background:#ffffff}
+.akg-m4 .akg-m4__info dt,.akg-m4 .akg-m4__info dd{padding:.7em .9em;border-bottom:1px solid #eeeeee}
+.akg-m4 .akg-m4__info dt{font-weight:700;background:#f4f7fc;white-space:nowrap}
+.akg-m4 .akg-m4__info dt:last-of-type,.akg-m4 .akg-m4__info dd:last-of-type{border-bottom:0}
+.akg-m4 .akg-m4__info small{display:block;font-size:.85em;color:#555555}
+.akg-m4 .akg-m4__note{margin:.5em 0 0;font-size:.85em;color:#555555}
+.akg-m4 .akg-m4__ticket{border:2px solid #d72c2c;background:#fff8f6;padding:1.1em 1em 1.2em}
+.akg-m4 .akg-m4__badge{display:inline-block;margin:0 0 .5em;padding:.15em .7em;background:#d72c2c;color:#ffffff;font-size:.85em;font-weight:700}
+.akg-m4 .akg-m4__tname{margin:0 0 .6em;font-size:1.2em;font-weight:700;line-height:1.5}
+.akg-m4 .akg-m4__prices{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 .9em}
+.akg-m4 .akg-m4__prices li{flex:1 1 180px;padding:.6em .8em;border:1px solid #f0c9c4;background:#ffffff}
+.akg-m4 .akg-m4__prices b{display:block;font-size:.9em}
+.akg-m4 .akg-m4__prices strong{font-size:1.6em;line-height:1.3;color:#c62828}
+.akg-m4 .akg-m4__prices em{font-style:normal;font-size:.85em;color:#555555}
+.akg-m4 .akg-m4__inc{margin:0 0 .9em}
+.akg-m4 .akg-m4__inc li{position:relative;margin:0 0 .45em;padding:0 0 0 1.6em}
+.akg-m4 .akg-m4__inc li::before{content:"✓";position:absolute;left:0;top:0;color:#c62828;font-weight:700}
+.akg-m4 .akg-m4__btn{margin:1em 0 .4em}
+.akg-m4 .akg-m4__btn .swell-block-button__link{min-height:52px}
+.akg-m4 .akg-m4__progs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.akg-m4 .akg-m4__prog{border:1px solid #dddddd;border-top:4px solid #d72c2c;background:#ffffff;padding:.9em .95em 1em}
+.akg-m4 .akg-m4__prog.-blue{border-top-color:#1d4fa8}
+.akg-m4 .akg-m4__prog.-green{border-top-color:#2e8b3a}
+.akg-m4 .akg-m4__prog h3{margin:0 0 .4em;padding:0;border:0;background:none;font-size:1.1em;line-height:1.5}
+.akg-m4 .akg-m4__prog h3::before,.akg-m4 .akg-m4__prog h3::after{content:none}
+.akg-m4 .akg-m4__tag{display:inline-block;margin:0 0 .6em;font-size:.9em;font-weight:700;color:#c62828}
+.akg-m4 .akg-m4__prog.-blue .akg-m4__tag{color:#1d4fa8}
+.akg-m4 .akg-m4__prog.-green .akg-m4__tag{color:#2e8b3a}
+.akg-m4 .akg-m4__kv2{display:grid;grid-template-columns:auto 1fr;gap:.2em .8em;margin:0 0 .6em;font-size:.95em}
+.akg-m4 .akg-m4__kv2 dt{font-weight:700}
+.akg-m4 .akg-m4__prog .akg-m4__note{margin:.3em 0 0}
+.akg-m4 .akg-m4__out{margin:1em 0 0;padding:.7em .9em;border:1px solid #dddddd;background:#f7f7f7;font-size:.92em}
+.akg-m4 .akg-m4__gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.akg-m4 .akg-m4__gallery img{display:block;width:100%;height:100%;aspect-ratio:4/3;object-fit:cover;background:#f2f2f2}
+.akg-m4 .akg-m4__flyer{max-width:420px;margin:0 auto}
+.akg-m4 .akg-m4__flyer img{display:block;width:100%;height:auto;border:1px solid #dddddd}
+.akg-m4 .akg-m4__flyer a{display:block}
+.akg-m4 .akg-m4__list li{position:relative;margin:0 0 .5em;padding:0 0 0 1.2em}
+.akg-m4 .akg-m4__list li::before{content:"・";position:absolute;left:0;top:0}
+@media (max-width:599px){
+.akg-m4 .akg-m4__info{grid-template-columns:1fr}
+.akg-m4 .akg-m4__info dt{border-bottom:0;padding-bottom:.2em}
+.akg-m4 .akg-m4__info dd{padding-top:.1em}
+.akg-m4 .akg-m4__gallery{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+<div class="akg-m4">
+<figure class="akg-m4__kv"><img src="https://machizukuri-con.or.jp/wp-content/uploads/mini4wd-kv-1024x768.jpg" srcset="https://machizukuri-con.or.jp/wp-content/uploads/mini4wd-kv-768x576.jpg 768w, https://machizukuri-con.or.jp/wp-content/uploads/mini4wd-kv-1024x768.jpg 1024w, https://machizukuri-con.or.jp/wp-content/uploads/mini4wd-kv.jpg 1448w" sizes="(max-width: 1100px) 100vw, 1100px" width="1024" height="768" alt="ミニ四駆☆TOKYO 秋川流域 GRAND PRIX 2026。11月14日（土）12:00〜17:30、東京サマーランド第2駐車場 イベントエリア。秋川流域花火大会とのコラボ開催。"></figure>
+<p class="akg-m4__lead"><span>第8回秋川流域花火大会とのコラボ企画として、</span><span>「ミニ四駆☆TOKYO 秋川流域 GRAND PRIX 2026」を開催します。</span>花火観覧エリアのとなりに5レーンの公式模擬コースをご用意しています。ビギナーからガチレーサーまで、自慢のミニ四駆でチャレンジしてください。</p>
+<dl class="akg-m4__info">
+<dt>日時</dt><dd>2026年11月14日（土）12:00〜17:30<small>花火の打ち上げは18:00からです</small></dd>
+<dt>会場</dt><dd>東京サマーランド 第2駐車場 イベントエリア<small>花火観覧エリアのとなりです</small></dd>
+<dt>内容</dt><dd>5レーン公式模擬コース 走行体験会／ミニ四駆組み立て教室／ミニ四駆物販コーナー</dd>
+<dt>主催</dt><dd>NPO法人まちづくりコンソーシアム</dd>
+<dt>協力</dt><dd>FORCE LABO ／ B-MAX GP（イベント協力・コース監修）</dd>
+</dl>
+</div>
+<!-- /wp:html -->
+
+<!-- wp:loos/full-wide {"bgColor":"#ffffff","contentSize":"container","pcPadding":"20","spPadding":"20","anchor":"ticket"} -->
+<div class="swell-block-fullWide pc-py-20 sp-py-20 alignfull" style="background-color:#ffffff" id="ticket"><div class="swell-block-fullWide__inner l-container"><!-- wp:heading {"className":"is-style-section_ttl"} -->
+<h2 class="wp-block-heading is-style-section_ttl"><span class="swl-fz u-fz-xl">花火＋ミニ四駆のコラボチケット</span></h2>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<div class="akg-m4">
+<div class="akg-m4__ticket">
+<p class="akg-m4__badge">花火もミニ四駆も楽しめる</p>
+<p class="akg-m4__tname">花火大会「A席」＋ミニ四駆 走行体験</p>
+<ul class="akg-m4__prices">
+<li><b>おとな</b><strong>5,500</strong>円 <em>（A席＋ミニ四駆走行体験）</em></li>
+<li><b>こども</b><strong>2,500</strong>円 <em>（A席＋ミニ四駆走行体験）</em></li>
+</ul>
+<p>このチケット1枚でできること</p>
+<ul class="akg-m4__inc">
+<li>秋川流域花火大会の「A席」で花火を観覧できます。音楽とシンクロする花火を、指定席からゆったりお楽しみください。会場では「秋川最強肉まつり」も開催します。</li>
+<li>5レーン公式模擬コースの走行体験会に参加できます（12:00〜17:00）。走行体験の参加費（単品500円）が含まれています。</li>
+</ul>
+<div class="akg-m4__btn"><div class="swell-block-button red_ -size-l is-style-btn_shiny"><a href="https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products/65d27d38-f499-4089-952f-98f159c18605" target="_blank" rel="noopener" class="swell-block-button__link"><span><strong>コラボチケットを購入する（アソビュー）</strong></span></a></div></div>
+<p class="akg-m4__note">※アソビューの購入ページが新しいタブで開きます。</p>
+<p class="akg-m4__note">※小さなお子さまの膝上観覧はチケット不要です。ただし、ミニ四駆の走行体験に参加する場合はチケットが必要です。</p>
+<p class="akg-m4__note">※お車でお越しの方は、別途「駐車券」の購入をお願いします。<a href="https://machizukuri-con.or.jp/ticket/#parking">駐車券について</a></p>
+</div>
+</div>
+<!-- /wp:html --></div></div>
+<!-- /wp:loos/full-wide -->
+
+<!-- wp:loos/full-wide {"bgColor":"#ffffff","contentSize":"container","pcPadding":"20","spPadding":"20","anchor":"program"} -->
+<div class="swell-block-fullWide pc-py-20 sp-py-20 alignfull" style="background-color:#ffffff" id="program"><div class="swell-block-fullWide__inner l-container"><!-- wp:heading {"className":"is-style-section_ttl"} -->
+<h2 class="wp-block-heading is-style-section_ttl"><span class="swl-fz u-fz-xl">当日の内容</span></h2>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<div class="akg-m4">
+<div class="akg-m4__progs">
+<section class="akg-m4__prog">
+<h3>5レーン公式模擬コース 走行体験会</h3>
+<p class="akg-m4__tag">貸し出しマシンあり！ 持ち込みOK！</p>
+<dl class="akg-m4__kv2"><dt>時間</dt><dd>12:00〜17:00</dd><dt>参加費</dt><dd>1回500円</dd></dl>
+<p>ビギナーも大歓迎、ガチレーサーも燃える本格的なコースです。</p>
+<p class="akg-m4__note">※走行体験は1回ごとにお時間を区切らせていただきます。</p>
+<p class="akg-m4__note">※お持ち込み車両の場合でも料金は同額となります。</p>
+<p class="akg-m4__note">※コラボチケットには、走行体験の参加費（単品500円）が含まれています。</p>
+</section>
+<section class="akg-m4__prog -blue">
+<h3>作って走らせよう ミニ四駆組み立て教室</h3>
+<p class="akg-m4__tag">専門スタッフが組み立てをサポート</p>
+<dl class="akg-m4__kv2"><dt>時間</dt><dd>12:00〜15:00</dd><dt>参加費</dt><dd>4,000円（会場で精算）</dd></dl>
+<p class="akg-m4__note">※参加費には「ミニ四駆本体」「グレードアップパーツセット」「電池」が含まれます（組立工具は無料貸し出し）。</p>
+<p class="akg-m4__note">※1回の所要時間はおよそ90分です。定員に達し次第、終了する場合があります。</p>
+</section>
+<section class="akg-m4__prog -green">
+<h3>ミニ四駆物販コーナー</h3>
+<p class="akg-m4__tag">カスタムパーツ・ミニ四駆キットの販売</p>
+<dl class="akg-m4__kv2"><dt>時間</dt><dd>12:00〜17:00（最終受付 16:45）</dd></dl>
+<p class="akg-m4__note">※こちらは物販コーナーの営業時間です。走行体験会の受付時間とは異なりますのでご注意ください。</p>
+</section>
+</div>
+<p class="akg-m4__out">組み立て教室の参加費と物販コーナーでのお買い物は、コラボチケットには含まれません。会場の受付でお申し込み・お支払いください。</p>
+</div>
+<!-- /wp:html --></div></div>
+<!-- /wp:loos/full-wide -->
+
+<!-- wp:loos/full-wide {"bgColor":"#ffffff","contentSize":"container","pcPadding":"20","spPadding":"20","anchor":"photo"} -->
+<div class="swell-block-fullWide pc-py-20 sp-py-20 alignfull" style="background-color:#ffffff" id="photo"><div class="swell-block-fullWide__inner l-container"><!-- wp:heading {"className":"is-style-section_ttl"} -->
+<h2 class="wp-block-heading is-style-section_ttl"><span class="swl-fz u-fz-xl">コースとマシン</span></h2>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<div class="akg-m4">
+<ul class="akg-m4__gallery">
+<li><img src="https://machizukuri-con.or.jp/wp-content/uploads/mini4wd-course-3-768x432.jpg" width="768" height="432" loading="lazy" alt="屋内に設置した5レーンのミニ四駆コース（イメージ）"></li>
+<li><img src="https://machizukuri-con.or.jp/wp-content/uploads/mini4wd-course-1-768x456.jpg" width="768" height="456" loading="lazy" alt="5レーンのミニ四駆コース（イメージ）"></li>
+<li><img src="https://machizukuri-con.or.jp/wp-content/uploads/mini4wd-course-2-768x362.jpg" width="768" height="362" loading="lazy" alt="立体交差のある5レーンのミニ四駆コース（イメージ）"></li>
+<li><img src="https://machizukuri-con.or.jp/wp-content/uploads/mini4wd-machine-1.jpg" width="601" height="427" loading="lazy" alt="青いボディのミニ四駆マシン（イメージ）"></li>
+<li><img src="https://machizukuri-con.or.jp/wp-content/uploads/mini4wd-machine-2.jpg" width="711" height="513" loading="lazy" alt="赤と白のボディのミニ四駆マシン（イメージ）"></li>
+<li><img src="https://machizukuri-con.or.jp/wp-content/uploads/mini4wd-machine-3.jpg" width="529" height="397" loading="lazy" alt="緑とグレーのボディのミニ四駆マシン（イメージ）"></li>
+</ul>
+<p class="akg-m4__note">※写真はイメージです。</p>
+</div>
+<!-- /wp:html --></div></div>
+<!-- /wp:loos/full-wide -->
+
+<!-- wp:loos/full-wide {"bgColor":"#ffffff","contentSize":"container","pcPadding":"20","spPadding":"20","anchor":"flyer"} -->
+<div class="swell-block-fullWide pc-py-20 sp-py-20 alignfull" style="background-color:#ffffff" id="flyer"><div class="swell-block-fullWide__inner l-container"><!-- wp:heading {"className":"is-style-section_ttl"} -->
+<h2 class="wp-block-heading is-style-section_ttl"><span class="swl-fz u-fz-xl">チラシ</span></h2>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<div class="akg-m4">
+<figure class="akg-m4__flyer"><a href="https://machizukuri-con.or.jp/wp-content/uploads/mini4wd-flyer.jpg" target="_blank" rel="noopener"><img src="https://machizukuri-con.or.jp/wp-content/uploads/mini4wd-flyer.jpg" width="595" height="842" loading="lazy" alt="ミニ四駆☆TOKYO 秋川流域 GRAND PRIX 2026 のチラシ（画像を新しいタブで開きます）"></a></figure>
+</div>
+<!-- /wp:html --></div></div>
+<!-- /wp:loos/full-wide -->
+
+<!-- wp:loos/full-wide {"bgColor":"#ffffff","contentSize":"container","pcPadding":"20","spPadding":"20","anchor":"access"} -->
+<div class="swell-block-fullWide pc-py-20 sp-py-20 alignfull" style="background-color:#ffffff" id="access"><div class="swell-block-fullWide__inner l-container"><!-- wp:heading {"className":"is-style-section_ttl"} -->
+<h2 class="wp-block-heading is-style-section_ttl"><span class="swl-fz u-fz-xl">会場・アクセス</span></h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>会場は、東京サマーランド 第2駐車場 イベントエリアです（花火観覧エリアのとなり）。都心から約60分。紅葉と秋川、花火、そしてミニ四駆。ここでしか味わえない秋の一日をお楽しみください。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>お車でお越しの方は、別途「駐車券」の購入をお願いします。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:loos/button {"hrefUrl":"https://machizukuri-con.or.jp/access/","color":"blue","btnSize":"l","className":"is-style-btn_line"} -->
+<div class="swell-block-button blue_ -size-l is-style-btn_line"><a href="https://machizukuri-con.or.jp/access/" class="swell-block-button__link"><span><strong>交通アクセス（バスの時刻表・駐車場）</strong></span></a></div>
+<!-- /wp:loos/button --></div></div>
+<!-- /wp:loos/full-wide -->
+
+<!-- wp:loos/full-wide {"bgColor":"#ffffff","contentSize":"container","pcPadding":"20","spPadding":"20","anchor":"notes"} -->
+<div class="swell-block-fullWide pc-py-20 sp-py-20 alignfull" style="background-color:#ffffff" id="notes"><div class="swell-block-fullWide__inner l-container"><!-- wp:heading {"className":"is-style-section_ttl"} -->
+<h2 class="wp-block-heading is-style-section_ttl"><span class="swl-fz u-fz-xl">注意事項</span></h2>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<div class="akg-m4">
+<ul class="akg-m4__list">
+<li>コラボチケットは、花火大会「A席」での観覧と、ミニ四駆走行体験会への参加の権利を含みます。</li>
+<li>走行体験に参加されない場合でも観覧はできますが、返金はいたしかねます。</li>
+<li>荒天・自然災害などによる開催の可否は、公式サイトの規定に準じます。</li>
+</ul>
+</div>
+<!-- /wp:html -->
+
+<!-- wp:html -->
+<div class="akg-m4">
+<div class="akg-m4__btn"><div class="swell-block-button red_ -size-l is-style-btn_shiny"><a href="https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products/65d27d38-f499-4089-952f-98f159c18605" target="_blank" rel="noopener" class="swell-block-button__link"><span><strong>コラボチケットを購入する（アソビュー）</strong></span></a></div></div>
+</div>
+<!-- /wp:html -->
+
+<!-- wp:loos/button {"hrefUrl":"https://machizukuri-con.or.jp/ticket/","color":"red","btnSize":"l","className":"is-style-btn_line"} -->
+<div class="swell-block-button red_ -size-l is-style-btn_line"><a href="https://machizukuri-con.or.jp/ticket/" class="swell-block-button__link"><span><strong>花火大会のチケット情報を見る</strong></span></a></div>
+<!-- /wp:loos/button --></div></div>
+<!-- /wp:loos/full-wide -->
+
+<!-- wp:loos/full-wide {"bgColor":"#ffffff","contentSize":"container","pcPadding":"20","spPadding":"20","anchor":"contact"} -->
+<div class="swell-block-fullWide pc-py-20 sp-py-20 alignfull" style="background-color:#ffffff" id="contact"><div class="swell-block-fullWide__inner l-container"><!-- wp:heading {"className":"is-style-section_ttl"} -->
+<h2 class="wp-block-heading is-style-section_ttl"><span class="swl-fz u-fz-xl">お問い合わせ</span></h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>主催：NPO法人まちづくりコンソーシアム<br>〒197-0804 東京都あきる野市秋川1-2-1 阿伎留ビル203号室<br>お問い合わせは、Webフォームからお願いいたします。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:loos/button {"hrefUrl":"https://machizukuri-con.or.jp/contact/","color":"blue","btnSize":"l","className":"is-style-btn_line"} -->
+<div class="swell-block-button blue_ -size-l is-style-btn_line"><a href="https://machizukuri-con.or.jp/contact/" class="swell-block-button__link"><span><strong>お問い合わせフォーム</strong></span></a></div>
+<!-- /wp:loos/button --></div></div>
+<!-- /wp:loos/full-wide -->
