@@ -17,7 +17,8 @@
 2. 販売サイトの画面で見た状態を重ねる（悪い方をとる。在庫を増やす方向には変えない）
    - アソビュー・KKday・JRE MALL・チケットぴあ: ブラウザで画面を開き、`browser/*.js` で読む
    - 楽天トラベル: `site_checks.check_rakuten()`（画面の「予約へ進む」と同じ在庫確認。予約はしない）
-3. 手で決めている枠（`update_stock.py` の FORCE_MARK / NOT_ON_SALE / SOLD_OUT）
+3. 手で決めている枠（`update_stock.py` の SET_MARK / FORCE_MARK / NOT_ON_SALE / SOLD_OUT）
+   - SET_MARK は主催者から連絡のあった記号（再販など）。シートの代わりに使い、画面で売り切れ・残りわずかを見たらそちらが勝つ
 
 「○月○日時点」は、5サイトすべてを確かめられた日だけその日の日付になる。
 
@@ -28,9 +29,11 @@ JRE はサイト全体が待合室）。すり抜けはせず、ふつうのブ�
 
 1. `git pull --ff-only`
 2. ブラウザで次を順に開き（1ページずつ、数秒あける）、結果を observed.json にまとめる
-   - アソビュー（5商品）: 商品ページを開く → `browser/asoview_open.js` → `browser/asoview_read.js`
+   - アソビュー（7商品）: 商品ページを開く → `browser/asoview_open.js` → `browser/asoview_read.js`
      - 15a2d40e-de69-49cb-aa22-3450dd5e17b3（SS・S・A席）
      - 4e015166-974c-4717-aa29-7ea7a902a8c8（S席追加販売）
+     - 0c5d63ab-40cf-4f97-b50b-c0b905a48cbc（≪S席追加販売≫ 10/23〜）
+     - e42dce79-988e-4b5d-bc20-099dbaf02d1d（リクライニングペアシート 10/23 再販）
      - eeb73892-7a4f-4cc6-aeb9-20d7980d5298（駐車場 観覧会場隣接）
      - bcd564e0-361e-4a67-bdec-0a608cc54213（駐車場 プール側）
      - 6dbcf060-4a33-4e3c-9348-551a867822d1（フリーエリア。チャネル d58e8525-…）
@@ -62,7 +65,7 @@ observed.json の形:
 
 ## 手で直すとき
 
-売り切れなどの手直しは WordPress ではなく `update_stock.py` の SOLD_OUT / FORCE_MARK / NOT_ON_SALE に入れて、
+売り切れ・再販などの手直しは WordPress ではなく `update_stock.py` の SET_MARK / SOLD_OUT / FORCE_MARK / NOT_ON_SALE に入れて、
 build → commit → push する。WordPress の本文だけ直しても、同じ日付の stock.json で stock.js が上書きする。
 
 ## 集計が終わったとき

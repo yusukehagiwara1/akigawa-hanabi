@@ -34,6 +34,7 @@ RAKUTEN = 'https://experiences.travel.rakuten.co.jp/experiences/62751'
 KK = 'https://www.kkday.com/ja/product/527261?cid=22567&amp;ud1=officialsite#optionItem'
 ASO = 'https://machizukuricon.my.urakata.app/channels/debdd785-6f29-4fa5-827f-b8eb02f3a583/products/'
 ASO_MAIN = ASO + '15a2d40e-de69-49cb-aa22-3450dd5e17b3'   # SS・S・A席がまとめて入っている商品
+ASO_S_ADD = ASO + '0c5d63ab-40cf-4f97-b50b-c0b905a48cbc'  # ≪S席追加販売≫（10/23〜。ASO_MAIN の S席は売り切れ）
 JRE09 = 'https://event.jreast.co.jp/activity/detail/a180/a180-09'
 JRE10 = 'https://event.jreast.co.jp/activity/detail/a180/a180-10'
 URLS = {
@@ -43,7 +44,7 @@ URLS = {
     ('SS席', 'KKday'): KK + '2047519',
     ('SS席', '楽天トラベル'): RAKUTEN,
     ('SS席', 'JRE MALL'): JRE09 + '#plan-3734',
-    ('S席', 'アソビュー'): ASO_MAIN,
+    ('S席', 'アソビュー'): ASO_S_ADD,
     ('S席', 'チケットぴあ'): PIA,
     ('S席', 'KKday'): KK + '2047527',
     ('S席', '楽天トラベル'): RAKUTEN,
@@ -80,6 +81,13 @@ FORCE_MARK = {
     ('SS席', 'チケットぴあ'): '△',  # 10/7 ぴあで販売再開。シートは割当15・残り15で〇になるが△で表示（萩原さん判断）
 }
 
+# 主催者から連絡のあった記号（シートの記号の代わりに使う。集計に反映されたら外す）。
+# 販売サイトの画面で売り切れ・残りわずかを見たときは、そちらが優先される
+SET_MARK = {
+    ('S席', 'アソビュー'): '〇',                # 10/23 アソビューで再販（≪S席追加販売≫）。足立さんより「〇で大丈夫」
+    ('リクライニング席（ペア）', 'アソビュー'): '△',  # 10/23 アソビューで再販。足立さんより「残り僅か」
+}
+
 # 割当はあるが、販売サイト側でまだ売り出していない枠（売り出したら外す）
 NOT_ON_SALE = {
     ('S席', 'チケットぴあ'),   # 10/5按分で5席追加、ぴあは「予定枚数終了」のまま（10/7確認）
@@ -87,7 +95,6 @@ NOT_ON_SALE = {
 
 # 販売サイトの画面で売り切れを確認した枠（集計より先に売り切れることがある）
 SOLD_OUT = {
-    ('S席', 'アソビュー'),  # 10/18 「予定枚数終了」を確認（シートは10/16集計で残り1）
     ('S席', 'JRE MALL'),    # 10/18 カレンダーの✕を確認（シートは10/16集計で残り2）
     ('SS席', '楽天トラベル'),  # 10/18 楽天の在庫確認で1枚も確保できないことを確認（シートは10/16集計で残り1）
 }
@@ -186,7 +193,9 @@ def transform(s, seat, site, date, public=None):
             if (key, st) not in site:
                 raise ValueError('在庫シートに行が無い: %s / %s' % (key, st))
             sheet_mark = site[(key, st)]
-            if (key, st) in NOT_ON_SALE or (key, st) in SOLD_OUT:
+            if (key, st) in SET_MARK:
+                mark = SET_MARK[(key, st)]
+            elif (key, st) in NOT_ON_SALE or (key, st) in SOLD_OUT:
                 mark = '✕'
             elif sheet_mark not in MARK_NORM:
                 raise ValueError('在庫シートの記号が読めない: %s / %s = %r' % (key, st, sheet_mark))

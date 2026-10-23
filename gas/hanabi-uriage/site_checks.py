@@ -17,13 +17,15 @@ JST = datetime.timezone(datetime.timedelta(hours=9))
 SITES = ('アソビュー', 'チケットぴあ', '楽天トラベル', 'KKday', 'JRE MALL')
 RANK = {'available': 0, 'few': 1, 'soldout': 2}
 
-SS, S, A, FREE = 'SS席', 'S席', 'A席（大人＋子ども）', 'フリーエリア'
+REC, SS, S, A, FREE = 'リクライニング席（ペア）', 'SS席', 'S席', 'A席（大人＋子ども）', 'フリーエリア'
 P1, P2 = '駐車場①（会場隣接）', '駐車場②（プール側）'
 
 # ---- アソビュー: 商品ID → {画面の席種名: ページの席種}。'*' は席種が1つだけの商品
 ASOVIEW = {
     '15a2d40e-de69-49cb-aa22-3450dd5e17b3': {'SS席': SS, 'S席': S, 'A席': A},  # SS・S・A が1つの商品
     '4e015166-974c-4717-aa29-7ea7a902a8c8': {'*': S},    # ＜S席追加販売＞
+    '0c5d63ab-40cf-4f97-b50b-c0b905a48cbc': {'*': S},    # ≪S席追加販売≫（10/23〜）
+    'e42dce79-988e-4b5d-bc20-099dbaf02d1d': {'*': REC},  # リクライニングペアシート（10/23 再販）
     'eeb73892-7a4f-4cc6-aeb9-20d7980d5298': {'*': P1},
     'bcd564e0-361e-4a67-bdec-0a608cc54213': {'*': P2},
     '6dbcf060-4a33-4e3c-9348-551a867822d1': {'*': FREE},  # 別チャネル（西多摩在住者限定フリーエリア）
@@ -104,7 +106,7 @@ def from_observed(raw, today):
             notes.append('アソビュー %s: 席種の状態がそろわない %s' % (pid[:8], got or r.get('date')))
     for seat, sts in by_seat.items():
         if all(s is not None for s in sts):
-            # 同じ席種を2つの商品で売っている（S席）ときは、どれかで買えれば買える（良い方をとる）
+            # 同じ席種を複数の商品で売っている（S席）ときは、どれかで買えれば買える（良い方をとる）
             _put(out, seat, 'アソビュー', min(sts, key=RANK.get))
     if good == len(ASOVIEW):
         ok.add('アソビュー')
