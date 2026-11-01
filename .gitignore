@@ -18,3 +18,6 @@ desktop.ini
 
 # Logs
 *.log
+
+# 協賛企業ページ(第8回)の下書き。公開前の社名・段の判断を含むので Pages に出さない
+wp-snippets/drafts/sponsor-2026/
