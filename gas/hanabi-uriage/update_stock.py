@@ -101,23 +101,20 @@ SOLD_OUT = {
     ('SS席', 'KKday'),      # 11/6〜11/10 KKday の画面で売り切れ（シートは配分10・販売5で△）。読めない日に△へ戻さないため
 }
 
-# 販売を終えたサイト（全席種）。購入リンクの行は「JRE MALL　販売終了」（リンクなし）にし、
+# 販売を終えたサイト（全席種）。購入リンクの行は、売り切れと同じ ✕（リンクなし）で固定し、
 # 席の状況（空席あり／残りわずか／完売）にも数えない。毎朝の画面確認もしない（site_checks.SITES から外す）
 ENDED = {
-    'JRE MALL',   # 11/12 主催者（足立さん）より「JRE MALL がチケット終売」
+    'JRE MALL',   # 11/12 主催者（足立さん）より「JRE MALL がチケット終売」→ 同日「×にしておいて」
 }
 
 
 def row_html(site, mark, url):
-    if site in ENDED:
-        return ('<li class="akg-buylist__item--out"><span class="akg-buylist__row">'
-                '<span class="akg-buylist__name">%s</span><span class="akg-buylist__end">販売終了</span>'
-                '</span></li>') % site
     name = '<span class="akg-buylist__name">%sで購入する</span>' % site
-    if mark == '✕':
+    if site in ENDED or mark == '✕':
+        sr = 'この販売サイトでは販売を終了しました' if site in ENDED else 'この販売サイトでは売り切れです'
         return ('<li class="akg-buylist__item--out"><span class="akg-buylist__row">%s'
                 '<span class="akg-buylist__mark akg-buylist__mark--out" aria-hidden="true">✕</span>'
-                '<span class="akg-buylist__sr">この販売サイトでは売り切れです</span></span></li>') % name
+                '<span class="akg-buylist__sr">%s</span></span></li>') % (name, sr)
     if mark == '△':
         m = ('<span class="akg-buylist__mark akg-buylist__mark--few" aria-hidden="true">△</span>'
              '<span class="akg-buylist__sr">残りわずか・新しいタブで開きます</span>')
@@ -205,7 +202,7 @@ def transform(s, seat, site, date, public=None):
             if st in ENDED:
                 new = row_html(st, None, None)
                 if new != body:
-                    changes.append('%s / %s: 販売終了' % (key, st))
+                    changes.append('%s / %s: ✕（販売終了）' % (key, st))
                 return new
             if (key, st) not in site:
                 raise ValueError('在庫シートに行が無い: %s / %s' % (key, st))
