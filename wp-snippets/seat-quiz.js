@@ -107,6 +107,17 @@
     for (var i = 0; n.length > i; i++) { if (n[i].textContent.indexOf('アソビュー') === 0) { return true; } }
     return false;
   }
+  // アソビュー以外で、この席をまだ売っている販売サイト（購入リンクの枠で ✕ になっていない行）。
+  // 毎朝の在庫更新（stock.json）に合わせて変わるので、売り切れ・販売終了のサイトは自動で外れる
+  function otherSites(key) {
+    var out = [];
+    var n = document.querySelectorAll('.akg-buylist[data-stock="' + CARD_CLASS[key] + '"] li:not(.akg-buylist__item--out) .akg-buylist__name');
+    for (var i = 0; n.length > i; i++) {
+      var name = n[i].textContent.replace('で購入する', '').trim();
+      if (name && name !== 'アソビュー' && out.indexOf(name) < 0) { out.push(name); }
+    }
+    return out;
+  }
   function firstAvailable(list, not) {
     for (var i = 0; list.length > i; i++) { if (list[i] !== not && !soldOut(list[i])) { return list[i]; } }
     return null;
@@ -217,7 +228,10 @@
       if (s.only) {
         html += '<p class="akg-quiz__sub">この席はアソビューだけで販売しています。<a href="#site">販売サイトの一覧を見る</a></p>';
       } else {
-        html += '<p class="akg-quiz__sub"><a href="#site">他の販売サイトで購入する</a>（チケットぴあ・KKday・楽天トラベルでも販売しています）</p>';
+        var others = otherSites(seatKey);
+        if (others.length) {
+          html += '<p class="akg-quiz__sub"><a href="#site">他の販売サイトで購入する</a>（' + others.join('・') + 'でも販売しています）</p>';
+        }
       }
     }
     if (alt) {
