@@ -98,10 +98,21 @@ NOT_ON_SALE = {
 SOLD_OUT = {
     ('S席', 'JRE MALL'),    # 10/18 カレンダーの✕を確認（シートは10/16集計で残り2）
     ('SS席', '楽天トラベル'),  # 10/18 楽天の在庫確認で1枚も確保できないことを確認（シートは10/16集計で残り1）
+    ('SS席', 'KKday'),      # 11/6〜11/10 KKday の画面で売り切れ（シートは配分10・販売5で△）。読めない日に△へ戻さないため
+}
+
+# 販売を終えたサイト（全席種）。購入リンクの行は「JRE MALL　販売終了」（リンクなし）にし、
+# 席の状況（空席あり／残りわずか／完売）にも数えない。毎朝の画面確認もしない（site_checks.SITES から外す）
+ENDED = {
+    'JRE MALL',   # 11/12 主催者（足立さん）より「JRE MALL がチケット終売」
 }
 
 
 def row_html(site, mark, url):
+    if site in ENDED:
+        return ('<li class="akg-buylist__item--out"><span class="akg-buylist__row">'
+                '<span class="akg-buylist__name">%s</span><span class="akg-buylist__end">販売終了</span>'
+                '</span></li>') % site
     name = '<span class="akg-buylist__name">%sで購入する</span>' % site
     if mark == '✕':
         return ('<li class="akg-buylist__item--out"><span class="akg-buylist__row">%s'
@@ -187,10 +198,15 @@ def transform(s, seat, site, date, public=None):
 
         def li(m):
             body = m.group(0)
-            nm = re.search(r'akg-buylist__name">(.+?)で購入する<', body)
+            nm = re.search(r'akg-buylist__name">(.+?)(?:で購入する)?<', body)
             if not nm:
                 return body
             st = nm.group(1)
+            if st in ENDED:
+                new = row_html(st, None, None)
+                if new != body:
+                    changes.append('%s / %s: 販売終了' % (key, st))
+                return new
             if (key, st) not in site:
                 raise ValueError('在庫シートに行が無い: %s / %s' % (key, st))
             sheet_mark = site[(key, st)]

@@ -2,7 +2,7 @@
 """
 販売サイトの公開画面で、席種ごとに「いま買えるか」を確かめた結果をまとめる。
 
-- アソビュー・KKday・JRE MALL・チケットぴあ … 毎朝の定期実行で Claude がブラウザで画面を開き、
+- アソビュー・KKday・チケットぴあ（JRE MALL は 11/12 に販売終了）… 毎朝の定期実行で Claude がブラウザで画面を開き、
   browser/*.js で読んだ結果を observed.json に保存する（待合室や bot 対策はすり抜けない。
   ふつうに画面を開くだけ）。from_observed() がそれを (席種, 販売サイト) に読み替える。
 - 楽天トラベル … 画面の「予約へ進む」と同じ在庫確認を呼ぶ（check_rakuten()。ログイン不要・予約はしない）。
@@ -14,7 +14,8 @@
 import datetime, json, re, time, unicodedata, urllib.request
 
 JST = datetime.timezone(datetime.timedelta(hours=9))
-SITES = ('アソビュー', 'チケットぴあ', '楽天トラベル', 'KKday', 'JRE MALL')
+# 毎朝確かめる販売サイト。JRE MALL は 11/12 に販売終了（update_stock.ENDED）したので外した
+SITES = ('アソビュー', 'チケットぴあ', '楽天トラベル', 'KKday')
 RANK = {'available': 0, 'few': 1, 'soldout': 2}
 
 REC, SS, S, A, FREE = 'リクライニング席（ペア）', 'SS席', 'S席', 'A席（大人＋子ども）', 'フリーエリア'
@@ -122,9 +123,9 @@ def from_observed(raw, today):
     elif r:
         notes.append('KKday: 状態がそろわない %s' % kk)
 
-    # ---- JRE MALL
+    # ---- JRE MALL（11/12 販売終了。observed.json に jre09/jre10 が無ければ読まない）
     plans = {}
-    for page in ('jre09', 'jre10'):
+    for page in [p for p in ('jre09', 'jre10') if 'JRE MALL' in SITES or p in raw]:
         r = _today_read(raw.get(page), today, 'JRE %s' % page, notes)
         plans.update((r or {}).get('plans') or {})
     for pid, seats in JRE.items():
@@ -134,7 +135,7 @@ def from_observed(raw, today):
             if pid == '3737' and st == 'few':
                 st = None
             _put(out, seat, 'JRE MALL', st)
-    if all(plans.get(p) in RANK for p in JRE):
+    if plans and all(plans.get(p) in RANK for p in JRE):
         ok.add('JRE MALL')
     elif plans:
         notes.append('JRE MALL: 状態がそろわない %s' % plans)

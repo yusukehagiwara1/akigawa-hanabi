@@ -15,15 +15,17 @@
 
 1. 「在庫」シート（配分−販売数）の記号: 〇／△（残り5以下・25%以下）／✕
 2. 販売サイトの画面で見た状態を重ねる（悪い方をとる。在庫を増やす方向には変えない）
-   - アソビュー・KKday・JRE MALL・チケットぴあ: ブラウザで画面を開き、`browser/*.js` で読む
+   - アソビュー・KKday・チケットぴあ: ブラウザで画面を開き、`browser/*.js` で読む
    - 楽天トラベル: `site_checks.check_rakuten()`（画面の「予約へ進む」と同じ在庫確認。予約はしない）
 3. 手で決めている枠（`update_stock.py` の SET_MARK / FORCE_MARK / NOT_ON_SALE / SOLD_OUT）
    - SET_MARK は主催者から連絡のあった記号（再販など）。シートの代わりに使い、画面で売り切れ・残りわずかを見たらそちらが勝つ
+4. 販売を終えたサイト（`update_stock.py` の ENDED）は、どの席も「JRE MALL　販売終了」（リンクなし）の行にする。
+   席の状況には数えず、画面も見に行かない。**JRE MALL は 2026-11-12 に販売終了**（主催者より）。
 
-「○月○日時点」は、5サイトすべてを確かめられた日だけその日の日付になる。
+「○月○日時点」は、販売中の4サイト（アソビュー・チケットぴあ・楽天トラベル・KKday）をすべて確かめられた日だけその日の日付になる。
 
-自動でスクリプトから読めないサイトがある（アソビューは購入者用の待合室の先、KKday は bot 対策、
-JRE はサイト全体が待合室）。すり抜けはせず、ふつうのブラウザで画面を開いて読む。
+自動でスクリプトから読めないサイトがある（アソビューは購入者用の待合室の先、KKday は bot 対策）。
+すり抜けはせず、ふつうのブラウザで画面を開いて読む。
 
 ## 手順
 
@@ -38,7 +40,7 @@ JRE はサイト全体が待合室）。すり抜けはせず、ふつうのブ�
      - bcd564e0-361e-4a67-bdec-0a608cc54213（駐車場 プール側）
      - 6dbcf060-4a33-4e3c-9348-551a867822d1（フリーエリア。チャネル d58e8525-…）
    - KKday: https://www.kkday.com/ja/product/527261 → `browser/kkday_read.js`
-   - JRE MALL: https://event.jreast.co.jp/activity/detail/a180/a180-09 と a180-10 → `browser/jre_read.js`
+   - （JRE MALL は 11/12 に販売終了したので読まない。`browser/jre_read.js` は使わない）
    - チケットぴあ: https://t.pia.jp/pia/ticketInformation.do?eventCd=2625008&rlsCd=001 → `browser/pia_read.js`
 3. `python gas/hanabi-uriage/build_stock_json.py --observed observed.json`
 4. `wp-snippets/stock.json` と `wp-snippets/ticket-page-content.html` を commit・push
@@ -49,8 +51,6 @@ observed.json の形:
 {
   "asoview": {"<商品ID>": <asoview_read.js の戻り値>, ...},
   "kkday": <kkday_read.js の戻り値>,
-  "jre09": <a180-09 での jre_read.js の戻り値>,
-  "jre10": <a180-10 での jre_read.js の戻り値>,
   "pia": <pia_read.js の戻り値>
 }
 ```

@@ -6,12 +6,13 @@
 
 1. 「在庫」シートを CSV で読む（ログイン不要の export URL）
 2. 販売サイトの画面で確かめた状態を重ねる（悪い方をとる。在庫を増やす方向には変えない）
-   - observed.json … ブラウザで読んだアソビュー・KKday・JRE MALL・チケットぴあ（site_checks.from_observed）
+   - observed.json … ブラウザで読んだアソビュー・KKday・チケットぴあ（site_checks.from_observed）
    - 楽天トラベル … スクリプトで確認（site_checks.run_auto。--no-auto で省略）
 3. wp-snippets/ticket-page-content.html を書き換え、購入リンク・カードの HTML を wp-snippets/stock.json に出す
    → push すると Cloudflare Pages に載り、チケットページの stock.js が表示を差し替える（WordPress の更新は不要）
 
-「○月○日時点」の日付は、5サイトすべてを確かめられた日だけ今日にする。
+「○月○日時点」の日付は、販売中のサイト（site_checks.SITES。11/12 に販売終了した JRE MALL は除く）を
+すべて確かめられた日だけ今日にする。
 1つでも確かめられなかった日は前の日付のまま（表示は確かめられた分だけ更新する）。
 """
 import datetime, io, json, os, re, sys, urllib.request

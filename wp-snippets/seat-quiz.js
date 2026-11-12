@@ -217,7 +217,7 @@
       if (s.only) {
         html += '<p class="akg-quiz__sub">この席はアソビューだけで販売しています。<a href="#site">販売サイトの一覧を見る</a></p>';
       } else {
-        html += '<p class="akg-quiz__sub"><a href="#site">他の販売サイトで購入する</a>（チケットぴあ・KKday・楽天トラベル・JRE MALLでも販売しています）</p>';
+        html += '<p class="akg-quiz__sub"><a href="#site">他の販売サイトで購入する</a>（チケットぴあ・KKday・楽天トラベルでも販売しています）</p>';
       }
     }
     if (alt) {
