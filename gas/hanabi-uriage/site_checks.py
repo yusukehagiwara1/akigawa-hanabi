@@ -2,7 +2,7 @@
 """
 販売サイトの公開画面で、席種ごとに「いま買えるか」を確かめた結果をまとめる。
 
-- アソビュー・KKday・チケットぴあ（JRE MALL は 11/12 に販売終了）… 毎朝の定期実行で Claude がブラウザで画面を開き、
+- アソビュー・チケットぴあ（JRE MALL は 11/12 に販売終了、KKday は 11/11 から全プラン完売なので読まない）… 毎朝の定期実行で Claude がブラウザで画面を開き、
   browser/*.js で読んだ結果を observed.json に保存する（待合室や bot 対策はすり抜けない。
   ふつうに画面を開くだけ）。from_observed() がそれを (席種, 販売サイト) に読み替える。
 - 楽天トラベル … 画面の「予約へ進む」と同じ在庫確認を呼ぶ（check_rakuten()。ログイン不要・予約はしない）。
@@ -14,8 +14,9 @@
 import datetime, json, re, time, unicodedata, urllib.request
 
 JST = datetime.timezone(datetime.timedelta(hours=9))
-# 毎朝確かめる販売サイト。JRE MALL は 11/12 に販売終了（update_stock.ENDED）したので外した
-SITES = ('アソビュー', 'チケットぴあ', '楽天トラベル', 'KKday')
+# 毎朝確かめる販売サイト。JRE MALL は 11/12 に販売終了（update_stock.ENDED）、
+# KKday は 11/11 から商品ページ全体が「完売」（update_stock.SOLD_OUT で全席 ✕）なので外した
+SITES = ('アソビュー', 'チケットぴあ', '楽天トラベル')
 RANK = {'available': 0, 'few': 1, 'soldout': 2}
 
 REC, SS, S, A, FREE = 'リクライニング席（ペア）', 'SS席', 'S席', 'A席（大人＋子ども）', 'フリーエリア'
@@ -112,16 +113,17 @@ def from_observed(raw, today):
     if good == len(ASOVIEW):
         ok.add('アソビュー')
 
-    # ---- KKday
-    r = _today_read(raw.get('kkday'), today, 'KKday', notes)
-    kk = (r or {}).get('options') or {}
-    for oid, seats in KKDAY.items():
-        for seat in seats:
-            _put(out, seat, 'KKday', kk.get(oid))
-    if r and all(kk.get(o) in RANK for o in KKDAY):
-        ok.add('KKday')
-    elif r:
-        notes.append('KKday: 状態がそろわない %s' % kk)
+    # ---- KKday（11/11〜 全プラン完売。observed.json に kkday が無ければ読まない）
+    if 'KKday' in SITES or 'kkday' in raw:
+        r = _today_read(raw.get('kkday'), today, 'KKday', notes)
+        kk = (r or {}).get('options') or {}
+        for oid, seats in KKDAY.items():
+            for seat in seats:
+                _put(out, seat, 'KKday', kk.get(oid))
+        if r and all(kk.get(o) in RANK for o in KKDAY):
+            ok.add('KKday')
+        elif r:
+            notes.append('KKday: 状態がそろわない %s' % kk)
 
     # ---- JRE MALL（11/12 販売終了。observed.json に jre09/jre10 が無ければ読まない）
     plans = {}
