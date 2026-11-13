@@ -70,7 +70,7 @@ def main():
     orig = io.open(HTML, encoding='utf-8').read()
     page_date = re.search(r'class="akg-asof" data-date="([\d-]+)"', orig)
     prev_date = datetime.date.fromisoformat(page_date.group(1)) if page_date else now.date()
-    complete = set(sc.SITES) <= ok
+    complete = set(sc.SITES) <= ok or us.ALL_SOLD_OUT   # 全席完売にしたあとは、確かめなくても今日の日付にする
     date = now.date() if complete else prev_date
 
     s, changes, rows = us.transform(orig, seat, site, date, lambda key, st, url: seen.get((key, st)))

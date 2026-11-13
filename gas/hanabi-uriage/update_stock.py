@@ -112,6 +112,10 @@ ENDED = {
     'JRE MALL',   # 11/12 主催者（足立さん）より「JRE MALL がチケット終売」→ 同日「×にしておいて」
 }
 
+# 11/14（大会当日）主催者より「チケットページですべて完売に」。True の間は、シートや販売サイトの画面に関係なく
+# 購入リンクは全行 ✕、席の状況・カードは全席「完売」、時点は実行した日にする（build_stock_json.py）
+ALL_SOLD_OUT = True
+
 
 def row_html(site, mark, url):
     name = '<span class="akg-buylist__name">%sで購入する</span>' % site
@@ -212,7 +216,9 @@ def transform(s, seat, site, date, public=None):
             if (key, st) not in site:
                 raise ValueError('在庫シートに行が無い: %s / %s' % (key, st))
             sheet_mark = site[(key, st)]
-            if (key, st) in SET_MARK:
+            if ALL_SOLD_OUT:
+                mark = '✕'
+            elif (key, st) in SET_MARK:
                 mark = SET_MARK[(key, st)]
             elif (key, st) in NOT_ON_SALE or (key, st) in SOLD_OUT:
                 mark = '✕'

@@ -216,7 +216,10 @@
     html += '<div><p class="akg-quiz__price">' + s.price + '</p><ul class="akg-quiz__spec">';
     for (var i = 0; s.spec.length > i; i++) { html += '<li>' + s.spec[i] + '</li>'; }
     html += '</ul><p class="akg-quiz__why">' + why + '</p></div></div>';
-    if (asoviewOut(seatKey)) {
+    if (soldOut(seatKey)) {
+      // どの販売サイトでも完売の席（11/14 大会当日は全席完売）。購入へのボタンは出さない
+      html += '<p class="akg-quiz__cta-hint">この席は完売しました。</p>';
+    } else if (asoviewOut(seatKey)) {
       // アソビューでは売り切れ・ほかのサイトでは買える席は、ページ内の購入リンク（販売サイト別）へ案内する
       html += '<div class="swell-block-button red_ -size-l is-style-btn_normal"><a href="#seat-' + CARD_CLASS[seatKey] + '" class="swell-block-button__link" data-akg-cta="' + seatKey + '">' +
         '<span><strong>この席の販売サイトを見る</strong></span></a></div>';
